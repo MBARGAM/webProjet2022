@@ -1,0 +1,41 @@
+.footer {
+  background-color: #0D2816;
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  height:8rem;
+      .footerMenu{
+        display: flex;
+        justify-content: space-around;
+        color :white;
+      }
+      .spanFooter{
+        display: inline-block;
+      }
+      .footerItem{
+        text-decoration: none;
+        color :white;
+        font-size: 1.5rem;
+      }
+      .imgFooter{
+        margin: 0 auto;
+      }
+      .siteName{
+        font-family: "Savoye LET";
+        color: white;
+        font-size: 3rem;
+      }
+      .footerSiteBlock{
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 1rem;
+      }
+      .footerItem:hover{
+        color:white;
+      }
+    .siteName:hover{
+      color:whitesmoke;
+    }
+
+      /* style concernant  concernant le footer  fin 1*/
+}
