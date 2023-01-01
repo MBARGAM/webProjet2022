@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/all.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        <link href="{{ asset('assets/css/style.css')  }}" rel="stylesheet" >
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+
+    <header>
+        <div class="headerLogo">
+            <a href="#"><img class="logo" src="{{ asset('assets/images/logo.png')  }}" title="accueil" alt="accueil"></a>
+        </div>
+        <div class="language">
+            <span class="francais"><a class="langFr" href="#">Fr</a></span>
+            <span class="anglais"><a class="langEng" href="#">En</a></span>
+        </div>
+        <div class="headerLogo">
+            <a href="#"><img class="burger" src="{{ asset('assets/images/burger.png')  }}" title="accueil" alt="accueil"></a>
+        </div>
+
+        <div class="menuMobile">
+            <div class="menuBurger">
+                <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
+                <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
+                <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
+                <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catégories
+                </button>
+                <div class="dropdown-menu dropdown-menu-right categorie">
+                    <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                    <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                </div>
+            </div>
+            <div>
+                <div class="btnConnexion">
+                    <a href="#" class="btn  btn-sm dropdown-item btnItem ">Connexion</a>
+                </div>
+                <div class="btnInscription">
+                    <a href="#" class="btn  btn-sm dropdown-item btnItem ">Inscription</a>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+
+{% endblock %}
+{% block body %}
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <div class="footerSiteBlock">
+            <a href="#" class="siteName">doTonNyanga</a>
+        </div>
+        <div class="footerMenu">
+            <span class="newsletter spanFooter"><a href="#"  class="footerItem">Newsletters</a></span>
+            <span class="contact spanFooter"><a href="#" class="footerItem" >Nous contacter</a></span>
+            <span class="about spanFooter" ><a href="#" class="footerItem">A propos</a></span>
+        </div>
+    </div>
+{% endblock %}
+</body>
 </html>
