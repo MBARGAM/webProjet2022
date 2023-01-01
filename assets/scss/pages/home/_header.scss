@@ -1,0 +1,122 @@
+/* style concernant  concernant le header  debut 1*/
+header{
+  display:flex;
+  justify-content: space-between;
+  height: 8rem;
+  margin: 0 auto;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px $vert;
+
+    .language{
+      text-align:center;
+      margin-top: 10px;
+    }
+    .logo{
+      margin-top: 12px;
+      margin-left : 1.5rem;
+      width: 65%;
+    }
+    .langFr,.langEng{
+      color:#0D2816;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+    .francais{
+      display:inline-block;
+    }
+    .anglais{
+      display:inline-block;
+      margin-left: 4px;
+    }
+    .lemobile{
+
+    }
+    .headerLogo{
+      .burger {
+        margin-top: 2rem;
+        margin-right : 1.5rem;
+      }
+      .menuMobile{
+       display: none;
+      }
+
+    }
+
+    .connectivité{
+
+    }
+
+    .langEng:hover{
+      color:#0D2816;
+    }
+    .langFr:hover{
+      color:#0D2816;
+    }
+
+    .francais::after{
+      content:" ";
+      border-right: 3px solid #0D2816;
+      margin-left: 10px;
+    }
+    .headerLogo:hover{
+      .menuMobile{
+        display: block;
+        position: absolute;
+        margin-right: 3rem;
+        width:17rem;
+        height: 20rem;
+        top:5.6rem;
+        left: 22rem;
+        border-left: 2px solid #0D2816;
+        border-top: 2px solid #0D2816;
+        border-bottom: 2px solid #0D2816;
+        padding: 1rem 0;
+        z-index: 100;
+        background-color: white;
+
+        animation-name: translation;
+        animation-duration: 1s;
+
+        .listItem{
+          font-size: 1.2rem;
+          text-align: left;
+          padding-left: 8px;
+        }
+        .btnItem{
+          background-color: #0D2816;
+          color: #dfdfdf;
+          font-size: 1.2rem;
+          border-radius: 25px;
+          text-align: center;
+          width:10rem ;
+          margin-left: 13px;
+
+          @keyframes translation {
+            0%   {left:39rem;}
+            100%  {left:22rem;}
+          }
+
+        }
+        .btnConnexion{
+          margin-top :2rem;
+          text-align: center;
+        }
+        .btnInscription{
+          margin-top :1rem;
+          text-align: center;
+        }
+        .listItem:hover{
+          background-color: #0D2816;
+          color:white;
+        }
+        .btnItem:hover{
+          background-color: darkgreen;
+          color: white;
+
+        }
+      }
+  }
+
+  /* style concernant  concernant le header  fin 1*/
+
+}
