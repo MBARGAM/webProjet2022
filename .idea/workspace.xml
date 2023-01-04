@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3fa1bb0-3ca9-4071-98d5-85e61640aaa5" name="Changes" comment="">
-
-      <change afterPath="$PROJECT_DIR$/assets/scss/base/_diaporama.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/scss/base/_search.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/SearchType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/search/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/base/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_base.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/base/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_footer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
->>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,15 +203,12 @@
       <workItem from="1672572556820" duration="4557000" />
       <workItem from="1672577525158" duration="4218000" />
       <workItem from="1672585628044" duration="10565000" />
-
       <workItem from="1672599142240" duration="10476000" />
       <workItem from="1672678819019" duration="11142000" />
       <workItem from="1672698105288" duration="11108000" />
       <workItem from="1672820690362" duration="3775000" />
       <workItem from="1672854101828" duration="16646000" />
-=======
       <workItem from="1672601395153" duration="1010000" />
->>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
     </task>
     <servers />
   </component>
