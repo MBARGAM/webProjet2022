@@ -1,6 +1,9 @@
 # webProjet2022
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
 # projetweb2022
 Annuaire de bien être
 # insription et creation d'un compte
@@ -28,6 +31,11 @@ recuperation des fichier format json
 - effectuer les migrations  :  symfony console doctrine:migration:migrate
 
 * ACTIVER SASS
+<<<<<<< HEAD
 - via l invite taper la commande : npm   afin d'activer sass et les fichiers y afferents
 --------------------------------------------------------------------------------------------------------
 >>>>>>> Stashed changes
+=======
+- via l invite taper la commande : npm run watch   afin d'activer sass et les fichiers y afferents
+--------------------------------------------------------------------------------------------------------
+>>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
