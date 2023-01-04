@@ -1,0 +1,93 @@
+.searchForm{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 60px;
+  margin-left:8px;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  height: 5rem;
+
+    .searchBlock1,.searchBlock2{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      grid-gap: 20px;
+      grid-template-rows:2rem;
+    }
+    .searchBlock1{
+
+    }
+    .searchBlock2{
+    margin-top: 1rem;
+    }
+    .submit{
+      margin-top: 2.5rem;
+      align-items: center;
+        width: 10px;
+      height:10px;
+      margin-right: 2rem;
+    }
+    .btn-primary{
+      background-color: $vert;
+      border : 1px solid $vert;
+
+
+
+    }
+    .btn-primary:hover{
+      background-color: darkgreen ;
+      border : 1px solid darkgreen;
+    }
+
+  .form-group{
+
+  }
+  .commune,.prestataire,.cp,.localite{
+      .required{
+        font-size: 8px;
+        margin-bottom: 5px;
+      }
+      .form-control{
+        height: 1.2rem;
+        font-size: 7px;
+      }
+  }
+
+}
+
+@media screen and (min-width: (321px)){
+  .searchForm{
+    height: 6rem;
+
+    .searchBlock1,.searchBlock2{
+      grid-template-rows:2.5rem;
+    }
+
+    .searchBlock2{
+      margin-top: 1rem;
+    }
+
+
+    .commune,.prestataire,.cp,.localite{
+      .required{
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+      .form-control{
+        height: 1.3rem;
+        font-size: 9px;
+      }
+    }
+
+  }
+
+
+}
+@media screen and (min-width: 500px) {
+
+}
+@media screen and (min-width: 720px) {
+
+}
+@media screen and (min-width: 960px) {
+
+}

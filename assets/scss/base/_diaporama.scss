@@ -1,0 +1,19 @@
+.diaporama{
+  height: 6rem;
+  background-color: red;
+  margin-left: 8px ;
+  margin-right: 8px ;
+
+}
+@media screen and (min-width: (321px)){
+  .diaporama{
+    height: 7rem;
+  }
+}
+
+@media screen and (min-width: 720px) {
+
+}
+@media screen and (min-width: 960px) {
+
+}

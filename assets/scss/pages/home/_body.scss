@@ -1,0 +1,94 @@
+.blockPrestataire{
+  height: 9rem;
+  margin: 8px ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+
+   .prestataireItem{
+     border: 1px solid green;
+     height: 4rem;
+     width: 4.9rem;
+     margin-left: 5px;
+     margin-top: 4px;
+     box-sizing: border-box;
+
+     .logoPrestataire{
+      object-fit: contain;
+       width: 1.5rem;
+       height: 3rem;
+       text-align: center;
+
+     }
+     .nomPrestataire{
+       @include link;
+       font-size: 8px;
+       text-align: center;
+     }
+   }
+  .categorieItem{
+  border: 1px solid green;
+    height: 4rem;
+    width: 10rem;
+    margin-left: 5px;
+    margin-top: 4px;
+
+    .logoPrestataire{
+      width: 1.5rem;
+      height: 3rem;
+      text-align: center;
+    }
+    .nomPrestataire{
+      @include link;
+      font-size: 8px;
+      text-align: center;
+    }
+
+  }
+}
+
+@media screen and (min-width: 321px) {
+
+  .blockPrestataire{
+     height:11.7rem;
+
+    .prestataireItem{
+      height: 5.4rem;
+      width: 6.5rem;
+      margin-right: 2px;
+
+      .logoPrestataire{
+        object-fit: contain;
+        width: 1.5rem;
+        height: 3rem;
+        text-align: center;
+
+      }
+      .nomPrestataire{
+        display: inline-block;
+      }
+    }
+    .categorieItem{
+      height: 5.3rem;
+      width: 13.5rem;
+
+      .logoPrestataire{
+        width: 1.5rem;
+        height: 3rem;
+        text-align: center;
+      }
+      .nomPrestataire{
+        display: inline-block;
+      }
+
+    }
+  }
+
+}
+@media screen and (min-width: 450px) {
+
+}
+@media screen and (min-width: 960px){
+
+}

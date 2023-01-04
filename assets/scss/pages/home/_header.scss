@@ -1,72 +1,279 @@
 /* style concernant  concernant le header  debut 1*/
-header{
-  display:flex;
+
+header {
+
+  display: flex;
   justify-content: space-between;
-  height: 8rem;
-  margin: 0 auto;
-  background: #FFFFFF;
+  height: 4rem;
+  margin:0 auto;
+  background: white;
   box-shadow: 0px 4px 4px $vert;
 
-    .language{
-      text-align:center;
-      margin-top: 10px;
-    }
-    .logo{
-      margin-top: 12px;
-      margin-left : 1.5rem;
-      width: 65%;
-    }
-    .langFr,.langEng{
-      color:#0D2816;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-    .francais{
-      display:inline-block;
-    }
-    .anglais{
-      display:inline-block;
-      margin-left: 4px;
-    }
-    .lemobile{
+  .logo {
 
+    margin-left: 10px;
+    width: 35%;
+    margin-top: 6px;
+  }
+
+  .langFr, .langEng {
+    color: #0D2816;
+    text-decoration: none;
+    font-size: 8px;
+    display: inline-block;
+  }
+
+  .francais {
+    display: inline-block;
+  }
+
+  .anglais {
+    display: inline-block;
+    margin-left: 3px;
+  }
+
+  .lemobile {
+
+  }
+
+  .headerLogo {
+    .burger {
+      margin-top:1rem;
+      margin-right: 10px;
+      margin-left:3rem;
+     width:3rem;
+      height: auto;
     }
-    .headerLogo{
+
+    .menuMobile {
+      display: none;
+    }
+
+  }
+
+  .connectivité {
+
+  }
+
+  .langEng:hover {
+    color: #0D2816;
+  }
+  .language{
+    width: 3rem;
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+  .langFr:hover {
+    color: #0D2816;
+  }
+
+  .francais::after {
+    content: " ";
+    border-right: 2px solid #0D2816;
+    margin-left: 10px;
+  }
+
+  .headerLogo:hover {
+    .menuMobile {
+      display: block;
+      position: fixed;
+      margin-right: 3rem;
+      width: 17rem;
+      height: 13rem;
+      top: 3.2rem;
+      left: 9.4rem;
+      border-left: 2px solid #0D2816;
+      border-top: 2px solid #0D2816;
+      border-bottom: 2px solid #0D2816;
+      padding: 1rem 0;
+      z-index: 100;
+      background-color: white;
+
+      .listItem {
+        font-size: 10px;
+        text-align: left;
+        padding-left: 8px;
+      }
+
+      .btnItem {
+        background-color: #0D2816;
+        color: #dfdfdf;
+        font-size: 10px;
+        border-radius: 25px;
+        width: 5rem;
+        margin-left: 13px;
+        padding: 2px;
+
+        @keyframes translation {
+          0% {
+            left: 39rem;
+          }
+          100% {
+            left: 9rem;
+          }
+        }
+
+      }
+
+      .btnConnexion {
+        margin-top: 1rem;
+        font-size: 10px;
+      }
+
+      .btnInscription {
+        margin-top: 10px;
+        font-size: 10px;
+      }
+
+      .listItem:hover {
+        background-color: #0D2816;
+        color: white;
+      }
+
+      .btnItem:hover {
+        background-color: darkgreen;
+        color: white;
+
+      }
+    }
+  }
+
+  /* style concernant  concernant le header  fin 1*/
+}
+@media screen and (min-width: (321px)){
+  header {
+    height: 6rem;
+    .language {
+        width: 5rem;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-left: 12px;
+      width: 45%;
+      margin-top: 1rem;
+    }
+
+    .langFr, .langEng {
+      font-size: 12px;
+    }
+
+    .headerLogo {
       .burger {
         margin-top: 2rem;
-        margin-right : 1.5rem;
+        margin-right: 12px;
+        width: 3.5rem;
       }
-      .menuMobile{
-       display: none;
+    }
+
+    .headerLogo:hover {
+      .menuMobile {
+        top: 4.5rem;
+        left: 13rem;
+       height: 14.5rem;
+
+        .listItem {
+          font-size: 13px;
+          padding-left: 12px;
+        }
+
+        .btnItem {
+          width: 6rem;
+        }
+
+        .btnConnexion {
+          margin-top: 1.5rem;
+          font-size: 11px;
+        }
+
+        .btnInscription {
+          font-size: 11px;
+        }
+
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 500px) {
+  header {
+    height: 6rem;
+
+    .language {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .logo {
+
+      margin-left: 10px;
+      width: 35%;
+      margin-top: 6px;
+    }
+
+    .langFr, .langEng {
+      color: #0D2816;
+      text-decoration: none;
+      font-size: 8px;
+      display: inline-block;
+    }
+
+    .francais {
+      display: inline-block;
+    }
+
+    .anglais {
+      display: inline-block;
+      margin-left: 3px;
+    }
+
+    .lemobile {
+
+    }
+
+    .headerLogo {
+      .burger {
+        margin-top:1rem;
+        margin-right: 10px;
+        margin-left:3rem;
+        width:3rem;
+        height: auto;
+      }
+
+      .menuMobile {
+        display: none;
       }
 
     }
 
-    .connectivité{
 
+    .langEng:hover {
+      color: #0D2816;
+    }
+    .language{
+      width: 3rem;
+      margin-top: 0;
+      margin-right: 1rem;
+    }
+    .langFr:hover {
+      color: #0D2816;
     }
 
-    .langEng:hover{
-      color:#0D2816;
-    }
-    .langFr:hover{
-      color:#0D2816;
-    }
-
-    .francais::after{
-      content:" ";
-      border-right: 3px solid #0D2816;
+    .francais::after {
+      content: " ";
+      border-right: 2px solid #0D2816;
       margin-left: 10px;
     }
-    .headerLogo:hover{
-      .menuMobile{
-        display: block;
-        position: absolute;
-        margin-right: 3rem;
-        width:17rem;
+
+    .headerLogo:hover {
+      .menuMobile {
+
+        width: 17rem;
         height: 20rem;
-        top:5.6rem;
-        left: 22rem;
+        top: 2.6rem;
+        left: 39rem;
         border-left: 2px solid #0D2816;
         border-top: 2px solid #0D2816;
         border-bottom: 2px solid #0D2816;
@@ -77,46 +284,74 @@ header{
         animation-name: translation;
         animation-duration: 1s;
 
-        .listItem{
+        .listItem {
           font-size: 1.2rem;
           text-align: left;
           padding-left: 8px;
         }
-        .btnItem{
+
+        .btnItem {
           background-color: #0D2816;
           color: #dfdfdf;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           border-radius: 25px;
           text-align: center;
-          width:10rem ;
+          width: 9rem;
           margin-left: 13px;
 
           @keyframes translation {
-            0%   {left:39rem;}
-            100%  {left:22rem;}
+            0% {
+              left: 39rem;
+            }
+            100% {
+              left: 11rem;
+            }
           }
 
         }
-        .btnConnexion{
-          margin-top :2rem;
+
+        .btnConnexion {
+          margin-top: 2rem;
           text-align: center;
         }
-        .btnInscription{
-          margin-top :1rem;
+
+        .btnInscription {
+          margin-top: 1rem;
           text-align: center;
         }
-        .listItem:hover{
+
+        .listItem:hover {
           background-color: #0D2816;
-          color:white;
+          color: white;
         }
-        .btnItem:hover{
+
+        .btnItem:hover {
           background-color: darkgreen;
           color: white;
 
         }
       }
-  }
+    }
 
-  /* style concernant  concernant le header  fin 1*/
+    /* style concernant  concernant le header  fin 1*/
+  }
+  @media screen and (min-width: (321px)){
+    .headerLogo:hover {
+
+      .btnItem {
+
+        @keyframes translation {
+
+          100% {
+            left: 14rem;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+@media screen and (min-width: 960px){
 
 }

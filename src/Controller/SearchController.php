@@ -9,21 +9,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class SearchController extends AbstractController
 {
     /**
-     * @Route("/accueil", name="pageAccueil")
+     * @Route("/rechercher", name="search")
      */
-    public function search(Request $request,EntityManagerInterface $entityManager): Response
+    public function index(Request $request,EntityManagerInterface $entityManager): Response
     {
 
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 
-        return $this->renderForm('home/index.html.twig', [
+        return $this->redirectToRoute('pageAccueil', [
             'form' => $form
         ]);
     }
-
-
 }
