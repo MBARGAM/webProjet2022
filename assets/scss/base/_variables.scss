@@ -2,7 +2,9 @@ $vert : #0D2816;
 @mixin link {
   color: #0D2816;
   text-decoration: none;
+  list-style-type: none;
 }
+
 @mixin linkFooter{
   color: white;
   text-decoration: none;

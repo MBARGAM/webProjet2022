@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3fa1bb0-3ca9-4071-98d5-85e61640aaa5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/base/_diaporama.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_diaporama.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/base/_search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_search.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/base/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/pages/home/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/home/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CodePostalRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CodePostalRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CommuneRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommuneRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/LocaliteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LocaliteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +174,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2Jit6FSvUkaNBWbjskpLFqVWGOz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -211,6 +229,8 @@
       <workItem from="1672601395153" duration="1010000" />
       <workItem from="1672873752200" duration="9000" />
       <workItem from="1672873771263" duration="763000" />
+      <workItem from="1673116090895" duration="49320000" />
+      <workItem from="1673270872872" duration="22669000" />
     </task>
     <servers />
   </component>

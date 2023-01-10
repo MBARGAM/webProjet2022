@@ -38,6 +38,23 @@ class CommuneRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findCommune($value){
+        return $this->createQueryBuilder('a')
+            ->Where('a.cp = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.commune', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findAllCommune(){
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.commune', 'ASC')
+            ->distinct(True)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
 //    /**
 //     * @return Commune[] Returns an array of Commune objects

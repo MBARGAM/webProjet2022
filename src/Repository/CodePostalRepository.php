@@ -39,6 +39,15 @@ class CodePostalRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllCp(){
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.cp', 'ASC')
+            ->distinct(True)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return CodePostal[] Returns an array of CodePostal objects
 //     */

@@ -1,25 +1,27 @@
 /* style concernant  concernant le header  debut 1*/
-
-header {
+.bigScreen{
+  display: none;
+}
+.mobileScreen {
 
   display: flex;
   justify-content: space-between;
-  height: 4rem;
+  height: 5.5rem;
   margin:0 auto;
   background: white;
   box-shadow: 0px 4px 4px $vert;
 
-  .logo {
 
+  .logo {
     margin-left: 10px;
-    width: 35%;
-    margin-top: 6px;
+    width: 45%;
+    margin-top: 10px;
   }
 
   .langFr, .langEng {
     color: #0D2816;
     text-decoration: none;
-    font-size: 8px;
+    font-size: 12px;
     display: inline-block;
   }
 
@@ -38,10 +40,9 @@ header {
 
   .headerLogo {
     .burger {
-      margin-top:1rem;
-      margin-right: 10px;
-      margin-left:3rem;
-     width:3rem;
+      margin-top:40%;
+      margin-left:30%;
+     width:55%;
       height: auto;
     }
 
@@ -59,7 +60,7 @@ header {
     color: #0D2816;
   }
   .language{
-    width: 3rem;
+    width: 4rem;
     margin-top: 0;
     margin-right: 1rem;
   }
@@ -80,8 +81,8 @@ header {
       margin-right: 3rem;
       width: 17rem;
       height: 13rem;
-      top: 3.2rem;
-      left: 9.4rem;
+      top: 9%;
+      left:60%;
       border-left: 2px solid #0D2816;
       border-top: 2px solid #0D2816;
       border-bottom: 2px solid #0D2816;
@@ -90,7 +91,7 @@ header {
       background-color: white;
 
       .listItem {
-        font-size: 10px;
+        font-size: 12px;
         text-align: left;
         padding-left: 8px;
       }
@@ -98,20 +99,12 @@ header {
       .btnItem {
         background-color: #0D2816;
         color: #dfdfdf;
-        font-size: 10px;
+        font-size: 12px;
         border-radius: 25px;
-        width: 5rem;
         margin-left: 13px;
         padding: 2px;
-
-        @keyframes translation {
-          0% {
-            left: 39rem;
-          }
-          100% {
-            left: 9rem;
-          }
-        }
+        width: 40%;
+        align-self: center;
 
       }
 
@@ -140,218 +133,280 @@ header {
 
   /* style concernant  concernant le header  fin 1*/
 }
-@media screen and (min-width: (321px)){
-  header {
-    height: 6rem;
-    .language {
-        width: 5rem;
-      margin-top: 10px;
-      text-align: center;
-    }
+@media screen and (min-width: 321px){
+  .mobileScreen {
+    height: 6.5rem;
 
     .logo {
       margin-left: 12px;
-      width: 45%;
-      margin-top: 1rem;
-    }
-
-    .langFr, .langEng {
-      font-size: 12px;
-    }
-
-    .headerLogo {
-      .burger {
-        margin-top: 2rem;
-        margin-right: 12px;
-        width: 3.5rem;
-      }
-    }
-
-    .headerLogo:hover {
-      .menuMobile {
-        top: 4.5rem;
-        left: 13rem;
-       height: 14.5rem;
-
-        .listItem {
-          font-size: 13px;
-          padding-left: 12px;
-        }
-
-        .btnItem {
-          width: 6rem;
-        }
-
-        .btnConnexion {
-          margin-top: 1.5rem;
-          font-size: 11px;
-        }
-
-        .btnInscription {
-          font-size: 11px;
-        }
-
-      }
-    }
-
-  }
-}
-
-@media screen and (min-width: 500px) {
-  header {
-    height: 6rem;
-
-    .language {
-      text-align: center;
+      width: 52%;
       margin-top: 10px;
     }
 
-    .logo {
-
-      margin-left: 10px;
-      width: 35%;
-      margin-top: 6px;
-    }
-
     .langFr, .langEng {
-      color: #0D2816;
-      text-decoration: none;
-      font-size: 8px;
-      display: inline-block;
-    }
-
-    .francais {
-      display: inline-block;
-    }
-
-    .anglais {
-      display: inline-block;
-      margin-left: 3px;
-    }
-
-    .lemobile {
-
+      font-size: 1rem;
     }
 
     .headerLogo {
       .burger {
-        margin-top:1rem;
-        margin-right: 10px;
-        margin-left:3rem;
-        width:3rem;
-        height: auto;
+        margin-left:20%;
+        width:65%;
       }
 
-      .menuMobile {
-        display: none;
-      }
-
-    }
-
-
-    .langEng:hover {
-      color: #0D2816;
     }
     .language{
-      width: 3rem;
-      margin-top: 0;
-      margin-right: 1rem;
+      margin-top: 7px;
     }
-    .langFr:hover {
-      color: #0D2816;
-    }
-
-    .francais::after {
-      content: " ";
-      border-right: 2px solid #0D2816;
-      margin-left: 10px;
-    }
-
     .headerLogo:hover {
       .menuMobile {
-
-        width: 17rem;
-        height: 20rem;
-        top: 2.6rem;
-        left: 39rem;
-        border-left: 2px solid #0D2816;
-        border-top: 2px solid #0D2816;
-        border-bottom: 2px solid #0D2816;
-        padding: 1rem 0;
-        z-index: 100;
-        background-color: white;
-
-        animation-name: translation;
-        animation-duration: 1s;
+        top: 10%;
+        left:65%;
+        height:14rem ;
 
         .listItem {
-          font-size: 1.2rem;
-          text-align: left;
-          padding-left: 8px;
+          font-size: 12px;
+          padding-left: 10px;
         }
 
         .btnItem {
-          background-color: #0D2816;
-          color: #dfdfdf;
-          font-size: 1.1rem;
+          font-size: 12px;
           border-radius: 25px;
-          text-align: center;
-          width: 9rem;
-          margin-left: 13px;
-
-          @keyframes translation {
-            0% {
-              left: 39rem;
-            }
-            100% {
-              left: 11rem;
-            }
-          }
-
+          width: 40%;
+          align-self: center;
+          padding: 3px;
         }
 
-        .btnConnexion {
-          margin-top: 2rem;
-          text-align: center;
-        }
-
-        .btnInscription {
-          margin-top: 1rem;
-          text-align: center;
-        }
-
-        .listItem:hover {
-          background-color: #0D2816;
-          color: white;
-        }
-
-        .btnItem:hover {
-          background-color: darkgreen;
-          color: white;
-
-        }
       }
     }
 
     /* style concernant  concernant le header  fin 1*/
   }
-  @media screen and (min-width: (321px)){
-    .headerLogo:hover {
+}
+@media screen and (min-width: 500px) {
+  .mobileScreen{
+    display: none;
+  }
+  .bigScreen {
+    display: flex;
+    margin:0 auto;
+    background: white;
+    height: 9rem;
+    box-shadow: 0px 4px 4px $vert;
 
-      .btnItem {
+    .logo {
+       width: 80%;
+      margin-left: 6px;
+      align-self: center;
+      margin-top: 10px;
+    }
 
-        @keyframes translation {
+    .menu{
+      width:100%;
 
-          100% {
-            left: 14rem;
+      .language {
+
+        margin-top: 10px;
+        text-align: right;
+        margin-right: 1rem;
+        color: #0D2816;
+
+        .langFr, .langEng {
+          color: #0D2816;
+          text-decoration: none;
+          font-size:100%;
+          display: inline-block;
+        }
+
+        .francais {
+          display: inline-block;
+        }
+
+        .anglais {
+          display: inline-block;
+          margin-left: 3px;
+        }
+        .langEng:hover {
+          color: darkgreen;
+        }
+        .langFr:hover {
+          color: darkgreen;
+        }
+
+        .francais::after {
+          content: " ";
+          border-right: 2px solid #0D2816;
+          margin-left: 10px;
+        }
+
+      }
+      .menuEtBtn{
+        display: flex;
+        justify-content: space-between;
+         align-items: center;
+        width: 100%;
+        a{
+          @include link;
+        }
+        li {
+          display: inline-block;
+          margin-right: 1rem;
+          font-size: 13px;
+          a:hover{
+            color: darkgreen;
           }
         }
+        .navElt{
+
+        }
+        .nav-item{
+          list-style-type: none;
+          .nav-item:hover {
+            background-color: #0D2816;
+            color: white;
+          }
+        }
+
+       .btnElt{
+           align-items:center ;
+           margin-right: 10px;
+
+           .btnConnexion {
+             margin-top: 1rem;
+           }
+           .btnInscription {
+              margin-top: 10px;
+           }
+
+           .btnItem{
+             background: $vert;
+             color:white;
+             border-radius: 12px;
+           }
+           .btnItem:hover{
+             background-color: darkgreen;
+             color: white;
+           }
+       }
 
       }
 
     }
+
+
   }
 }
-@media screen and (min-width: 960px){
+@media screen and (min-width: 560px){
+  .bigScreen {
+    .menuEtBtn {
+        .navElt{
+          width: 100%;
 
+            li {
+
+              font-size: 1.1rem;
+            }
+        }
+    }
+  }
+}
+  @media screen and (min-width: 700px){
+    .bigScreen {
+
+
+      .menuEtBtn {
+        .navElt{
+          li {
+
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    .btnElt{
+      align-items:center ;
+      margin-right: 10px;
+
+      .btnConnexion {
+        margin-top: 1rem;
+      }
+      .btnInscription {
+        margin-top: 10px;
+      }
+
+      .btnItem{
+        background: $vert;
+        color:white;
+        border-radius: 12px;
+      }
+      .btnItem:hover{
+        background-color: darkgreen;
+        color: white;
+      }
+    }
+
+}
+@media screen and (min-width: 800px) {
+  .menuEtBtn {
+      align-items: center;
+    li{
+
+    }
+    .navbar{
+      width: 90%;
+    }
+    .btnElt{
+      display: flex;
+
+      .btnConnexion {
+        margin-right: 1rem;
+        margin-top: 0;
+
+        a{
+          font-size: 1.2rem;
+          padding: 5px 9px;
+          text-align: center;
+        }
+
+      }
+      .btnInscription {
+        margin-right: 1rem;
+        margin-top: 0;
+        padding-top: 3px;
+        a{
+          font-size: 1.2rem;
+          padding: 5px 9px;
+          text-align: center;
+        }
+
+
+      }
+    }
+  }
+
+}
+@media screen and (min-width: 900px) {
+
+  .headerLogo{
+    margin-left: 1.5rem;
+  }
+  .menuEtBtn {
+      .navElt{
+
+        align-items: center;
+        ul{
+          width:  30rem;
+        }
+      }
+    .btnElt {
+      margin-bottom: 1.5rem;
+      .btnConnexion {
+        margin-right: 2rem;
+
+      }
+      .btnInscription {
+        padding-top: 3px;
+      }
+    }
+  }
 }
