@@ -1,11 +1,11 @@
 .searchForm{
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 5%;
   grid-template-columns: 1fr 60px;
   margin-left:8px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   box-sizing: border-box;
-  height: 5rem;
+  height: 8rem;
 
     .searchBlock1,.searchBlock2{
       display: grid;
@@ -13,24 +13,22 @@
       grid-gap: 20px;
       grid-template-rows:2rem;
     }
-    .searchBlock1{
-
-    }
+  .searchBlock1{
+    margin-top: 12px;
+  }
     .searchBlock2{
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     }
     .submit{
-      margin-top: 2.5rem;
-      align-items: center;
+      align-self: center;
         width: 10px;
       height:10px;
-      margin-right: 2rem;
+
     }
     .btn-primary{
       background-color: $vert;
       border : 1px solid $vert;
-
-
+      margin-left: 10px;
 
     }
     .btn-primary:hover{
@@ -43,12 +41,13 @@
   }
   .commune,.prestataire,.cp,.localite{
       .required{
-        font-size: 8px;
+        font-size: 12px;
         margin-bottom: 5px;
       }
       .form-control{
-        height: 1.2rem;
-        font-size: 7px;
+        height: 1.7rem;
+        font-size: 10px;
+        text-align: center;
       }
   }
 
@@ -56,33 +55,88 @@
 
 @media screen and (min-width: (321px)){
   .searchForm{
-    height: 6rem;
+    grid-template-columns: 1fr 70px;
+    margin-left:10px;
+    height: 9rem;
 
-    .searchBlock1,.searchBlock2{
-      grid-template-rows:2.5rem;
+    .searchBlock1{
+      margin-top: 13px;
     }
-
     .searchBlock2{
-      margin-top: 1rem;
+      margin-top: 2.5rem;
     }
-
 
     .commune,.prestataire,.cp,.localite{
       .required{
-        font-size: 10px;
-        margin-bottom: 6px;
+        font-size: 1rem;
       }
       .form-control{
-        height: 1.3rem;
-        font-size: 9px;
+        height: 2rem;
+        font-size: 12px;
       }
     }
 
   }
 
-
 }
 @media screen and (min-width: 500px) {
+
+  .searchEtDiapo{
+      display:flex;
+      height: 21rem;
+
+      .searchForm{
+          display: block;
+          margin-left: 0;
+          border: 3px solid $vert;
+          height:21rem;
+
+          .searchBlock1,.searchBlock2{
+            display:block;
+            width: 60%;
+            margin: 0 auto;
+
+          }
+         .recherche{
+           margin-top: 10px;
+           width: 12rem;
+          padding-right:0;
+
+         }
+        .commune,.prestataire,.cp,.localite{
+          .required{
+            margin-bottom: 0;
+            font-size: 1rem;
+
+
+          }
+          .form-control{
+            height: 2rem;
+            font-size: 12px;
+            width: 120%;
+          }
+        }
+        .form-group{
+          margin-bottom:8px;
+
+        }
+        .submit{
+          margin : 0 auto;
+          margin-left :3.5rem;
+          margin-top: 1rem;
+        }
+        .submit:hover{
+          background-color: darkgreen ;
+        }
+
+    }
+    .diaporama{
+      background-color: red;
+      width: 100%;
+      height: 95%;
+      margin :1rem;
+    }
+  }
 
 }
 @media screen and (min-width: 720px) {

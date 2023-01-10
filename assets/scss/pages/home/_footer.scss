@@ -1,9 +1,9 @@
 .footer {
   background-color: #0D2816;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
-  height: 4rem;
+  height: 5.4rem;
 
   .footerMenu {
     display: flex;
@@ -13,7 +13,7 @@
 
   .spanFooter {
     display: inline-block;
-    font-size: 10px;
+    font-size: 100%;
   }
 
   .footerItem {
@@ -27,9 +27,11 @@
   }
 
   .siteName {
+    display: inline-block;
     font-family: "Savoye LET";
     color: white;
-    font-size: 1.4rem;
+    font-size: 180%;
+    padding-top: 5px;
   }
 
   .footerSiteBlock {
@@ -50,27 +52,34 @@
 
 @media screen and (min-width: 321px) {
   .footer {
-    height: 6rem;
 
     .spanFooter {
-      font-size: 1rem;
-    }
-
-    .imgFooter {
-      margin: 0 auto;
+      font-size: 110%;
     }
 
     .siteName {
-      font-size: 1.7rem;
+      font-size: 210%;
     }
 
-    .footerSiteBlock {
-      margin-top: 8px;
-    }
   }
 
 }
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 500px) {
+  .footer {
+    height: 7rem;
+
+    .spanFooter {
+      font-size: 1.2rem;
+    }
+
+    .siteName {
+      font-size: 2.5rem;
+    }
+
+    .footerSiteBlock {
+      margin-top: 0;
+    }
+  }
 
 }
 @media screen and (min-width: 960px){

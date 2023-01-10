@@ -17,6 +17,7 @@ class SearchController extends AbstractController
     public function index(Request $request,EntityManagerInterface $entityManager): Response
     {
 
+
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 

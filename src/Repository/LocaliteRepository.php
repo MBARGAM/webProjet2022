@@ -38,6 +38,23 @@ class LocaliteRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findLocalite($value){
+        return $this->createQueryBuilder('a')
+            ->Where('a.cp = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.localite', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findAllLocalite(){
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.localite', 'ASC')
+            ->distinct(True)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
 //    /**
 //     * @return Localite[] Returns an array of Localite objects

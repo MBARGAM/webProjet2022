@@ -4,66 +4,72 @@
 {% block title %}Bienvenue dans l'annuaire doTonNyanga{% endblock %}
 
 {% block body %}
-     {% block search %}
+     <div class="searchEtDiapo">
+          {% block search %}
 
-             {{ form_start(form)}}
-          <div class="searchForm">
-               <div class="recherche">
-                    <div  class="searchBlock1" >
-                         <div class="prestataire">
-                              {{ form_row(form.nomPrestataire) }}
-                         </div>
-                         <div class="commune">
-                              {{ form_row(form.nomCommune) }}
-                         </div>
+               {{ form_start(form)}}
+               <div class="searchForm">
+                    <div class="recherche">
+                         <div  class="searchBlock1" >
+                              <div class="prestataire">
+                                   {{ form_row(form.nomPrestataire) }}
+                              </div>
+                              <div class="commune">
+                                   {{ form_row(form.nomCommune) }}
+                              </div>
 
+                         </div>
+                         <div class="searchBlock2">
+                              <div class="localite">
+                                   {{ form_row(form.nomLocalite) }}
+                              </div>
+                              <div class="cp">
+                                   {{ form_row(form.cp) }}
+                              </div>
+
+                         </div>
                     </div>
-                    <div class="searchBlock2">
-                         <div class="localite">
-                              {{ form_row(form.nomLocalite) }}
-                         </div>
-                         <div class="cp">
-                              {{ form_row(form.cp) }}
-                         </div>
-
+                    <div class="form-row  submit " >
+                         {{ form_row(form.submit) }}
                     </div>
                </div>
-               <div class="form-row  submit " >
-                    {{ form_row(form.submit) }}
+               {{ form_end(form) }}
+
+          {% endblock %}
+          <div class="diaporama">
+
+          </div>
+
+     </div>
+     <div class="blockBody">
+          <div class="blockPrestataire">
+               <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
                </div>
+               <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
+               </div>
+
+               <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
+               </div >
+               <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
+               </div >
           </div>
-          {{ form_end(form) }}
-
-     {% endblock %}
-     <div class="diaporama">
-
+          <div class="categorieItem">
+               <div class="imagePrestataire">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+               </div>
+               <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
+          </div>
      </div>
-     <div class="blockPrestataire">
-          <div class="prestataireItem">
-               <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-               <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
-          </div>
-          <div class="prestataireItem">
-               <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-               <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
-          </div>
-
-             <div class="prestataireItem">
-                  <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                  <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
-             </div >
-          <div class="prestataireItem">
-               <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-               <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
-          </div >
-             <div class="categorieItem">
-                  <div class="imagePrestataire">
-                       <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                  </div>
-                  <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
-             </div>
 
 
-     </div>
+
 
 {% endblock %}

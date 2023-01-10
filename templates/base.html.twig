@@ -14,7 +14,14 @@
     {% endblock %}
 
     {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
+        <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous">
+
+        </script>
+        <script src="{{ asset('js/jquery.js')  }}"></script>
+
     {% endblock %}
 </head>
 <body>
@@ -22,39 +29,79 @@
 {% block header %}
 
     <header>
-        <div class="headerLogo">
-            <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-        </div>
-        <div class="language">
-            <span class="francais"><a class="langFr" href="#">Fr</a></span>
-            <span class="anglais"><a class="langEng" href="#">En</a></span>
-        </div>
-        <div class="headerLogo">
-            <a href="#"><img class="burger" src="{{ asset('images/burger.png')  }}" title="accueil" alt="accueil"></a>
-            <div class="menuMobile">
-                <div class="menuBurger">
-                    <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
-                    <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
-                    <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
-                    <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Catégories
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right categorie">
-                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+        <div class="mobileScreen">
+            <div class="headerLogo">
+                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+            </div>
+            <div class="language">
+                <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                <span class="anglais"><a class="langEng" href="#">En</a></span>
+            </div>
+            <div class="headerLogo">
+                <a href="#"><img class="burger" src="{{ asset('images/burger.png')  }}" title="accueil" alt="accueil"></a>
+
+                <div class="menuMobile">
+                    <div class="menuBurger">
+                        <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
+                        <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
+                        <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
+                        <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Catégories
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right categorie">
+                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                        </div>
                     </div>
-                </div>
-                <div >
-                    <div class="btnConnexion">
-                        <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
-                    </div>
-                    <div class="btnInscription">
-                        <a href="#" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                    <div >
+                        <div class="btnConnexion">
+                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
+                        </div>
+                        <div class="btnInscription">
+                            <a href="#" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="bigScreen">
+            <div class="headerLogo">
+                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
             </div>
 
+            <div class="menu">
+                <div class="language">
+                    <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                    <span class="anglais"><a class="langEng" href="#">En</a></span>
+                </div>
+                <div class="menuEtBtn">
+                    <nav class="navbar-nav navElt" >
+                        <ul class="navbar">
+                            <li class="nav-item"> <a class="nav-link " href="#">Accueil<span class="sr-only">(current)</span></a></li>
+                            <li class="nav-item"> <a class="nav-link" href="#">Contactez-nous</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Catégories
+                                </a>
+
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="btnElt">
+                        <div class="btnConnexion">
+                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
+                        </div>
+                        <div class="btnInscription">
+                            <a href="#" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
 
     </header>
 
