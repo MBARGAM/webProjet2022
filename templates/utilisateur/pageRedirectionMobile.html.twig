@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}choisir du role{% endblock %}
+
+{% block body %}
+
+    <div class="blockChoixInscription">
+        <h5 class="msgInscription" >Je veux m'inscrire en tant que : </h5>
+        <div class="blockMobile">
+            <div class="modalBtnInternaute modal-item">
+                <a href="{{ path('signup', { typeInscription:'internaute'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixInternaute" >Internaute</a>
+            </div>
+            <div class="modalBtnPrestataire modal-item">
+                <a href="{{ path('signup', { typeInscription:'prestataire'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixPrestataire" >Prestataire</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3fa1bb0-3ca9-4071-98d5-85e61640aaa5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/scss/base/_modal.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/utilisateur/pageRedirectionMobile.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UtilisateurController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UtilisateurController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,6 +224,7 @@
       <workItem from="1673270872872" duration="22669000" />
       <workItem from="1673383315981" duration="902000" />
       <workItem from="1673384607208" duration="4433000" />
+      <workItem from="1673411165249" duration="5662000" />
     </task>
     <servers />
   </component>
