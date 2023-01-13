@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
@@ -46,16 +47,14 @@ class HomeController extends AbstractController
     }
 
      /**
-      * @Route("accueil/{champ}/{id}", name="autocompletion" , methods="GET")
+      * @Route("accueil/{champ}/{id}", name="autocompletion" , methods="POST")
       */
-public function autofill($champ,$id,Request $request,EntityManagerInterface $entityManager,Serializer $serializer):JsonResponse
+public function autofill($champ,$id,Request $request,EntityManagerInterface $entityManager,SerializerInterface $serializer):Response
 {
-    $data = $request->query->all();
-    $champ = $data['champ'];
-    $id = $data['id'];
-
+    var_dump($champ);
     switch ($champ){
         case "cp" :
+
             $commune = $entityManager->getRepository(Commune::class);
             $listeCommune = $commune-> findCommune($id);
             $localite = $entityManager->getRepository(Localite::class);
@@ -70,10 +69,12 @@ public function autofill($champ,$id,Request $request,EntityManagerInterface $ent
 
         break;
     }
+    var_dump($listeCommune);
+    $listeLocalite= $serializer->serialize($listeLocalite,'json');
 
-    return new JsonResponse($listeCommune);
-
+    return new JsonResponse($listeLocalite,200,[],true);
 }
+
 
 
 

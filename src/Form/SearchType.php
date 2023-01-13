@@ -19,13 +19,15 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomPrestataire',EntityType::class,[
+            ->add('nomPrestataire',TextType::class,[
                 'label'=> 'Prestataire',
-                'class'=> Prestataire::class,
-                'choice_label'=> function($prestataire){
-                    return $prestataire->getNom();
-                }
-            ])
+                'required' => true,
+                // changer error message par défaut
+                'invalid_message' => 'Veuillez saisir un nom',
+                'attr' => [
+                    'placeholder' => 'Nom du prestataire'
+                ]])
+
         ->add('nomLocalite',EntityType::class,[
         'label'=> 'Localite',
         'class'=> Localite::class,
