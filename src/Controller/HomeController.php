@@ -51,7 +51,7 @@ class HomeController extends AbstractController
       */
 public function autofill($champ,$id,Request $request,EntityManagerInterface $entityManager,SerializerInterface $serializer):Response
 {
-    var_dump($champ);
+    echo $champ;
     switch ($champ){
         case "cp" :
 
@@ -59,7 +59,7 @@ public function autofill($champ,$id,Request $request,EntityManagerInterface $ent
             $listeCommune = $commune-> findCommune($id);
             $localite = $entityManager->getRepository(Localite::class);
             $listeLocalite = $localite->findLocalite($id);
-
+            var_dump($listeLocalite);
         break ;
         case "commune":
 

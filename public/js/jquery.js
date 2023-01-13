@@ -7,7 +7,6 @@ $(function(){
     console.log(cp.val());
        $.ajax({
            method: 'POST',
-
            url:  'accueil/cp/'+cp.val(),
            success: function(response) {
               console.log(response);
@@ -19,10 +18,9 @@ $(function(){
        });
 
    });
-   // console.log(cp.val());
+    console.log(cp.val());
     $.ajax({
         method: 'POST',
-
         url:  'accueil/cp/'+cp.val(),
         success: function(response) {
             console.log(response);
