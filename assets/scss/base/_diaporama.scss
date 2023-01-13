@@ -1,17 +1,27 @@
 .diaporama{
   height:8rem;
   background-color: red;
-  margin-left: 8px ;
-  margin-right: 8px ;
+  margin-left: 10% ;
+  margin-right: 10%;
+  border-radius: 5px;
 
 }
 @media screen and (min-width: (321px)){
   .diaporama{
-    height: 12rem;
+    height:14rem;
+
   }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 720px) {
+  .diaporama{
+    height:auto;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    border-radius: 5px;
+    margin-left: 0 ;
+    margin-right: 0;
+  }
 
 }
 @media screen and (min-width: 960px) {

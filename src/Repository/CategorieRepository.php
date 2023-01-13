@@ -38,6 +38,14 @@ class CategorieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllCategorie(){
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.nom', 'ASC')
+            ->distinct(True)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects

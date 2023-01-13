@@ -38,34 +38,36 @@
                 <span class="francais"><a class="langFr" href="#">Fr</a></span>
                 <span class="anglais"><a class="langEng" href="#">En</a></span>
             </div>
+
+            {% if blockdisabled is not defined %}
             <div class="headerLogo">
                 <a href="#"><img class="burger" src="{{ asset('images/burger.png')  }}" title="accueil" alt="accueil"></a>
 
-                <div class="menuMobile">
-                    <div class="menuBurger">
-                        <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
-                        <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
-                        <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
-                        <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catégories
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right categorie">
-                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                        </div>
-                    </div>
-                    {% if autorise is defined %}
-                        <div>
-                            <div class="btnConnexion">
-                                <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
-                            </div>
-                            <div class="btnInscription">
-                                <a href="{{ path('mobileSignup') }}" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                    <div class="menuMobile">
+                        <div class="menuBurger">
+                            <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
+                            <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
+                            <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
+                            <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Catégories
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right categorie">
+                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
                             </div>
                         </div>
-                    {% endif %}
-                </div>
-            </div>
+                            <div>
+                                <div class="btnConnexion">
+                                    <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
+                                </div>
+                                <div class="btnInscription">
+                                    <a href="{{ path('mobileSignup') }}" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+            {% endif %}
+
         </div>
         <div class="bigScreen">
             <div class="headerLogo">
@@ -90,15 +92,19 @@
                             </li>
                         </ul>
                     </nav>
+
                     <div class="btnElt">
-                        <div class="btnConnexion">
-                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
-                        </div>
+                        {% if  blockdisabled is not defined %}
+                            <div class="btnConnexion">
+                                <a href="#" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
+                            </div>
 
 
-                        <div class="btnInscription">
-                            <a href="#" class="btn  btn-sm dropdown-item btnItem text-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Inscription</a>
-                        </div>
+                            <div class="btnInscription">
+                                <a href="#" class="btn  btn-sm dropdown-item btnItem text-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Inscription</a>
+                            </div>
+
+                        {%  endif %}
 
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -112,10 +118,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="modalBtnInternaute modal-item">
-                                            <a href="{{ path('signup', { typeInscription:'internaute'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixInternaute" >Internaute</a>
+                                            <a href="{{ path('presignup', { typeInscription:'internaute'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixInternaute" >Internaute</a>
                                         </div>
                                         <div class="modalBtnPrestataire modal-item">
-                                            <a href="{{ path('signup', { typeInscription:'prestataire'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixPrestataire" >Prestataire</a>
+                                            <a href="{{ path('presignup', { typeInscription:'prestataire'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixPrestataire" >Prestataire</a>
                                         </div>
                                     </div>
                                 </div>

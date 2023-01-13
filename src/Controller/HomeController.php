@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
 use App\Entity\Localite;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class HomeController extends AbstractController
 {
@@ -22,11 +25,12 @@ class HomeController extends AbstractController
     {
         $commune = $entityManager->getRepository(Commune::class);
         $listeCommune = $commune-> findAllCommune();
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
         $localite = $entityManager->getRepository(Localite::class);
         $listeLocalite = $localite->findAllLocalite();
         $cp = $entityManager->getRepository(CodePostal::class);
         $listeCp= $cp->findAllCp();
-
 
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
@@ -36,46 +40,42 @@ class HomeController extends AbstractController
             'commune'=>$listeCommune,
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
-            'autorise'=>false
+          'categorie'=> $listeCategorie
 
         ]);
     }
 
-    /*/**
-     * @Route("accueil/{champ}/{id}", name="autocompletion" , methods="GET")
+     /**
+      * @Route("accueil/{champ}/{id}", name="autocompletion" , methods="GET")
+      */
+public function autofill($champ,$id,Request $request,EntityManagerInterface $entityManager,Serializer $serializer):JsonResponse
+{
+    $data = $request->query->all();
+    $champ = $data['champ'];
+    $id = $data['id'];
 
-    public function autofill($champ,$id,Request $request,EntityManagerInterface $entityManager):Response
-    {
+    switch ($champ){
+        case "cp" :
+            $commune = $entityManager->getRepository(Commune::class);
+            $listeCommune = $commune-> findCommune($id);
+            $localite = $entityManager->getRepository(Localite::class);
+            $listeLocalite = $localite->findLocalite($id);
 
-        switch ($champ){
-            case "cp" :
-                $commune = $entityManager->getRepository(Commune::class);
-                $listeCommune = $commune-> findCommune($id);
-                $localite = $entityManager->getRepository(Localite::class);
-                $listeLocalite = $localite->findLocalite($id);
+        break ;
+        case "commune":
+
+        break;
+
+        case "localite":
+
+        break;
+    }
+
+    return new JsonResponse($listeCommune);
+
+}
 
 
-            break ;
-            case "commune":
-
-            break;
-
-            case "localite":
-
-            break;
-        }
-
- dd($listeCommune);
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
-
-        return $this->renderForm('home/index.html.twig', [
-            'form' => $form,
-            'commune'=>$listeCommune,
-            'localite'=>$listeLocalite,
-
-        ]);
-    }*/
 
 
 }

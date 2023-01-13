@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
 use App\Entity\Localite;
@@ -19,11 +20,11 @@ class SearchType extends AbstractType
     {
         $builder
             ->add('nomPrestataire',EntityType::class,[
-                     'label'=> 'Prestataire',
-                    'class'=> Prestataire::class,
+                'label'=> 'Prestataire',
+                'class'=> Prestataire::class,
                 'choice_label'=> function($prestataire){
-                     return $prestataire->getNom();
-        }
+                    return $prestataire->getNom();
+                }
             ])
         ->add('nomLocalite',EntityType::class,[
         'label'=> 'Localite',
@@ -31,7 +32,16 @@ class SearchType extends AbstractType
         'choice_label'=> function($localite){
             return $localite->getLocalite();
         }
+
        ])
+            ->add('categorie',EntityType::class,[
+                'label'=> 'Catégorie',
+                'class'=> Categorie::class,
+                'choice_label'=> function($categorie){
+                    return $categorie->getCategorie();
+                }
+
+            ])
             ->add('nomCommune',EntityType::class,[
                 'label'=> 'Commune',
                 'class'=> Commune::class,

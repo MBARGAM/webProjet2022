@@ -4,38 +4,42 @@
 {% block title %}Bienvenue dans l'annuaire doTonNyanga{% endblock %}
 
 {% block body %}
+
      <div class="searchEtDiapo">
-          {% block search %}
+          <div>
+               <h6 class="text-center search">Recherche</h6>
+               {% block search %}
+                    {{ form_start(form)}}
 
-               {{ form_start(form)}}
-               <div class="searchForm">
-                    <div class="recherche">
-                         <div  class="searchBlock1" >
-                              <div class="prestataire">
-                                   {{ form_row(form.nomPrestataire) }}
-                              </div>
-                              <div class="commune">
-                                   {{ form_row(form.nomCommune) }}
-                              </div>
+                    <div class="formulaire">
 
+                         <div class="categorie formItem">
+                              {{ form_row(form.categorie) }}
                          </div>
-                         <div class="searchBlock2">
-                              <div class="localite">
-                                   {{ form_row(form.nomLocalite) }}
-                              </div>
-                              <div class="cp">
-                                   {{ form_row(form.cp) }}
-                              </div>
+                         <div class="prestataire formItem">
+                              {{ form_row(form.nomPrestataire) }}
+                         </div>
+                         <div class="commune formItem">
+                              {{ form_row(form.nomCommune) }}
+                         </div>
 
+                         <div class="localite formItem">
+                              {{ form_row(form.nomLocalite) }}
+                         </div>
+                         <div class="cp formItem">
+                              {{ form_row(form.cp) }}
+                         </div>
+
+                         <div class="form-row  submit formItem " >
+                              {{ form_row(form.submit) }}
                          </div>
                     </div>
-                    <div class="form-row  submit " >
-                         {{ form_row(form.submit) }}
-                    </div>
-               </div>
-               {{ form_end(form) }}
+                    {{ form_end(form) }}
 
-          {% endblock %}
+               {% endblock %}
+
+          </div>
+
           <div class="diaporama">
 
           </div>

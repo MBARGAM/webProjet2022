@@ -38,6 +38,16 @@ class InternauteRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+  public function findLastId()
+  {
+      return $this->createQueryBuilder('i')
+          ->select('i.id')
+          ->orderBy('i.id', 'DESC')
+          ->setMaxResults(1)
+          ->getQuery()
+          ->getOneOrNullResult()
+      ;
+  }
 
 //    /**
 //     * @return Internaute[] Returns an array of Internaute objects
