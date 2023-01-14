@@ -59,10 +59,10 @@ public function autofill($champ,$id,Request $request,EntityManagerInterface $ent
 
             $commune = $entityManager->getRepository(Commune::class);
             $listeCommune = $commune-> findCommune($id);
-            $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune']]);
+            $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune','id']]);
             $localite = $entityManager->getRepository(Localite::class);
             $listeLocalite = $localite->findLocalite($id);
-            $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite']]);
+            $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite','id']]);
             $result=['commune'=>$listeCommune,'localite'=>$listeLocalite];
             break ;
         case "commune":
@@ -70,10 +70,10 @@ public function autofill($champ,$id,Request $request,EntityManagerInterface $ent
             die();
             $localite = $entityManager->getRepository(Localite::class);
             $listeLocalite = $localite->findLocalite($id);
-            $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite']]);
+            $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite','id']]);
             $cp = $entityManager->getRepository(CodePostal::class);
             $listeCp= $cp->findCp($id);
-            $listeCp= $serializer->serialize($listeCp,'json',[AbstractNormalizer:: ATTRIBUTES =>['cp']]);
+            $listeCp= $serializer->serialize($listeCp,'json',[AbstractNormalizer:: ATTRIBUTES =>['cp','id']]);
             $result=['localite'=>$listeLocalite,'cp'=>$listeCp];
             break;
 
@@ -82,10 +82,10 @@ public function autofill($champ,$id,Request $request,EntityManagerInterface $ent
             die();
             $commune = $entityManager->getRepository(Commune::class);
             $listeCommune = $commune-> findCommune($id);
-            $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune']]);
+            $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune','id']]);
             $cp = $entityManager->getRepository(CodePostal::class);
             $listeCp= $cp->findCp($id);
-            $listeCp= $serializer->serialize($listeCp,'json',[AbstractNormalizer:: ATTRIBUTES =>['cp']]);
+            $listeCp= $serializer->serialize($listeCp,'json',[AbstractNormalizer:: ATTRIBUTES =>['cp','id']]);
             $result=['commune'=>$listeCommune,'cp'=>$listeCp];
             break;
     }

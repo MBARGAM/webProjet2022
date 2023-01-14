@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Localite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\Year;
 
 /**
  * @extends ServiceEntityRepository<Localite>
@@ -38,15 +39,24 @@ class LocaliteRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findLocalite($value){
-        return $this->createQueryBuilder('a')
-            ->Where('a.cp = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.localite', 'ASC')
-            ->getQuery()
-            ->getResult()
-            ;
-    }
+
+
+    public function findLocalite($value): array
+    {
+          $conn = $this->getEntityManager()->getConnection();
+            $sql = '
+                SELECT localite FROM code_postal c
+                INNER JOIN localite on c.localite_id = localite.id
+                WHERE c.id = '.$value.'
+                ORDER BY localite ASC ';
+                $stmt = $conn->prepare($sql);
+                $resultSet = $stmt->executeQuery();
+
+                // returns an array of arrays (i.e. a raw data set)
+                return $resultSet->fetchAllAssociative();
+        }
+
+
     public function findAllLocalite(){
         return $this->createQueryBuilder('a')
             ->orderBy('a.localite', 'ASC')
