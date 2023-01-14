@@ -44,11 +44,31 @@
   .mobileModal{
     display:none;
   }
-  .blockChoixInscription {
+  .modal-content {
     border: 1px solid $vert;
     margin-bottom:10%;
-    .modal {
-      border: 1px solid $vert;
+    height:20rem;
+    .modal-body{
+      align-items: center;
+        margin-bottom: 4rem;
+        .modal-item{
+          width: 50%;
+          margin: 2rem auto;
+          height: 3rem;
+          .modalBtnPrestataire{
+            margin-top: 4rem;
+          }
+          .btn {
+            color:white;
+            background-color: $vert;
+            font-size: 1.5rem;
+            border-radius: 1.5rem;
+          }
+          .btn:hover{
+            background-color: darkgreen;
+          }
+        }
+
 
       h5 {
         color: $vert;

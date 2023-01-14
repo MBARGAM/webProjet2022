@@ -38,7 +38,7 @@ class PreinscriptionType extends AbstractType
 
             ])
             ->add('submit',SubmitType::class,[
-                'label'=> 'Soummettre',
+                'label'=> 'Soumettre',
 
             ])
         ;

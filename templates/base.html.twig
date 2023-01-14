@@ -32,7 +32,7 @@
     <header>
         <div class="mobileScreen">
             <div class="headerLogo">
-                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
             </div>
             <div class="language">
                 <span class="francais"><a class="langFr" href="#">Fr</a></span>
@@ -45,7 +45,7 @@
 
                     <div class="menuMobile">
                         <div class="menuBurger">
-                            <a class="dropdown-item menuItem listItem" href="#">Accueil</a>
+                            <a class="dropdown-item menuItem listItem" href="{{ path('pageAccueil') }}">Accueil</a>
                             <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
                             <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
                             <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,7 +71,7 @@
         </div>
         <div class="bigScreen">
             <div class="headerLogo">
-                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
             </div>
 
             <div class="menu">
@@ -82,7 +82,7 @@
                 <div class="menuEtBtn">
                     <nav class="navbar-nav navElt" >
                         <ul class="navbar">
-                            <li class="nav-item"> <a class="nav-link " href="#">Accueil<span class="sr-only">(current)</span></a></li>
+                            <li class="nav-item"> <a class="nav-link " href="{{ path('pageAccueil') }}">Accueil<span class="sr-only">(current)</span></a></li>
                             <li class="nav-item"> <a class="nav-link" href="#">Contactez-nous</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

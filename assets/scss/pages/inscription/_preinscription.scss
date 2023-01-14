@@ -1,17 +1,75 @@
-form{
 
+.presinscriptionTitle{
+  margin-top : 3rem;
+  font-size: 1.2rem;
+  color: $vert;
+}
+form{
+  .required{
+    color:$vert;
+  }
   .preinscription{
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
+    margin-top : 10%;
+    margin-bottom : 40%;
+
+    .submit{
+      text-align: center;
+      margin-top: 3rem;
+      .btn:hover{
+       background-color: darkgreen;
+
+      }
+    }
+
+
   }
 
 }
 
-@media screen and (min-width: 321px) {
+@media screen and (min-width: 500px) {
 
+  .presinscriptionTitle{
+       margin-top : 3rem;
+       font-size: 1.5rem;
+    margin-bottom: 2rem;
+
+     }
+  form{
+
+    .preinscription{
+      height:25rem;
+      margin-top : 0;
+      margin-bottom : 0;
+      .required{
+        font-size: 1rem;
+      }
+      .form-group{
+        height : 4rem;
+        margin-bottom: 2.5rem;
+      }
+      .form-control{
+         height: 3rem;
+       }
+
+      .submit{
+        margin-top: 3rem;
+        .btn{
+
+          font-size: 1.5rem;
+          padding: 8px 1.5rem;
+          align-self: center;
+
+        }
+
+      }
+    }
+
+  }
 
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 720px) {
 
 }
 @media screen and (min-width: 960px){
