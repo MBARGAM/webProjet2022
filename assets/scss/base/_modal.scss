@@ -1,7 +1,9 @@
-
 .blockChoixInscription{
-    border: 1px solid $vert;
-
+  display:none;
+}
+.mobileModal{
+   margin-top: 5%;
+    margin-bottom: 52%;
     h5{
       margin: 5rem auto;
       color: $vert;
@@ -17,54 +19,66 @@
       .modal-item{
         width: 50%;
         margin: 2rem auto;
-        background-color: $vert;
-        border-radius: 1rem;
         height: 3rem;
+
         .modalBtnPrestataire{
           margin-top: 4rem;
 
-          .modal-item:hover{
-            color: darkgreen;
-          }
         }
         .btn {
           color:white;
+          background-color: $vert;
           font-size: 1.5rem;
-
-
+          border-radius: 1.5rem;
         }
+        .btn:hover{
+          background-color: darkgreen;
+        }
+
       }
     }
 
 }
 
 @media screen and (min-width: 500px) {
-  .modal {
+  .mobileModal{
+    display:none;
+  }
+  .blockChoixInscription {
     border: 1px solid $vert;
+    margin-bottom:10%;
+    .modal {
+      border: 1px solid $vert;
 
-    h5{
-      color: $vert;
-    }
-    span{
-      color: $vert;
-    }
-    .modal-body{
-       align-items: center;
-       margin-bottom: 2.5rem;
-       .modal-item{
-         width: 50%;
-         margin: 2rem auto;
-         background-color: $vert;
-         border-radius: 1rem;
-         height: 2rem;
-          .modalBtnPrestataire{
+      h5 {
+        color: $vert;
+      }
+
+      span {
+        color: $vert;
+      }
+
+      .modal-body {
+        align-items: center;
+        margin-bottom: 2.5rem;
+
+        .modal-item {
+          width: 50%;
+          margin: 2rem auto;
+          background-color: $vert;
+          border-radius: 1rem;
+          height: 2rem;
+
+          .modalBtnPrestataire {
             margin-top: 3rem;
           }
-         .btn {
-           color:white;
-           font-size: 1.5rem;
-         }
-       }
+
+          .btn {
+            color: white;
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }
