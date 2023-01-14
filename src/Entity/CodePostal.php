@@ -24,10 +24,10 @@ class CodePostal
      */
     private $cp;
 
-    /**
+    /*/**
      * @ORM\OneToMany(targetEntity=Localite::class, mappedBy="cp")
-     */
-    private $localite;
+
+    private $localite;*/
 
     /**
      * @ORM\OneToMany(targetEntity=Commune::class, mappedBy="cp")
@@ -38,6 +38,11 @@ class CodePostal
      * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="cp")
      */
     private $utilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Localite::class, inversedBy="codePostals")
+     */
+    private $localite;
 
     public function __construct()
     {
@@ -63,9 +68,9 @@ class CodePostal
         return $this;
     }
 
-    /**
+   /* /**
      * @return Collection<int, Localite>
-     */
+
     public function getLocalite(): Collection
     {
         return $this->localite;
@@ -79,7 +84,7 @@ class CodePostal
         }
 
         return $this;
-    }
+    }*/
 
     public function removeLocalite(Localite $localite): self
     {
@@ -149,6 +154,18 @@ class CodePostal
                 $utilisateur->setCp(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocalite(): ?Localite
+    {
+        return $this->localite;
+    }
+
+    public function setLocalite(?Localite $localite): self
+    {
+        $this->localite = $localite;
 
         return $this;
     }

@@ -29,7 +29,7 @@ class SearchType extends AbstractType
                 ]])
 
         ->add('nomLocalite',EntityType::class,[
-        'label'=> 'Localite',
+        'label'=> 'Province',
         'class'=> Localite::class,
         'choice_label'=> function($localite){
             return $localite->getLocalite();
