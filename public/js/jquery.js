@@ -7,9 +7,10 @@ $(function(){
     console.log(cp.val());
        $.ajax({
            method: 'POST',
+           dataType: 'json',
            url:  'accueil/cp/'+cp.val(),
            success: function(response) {
-              console.log(response);
+               console.log(jsonParse(response));
 
            },
            error: function(xhr, status, error) {
@@ -21,9 +22,10 @@ $(function(){
     console.log(cp.val());
     $.ajax({
         method: 'POST',
+        dataType: 'json',
         url:  'accueil/cp/'+cp.val(),
         success: function(response) {
-            console.log(response);
+            console.log(jsonParse(response));
         },
         error: function(xhr, status, error) {
             // Handle the error
