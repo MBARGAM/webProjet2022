@@ -5,29 +5,42 @@
 
 {% block body %}
     <h5 class="text-center presinscriptionTitle">Veuillez completer le formulaire</h5>
-    {{ form_start(form)}}
-        <div class="preinscription">
+    {% if typeInscription  == 'prestataire' %}
+        {{ form_start(form)}}
+            <div class="preinscription">
+                <div class="nom">
+                    {{ form_row(form.nom) }}
+                </div>
+                <div class="email ">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="form-row  submit " >
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+    {% endif %}
+
+    {% if typeInscription  == 'internaute' %}
+        {{ form_start(form)}}
+            <div class="preinscription">
                 <div class="nom">
                     {{ form_row(form.nom) }}
                 </div>
                 <div class="prenom">
                     {{ form_row(form.prenom) }}
                 </div>
-            {% if typeInscription  == 'prestataire' %}
                 <div class="email ">
                     {{ form_row(form.email) }}
                 </div>
-            {% else %}
-                <div class="email d-none">
-                    {{ form_row(form.email) }}
+
+                <div class="form-row  submit " >
+                    {{ form_row(form.submit) }}
                 </div>
-            {% endif %}
-            <div class="form-row  submit " >
-                {{ form_row(form.submit) }}
             </div>
-        </div>
+        {{ form_end(form) }}
+    {% endif %}
 
-
-    {{ form_end(form) }}
 {% endblock %}
 

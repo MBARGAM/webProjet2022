@@ -289,4 +289,6 @@ class Internaute
         return $this->nom;
     }
 
+
+
 }

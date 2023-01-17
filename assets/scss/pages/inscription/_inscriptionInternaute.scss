@@ -1,0 +1,48 @@
+h4{
+  font-size: 1.2rem;
+  color:$vert;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+form{
+
+  .formulaireInternaute{
+
+    .divBlock{
+      display:block;
+      margin-bottom: 1rem;
+      .userItem{
+        margin: 1rem auto;
+        width: 80%;
+
+      }
+    }
+    .form-check-input{
+      background-color: $vert;
+    }
+
+    .btnItem{
+     margin: 1.5rem auto;
+      text-align: center;
+    }
+    .btn{
+      background-color: $vert;
+      color:white;
+      width: 30%;
+
+    }
+    .btn:hover{
+      background-color: darkgreen;
+    }
+  }
+}
+@media screen and (min-width: 321px) {
+
+}
+@media screen and (min-width: 500px) {
+
+}
+@media screen and (min-width: 960px){
+
+}

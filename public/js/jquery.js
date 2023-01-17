@@ -1,3 +1,6 @@
+/* ce script permet de recuperer les donnees d un code postal et
+ une requete ajax est effectue et l id de du code postal est automatoque envoye via une route
+ , une requete sql est effectuée en BD afin de recuperer la province et les communes correspondantes */
 
 $(function(){
     var cp = $('#search_cp');

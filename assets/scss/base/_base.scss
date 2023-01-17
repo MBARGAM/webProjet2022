@@ -6,6 +6,12 @@ body {
   overflow-x: hidden;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
+
+  .btnConfirmation{
+    background-color: $vert;
+    color: white;
+    @include link;
+  }
 }
 a{
   text-decoration: none;

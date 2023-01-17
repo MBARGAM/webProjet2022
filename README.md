@@ -39,3 +39,25 @@ recuperation des fichier format json
 - via l invite taper la commande : npm run watch   afin d'activer sass et les fichiers y afferents
 --------------------------------------------------------------------------------------------------------
 >>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
+> #selection des villes et codes postaux
+> - recuperation des fichier format json
+> - traitement via la creation de la classe Adresse dans symfony
+> - creation de 3 methodes statique et insertion dans la bd via le controlleur Adresse
+> - fin de l insertion mise du code en veille
+> -utilisation de l ajax jquery pour la recherche des villes
+> - recuperation des villes via le controlleur
+> - affichage des villes dans le select
+> - recuperation du code postal via le controlleur
+> - affichage du code postal dans le select
+> - recuperation de la ville et du code postal via le controlleur
+
+> #inscription et creation d'un compte
+> - creation de la classe User
+> - creation du formulaire d'inscription
+> - creation du bouton d'inscription
+> - choix du role de l'utilisateur
+> - redirection vers la page d'inscription
+> - 
+> - > #inscription et creation d'un compte> envoyer des mails> se connecter au serveur smtp> configurer le serveur smtp> dans l invite de commander taper la commande composer require symfony/mailer permmettant d'envoyer des mails> telecharger maim trap pour recuperer les mails envoyer (permet de capter les mails envoyer)<
+> - creation de la classe mailer 
+> - instanciaion de la classe mailer dans le controlleur

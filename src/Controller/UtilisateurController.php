@@ -8,10 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UtilisateurController extends AbstractController
 {
+
+    //route permettant d authentifier un utilisateur internaute ou prestataire
     /**
      * @Route("/inscription/{typeInscription}", name="signin")
      */
-
 
     public function index($typeInscription): Response
     {
@@ -20,6 +21,10 @@ class UtilisateurController extends AbstractController
             'controller_name' => 'UtilisateurController',
         ]);
     }
+
+    /*route permettant de rediriger un nouvel utiliateur vers le choix du type d inscription en version mobile
+    car en version tablette et pc , nous avons une modal*/
+
     /**
      * @Route("/redirection", name="mobileSignup")
      */

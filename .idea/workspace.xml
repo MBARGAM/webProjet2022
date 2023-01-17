@@ -2,29 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3fa1bb0-3ca9-4071-98d5-85e61640aaa5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/scss/pages/inscription/_inscriptionInternaute.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/inscription.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes/Email.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/inscription/inscriptionInternaute.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101130936.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131003.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131032.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131057.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131115.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131155.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131210.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131239.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131252.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131315.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131345.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131406.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131427.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230101131442.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/base/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/base/_search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/base/_search.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/pages/inscription/_preinscription.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/pages/inscription/_preinscription.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EnvoiEmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EnvoiEmailController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/CodePostal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CodePostal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Commune.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commune.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Localite.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Localite.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LocaliteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LocaliteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UtilisateurController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UtilisateurController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Internaute.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Internaute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/PreinscriptionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PreinscriptionType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/adresse/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/adresse/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/envoi_email/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/envoi_email/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inscription/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/utilisateur/pageRedirectionMobile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/utilisateur/pageRedirectionMobile.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,17 +190,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/justynmbarga/Desktop",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/justynmbarga/Desktop&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$/Desktop" />
@@ -258,7 +259,7 @@
       <workItem from="1673647607496" duration="3876000" />
       <workItem from="1673679513124" duration="5458000" />
       <workItem from="1673686566176" duration="4618000" />
-      <workItem from="1673700814364" duration="13273000" />
+      <workItem from="1673700814364" duration="57762000" />
     </task>
     <servers />
   </component>

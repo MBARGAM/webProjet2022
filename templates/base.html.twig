@@ -20,6 +20,7 @@
                 crossorigin="anonymous">
 
         </script>
+        <script src="{{ asset('js/inscription.js')  }}"></script>
         <script src="{{ asset('js/jquery.js')  }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -118,10 +119,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="modalBtnInternaute modal-item">
-                                            <a href="{{ path('presignup', { typeInscription:'internaute'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixInternaute" >Internaute</a>
+                                            <a href="{{ path('presignupInternaute', { typeInscription:'internaute'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixInternaute" >Internaute</a>
                                         </div>
                                         <div class="modalBtnPrestataire modal-item">
-                                            <a href="{{ path('presignup', { typeInscription:'prestataire'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixPrestataire" >Prestataire</a>
+                                            <a href="{{ path('presignupPrestataire', { typeInscription:'prestataire'}) }}" class="btn btn-sm dropdown-item btnItem text-center choixPrestataire" >Prestataire</a>
                                         </div>
                                     </div>
                                 </div>
