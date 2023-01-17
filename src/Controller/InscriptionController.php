@@ -37,6 +37,7 @@ class InscriptionController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
             // redirection vers la creation de l'email
+
             return $this->redirectToRoute('envoiEmailInternaute',[
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
