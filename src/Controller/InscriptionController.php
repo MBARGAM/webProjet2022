@@ -7,6 +7,7 @@ use App\Entity\Internaute;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
 use App\Form\InternauteType;
+use App\Form\LoginInternauteType;
 use App\Form\PreinscriptionType;
 use App\Form\PrestatairePreinnscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -65,28 +66,29 @@ class InscriptionController extends AbstractController
     }
 
 
+    // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
+
     /**
-     * @Route("/inscriptionInternaute/{nom}/{prenom}/{email}/{champ}/{id}", name="formulaireInternaute",methods={"GET","POST"})
+     * @Route("/inscriptionInternaute", name="formulaireInternaute" , methods={"GET","POST"})
      */
 
-    public function inscriptionInternaute($nom,$prenom,$email,$typeInscription,Request $request,EntityManagerInterface $entityManager): Response
+
+    public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
     {
-        $internaute = new Internaute();
-        $internaute->setNom($nom);
-        $internaute->setPrenom($prenom);
-        $form=$this->createForm(InternauteType::class,$internaute);
+
+        $form=$this->createForm(LoginInternauteType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
+            dd($data);
             $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirectToRoute('pageAccueil');
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
-            'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'non',
+            'blockdisabled' => 'oui',
         ]);
     }
 

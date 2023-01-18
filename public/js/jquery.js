@@ -13,7 +13,7 @@ $(function(){
        $.ajax({
            method: 'POST',
            dataType: 'json',
-           url:  'accueil/cp/'+cp.val(),
+           url:  'accueil/'+cp.val(),
            success: function(response) {
                //console.log(response);
                  var  commune = JSON.parse(response['commune']);
@@ -39,7 +39,7 @@ $(function(){
     $.ajax({
         method: 'POST',
         dataType: 'json',
-        url:  'accueil/cp/'+cp.val(),
+        url:  'accueil/'+cp.val(),
         success: function(response) {
             var  commune = JSON.parse(response['commune']);
             var  localite = JSON.parse(response['localite']);
