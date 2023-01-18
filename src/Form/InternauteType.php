@@ -94,9 +94,6 @@ class InternauteType extends AbstractType
                 ]
             ])
 
-
-
-
         ;
     }
 

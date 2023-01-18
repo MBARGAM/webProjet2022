@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\EmailSender;
 use App\Entity\Internaute;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
@@ -12,40 +13,50 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class InscriptionController extends AbstractController
 {
-    /*route de preinscription d un utilisateur (internaute ou prestataire)
-    - de traitement de la preinscription
-    - si formulaire ok
-      *  insertion dans la bd table internaute ou prestataire
-      *  redirection vers la creation du formulaire compte d inscription
-      *  creation et envoi d un email pour completer l inscription */
+//fonction qui permet de D'envoyer un mail de confirmation d'inscription
 
+    public function sendEmail($email,$nom,$prenom,$typeInscription ,$mailer, $environment):void
+    {
+        $from = 'justyn7891@yahoo.fr';
+        $to = $email;
+        $subject = 'Confirmation de votre inscription';
+        $message = 'Bonjour ' . $prenom . ' ' . $nom . ' vous vous êtes pre-inscrit sur notre site';
+        $template = 'envoi_email/index.html.twig';
+
+        $parametres = [
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email,
+            'typeInscription' => $typeInscription,
+        ];
+        $newEmail = new EmailSender($mailer, $environment);
+        $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
+    }
+
+    //validation de la pre inscription et envoi d'un email de confirmation
     /**
      * @Route("/internaute/{typeInscription}", name="presignupInternaute")
      */
 
-    public function preinscription($typeInscription,Request $request,EntityManagerInterface $entityManager): Response
+    public function preinscription($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
     {
         $form = $this->createForm(PreinscriptionType::class);
         $form->handleRequest($request);
 
-        // recuperation des donnees du formulaire de preinscription et ajout dans la bd
-        // 2 tables sont concernées : la table utilisateur et la table internaute ou prestataire
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            // redirection vers la creation de l'email
 
-            return $this->redirectToRoute('envoiEmailInternaute',[
-                'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
-                'email' =>$data['email'],
-                'typeInscription'=>$typeInscription
-            ]);
+            //envoi d'un email de confirmation
+            $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment);
+
+            return $this->redirectToRoute('pageAccueil');
         }
-
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
@@ -55,33 +66,7 @@ class InscriptionController extends AbstractController
 
 
     /**
-     * @Route("/prestataire/{typeInscription}", name="presignupPrestataire")
-     */
-
-    public function preinscriptionPrestataire($typeInscription,Request $request,EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(PrestatairePreinnscriptionType::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-
-            return $this->redirectToRoute('envoiMailInternaute',[
-                'nom' => $data['nom'],
-                'email' =>$data['email'],
-                'typeInscription'=>$typeInscription
-            ]);
-        }
-
-        return $this->renderForm('inscription/index.html.twig', [
-            'form' => $form,
-            'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'oui',
-        ]);
-    }
-
-    /**
-     * @Route("/inscriptionInternaute/{nom}/{prenom}/{email}/{typeInscription}", name="formulaireInternaute",methods={"GET"})
+     * @Route("/inscriptionInternaute/{nom}/{prenom}/{email}/{champ}/{id}", name="formulaireInternaute",methods={"GET","POST"})
      */
 
     public function inscriptionInternaute($nom,$prenom,$email,$typeInscription,Request $request,EntityManagerInterface $entityManager): Response
