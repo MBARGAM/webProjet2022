@@ -123,7 +123,7 @@ class InscriptionController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
-            'blockdisabled' => 'oui',
+
         ]);
     }
 

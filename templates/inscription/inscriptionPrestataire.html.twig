@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Inscription complete{% endblock %}
+   {% block body%}
+       <h4>Veuillez completer votre formulaire</h4>
+
+       {{ form_start(form)}}
+
+           <div class="formulaireInternaute">
+               <div class=" divBlock blockInfoPrivee">
+                   <div class="nom userItem">
+                       {{ form_row(form.nom) }}
+                   </div>
+                   <div class="description userItem">
+                       {{ form_row(form.description) }}
+                   </div>
+                   <div class="email userItem">
+                       {{ form_row(form.email) }}
+                   </div>
+                   <div class="mdp userItem">
+                       {{ form_row(form.mdp) }}
+                   </div>
+               </div>
+               <div   class=" divBlock  blockSite">
+                   <div class="site userItem">
+                       {{ form_row(form.siteweb) }}
+                   </div>
+                   <div class="telephone userItem">
+                       {{ form_row(form.tel) }}
+                   </div>
+                   <div class="tva userItem">
+                       {{ form_row(form.tva) }}
+                   </div>
+
+               </div>
+               <div class="divBlock  stagePromo">
+                   <div class="tva userItem">
+                       {{ form_row(form.promotion) }}
+                   </div>
+                   <div class="tva userItem">
+                       {{ form_row(form.stage) }}
+                   </div>
+
+               </div>
+               <div class=" divBlock  blockAdresse">
+                   <div class="numero userItem">
+                       {{ form_row(form.numero )}}
+                   </div>
+                   <div class="adresse userItem">
+                       {{ form_row(form.adresse )}}
+                   </div>
+
+               </div>
+               <div class=" divBlock  blockLocalisation">
+                   <div class="cp userItem">
+                       {{ form_row(form.codepostal) }}
+                   </div>
+                   <div class="commune userItem">
+                       {{ form_row(form.commune) }}
+                   </div>
+
+                   <div class="localite userItem">
+                       {{ form_row(form.province) }}
+                   </div>
+               </div>
+
+               <div class="btnItem">
+                   {{ form_row(form.submit) }}
+               </div>
+           </div>
+       {{ form_end(form) }}
+
+   {% endblock %}
+

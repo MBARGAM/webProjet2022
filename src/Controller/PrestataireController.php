@@ -6,6 +6,7 @@ use App\Classes\EmailSender;
 use App\Entity\Internaute;
 use App\Entity\Utilisateur;
 use App\Form\LoginInternauteType;
+use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,12 +61,12 @@ class PrestataireController extends AbstractController
     // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
 
     /**
-     * @Route("/inscriptionPrestataire", name="formulaireInternaute" , methods={"GET","POST"})
+     * @Route("/inscriptionPrestataire", name="formulairePrestataire" , methods={"GET","POST"})
      */
 
-    public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
+    public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager): Response
     {
-        $form=$this->createForm(LoginInternauteType::class);
+        $form=$this->createForm(LoginPrestatataireType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -88,12 +89,6 @@ class PrestataireController extends AbstractController
             $entityManager->persist($internaute);
             $entityManager->flush();
 
-            //recuperation de l id de l internaute
-            //  $repository = $entityManager->getRepository(Internaute::class);
-            //  $lastInternauteId = $repository->findLastId();
-            //dd($lastInternauteId);
-            //  $lastInternauteInsert = $lastInternauteId[0]['id'];
-
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
             $utilisateur->setEmail($data['email']);
@@ -113,9 +108,9 @@ class PrestataireController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('pageAccueil');
         }
-        return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
+        return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,
-            'blockdisabled' => 'oui',
+
         ]);
     }
 
