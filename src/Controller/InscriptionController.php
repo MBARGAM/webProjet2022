@@ -2,50 +2,63 @@
 
 namespace App\Controller;
 
+use App\Classes\EmailSender;
+use App\Entity\CodePostal;
 use App\Entity\Internaute;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
 use App\Form\InternauteType;
+use App\Form\LoginInternauteType;
 use App\Form\PreinscriptionType;
 use App\Form\PrestatairePreinnscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class InscriptionController extends AbstractController
 {
-    /*route de preinscription d un utilisateur (internaute ou prestataire)
-    - de traitement de la preinscription
-    - si formulaire ok
-      *  insertion dans la bd table internaute ou prestataire
-      *  redirection vers la creation du formulaire compte d inscription
-      *  creation et envoi d un email pour completer l inscription */
+//fonction qui permet de D'envoyer un mail de confirmation d'inscription
 
+    public function sendEmail($email,$nom,$prenom,$typeInscription ,$mailer, $environment):void
+    {
+        $from = 'justyn7891@yahoo.fr';
+        $to = $email;
+        $subject = 'Confirmation de votre inscription';
+        $message = 'Bonjour ' . $prenom . ' ' . $nom . ' vous vous êtes pre-inscrit sur notre site';
+        $template = 'envoi_email/index.html.twig';
+
+        $parametres = [
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email,
+            'typeInscription' => $typeInscription,
+        ];
+        $newEmail = new EmailSender($mailer, $environment);
+        $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
+    }
+
+    //validation de la pre inscription et envoi d'un email de confirmation
     /**
      * @Route("/internaute/{typeInscription}", name="presignupInternaute")
      */
 
-    public function preinscription($typeInscription,Request $request,EntityManagerInterface $entityManager): Response
+    public function preinscription($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
     {
         $form = $this->createForm(PreinscriptionType::class);
         $form->handleRequest($request);
 
-        // recuperation des donnees du formulaire de preinscription et ajout dans la bd
-        // 2 tables sont concernées : la table utilisateur et la table internaute ou prestataire
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            // redirection vers la creation de l'email
 
-            return $this->redirectToRoute('envoiEmailInternaute',[
-                'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
-                'email' =>$data['email'],
-                'typeInscription'=>$typeInscription
-            ]);
+            //envoi d'un email de confirmation
+            $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment);
+
+            return $this->redirectToRoute('pageAccueil');
         }
-
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
@@ -54,54 +67,66 @@ class InscriptionController extends AbstractController
     }
 
 
+    // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
+
     /**
-     * @Route("/prestataire/{typeInscription}", name="presignupPrestataire")
+     * @Route("/inscriptionInternaute", name="formulaireInternaute" , methods={"GET","POST"})
      */
 
-    public function preinscriptionPrestataire($typeInscription,Request $request,EntityManagerInterface $entityManager): Response
+
+    public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PrestatairePreinnscriptionType::class);
+        $form=$this->createForm(LoginInternauteType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
-            return $this->redirectToRoute('envoiMailInternaute',[
-                'nom' => $data['nom'],
-                'email' =>$data['email'],
-                'typeInscription'=>$typeInscription
-            ]);
-        }
+            //recuperation des données du formulaire sur la localisation de l internaute
+            $numero= $data['numero'];
+            $adresse= $data['adresse'];
+            $cp= $data['codepostal'];
+            $ville= $data['commune'];
+            $province= $data['province'];
 
-        return $this->renderForm('inscription/index.html.twig', [
-            'form' => $form,
-            'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'oui',
-        ]);
-    }
+            //mise en des differentes  des donnees pour differentes insertions
+            //insertion dans la table internaute
+            $internaute = new Internaute();
+            $internaute->setNom($data['nom']);
+            $internaute->setPrenom($data['prenom']);
+            $internaute->setNewsletter($data['newsletter']);
+            $internaute->setBloque(0);
+            $entityManager->persist($internaute);
+            $entityManager->flush();
 
-    /**
-     * @Route("/inscriptionInternaute/{nom}/{prenom}/{email}/{typeInscription}", name="formulaireInternaute",methods={"GET"})
-     */
+            //recuperation de l id de l internaute
+          //  $repository = $entityManager->getRepository(Internaute::class);
+          //  $lastInternauteId = $repository->findLastId();
+            //dd($lastInternauteId);
+          //  $lastInternauteInsert = $lastInternauteId[0]['id'];
 
-    public function inscriptionInternaute($nom,$prenom,$email,$typeInscription,Request $request,EntityManagerInterface $entityManager): Response
-    {
-        $internaute = new Internaute();
-        $internaute->setNom($nom);
-        $internaute->setPrenom($prenom);
-        $form=$this->createForm(InternauteType::class,$internaute);
-        $form->handleRequest($request);
+            //insertion dans la table utilisateur
+            $utilisateur = new Utilisateur();
+            $utilisateur->setEmail($data['email']);
+            $utilisateur->setInternaute($internaute);
+            $utilisateur->setPassword($data['mdp']);
+            $utilisateur->setRoles(['INTERNAUTE']);
+            $utilisateur->setAdresseRue($adresse);
+            $utilisateur->setAdresseNo($numero);
+            $utilisateur->setCommune($ville);
+            $utilisateur->setLocalite($province);
+            $utilisateur->setCp($cp);
+            $utilisateur ->setVisible(0);
+            $utilisateur ->setInscriptConf(0);
+            $utilisateur ->setDateInscription(new \DateTime());
 
-        if($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-            $entityManager->persist($data);
+            $entityManager->persist($utilisateur);
             $entityManager->flush();
             return $this->redirectToRoute('pageAccueil');
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
-            'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'non',
+            'blockdisabled' => 'oui',
         ]);
     }
 
@@ -110,58 +135,10 @@ class InscriptionController extends AbstractController
 }
 
 /*
-                               // insertion du nom et prenom de l internaute et recuperation de l id pour insertion dans la table utilisateur
-                                  $internaute = new Internaute();
-                                  $internaute->setNom($data['nom']);
-                                    $internaute->setPrenom($data['prenom']);
-                                    $entityManager->persist($internaute);
-                                    $entityManager->flush();
-
-                                 //recuperation de l id de l internaute
-                                 $repository = $entityManager->getRepository(Internaute::class);
-                                 $lastPrestataireId = $repository->findLastId();
-                                 $lastPrestataireId = $lastPrestataireId[0]['id'];
-
-                               insertion de l email de l internaute et de l id de l internaute dans la table utilisateur
-                                 $utilisateur = new Utilisateur();
-                                 $utilisateur->setEmail($data['email']);
-                                 $utilisateur->setInternaute($lastPrestataireId);
-                                 $entityManager->persist($utilisateur);
-                                 $entityManager->flush();
+ SELECT CONCAT(nom," ",prenom) AS Nom ,email,concat(utilisateur.adresse_no,",",utilisateur.adresse_rue) AS Adresse ,code_postal.cp ,commune.commune, localite.localite FROM `internaute`
+INNER JOIN utilisateur ON utilisateur.internaute_id = internaute.id
+INNER JOIN code_postal ON utilisateur.cp_id = code_postal.id
+INNER JOIN commune on commune.id = code_postal.id
+INNER JOIN localite on localite.id = code_postal.localite_id
+ORDER BY nom , prenom ASC
 */
-
-/*
-
-                              $prestataire = new Prestataire();
-                            $prestataire->setNom($data['nom']);
-                            $entityManager->persist($prestataire);
-                            $entityManager->flush();//recuperation de l id du prestataire
-                            $repository = $entityManager->getRepository(Prestataire::class);
-                            $lastPrestataireId = $repository->findLastId();
-                            $lastPrestataireId = $lastPrestataireId[0]['id'];
-
-                            insertion de l email du prestataire et de l id de l internaute dans la table utilisateur
-                            $utilisateur = new Utilisateur();
-                            $utilisateur->setEmail($data['email']);
-                            $utilisateur->setPrestataire($lastPrestataireId);
-                            $entityManager->persist($utilisateur);
-*/
-/*
-            $newInternaute = new Internaute();
-            $newInternaute ->setNom($data['nom']);
-            $newInternaute ->setPrenom($data['prenom']);
-            $newInternaute ->setNewsletter('false');
-            $newInternaute ->setBloque('false');
-            $entityManager->persist($newInternaute );
-            $entityManager->flush();
-
-            // insertion dans la table utilisateur
-            $newUtilisateur = new Utilisateur();
-            $newUtilisateur ->setEmail($data['email']);
-            $newUtilisateur ->setInternaute($newInternaute);
-            $newUtilisateur ->setRoles(['INTERNAUTE']);
-            $newUtilisateur ->setVisible('false');
-            $newUtilisateur ->setInscriptConf('false');
-            $newUtilisateur ->setDateInscription(new \DateTime());
-            $entityManager->persist($newUtilisateur);
-            $entityManager->flush();*/
