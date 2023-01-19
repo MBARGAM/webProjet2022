@@ -40,7 +40,6 @@ class InscriptionController extends AbstractController
         $newEmail = new EmailSender($mailer, $environment);
         $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
     }
-
     //validation de la pre inscription et envoi d'un email de confirmation
     /**
      * @Route("/internaute/{typeInscription}", name="presignupInternaute")
@@ -50,22 +49,20 @@ class InscriptionController extends AbstractController
     {
         $form = $this->createForm(PreinscriptionType::class);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment);
-
             return $this->redirectToRoute('pageAccueil');
         }
+
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
             'blockdisabled' => 'oui',
         ]);
     }
-
 
     // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
 
@@ -129,8 +126,6 @@ class InscriptionController extends AbstractController
             'blockdisabled' => 'oui',
         ]);
     }
-
-
 
 }
 
