@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
+use App\Entity\CodePostal;
 use App\Entity\Internaute;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
@@ -75,14 +76,51 @@ class InscriptionController extends AbstractController
 
     public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
     {
-
         $form=$this->createForm(LoginInternauteType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            dd($data);
-            $entityManager->persist($data);
+
+            //recuperation des données du formulaire sur la localisation de l internaute
+            $numero= $data['numero'];
+            $adresse= $data['adresse'];
+            $cp= $data['codepostal'];
+            $ville= $data['commune'];
+            $province= $data['province'];
+
+            //mise en des differentes  des donnees pour differentes insertions
+            //insertion dans la table internaute
+            $internaute = new Internaute();
+            $internaute->setNom($data['nom']);
+            $internaute->setPrenom($data['prenom']);
+            $internaute->setNewsletter($data['newsletter']);
+            $internaute->setBloque(0);
+            $entityManager->persist($internaute);
+            $entityManager->flush();
+
+            //recuperation de l id de l internaute
+          //  $repository = $entityManager->getRepository(Internaute::class);
+          //  $lastInternauteId = $repository->findLastId();
+            //dd($lastInternauteId);
+          //  $lastInternauteInsert = $lastInternauteId[0]['id'];
+
+            //insertion dans la table utilisateur
+            $utilisateur = new Utilisateur();
+            $utilisateur->setEmail($data['email']);
+            $utilisateur->setInternaute($internaute);
+            $utilisateur->setPassword($data['mdp']);
+            $utilisateur->setRoles(['INTERNAUTE']);
+            $utilisateur->setAdresseRue($adresse);
+            $utilisateur->setAdresseNo($numero);
+            $utilisateur->setCommune($ville);
+            $utilisateur->setLocalite($province);
+            $utilisateur->setCp($cp);
+            $utilisateur ->setVisible(0);
+            $utilisateur ->setInscriptConf(0);
+            $utilisateur ->setDateInscription(new \DateTime());
+
+            $entityManager->persist($utilisateur);
             $entityManager->flush();
             return $this->redirectToRoute('pageAccueil');
         }
@@ -97,58 +135,10 @@ class InscriptionController extends AbstractController
 }
 
 /*
-                               // insertion du nom et prenom de l internaute et recuperation de l id pour insertion dans la table utilisateur
-                                  $internaute = new Internaute();
-                                  $internaute->setNom($data['nom']);
-                                    $internaute->setPrenom($data['prenom']);
-                                    $entityManager->persist($internaute);
-                                    $entityManager->flush();
-
-                                 //recuperation de l id de l internaute
-                                 $repository = $entityManager->getRepository(Internaute::class);
-                                 $lastPrestataireId = $repository->findLastId();
-                                 $lastPrestataireId = $lastPrestataireId[0]['id'];
-
-                               insertion de l email de l internaute et de l id de l internaute dans la table utilisateur
-                                 $utilisateur = new Utilisateur();
-                                 $utilisateur->setEmail($data['email']);
-                                 $utilisateur->setInternaute($lastPrestataireId);
-                                 $entityManager->persist($utilisateur);
-                                 $entityManager->flush();
+ SELECT CONCAT(nom," ",prenom) AS Nom ,email,concat(utilisateur.adresse_no,",",utilisateur.adresse_rue) AS Adresse ,code_postal.cp ,commune.commune, localite.localite FROM `internaute`
+INNER JOIN utilisateur ON utilisateur.internaute_id = internaute.id
+INNER JOIN code_postal ON utilisateur.cp_id = code_postal.id
+INNER JOIN commune on commune.id = code_postal.id
+INNER JOIN localite on localite.id = code_postal.localite_id
+ORDER BY nom , prenom ASC
 */
-
-/*
-
-                              $prestataire = new Prestataire();
-                            $prestataire->setNom($data['nom']);
-                            $entityManager->persist($prestataire);
-                            $entityManager->flush();//recuperation de l id du prestataire
-                            $repository = $entityManager->getRepository(Prestataire::class);
-                            $lastPrestataireId = $repository->findLastId();
-                            $lastPrestataireId = $lastPrestataireId[0]['id'];
-
-                            insertion de l email du prestataire et de l id de l internaute dans la table utilisateur
-                            $utilisateur = new Utilisateur();
-                            $utilisateur->setEmail($data['email']);
-                            $utilisateur->setPrestataire($lastPrestataireId);
-                            $entityManager->persist($utilisateur);
-*/
-/*
-            $newInternaute = new Internaute();
-            $newInternaute ->setNom($data['nom']);
-            $newInternaute ->setPrenom($data['prenom']);
-            $newInternaute ->setNewsletter('false');
-            $newInternaute ->setBloque('false');
-            $entityManager->persist($newInternaute );
-            $entityManager->flush();
-
-            // insertion dans la table utilisateur
-            $newUtilisateur = new Utilisateur();
-            $newUtilisateur ->setEmail($data['email']);
-            $newUtilisateur ->setInternaute($newInternaute);
-            $newUtilisateur ->setRoles(['INTERNAUTE']);
-            $newUtilisateur ->setVisible('false');
-            $newUtilisateur ->setInscriptConf('false');
-            $newUtilisateur ->setDateInscription(new \DateTime());
-            $entityManager->persist($newUtilisateur);
-            $entityManager->flush();*/

@@ -16,7 +16,7 @@ $(function(){
             dataType: 'json',
             url:  'accueil/'+cp.val(),
             success: function(response) {
-                //console.log(response);
+                console.log(response);
                 var  commune = JSON.parse(response['commune']);
                 var  localite = JSON.parse(response['localite']);
                 selectElt.empty();
@@ -44,7 +44,7 @@ $(function(){
         dataType: 'json',
         url:  'accueil/'+cp.val(),
         success: function(response) {
-            console.log(response);
+
             var  commune = JSON.parse(response['commune']);
             var  localite = JSON.parse(response['localite']);
             selectElt.empty();

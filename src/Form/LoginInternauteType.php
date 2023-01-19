@@ -46,7 +46,6 @@ class LoginInternauteType extends AbstractType
 
             ->add('numero',TextType::class,[
                 'label' => 'Numéro de maison',
-                'mapped' => false,
                 'required' => true,
                 'attr' => [
                     'placeholder' => '123'
@@ -54,7 +53,6 @@ class LoginInternauteType extends AbstractType
             ])
             ->add('adresse',TextType::class,[
                 'label' => 'Adresse',
-                'mapped' => false,
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'Ex: Rue de la joie'

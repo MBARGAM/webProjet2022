@@ -45,7 +45,7 @@ class LocaliteRepository extends ServiceEntityRepository
     {
           $conn = $this->getEntityManager()->getConnection();
             $sql = '
-                SELECT localite FROM code_postal c
+                SELECT localite.id,localite FROM code_postal c
                 INNER JOIN localite on c.localite_id = localite.id
                 WHERE c.id = '.$value.'
                 ORDER BY localite ASC ';

@@ -50,6 +50,7 @@ class HomeController extends AbstractController
      /**
       * @Route("accueil/{id}", name="autocompletion" , methods="POST")
       */
+
     public function autofill($id,Request $request,EntityManagerInterface $entityManager,SerializerInterface $serializer):JsonResponse
     {
         $commune = $entityManager->getRepository(Commune::class);
@@ -57,8 +58,11 @@ class HomeController extends AbstractController
         $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune','id']]);
         $localite = $entityManager->getRepository(Localite::class);
         $listeLocalite = $localite->findLocalite($id);
+
         $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite','id']]);
+
         $result=['commune'=>$listeCommune,'localite'=>$listeLocalite];
+
 
           return new JsonResponse($result);
     }
