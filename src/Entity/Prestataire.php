@@ -79,6 +79,11 @@ class Prestataire
      */
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->stage = new ArrayCollection();
@@ -352,5 +357,17 @@ class Prestataire
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

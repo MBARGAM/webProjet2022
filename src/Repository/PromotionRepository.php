@@ -38,6 +38,15 @@ class PromotionRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllPromotions()
+    {
+        $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.nom', 'ASC')
+            ->distinct('TRUE')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Promotion[] Returns an array of Promotion objects

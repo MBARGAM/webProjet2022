@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Classes\EmailSender;
 use App\Entity\Internaute;
+use App\Entity\Prestataire;
+use App\Entity\Promotion;
+use App\Entity\Stage;
 use App\Entity\Utilisateur;
-use App\Form\LoginInternauteType;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -59,19 +61,22 @@ class PrestataireController extends AbstractController
     }
 
     // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
-
     /**
      * @Route("/inscriptionPrestataire", name="formulairePrestataire" , methods={"GET","POST"})
      */
 
     public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager): Response
     {
+        // recuperation des donnees des stages et des promotions proposés par les prestataires
+        $listeStage = $entityManager->getRepository(Stage::class)->findAllStages();
+        $listePromotion = $entityManager->getRepository(Promotion::class)->findAllPromotions();
+
         $form=$this->createForm(LoginPrestatataireType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-
+            dd($data);
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
             $adresse= $data['adresse'];
@@ -79,29 +84,32 @@ class PrestataireController extends AbstractController
             $ville= $data['commune'];
             $province= $data['province'];
 
+
+
             //mise en des differentes  des donnees pour differentes insertions
-            //insertion dans la table internaute
-            $internaute = new Internaute();
-            $internaute->setNom($data['nom']);
-            $internaute->setPrenom($data['prenom']);
-            $internaute->setNewsletter($data['newsletter']);
-            $internaute->setBloque(0);
-            $entityManager->persist($internaute);
+            //insertion dans la table prestataire
+            $prestataire = new Prestataire();
+            $prestataire->setNom($data['nom']);
+            $prestataire->setDescription($data['description']);
+            $prestataire->setSiteweb($data['siteweb']);
+            $prestataire->setNumeroTva($data['tva']);
+            $prestataire->setTel($data['tel']);
+            $entityManager->persist($prestataire);
             $entityManager->flush();
 
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
             $utilisateur->setEmail($data['email']);
-            $utilisateur->setInternaute($internaute);
+            $utilisateur->setPrestataire($prestataire);
             $utilisateur->setPassword($data['mdp']);
-            $utilisateur->setRoles(['INTERNAUTE']);
+            $utilisateur->setRoles(['PRESTATAIRE','ROLE_USER']);
             $utilisateur->setAdresseRue($adresse);
             $utilisateur->setAdresseNo($numero);
             $utilisateur->setCommune($ville);
             $utilisateur->setLocalite($province);
             $utilisateur->setCp($cp);
-            $utilisateur ->setVisible(0);
-            $utilisateur ->setInscriptConf(0);
+            $utilisateur ->setVisible(1);
+            $utilisateur ->setInscriptConf(1);
             $utilisateur ->setDateInscription(new \DateTime());
 
             $entityManager->persist($utilisateur);
@@ -110,7 +118,8 @@ class PrestataireController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,
-
+            'listeStage' => $listeStage,
+            'listePromotion' => $listePromotion,
         ]);
     }
 

@@ -19,6 +19,7 @@ $(function() {
     var prestatairePwdCheck = $('#login_internaute_mdp');
     var internauteSubmitButton = $('#login_prestatataire_submit');
     var prestataireSubmitButton = $('#login_internaute_submit');
+    var msg =$('.msgShow');
    // console.log(internautePwdCheck);
 
     internautePwdCheck.on('keyup', function (e) {
@@ -51,6 +52,8 @@ $(function() {
                 }else{
                     prestatairePwdCheck.css('border',  '2px solid red');
                     prestataireSubmitButton.prop('disabled', true);
+                    msg.innerHTML="";
+                     msg.html('Le mot de passe doit contenir au moins 7 caractères, des chiffres et au moin un caractère spécial');
                 }
             }else{
                 prestatairePwdCheck.css('border', '2px solid #ced4da');

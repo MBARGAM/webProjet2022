@@ -38,6 +38,15 @@ class StageRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllStages()
+    {
+        $this->createQueryBuilder('s')
+            ->select('s')
+            ->orderBy('s.nom', 'ASC')
+            ->distinct('TRUE')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Stage[] Returns an array of Stage objects

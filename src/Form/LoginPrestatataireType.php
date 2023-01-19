@@ -45,7 +45,7 @@ class LoginPrestatataireType extends AbstractType
                 'label' => 'Mot de passe',
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'example@monsite.be'
+                    'placeholder' => '7-15 caractères , lettres , chiffres , min 1 caractère spécial'
                 ]
             ])
             ->add('tel',TextType::class,[

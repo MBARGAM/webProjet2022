@@ -61,3 +61,5 @@ recuperation des fichier format json
 > - > #inscription et creation d'un compte> envoyer des mails> se connecter au serveur smtp> configurer le serveur smtp> dans l invite de commander taper la commande composer require symfony/mailer permmettant d'envoyer des mails> telecharger maim trap pour recuperer les mails envoyer (permet de capter les mails envoyer)<
 > - creation de la classe mailer 
 > - instanciaion de la classe mailer dans le controlleur
+> -
+> #verification  de la nomenclature des mots de passe 

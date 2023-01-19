@@ -4,7 +4,9 @@
 {% block title %}Pre inscription{% endblock %}
 
 {% block body %}
+
     <h5 class="text-center presinscriptionTitle">Veuillez completer le formulaire</h5>
+    <span class="msgShow d-inline-block"></span>
     {% if typeInscription  == 'prestataire' %}
         {{ form_start(form)}}
             <div class="preinscription">
