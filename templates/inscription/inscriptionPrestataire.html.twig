@@ -17,6 +17,7 @@
                        {{ form_row(form.description) }}
                    </div>
                    <div class="email userItem">
+                       <span class="d-block msgEmailCheck"></span>
                        {{ form_row(form.email) }}
                    </div>
                    <div class="mdp userItem">
@@ -57,14 +58,18 @@
                    <div class="cp userItem">
                        {{ form_row(form.codepostal) }}
                    </div>
-                   <div class="commune userItem">
+                   <div class=" commune userItem">
                        {{ form_row(form.commune) }}
                    </div>
 
-                   <div class="localite userItem">
+                   <div class=" localite userItem">
                        {{ form_row(form.province) }}
                    </div>
+                   <div class=" divBlock  photo userItem">
+                       {{ form_row(form.photo) }}
+                   </div>
                </div>
+
 
                <div class="btnItem">
                    {{ form_row(form.submit) }}

@@ -10,12 +10,14 @@ use App\Entity\Stage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class LoginPrestatataireType extends AbstractType
 {
@@ -120,6 +122,22 @@ class LoginPrestatataireType extends AbstractType
                 'choice_label' => function($promotion){
                     return $promotion->getPromotion();
                 }
+            ])
+            ->add('photo',FileType::class,[
+                'label' => 'Telecharger une photo',
+               'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez uploader une image valide',
+                    ])
+                ],
             ])
 
             ->add('submit',SubmitType::class,[

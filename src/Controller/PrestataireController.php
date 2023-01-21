@@ -89,22 +89,23 @@ class PrestataireController extends AbstractController
             //mise en des differentes  des donnees pour differentes insertions
             //insertion dans la table prestataire
             $prestataire = new Prestataire();
-            $prestataire->setNom($data['nom']);
-            $prestataire->setDescription($data['description']);
-            $prestataire->setSiteweb($data['siteweb']);
-            $prestataire->setNumeroTva($data['tva']);
-            $prestataire->setTel($data['tel']);
+            $prestataire->setNom(strtolower($data['nom']));
+            $prestataire->setDescription(strtolower($data['description']));
+            $prestataire->setSiteweb(strtolower($data['siteweb']));
+            $prestataire->setNumeroTva(strtolower($data['tva']));
+            $prestataire->setTel(strtolower($data['tel']));
+            $prestataire->setBloque(0);
             $entityManager->persist($prestataire);
             $entityManager->flush();
 
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
-            $utilisateur->setEmail($data['email']);
+            $utilisateur->setEmail(strtolower($data['email']));
             $utilisateur->setPrestataire($prestataire);
             $utilisateur->setPassword($data['mdp']);
-            $utilisateur->setRoles(['PRESTATAIRE','ROLE_USER']);
-            $utilisateur->setAdresseRue($adresse);
-            $utilisateur->setAdresseNo($numero);
+            $utilisateur->setRoles(['PRESTATAIRE']);
+            $utilisateur->setAdresseRue(strtolower($adresse));
+            $utilisateur->setAdresseNo(strtolower($numero));
             $utilisateur->setCommune($ville);
             $utilisateur->setLocalite($province);
             $utilisateur->setCp($cp);
