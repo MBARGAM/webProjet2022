@@ -17,16 +17,16 @@
 {% block body %}
 
 <div class="mx-auto my-0">
-    <h5>Hello , {{ prenom }}</h5>
+    <h4>Hello , {{ prenom }}</h4>
 
     <p class="text-center">
-        Vous êtes sur le point de confirmer votre inscription sur la plate doTonNyange .
-        Veullez cliquer sur le bouton ci-dessous pour confirmer votre inscription.
+        Veuillez  confirmer votre inscription sur la plate <strong>doTonNyanga</strong> .
+        Cliquez sur le bouton ci-après afin de poursuivre votre inscription.
     </p>
     <div class="text-center">
-        <a href="{{ path('formulaireInternaute') }}" class="btn btnConfirmation">
+        <button class="btn btn-primary"><a href="http://127.0.0.1:8000/inscriptionInternaute" class="btn btnConfirmation">
             Confirmer mon inscription
-        </a>
+        </a> </button>
     </div>
 
 </div>

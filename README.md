@@ -63,3 +63,5 @@ recuperation des fichier format json
 > - instanciaion de la classe mailer dans le controlleur
 > -
 > #verification  de la nomenclature des mots de passe 
+> > #verification  de la nomenclature des emails et verification de l'unicité de l'email
+> procedure d envoi de l email

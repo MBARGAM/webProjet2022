@@ -4,7 +4,7 @@ $(function() {
     /* fonction permettant de verifier si les mots de passe sont tel que demandé
     mdp entre 7-15 caracteres , au moin une lettre et un caractere special*/
 
-    $.fn.is_PasswordValid=function(pwd){
+    $.fn.is_PasswordValid = function(pwd){
 
         let  test=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
         if(pwd.match(test))
