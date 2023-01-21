@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Classes\EmailSender;
-use App\Entity\Internaute;
 use App\Entity\Utilisateur;
-use App\Form\InternauteType;
-use App\Form\PrestataireType;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,17 +16,55 @@ use Twig\Environment;
 class EnvoiEmailController extends AbstractController
 {
 
+  public function is_mail($s){
+        return filter_var($s, FILTER_VALIDATE_EMAIL);
+    }
 
     /**
-     * @Route("/emailprestataire/{nom}/{prenom}/{email}", name="envoiMailPrestataire")
+     * @Route("/internaute/email/{email}", name="internaiteCheckEmail" )
      */
 
-    public function sendEmailInternaute(): void
+    public function internauteCheckEmail($email,EntityManagerInterface $entityManager): Response
     {
-        $newEmail = new EmailSender();
-        $newEmail->sendInscriptionEmail();
-        $this->addFlash('success', 'Veuillez consulter votre boite mail pour activer votre compte');
+        if($this->is_mail($email)){
+
+            $searchEmail = $entityManager->getRepository(Utilisateur::class)->findOneBy(['email' => $email]);
+
+            if(!empty($searchEmail)){
+               return new Response('false');
+            }else{
+               return new Response('true');
+            }
+
+        }else{
+
+           return new Response('false');
+        }
     }
+
+    /**
+     * @Route("/prestataire/email/{email}", name="prestataireCheckEmail" )
+     */
+
+    public function prestataireCheckEmail($email,EntityManagerInterface $entityManager): Response
+    {
+        if($this->is_mail($email)){
+
+            $searchEmail = $entityManager->getRepository(Utilisateur::class)->findOneBy(['email' => $email]);
+
+            if(!empty($searchEmail)){
+                return new Response('false');
+            }else{
+                return new Response('true');
+            }
+
+        }else{
+
+            return new Response('false');
+        }
+    }
+
+
 
 }
 ?>

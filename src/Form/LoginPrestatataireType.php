@@ -5,17 +5,19 @@ namespace App\Form;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
 use App\Entity\Localite;
+use App\Entity\Promotion;
+use App\Entity\Stage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LoginInternauteType extends AbstractType
+class LoginPrestatataireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,10 +25,14 @@ class LoginInternauteType extends AbstractType
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
                 'required' => true,
+                'attr' => [
+                    'placeholder' => 'Nom'
+                ]
             ])
-            ->add('prenom',TextType::class,[
-                'label' => 'Prénom',
+            ->add('description',TextareaType::class,[
+                'label' => 'Description',
                 'required' => true,
+
             ])
             ->add('email',EmailType::class,[
                 'label' => 'Email',
@@ -37,6 +43,13 @@ class LoginInternauteType extends AbstractType
             ])
             ->add('mdp',PasswordType::class,[
                 'label' => 'Mot de passe',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => '7-15 caractères , lettres , chiffres , min 1 caractère spécial'
+                ]
+            ])
+            ->add('tel',TextType::class,[
+                'label' => 'Téléphone',
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'example@monsite.be'
@@ -82,11 +95,33 @@ class LoginInternauteType extends AbstractType
                     return $localite->getLocalite();
                 }
             ])
-
-            ->add('newsletter',CheckboxType::class,[
-                'label' => 'Newsletter',
-                'required' => false,
+            ->add('tva',TextType::class,[
+                'label' => 'N° de TVA',
+                'required' => true,
             ])
+
+            ->add('siteweb',TextType::class,[
+                'label' => 'Site internet',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'www.monsite.be'
+                ]
+            ])
+            ->add('stage',EntityType::class,[
+                'label' => 'Stages',
+                'class' => Stage::class,
+                'choice_label' => function($stage){
+                    return $stage->getStage();
+                }
+            ])
+            ->add('promotion',EntityType::class,[
+                'label' => 'Promotions',
+                'class' =>Promotion::class,
+                'choice_label' => function($promotion){
+                    return $promotion->getPromotion();
+                }
+            ])
+
             ->add('submit',SubmitType::class,[
                 'label' => 'S\'inscrire',
                 'attr' => [
@@ -96,6 +131,7 @@ class LoginInternauteType extends AbstractType
 
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

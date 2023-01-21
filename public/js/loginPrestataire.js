@@ -3,9 +3,9 @@
  , une requete sql est effectuée en BD afin de recuperer la province et les communes correspondantes */
 
 $(function(){
-    var cp = $('#login_internaute_codepostal');
-    var selectElt = $('#login_internaute_commune');
-    var localiteElt = $('#login_internaute_province');
+    var cp = $('#login_prestatataire_codepostal');
+    var selectElt = $('#login_prestatataire_commune');
+    var localiteElt = $('#login_prestatataire_province');
     console.log(cp);
     console.log(cp.val());
     cp.on('change',function (e) {
@@ -27,7 +27,7 @@ $(function(){
                 }
                 for (var i = 0; i < localite.length; i++) {
                     var option = localite[i];
-                    
+
                     localiteElt.append('<option value="'+option.id+'">'+option.localite+'</option>');
                 }
             },

@@ -4,7 +4,9 @@
 {% block title %}Pre inscription{% endblock %}
 
 {% block body %}
+
     <h5 class="text-center presinscriptionTitle">Veuillez completer le formulaire</h5>
+    <span class="msgShow d-inline-block"></span>
     {% if typeInscription  == 'prestataire' %}
         {{ form_start(form)}}
             <div class="preinscription">
@@ -12,6 +14,7 @@
                     {{ form_row(form.nom) }}
                 </div>
                 <div class="email ">
+                    <span class="d-block msgEmailCheck"></span>
                     {{ form_row(form.email) }}
                 </div>
                 <div class="form-row  submit " >
@@ -32,6 +35,7 @@
                     {{ form_row(form.prenom) }}
                 </div>
                 <div class="email ">
+                    <span class="d-block msgEmailCheck"></span>
                     {{ form_row(form.email) }}
                 </div>
 

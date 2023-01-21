@@ -3,14 +3,10 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
-use App\Entity\CodePostal;
 use App\Entity\Internaute;
-use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
-use App\Form\InternauteType;
 use App\Form\LoginInternauteType;
 use App\Form\PreinscriptionType;
-use App\Form\PrestatairePreinnscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +36,6 @@ class InscriptionController extends AbstractController
         $newEmail = new EmailSender($mailer, $environment);
         $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
     }
-
     //validation de la pre inscription et envoi d'un email de confirmation
     /**
      * @Route("/internaute/{typeInscription}", name="presignupInternaute")
@@ -50,15 +45,14 @@ class InscriptionController extends AbstractController
     {
         $form = $this->createForm(PreinscriptionType::class);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment);
-
             return $this->redirectToRoute('pageAccueil');
         }
+
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
@@ -66,8 +60,7 @@ class InscriptionController extends AbstractController
         ]);
     }
 
-
-    // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
+    // confirmation de l'inscription et insertion dans la base de données dans les tables internaute et utilisateur
 
     /**
      * @Route("/inscriptionInternaute", name="formulaireInternaute" , methods={"GET","POST"})
@@ -126,11 +119,9 @@ class InscriptionController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
-            'blockdisabled' => 'oui',
+
         ]);
     }
-
-
 
 }
 
