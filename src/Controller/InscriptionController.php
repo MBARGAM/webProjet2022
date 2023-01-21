@@ -85,32 +85,26 @@ class InscriptionController extends AbstractController
             //mise en des differentes  des donnees pour differentes insertions
             //insertion dans la table internaute
             $internaute = new Internaute();
-            $internaute->setNom($data['nom']);
-            $internaute->setPrenom($data['prenom']);
+            $internaute->setNom(strtolower($data['nom']));
+            $internaute->setPrenom(strtolower($data['prenom']));
             $internaute->setNewsletter($data['newsletter']);
             $internaute->setBloque(0);
             $entityManager->persist($internaute);
             $entityManager->flush();
 
-            //recuperation de l id de l internaute
-          //  $repository = $entityManager->getRepository(Internaute::class);
-          //  $lastInternauteId = $repository->findLastId();
-            //dd($lastInternauteId);
-          //  $lastInternauteInsert = $lastInternauteId[0]['id'];
-
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
-            $utilisateur->setEmail($data['email']);
+            $utilisateur->setEmail(strtolower($data['email']));
             $utilisateur->setInternaute($internaute);
             $utilisateur->setPassword($data['mdp']);
             $utilisateur->setRoles(['INTERNAUTE']);
-            $utilisateur->setAdresseRue($adresse);
-            $utilisateur->setAdresseNo($numero);
+            $utilisateur->setAdresseRue(strtolower($adresse));
+            $utilisateur->setAdresseNo(strtolower($numero));
             $utilisateur->setCommune($ville);
             $utilisateur->setLocalite($province);
             $utilisateur->setCp($cp);
-            $utilisateur ->setVisible(0);
-            $utilisateur ->setInscriptConf(0);
+            $utilisateur ->setVisible(1);
+            $utilisateur ->setInscriptConf(1);
             $utilisateur ->setDateInscription(new \DateTime());
 
             $entityManager->persist($utilisateur);
@@ -129,7 +123,7 @@ class InscriptionController extends AbstractController
  SELECT CONCAT(nom," ",prenom) AS Nom ,email,concat(utilisateur.adresse_no,",",utilisateur.adresse_rue) AS Adresse ,code_postal.cp ,commune.commune, localite.localite FROM `internaute`
 INNER JOIN utilisateur ON utilisateur.internaute_id = internaute.id
 INNER JOIN code_postal ON utilisateur.cp_id = code_postal.id
-INNER JOIN commune on commune.id = code_postal.id
+INNER JOIN commune on commune.cp_id = code_postal.id
 INNER JOIN localite on localite.id = code_postal.localite_id
 ORDER BY nom , prenom ASC
 */

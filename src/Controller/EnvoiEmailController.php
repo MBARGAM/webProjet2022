@@ -42,6 +42,7 @@ class EnvoiEmailController extends AbstractController
         }
     }
 
+
     /**
      * @Route("/prestataire/email/{email}", name="prestataireCheckEmail" )
      */
@@ -63,6 +64,9 @@ class EnvoiEmailController extends AbstractController
             return new Response('false');
         }
     }
+
+
+
 
 
 
