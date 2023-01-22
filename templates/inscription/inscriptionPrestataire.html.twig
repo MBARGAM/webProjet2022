@@ -3,12 +3,12 @@
 
 {% block title %}Inscription complete{% endblock %}
    {% block body%}
-       <h4>Veuillez completer votre formulaire</h4>
+       <h4 class="loginTitle">Veuillez completer votre formulaire</h4>
        <span class="msgShow d-inline-block"></span>
 
        {{ form_start(form)}}
 
-           <div class="formulaireInternaute">
+           <div class="formulairePrestataire">
                <div class=" divBlock blockInfoPrivee">
                    <div class="nom userItem">
                        {{ form_row(form.nom) }}
@@ -16,6 +16,8 @@
                    <div class="description userItem">
                        {{ form_row(form.description) }}
                    </div>
+               </div>
+               <div class=" divBlock  blockEmailMdp">
                    <div class="email userItem">
                        <span class="d-block msgEmailCheck"></span>
                        {{ form_row(form.email) }}
@@ -71,9 +73,10 @@
                </div>
 
 
-               <div class="btnItem">
+               <div class="btnItem ">
                    {{ form_row(form.submit) }}
                </div>
+
            </div>
        {{ form_end(form) }}
 

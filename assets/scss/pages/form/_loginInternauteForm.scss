@@ -1,0 +1,44 @@
+
+
+@media screen and (min-width: 500px) {
+  .formulaireInternaute{
+
+    #login_internaute_submit{
+      font-size: 1.5rem;
+    }
+    .blockInfoPrivee{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2rem;
+
+    }
+    .blockAdresse{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+      justify-content: center;
+
+    }
+    .blockLocalisation{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+      justify-content: center;
+    }
+    .btnItem{
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+}
+@media screen and (min-width: 720px) {
+  .formulaireInternaute{
+    width: 60%;
+    margin:0 auto;
+  }
+}
+@media screen and (min-width: 960px){
+
+}

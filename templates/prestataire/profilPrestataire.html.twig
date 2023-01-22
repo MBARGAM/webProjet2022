@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil prestataire{% endblock %}
+{% block body %}
+    <div class="searchLocalisation">
+        <div class="search">
+
+        </div>
+
+    </div>
+
+    {% block listePrestataire %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

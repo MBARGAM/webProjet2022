@@ -31,6 +31,8 @@ class UtilisateurController extends AbstractController
 
     public function reidrectionMobile(): Response
     {
-        return $this->render('utilisateur/pageRedirectionMobile.html.twig');
+        return $this->render('utilisateur/pageRedirectionMobile.html.twig', [
+            'infoBlock' => 'menuConnexion',
+        ]);
     }
 }

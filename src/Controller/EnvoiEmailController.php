@@ -66,9 +66,5 @@ class EnvoiEmailController extends AbstractController
     }
 
 
-
-
-
-
 }
 ?>
