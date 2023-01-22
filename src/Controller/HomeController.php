@@ -42,7 +42,9 @@ class HomeController extends AbstractController
             'commune'=>$listeCommune,
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
-          'categorie'=> $listeCategorie
+            'categorie'=> $listeCategorie,
+            'infoBlock' => 'menuConnexion',
+
 
         ]);
     }

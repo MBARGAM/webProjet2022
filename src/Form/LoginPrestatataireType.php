@@ -34,6 +34,9 @@ class LoginPrestatataireType extends AbstractType
             ->add('description',TextareaType::class,[
                 'label' => 'Description',
                 'required' => true,
+                'attr' => [
+                    'placeholder' => 'Description de votre entreprise'
+                ]
 
             ])
             ->add('email',EmailType::class,[
@@ -54,7 +57,7 @@ class LoginPrestatataireType extends AbstractType
                 'label' => 'Téléphone',
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'example@monsite.be'
+                    'placeholder' => '04 XXXXXXXXX'
                 ]
             ])
 

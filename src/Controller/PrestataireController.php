@@ -56,7 +56,7 @@ class PrestataireController extends AbstractController
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'oui',
+            'infoBlock' => 'menuConnexion',
         ]);
     }
 
@@ -76,7 +76,7 @@ class PrestataireController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            dd($data);
+           // dd($data);
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
             $adresse= $data['adresse'];
@@ -121,7 +121,23 @@ class PrestataireController extends AbstractController
             'form' => $form,
             'listeStage' => $listeStage,
             'listePromotion' => $listePromotion,
+            'infoBlock' => 'menuConnexion',
         ]);
     }
+
+    // profil du prestataire connecté
+    /**
+     * @Route("/profilPrestataire", name="profilPrestataire")
+     */
+    public function profilPrestataire(Request $request,EntityManagerInterface $entityManager): Response
+    {
+
+
+        return $this->renderForm('prestataire/profilPrestataire.html.twig', [
+
+            'infoBlock' => 'menuDeconnexion',
+        ]);
+    }
+
 
 }

@@ -1,0 +1,60 @@
+
+
+@media screen and (min-width: 500px) {
+  .loginTitle{
+    font-size: 2rem;
+  }
+  .formulairePrestataire{
+    margin-left :2rem;
+    margin-right :2rem;
+    #login_prestatataire_submit{
+      font-size: 1.5rem;
+    }
+      .blockSite{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        justify-content: center;
+
+      }
+    .blockEmailMdp{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2rem;
+      justify-content: center;
+    }
+    .stagePromo{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2rem;
+      justify-content: center;
+    }
+    .blockAdresse{
+      display: grid;
+      grid-template-columns: 1fr 1fr ;
+      grid-gap: 2rem;
+      justify-content: center;
+    }
+    .blockLocalisation{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 2rem;
+      justify-content: center;
+    }
+    .btnItem{
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+  }
+}
+@media screen and (min-width: 720px) {
+  .formulairePrestataire{
+   width: 60%;
+    margin:0 auto;
+  }
+}
+@media screen and (min-width: 960px){
+
+}

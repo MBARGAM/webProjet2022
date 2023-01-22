@@ -56,9 +56,10 @@ class InscriptionController extends AbstractController
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
-            'blockdisabled' => 'oui',
+            'infoBlock' => 'menuConnexion',
         ]);
     }
+
 
     // confirmation de l'inscription et insertion dans la base de données dans les tables internaute et utilisateur
 
@@ -113,6 +114,7 @@ class InscriptionController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
+            'infoBlock' => 'menuConnexion'
 
         ]);
     }
