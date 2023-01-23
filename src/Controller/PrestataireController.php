@@ -3,13 +3,18 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
+use App\Entity\Categorie;
+use App\Entity\CodePostal;
+use App\Entity\Commune;
 use App\Entity\Internaute;
+use App\Entity\Localite;
 use App\Entity\Prestataire;
 use App\Entity\Promotion;
 use App\Entity\Stage;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,7 +81,7 @@ class PrestataireController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-           // dd($data);
+          // dd($data);
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
             $adresse= $data['adresse'];
@@ -132,10 +137,26 @@ class PrestataireController extends AbstractController
     public function profilPrestataire(Request $request,EntityManagerInterface $entityManager): Response
     {
 
+        $commune = $entityManager->getRepository(Commune::class);
+        $listeCommune = $commune-> findAllCommune();
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
+        $localite = $entityManager->getRepository(Localite::class);
+        $listeLocalite = $localite->findAllLocalite();
+        $cp = $entityManager->getRepository(CodePostal::class);
+        $listeCp= $cp->findAllCp();
+
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
 
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
-
+            'form' => $form,
+            'commune'=>$listeCommune,
+            'localite'=>$listeLocalite,
+            'cp'=>$listeCp,
+            'categorie'=> $listeCategorie,
             'infoBlock' => 'menuDeconnexion',
+
         ]);
     }
 
