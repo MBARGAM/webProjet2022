@@ -3,10 +3,54 @@
 {% block title %}Profil prestataire{% endblock %}
 {% block body %}
     <div class="searchLocalisation">
-        <div class="search">
+        <div class="localisation">
 
         </div>
-
+        <div class="search">
+            {{ block("search", "home/index.html.twig") }}
+        </div>
+    </div>
+    <div class="profilDiapo">
+        <div class="photoAdresse">
+            <div class="photoProfil">
+            </div>
+            <div class="adresse">
+            </div>
+        </div>
+        <div class="reseauDiapo">
+            <div class="reseau">
+            </div>
+            <div class="diapo">
+            </div>
+        </div>
+    </div>
+    <div class="prestataireAction">
+        <div class="prestataireItem">
+            <div class="item">
+            </div>
+            <div class="btn">
+            </div>
+        </div>
+        <div class="prestataireItem">
+            <div class="item">
+            </div>
+            <div class="btn">
+            </div>
+        </div>
+        <div class="prestataireItem">
+            <div class="item">
+            </div>
+            <div class="btn">
+            </div>
+        </div>
+        <div class="prestataireItem">
+            <div class="item">
+            </div>
+        </div>
+        <div class="prestataireItem">
+            <div class="item">
+            </div>
+        </div>
     </div>
 
     {% block listePrestataire %}
