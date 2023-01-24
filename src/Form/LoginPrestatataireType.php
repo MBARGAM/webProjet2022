@@ -128,7 +128,7 @@ class LoginPrestatataireType extends AbstractType
             ])
             ->add('photo',FileType::class,[
                 'label' => 'Telecharger une photo',
-               'mapped' => false,
+                //'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
