@@ -1,42 +1,52 @@
 
 .prestataireDatas{
    box-sizing: border-box;
+
   img{
-    width: 120%;
+    width: 100%;
     height: auto;
   }
-  .menuLanguage{
-    grid-gap: 5px;
-    width: 100%;
+
+  .mobileScreen{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    .menuLanguage{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      grid-gap: 5px;
+    }
     .language{
-      margin-left: 30%;
+     margin-left: 7rem;
     }
-  }
-  .menuProfil{
 
-    margin-top: 1rem;
-    .iconItem{
-      color :$vert;
-      margin-right:20px;
-      font-size : 150%;
+    .menuProfil{
+      display: grid;
+      grid-template-columns: 1fr 1fr  1fr 1fr;
+      grid-gap: 5px;
+      margin-top: 1rem;
 
-      .iconMsg{
-        font-size: 9px;
-        color: $vert;
-        a{
-          @include link;
+      .iconItem{
+        color :$vert;
+        font-size : 150%;
+        .iconMsg{
+          font-size: 9px;
           color: $vert;
+          a{
+            @include link;
+            color: $vert;
+          }
+
         }
-
       }
-    }
 
+    }
   }
 
   .btnDeconnexion{
-    width: 1.5rem;
     align-self: center;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
 }
@@ -45,6 +55,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  .formItem{
+    margin: 0;
+  }
 
   .localisation{
     background-color: red;
