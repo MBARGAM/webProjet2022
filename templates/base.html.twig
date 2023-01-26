@@ -32,6 +32,7 @@
         <script src="{{ asset('js/loginPrestataire.js')  }}"></script>
         <script src="{{ asset('js/inscription.js')  }}"></script>
         <script src="{{ asset('js/jquery.js')  }}"></script>
+        <script src="{{ asset('js/ajoutImage.js')  }}"></script>
         {#  <script src="{{ asset('js/passwordCheck.js')  }}"></script> a activer pour les mdp#}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -40,89 +41,48 @@
 <body>
 
 {% block header %}
+    {% if infoBlock == 'menuConnexion' %}
 
     <header>
-        <div class="prestataireDatas">
-            <div class="mobileScreen">
-                <div class="headerLogo">
-                    <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                </div>
-
-                {% if infoBlock == 'menuConnexion' %}
-                <div class="language">
-                    <span class="francais"><a class="langFr" href="#">Fr</a></span>
-                    <span class="anglais"><a class="langEng" href="#">En</a></span>
-                </div>
-
-                <div class="headerLogo">
-                    <a href="#"><img class="burger" src="{{ asset('images/burger.png')  }}" title="accueil" alt="accueil"></a>
-
-                    <div class="menuMobile">
-                        <div class="menuBurger">
-                            <a class="dropdown-item menuItem listItem" href="{{ path('pageAccueil') }}">Accueil</a>
-                            <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
-                            <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
-                            <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Catégories
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right categorie">
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="btnConnexion">
-                                <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
-                            </div>
-                            <div class="btnInscription">
-                                <a href="{{ path('mobileSignup') }}" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-
-            {% elseif infoBlock  == 'menuDeconnexion'%}
-            <div class="menuLanguage  ">
-                <div class="langProfil ">
-                      <div class="language langBlock">
-                        <span class="francais"><a class="langFr" href="#">Fr</a></span>
-                        <span class="anglais"><a class="langEng" href="#">En</a></span>
-                     </div>
-                    <div class="menuProfil ">
-                        <div class="envoyer iconItem ">
-                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                        </div>
-                        <div class="contacter iconItem">
-                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="btnDeconnexion">
-                    <a href="#"><img class="burger" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
-                </div>
-
+        <div class="mobileScreen">
+            <div class="headerLogo">
+                <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
             </div>
+            <div class="language">
+                <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                <span class="anglais"><a class="langEng" href="#">En</a></span>
+            </div>
+            <div class="headerLogo">
+                <a href="#"><img class="burger" src="{{ asset('images/burger.png')  }}" title="accueil" alt="accueil"></a>
 
-            {% endif %}
+                <div class="menuMobile">
+                    <div class="menuBurger">
+                        <a class="dropdown-item menuItem listItem" href="{{ path('pageAccueil') }}">Accueil</a>
+                        <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
+                        <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
+                        <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Catégories
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right categorie">
+                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="btnConnexion">
+                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
+                        </div>
+                        <div class="btnInscription">
+                            <a href="{{ path('mobileSignup') }}" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="bigScreen">
             <div class="headerLogo">
                 <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
             </div>
-
             <div class="menu">
                 <div class="language">
                     <span class="francais"><a class="langFr" href="#">Fr</a></span>
@@ -137,24 +97,17 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Catégories
                                 </a>
-
                             </li>
                         </ul>
                     </nav>
 
                     <div class="btnElt">
-                        {% if infoBlock == 'menuConnexion' %}
-                            <div class="btnConnexion">
-                                <a href="#" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
-                            </div>
-
-
-                            <div class="btnInscription">
-                                <a href="#" class="btn  btn-sm dropdown-item btnItem text-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Inscription</a>
-                            </div>
-
-                        {% elseif infoBlock  == 'menuDeconnexion'%}
-                        {% endif %}
+                        <div class="btnConnexion">
+                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
+                        </div>
+                        <div class="btnInscription">
+                            <a href="#" class="btn  btn-sm dropdown-item btnItem text-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Inscription</a>
+                        </div>
 
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -178,15 +131,84 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
-
         </div>
-
     </header>
+
+    {% endif %}
+    {% if infoBlock  == 'menuDeconnexion'%}
+    <header>
+        <div class="logoutMenuMobile">
+            <div class="headerLogo">
+                <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+            </div>
+            <div class="menuLanguage  ">
+                <div class="langProfil ">
+                    <div class="language langBlock">
+                        <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                        <span class="anglais"><a class="langEng" href="#">En</a></span>
+                    </div>
+                    <div class="menuProfil ">
+                        <div class="envoyer iconItem ">
+                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                        </div>
+                        <div class="contacter iconItem">
+                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                        </div>
+                        <div class="favoris iconItem">
+                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                        </div>
+                        <div class="favoris iconItem">
+                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnDeconnexion">
+                    <a href="#"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
+                </div>
+            </div>
+        </div>
+        <div class="logoutBigScreen">
+            <div class="headerLogo">
+                <a href="{{ path('pageAccueil') }}"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+            </div>
+            <div class="menuLanguage  ">
+                <div class="langProfil ">
+                    <div class="language langBlock">
+                        <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                        <span class="anglais"><a class="langEng" href="#">En</a></span>
+                    </div>
+                    <div class="menuProfil ">
+                        <div class="envoyer iconItem ">
+                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                        </div>
+                        <div class="contacter iconItem">
+                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                        </div>
+                        <div class="favoris iconItem">
+                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                        </div>
+                        <div class="favoris iconItem">
+                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnDeconnexion">
+                    <a href="#">Deconnexion</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endif %}
 
 {% endblock %}
 

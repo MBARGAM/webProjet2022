@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\Stage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,22 +21,19 @@ class StageType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
-                'required' => true,
                 'attr' => [
                     'placeholder' => 'Nom du stage'
                 ]
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Description',
-                'required' => true,
                 'attr' => [
                     'placeholder' => 'Description du stage'
                 ]
 
             ])
-            ->add('tarif',IntegerType::class,[
+            ->add('tarif',MoneyType::class,[
                 'label' => 'Tarif',
-                'required' => true,
                 'attr' => [
                     'placeholder' => 'Tarif du stage'
                 ]
@@ -42,13 +41,12 @@ class StageType extends AbstractType
             ])
             ->add('infosComplementaires',TextareaType::class,[
                 'label' => 'Informations complémentaires',
-                'required' => true,
                 'attr' => [
                     'placeholder' => 'Informations complémentaires'
                 ]
 
             ])
-            ->add('dateDebut',DateTimeType::class,[
+            ->add('dateDebut',DateType::class,[
                 'label' => 'Date de début',
                 'required' => true,
                 'attr' => [
@@ -56,7 +54,7 @@ class StageType extends AbstractType
                 ]
 
             ])
-            ->add('dateFin',DateTimeType::class,[
+            ->add('dateFin',DateType::class,[
                 'label' => 'Date de fin',
                 'required' => true,
                 'attr' => [
@@ -64,7 +62,7 @@ class StageType extends AbstractType
                 ]
 
             ])
-            ->add('debutAffichage',DateTimeType::class,[
+            ->add('debutAffichage',DateType::class,[
                 'label' => 'Début d\'affichage',
                 'required' => true,
                 'attr' => [
@@ -72,7 +70,7 @@ class StageType extends AbstractType
                 ]
 
             ])
-            ->add('finAffichage',DateTimeType::class,[
+            ->add('finAffichage',DateType::class,[
                 'label' => 'Fin d\'affichage',
                 'required' => true,
                 'attr' => [
@@ -81,9 +79,9 @@ class StageType extends AbstractType
 
             ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Soumettre',
+                'label' => 'Valider',
                 'attr' => [
-                    'class' => 'btn '
+                    'class' => 'btn btn-primary '
                 ]
             ])
 

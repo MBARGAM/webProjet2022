@@ -16,7 +16,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('logo',FileType::class,[
-                'label' => 'Telecharger un logo ',
+                'label' => 'Logo de votre entreprise',
                 'mapped' => false,
                 'constraints' => [
                     new File([
@@ -48,7 +48,7 @@ class ImageType extends AbstractType
                 ],
             ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Suivant',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-primary '
                 ]

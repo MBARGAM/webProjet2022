@@ -129,7 +129,7 @@ class LoginPrestatataireType extends AbstractType
 
 
             ->add('submit',SubmitType::class,[
-                'label' => 'Suivant',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ]

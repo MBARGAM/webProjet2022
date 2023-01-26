@@ -1,0 +1,46 @@
+.loginTitle{
+  margin-top: 4rem;
+
+}
+.stageOui,.stageNon{
+  text-align: center;
+}
+
+.lesStages{
+  width : 60%;
+  margin : 3rem auto;
+
+  .required{
+    font-size: 1.2rem;
+
+  }
+  .btnItem{
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
+
+
+@media screen and (min-width: (321px)){
+
+}
+
+@media screen and (min-width: 720px) {
+  .lesStages{
+    button{
+      font-size: 1.4rem  ;
+      padding: 12px 2rem;
+    }
+    .divBlock{
+      margin-top: 2rem;
+    }
+     .nomPrix,.descripInfo,.dateDebutFin,.affichageDebutFin {
+       display: grid ;
+       grid-template-columns: 1fr 1fr;
+       grid-gap: 2rem;
+     }
+  }
+}
+@media screen and (min-width: 960px) {
+
+}

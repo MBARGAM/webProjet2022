@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Promotion;
 use App\Form\PromotionType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,6 +18,9 @@ class PromotioPromotionController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,Request $request): Response
     {
+        $categories = $entityManager->getRepository(Categorie::class);
+        $categories = $categories->findAllCategorie();
+
         $promotion = new Promotion();
         $form = $this->createForm(PromotionType::class,$promotion);
         $form->handleRequest($request);
@@ -28,6 +32,7 @@ class PromotioPromotionController extends AbstractController
         return $this->renderForm('promotio_promotion/index.html.twig', [
             'form' => $form,
             'infoBlock' => 'menuConnexion',
+            'categories' => $categories
         ]);
     }
 }

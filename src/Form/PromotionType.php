@@ -19,16 +19,14 @@ class PromotionType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
-                'required' => true,
                 'attr' => [
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Description',
-                'required' => true,
                 'attr' => [
-                    'placeholder' => 'Description de votre promition'
+                    'placeholder' => 'Description de votre promotion'
                 ]
 
             ])
@@ -36,12 +34,13 @@ class PromotionType extends AbstractType
                 'label'=> 'Catégorie',
                 'class'=> Categorie::class,
                 'choice_label'=> function($categorie){
-                    $categorie->getNom();
-                }])
+                    return $categorie->getNom();
+                }
+            ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Suivant',
+                'label' => 'Valider',
                 'attr' => [
-                    'class' => 'btn '
+                    'class' => 'btn btn-primary '
                 ]
             ])
         ;

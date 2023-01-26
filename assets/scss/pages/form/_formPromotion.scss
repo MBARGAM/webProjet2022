@@ -1,0 +1,42 @@
+.loginTitle{
+   margin-top: 4rem;
+
+}
+.promoOui,.promoNon{
+ text-align: center;
+}
+
+.lesPromos{
+   width : 60%;
+   margin : 3rem auto;
+
+  .required{
+    font-size: 1.2rem;
+
+  }
+  .btnItem{
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
+
+
+@media screen and (min-width: (321px)){
+
+}
+
+@media screen and (min-width: 720px) {
+  .lesPromos{
+    button{
+     font-size: 1.4rem  ;
+      padding: 12px 2rem;
+
+    }
+    .divBlock{
+      margin-top: 2rem;
+    }
+  }
+}
+@media screen and (min-width: 960px) {
+
+}

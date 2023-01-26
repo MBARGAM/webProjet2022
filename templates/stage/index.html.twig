@@ -3,12 +3,10 @@
 
 {% block title %}Inscription complete{% endblock %}
    {% block body%}
-       <h4 class="loginTitle">Voulez vous publier un stage</h4>
+       <h4 class="loginTitle">Voulez vous publier un stage ?</h4>
 
-       <div class="afficherFormStage">
-           <a href="#" class="btn btn-primary stageOui d-block" >Oui</a>
-           <a href="#" class="btn btn-primary stageNon d-block" >Non</a>
-       </div>
+       <h6 class="stageNon">* Si oui remplir le formulaire </h6>
+       <h6 class="promoOui">* Si non valider le formulaire </h6>
 
        {{ form_start(form)}}
 
@@ -46,11 +44,12 @@
                    {{ form_row(form.finAffichage) }}
                </div>
            </div>
+           <div class="btnItem">
+               {{ form_row(form.submit) }}
+           </div>
        </div>
 
-       <div class="btnItem">
-           {{ form_row(form.submit) }}
-       </div>
+
        {{ form_end(form) }}
 
    {% endblock %}
