@@ -40,7 +40,7 @@ class SearchType extends AbstractType
                 'label'=> 'Catégorie',
                 'class'=> Categorie::class,
                 'choice_label'=> function($categorie){
-                    return $categorie->getCategorie();
+                    return $categorie->getNom();
                 }
 
             ])

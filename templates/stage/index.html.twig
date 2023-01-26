@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Inscription complete{% endblock %}
+   {% block body%}
+       <h4 class="loginTitle">Voulez vous publier un stage</h4>
+
+       <div class="afficherFormStage">
+           <a href="#" class="btn btn-primary stageOui d-block" >Oui</a>
+           <a href="#" class="btn btn-primary stageNon d-block" >Non</a>
+       </div>
+
+       {{ form_start(form)}}
+
+       <div class="lesStages">
+           <div class="nomPrix">
+               <div class=" divBlock  nom userItem">
+                   {{ form_row(form.nom) }}
+               </div>
+               <div class=" divBlock  tarif userItem">
+                   {{ form_row(form.tarif) }}
+               </div>
+
+           </div>
+           <div class="descripInfo">
+               <div class=" divBlock  description userItem">
+                   {{ form_row(form.description ) }}
+               </div>
+               <div class=" divBlock  infosComplementaires userItem">
+                   {{ form_row(form.infosComplementaires) }}
+               </div>
+           </div>
+           <div class="dateDebutFin">
+               <div class=" divBlock  dateDebut userItem">
+                   {{ form_row(form.dateDebut) }}
+               </div>
+               <div class=" divBlock  dateFin userItem">
+                   {{ form_row(form.dateFin) }}
+               </div>
+           </div>
+           <div class="affichageDebutFin">
+               <div class=" divBlock affichageDebut userItem">
+                   {{ form_row(form.debutAffichage) }}
+               </div>
+               <div class=" divBlock  affichageFin userItem">
+                   {{ form_row(form.finAffichage) }}
+               </div>
+           </div>
+       </div>
+
+       <div class="btnItem">
+           {{ form_row(form.submit) }}
+       </div>
+       {{ form_end(form) }}
+
+   {% endblock %}
+
+
+
+

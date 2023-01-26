@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Inscription complete{% endblock %}
+   {% block body%}
+       <h4 class="loginTitle">Veuillez inserer vos images</h4>
+
+       {{ form_start(form)}}
+
+       <div class="imagePrestataire">
+           <div class=" divBlock  photo userItem">
+               {{ form_row(form.logo) }}
+           </div>
+           <div class=" divBlock  photo userItem">
+               {{ form_row(form.photo) }}
+           </div>
+       </div>
+       <button type="button" class="btn btn-primary" >Ajouter une image</button>
+       <div class="btnItem">
+           {{ form_row(form.submit) }}
+       </div>
+       {{ form_end(form) }}
+
+   {% endblock %}
+
