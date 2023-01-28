@@ -75,7 +75,7 @@ class PrestataireController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            dd($data);
+            //dd($data);
          // dd($form->get('photo')->getData());
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];

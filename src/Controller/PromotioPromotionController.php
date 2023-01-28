@@ -25,6 +25,8 @@ class PromotioPromotionController extends AbstractController
         $form = $this->createForm(PromotionType::class,$promotion);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $form->getData();
+            dd($promotion);
             $entityManager->persist($promotion);
             $entityManager->flush();
             return $this->redirectToRoute('lesStages');

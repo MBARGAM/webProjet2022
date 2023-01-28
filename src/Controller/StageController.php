@@ -21,6 +21,9 @@ class StageController extends AbstractController
         $form = $this->createForm(StageType::class,$stage);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $form->getData();
+            dd($stage);
+
             $entityManager->persist($stage);
             $entityManager->flush();
             return $this->redirectToRoute('pageAccueil');

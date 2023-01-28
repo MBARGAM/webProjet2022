@@ -38,15 +38,7 @@
                    </div>
 
                </div>
-               <div class="divBlock  stagePromo">
-                   <div class="tva userItem">
-                       {{ form_row(form.promotion) }}
-                   </div>
-                   <div class="tva userItem">
-                       {{ form_row(form.stage) }}
-                   </div>
 
-               </div>
                <div class=" divBlock  blockAdresse">
                    <div class="numero userItem">
                        {{ form_row(form.numero )}}
@@ -54,7 +46,6 @@
                    <div class="adresse userItem">
                        {{ form_row(form.adresse )}}
                    </div>
-
                </div>
                <div class=" divBlock  blockLocalisation">
                    <div class="cp userItem">
@@ -66,14 +57,14 @@
 
                    <div class=" localite userItem">
                        {{ form_row(form.province) }}
+                  </div>
 
+                   <div class="btnItem ">
+                       {{ form_row(form.submit) }}
+                   </div>
                </div>
 
-               <div class="btnItem ">
-                   {{ form_row(form.submit) }}
-               </div>
-
-           </div>
+            </div>
        {{ form_end(form) }}
 
    {% endblock %}

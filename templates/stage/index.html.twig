@@ -5,52 +5,56 @@
    {% block body%}
        <h4 class="loginTitle">Voulez vous publier un stage ?</h4>
 
-       <h6 class="stageNon">* Si oui remplir le formulaire </h6>
+       <h6 class="promoNon">* Si oui remplir le formulaire </h6>
        <h6 class="promoOui">* Si non valider le formulaire </h6>
 
-       {{ form_start(form)}}
+       <div class="stageForm">
+           {{ form_start(form)}}
 
-       <div class="lesStages">
-           <div class="nomPrix">
-               <div class=" divBlock  nom userItem">
-                   {{ form_row(form.nom) }}
-               </div>
-               <div class=" divBlock  tarif userItem">
-                   {{ form_row(form.tarif) }}
-               </div>
+           <div class="lesStages">
+               <div class="nomPrix">
+                   <div class=" divBlock  nom userItem">
+                       {{ form_row(form.nom) }}
+                   </div>
+                   <div class=" divBlock  tarif userItem">
+                       {{ form_row(form.tarif) }}
+                   </div>
 
+               </div>
+               <div class="descripInfo">
+                   <div class=" divBlock  description userItem">
+                       {{ form_row(form.description ) }}
+                   </div>
+                   <div class=" divBlock  infosComplementaires userItem">
+                       {{ form_row(form.infosComplementaires) }}
+                   </div>
+               </div>
+               <div class="dateDebutFin">
+                   <div class=" divBlock  dateDebut userItem">
+                       {{ form_row(form.dateDebut) }}
+                   </div>
+                   <div class=" divBlock  dateFin userItem">
+                       {{ form_row(form.dateFin) }}
+                   </div>
+               </div>
+               <div class="affichageDebutFin">
+                   <div class=" divBlock affichageDebut userItem">
+                       {{ form_row(form.debutAffichage) }}
+                   </div>
+                   <div class=" divBlock  affichageFin userItem">
+                       {{ form_row(form.finAffichage) }}
+                   </div>
+               </div>
+               <div class="btnItem">
+                   {{ form_row(form.submit) }}
+               </div>
            </div>
-           <div class="descripInfo">
-               <div class=" divBlock  description userItem">
-                   {{ form_row(form.description ) }}
-               </div>
-               <div class=" divBlock  infosComplementaires userItem">
-                   {{ form_row(form.infosComplementaires) }}
-               </div>
-           </div>
-           <div class="dateDebutFin">
-               <div class=" divBlock  dateDebut userItem">
-                   {{ form_row(form.dateDebut) }}
-               </div>
-               <div class=" divBlock  dateFin userItem">
-                   {{ form_row(form.dateFin) }}
-               </div>
-           </div>
-           <div class="affichageDebutFin">
-               <div class=" divBlock affichageDebut userItem">
-                   {{ form_row(form.debutAffichage) }}
-               </div>
-               <div class=" divBlock  affichageFin userItem">
-                   {{ form_row(form.finAffichage) }}
-               </div>
-           </div>
-           <div class="btnItem">
-               {{ form_row(form.submit) }}
-           </div>
+
+
+           {{ form_end(form) }}
+
+
        </div>
-
-
-       {{ form_end(form) }}
 
    {% endblock %}
 

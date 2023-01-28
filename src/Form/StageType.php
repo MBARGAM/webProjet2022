@@ -21,6 +21,7 @@ class StageType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Nom du stage'
                 ]

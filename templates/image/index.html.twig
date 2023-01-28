@@ -3,25 +3,36 @@
 
 {% block title %}Inscription complete{% endblock %}
    {% block body%}
-       <h4 class="loginTitle">Veuillez inserer vos images</h4>
+       <h4 class="loginTitle">Voulez vous inserer un logo et des images ?</h4>
 
-       {{ form_start(form)}}
-
-       <div class="imagePrestataire">
-           <div class=" divBlock  photo userItem">
-               {{ form_row(form.logo) }}
-           </div>
-           <div class=" divBlock  photo userItem">
-               {{ form_row(form.photo) }}
-           </div>
+       <div class="d-flex justify-content-center">
+           <a href="http://127.0.0.1:8000/promotion" class="btn btn-primary ">NON</a>
+           <a href="#" class="btn btn-primary imageLoadAccepted">OUI</a>
        </div>
-      <div class="btnEtAjoutImage">
-           <button type="button" id ="ajoutImage"  class="btn btn-primary " >Ajouter une image</button>
-           <div class="btnItem">
-               {{ form_row(form.submit) }}
-           </div>
-      </div>
-       {{ form_end(form) }}
+
+        <div class="imagesForm">
+            {{ form_start(form)}}
+
+            <div class="imagePrestataire">
+                <div class=" divBlock  photo userItem">
+                    {{ form_row(form.logo) }}
+                </div>
+                <div class=" divBlock  photo userItem">
+                    {{ form_row(form.photo) }}
+                </div>
+            </div>
+            <div class="btnEtAjoutImage">
+                <div>
+
+                </div>
+                <button type="button" id ="ajoutImage"  class="btn btn-primary " >Ajouter une image</button>
+                <div class="btnItem">
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
 
    {% endblock %}
 

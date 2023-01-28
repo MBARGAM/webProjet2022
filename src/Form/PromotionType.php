@@ -19,12 +19,14 @@ class PromotionType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Description',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Description de votre promotion'
                 ]

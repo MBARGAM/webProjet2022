@@ -112,20 +112,6 @@ class LoginPrestatataireType extends AbstractType
                     'placeholder' => 'www.monsite.be'
                 ]
             ])
-            ->add('stage',EntityType::class,[
-                'label' => 'Stages',
-                'class' => Stage::class,
-                'choice_label' => function($stage){
-                    return $stage->getStage();
-                }
-            ])
-            ->add('promotion',EntityType::class,[
-                'label' => 'Promotions',
-                'class' =>Promotion::class,
-                'choice_label' => function($promotion){
-                    return $promotion->getPromotion();
-                }
-            ])
 
 
             ->add('submit',SubmitType::class,[

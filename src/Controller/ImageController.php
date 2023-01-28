@@ -23,6 +23,9 @@ class ImageController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
 
+            $logoFile = $form->get('logo')->getData();
+            $photoFile = $form->get('photo')->getData();
+            dd($photoFile);
             $entityManager->persist($image);
             $entityManager->flush();
             return $this->redirectToRoute('lesPromotions');
