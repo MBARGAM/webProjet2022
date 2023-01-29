@@ -1,30 +1,32 @@
-
-.prestataireDatas{
+.logoutBigScreen{
+  display:none;
+}
+.logoutMenuMobile{
+   display: grid;
+   grid-template-columns: 1fr 4fr;
    box-sizing: border-box;
+   margin-bottom: 1rem;
+  border-bottom: 1px solid $vert;
 
-  img{
-    width: 100%;
-    height: auto;
+  .headerLogo {
+
+    .logo {
+      margin-left: 12px;
+      width: 75%;
+      margin-top: 10px;
+      padding-right:10px ;
+    }
   }
-
-  .mobileScreen{
+  .menuLanguage{
     display: grid;
-    grid-template-columns: 1fr 4fr;
-
-    .menuLanguage{
-      display: grid;
-      grid-template-columns: 5fr 1fr;
-      grid-gap: 5px;
-    }
-    .language{
-     margin-left: 7rem;
-    }
+    grid-template-columns: 5fr 1fr;
+    grid-gap: 5px;
 
     .menuProfil{
       display: grid;
       grid-template-columns: 1fr 1fr  1fr 1fr;
       grid-gap: 5px;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
 
       .iconItem{
         color :$vert;
@@ -32,29 +34,47 @@
         .iconMsg{
           font-size: 9px;
           color: $vert;
+          text-align: -webkit-center;
           a{
             @include link;
             color: $vert;
           }
-
         }
       }
+    }
+    .language{
+      text-align: -webkit-center;
+       .langFr, .langEng {
+         @include link;
+       }
+       .langEng:hover {
+         color: darkgreen;
+       }
+       .langFr:hover {
+          color: darkgreen;
+       }
+    }
+    .francais::after {
+      content: " ";
+      border-right: 2px solid #0D2816;
+      margin-left: 5px;
+      margin-right: 7px;
+    }
 
+    .btnDeconnexion{
+      margin-top: 10px;
+      margin-left: 1rem;
+      margin-right: 10px;
+      width: 30%;
     }
   }
-
-  .btnDeconnexion{
-    align-self: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
 }
 
 .searchLocalisation{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  margin-left: 10px;
+  margin-right: 10px;
 
   .formItem{
     margin: 0;
@@ -62,24 +82,219 @@
 
   .localisation{
     background-color: red;
+    margin-top:15px;
+    margin-bottom: 15px;
   }
   .formulaire{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
 
-   input,select{
-
-   }
+     input,select{
+       width: 230%;
+     }
+    option{
+      font-size: 10px;
+    }
+    button{
+      background-color: $vert;
+      margin-left: 2rem;
+      color: white;
+      button:hover{
+        background-color: darkgreen;
+      }
+    }
     .required{
       display :block;
     }
-    .formItem{
-      width: 40%;
+
+  }
+}
+.profilDiapo{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-left: 10px;
+    color:$vert;
+  margin-top: 2rem;
+
+  .photoAdresse{
+      border: 1px solid $vert;
+      img{
+        width: 120%;
+        height:auto ;
+        border: 1px solid $vert;
+        border-radius: 10px;
+       margin-left: 5px;
+        margin-top: 5px;
+      }
+      .photoMsg{
+        display:grid;
+        grid-template-columns: 1fr 2.5fr;
+        grid-gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .infoItem{
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+  }
+  .reseauDiapo{
+    .reseau{
+      text-align: center;
+      .fa-brands{
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+      }
+    }
+    .diaporama{
+      margin-left: 0;
+      margin-right: 10px;
     }
   }
 }
+.prestataireAction{
+  margin-top: 2rem;
+}
+.prestataireItem{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 10px;
 
+   .item{
+      text-align: -webkit-center;
+      background-color: $vert;
+      margin: 5px 3rem ;
+     border-radius: 10px;
+
+     a{
+       color:white;
+     }
+   }
+  .btn{
+     a{
+       color: $vert;
+       font-size: 1rem;
+     }
+    span{
+      color: $vert;
+    }
+  }
+
+
+}
 @media screen and (min-width: 500px) {
+  .logoutBigScreen{
+    display:block;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $vert;
+
+    .headerLogo {
+
+      .logo {
+        margin-left: 12px;
+        width: 75%;
+        margin-top: 10px;
+        padding-right:10px ;
+      }
+    }
+    .menuLanguage{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      grid-gap: 5px;
+
+      .menuProfil{
+        display: grid;
+        grid-template-columns: 1fr 1fr  1fr 1fr;
+        grid-gap: 5px;
+        margin-top: 1.5rem;
+
+        .iconItem{
+          color :$vert;
+          font-size : 150%;
+          .iconMsg{
+            font-size: 9px;
+            color: $vert;
+            text-align: -webkit-center;
+            a{
+              @include link;
+              color: $vert;
+            }
+          }
+        }
+      }
+      .language{
+        text-align: -webkit-center;
+        .langFr, .langEng {
+          @include link;
+        }
+        .langEng:hover {
+          color: darkgreen;
+        }
+        .langFr:hover {
+          color: darkgreen;
+        }
+      }
+      .francais::after {
+        content: " ";
+        border-right: 2px solid #0D2816;
+        margin-left: 5px;
+        margin-right: 7px;
+      }
+
+      .btnDeconnexion{
+        margin-top: 10px;
+        margin-left: 1rem;
+        margin-right: 10px;
+        width: 30%;
+      }
+    }
+  }
+
+  .searchLocalisation{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .formItem{
+      margin: 0;
+    }
+
+    .localisation{
+      background-color: red;
+      margin-top:15px;
+      margin-bottom: 15px;
+    }
+    .formulaire{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 8px;
+
+      input,select{
+        width: 230%;
+      }
+      option{
+        font-size: 10px;
+      }
+      button{
+        background-color: $vert;
+        margin-left: 2rem;
+        color: white;
+        button:hover{
+          background-color: darkgreen;
+        }
+      }
+      .required{
+        display :block;
+      }
+
+    }
+  }
 
 }
 @media screen and (min-width: 720px) {
