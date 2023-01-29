@@ -96,6 +96,8 @@ class PrestataireController extends AbstractController
             $prestataire->setBloque(0);
             $entityManager->persist($prestataire);
             $entityManager->flush();
+            //recuperation de l'id du prestataire pour les images les stages et les promotions
+            $lastId = $prestataire->getId();
 
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
@@ -114,7 +116,7 @@ class PrestataireController extends AbstractController
 
             $entityManager->persist($utilisateur);
             $entityManager->flush();
-            return $this->redirectToRoute('lesImages');
+            return $this->redirectToRoute('lesImages', ['id' => $lastId]);
         }
         return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,

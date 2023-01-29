@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class PromotioPromotionController extends AbstractController
 {
     /**
-     * @Route("/promotion", name="lesPromotions")
+     * @Route("/promotion/{id}", name="lesPromotions")
      */
-    public function index(EntityManagerInterface $entityManager,Request $request): Response
+    public function index($id,EntityManagerInterface $entityManager,Request $request): Response
     {
         $categories = $entityManager->getRepository(Categorie::class);
         $categories = $categories->findAllCategorie();
@@ -29,7 +29,7 @@ class PromotioPromotionController extends AbstractController
             dd($promotion);
             $entityManager->persist($promotion);
             $entityManager->flush();
-            return $this->redirectToRoute('lesStages');
+            return $this->redirectToRoute('lesStages', ['id' => $id]);
         }
         return $this->renderForm('promotio_promotion/index.html.twig', [
             'form' => $form,
