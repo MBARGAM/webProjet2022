@@ -28,24 +28,24 @@ class StageType extends AbstractType
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Description',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Description du stage'
                 ]
-
             ])
             ->add('tarif',MoneyType::class,[
                 'label' => 'Tarif',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Tarif du stage'
                 ]
-
             ])
             ->add('infosComplementaires',TextareaType::class,[
                 'label' => 'Informations complémentaires',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Informations complémentaires'
                 ]
-
             ])
             ->add('dateDebut',DateType::class,[
                 'label' => 'Date de début',
@@ -53,7 +53,6 @@ class StageType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Date de début du stage'
                 ]
-
             ])
             ->add('dateFin',DateType::class,[
                 'label' => 'Date de fin',
@@ -61,7 +60,6 @@ class StageType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Date de fin du stage'
                 ]
-
             ])
             ->add('debutAffichage',DateType::class,[
                 'label' => 'Début d\'affichage',
@@ -69,7 +67,6 @@ class StageType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Début d\'affichage du stage'
                 ]
-
             ])
             ->add('finAffichage',DateType::class,[
                 'label' => 'Fin d\'affichage',
@@ -77,7 +74,6 @@ class StageType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Fin d\'affichage du stage'
                 ]
-
             ])
             ->add('submit',SubmitType::class,[
                 'label' => 'Valider',
@@ -85,7 +81,6 @@ class StageType extends AbstractType
                     'class' => 'btn btn-primary '
                 ]
             ])
-
         ;
     }
 

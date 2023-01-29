@@ -37,7 +37,7 @@ class ImageController extends AbstractController
             //traitement du logo
             if($logoFile){
                $fileLoader = new FileLoader($slugger);
-                $logo = $fileLoader->upload($logoFile);
+                $logo = $fileLoader->uploadLogo($logoFile);
                 $image = new Image();
                 $image->setNom($logo);
                 $image->setPrestataire($prestataire);
@@ -52,7 +52,7 @@ class ImageController extends AbstractController
                 $image->setNom($photo);
                 $image->setPrestataire($prestataire);
                 $entityManager->persist($image);
-$entityManager->flush();
+                $entityManager->flush();
 
             }
 

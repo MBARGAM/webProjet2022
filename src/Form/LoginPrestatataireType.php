@@ -68,7 +68,7 @@ class LoginPrestatataireType extends AbstractType
                     'placeholder' => '123'
                 ]
             ])
-            ->add('adresse',TextType::class,[
+            ->add('adresse',TextareaType::class,[
                 'label' => 'Adresse',
                 'required' => true,
                 'attr' => [

@@ -50,7 +50,7 @@ class ImageType extends AbstractType
                 ],
             ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Valider',
+                'label' => 'Suivant',
                 'attr' => [
                     'class' => 'btn btn-primary '
                 ]

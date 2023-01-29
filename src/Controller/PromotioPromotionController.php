@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Prestataire;
 use App\Entity\Promotion;
 use App\Form\PromotionType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,10 +26,22 @@ class PromotioPromotionController extends AbstractController
         $form = $this->createForm(PromotionType::class,$promotion);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $form->getData();
-            dd($promotion);
-            $entityManager->persist($promotion);
-            $entityManager->flush();
+
+            //recuperation de l'objet Prestataire ayant rempli le formulaire
+             $prestataire = $entityManager->getRepository(Prestataire::class);
+             $prestataire = $prestataire->find($id);
+             $data = $form->getData();
+
+            //verification des champs
+            if($data->getNom() != null && $data->getDescription() != null  ){
+                $promotion->setPrestataire($prestataire);
+                $promotion->setNom($data->getNom());
+                $promotion->setDescription($data->getDescription());
+                //dd($promotion);
+                $entityManager->persist($promotion);
+                $entityManager->flush();
+            }
+
             return $this->redirectToRoute('lesStages', ['id' => $id]);
         }
         return $this->renderForm('promotio_promotion/index.html.twig', [
