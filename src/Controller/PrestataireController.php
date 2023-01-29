@@ -6,11 +6,8 @@ use App\Classes\EmailSender;
 use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
-use App\Entity\Internaute;
 use App\Entity\Localite;
 use App\Entity\Prestataire;
-use App\Entity\Promotion;
-use App\Entity\Stage;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
@@ -72,23 +69,20 @@ class PrestataireController extends AbstractController
 
     public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager): Response
     {
-        // recuperation des donnees des stages et des promotions proposés par les prestataires
-        $listeStage = $entityManager->getRepository(Stage::class)->findAllStages();
-        $listePromotion = $entityManager->getRepository(Promotion::class)->findAllPromotions();
 
         $form=$this->createForm(LoginPrestatataireType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-          // dd($data);
+            //dd($data);
+         // dd($form->get('photo')->getData());
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
             $adresse= $data['adresse'];
             $cp= $data['codepostal'];
             $ville= $data['commune'];
             $province= $data['province'];
-
 
 
             //mise en des differentes  des donnees pour differentes insertions
@@ -102,6 +96,8 @@ class PrestataireController extends AbstractController
             $prestataire->setBloque(0);
             $entityManager->persist($prestataire);
             $entityManager->flush();
+            //recuperation de l'id du prestataire pour les images les stages et les promotions
+            $lastId = $prestataire->getId();
 
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
@@ -120,12 +116,10 @@ class PrestataireController extends AbstractController
 
             $entityManager->persist($utilisateur);
             $entityManager->flush();
-            return $this->redirectToRoute('pageAccueil');
+            return $this->redirectToRoute('lesImages', ['id' => $lastId]);
         }
         return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,
-            'listeStage' => $listeStage,
-            'listePromotion' => $listePromotion,
             'infoBlock' => 'menuConnexion',
         ]);
     }

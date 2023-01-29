@@ -1,0 +1,48 @@
+.loginTitle{
+  margin-top: 4rem;
+
+}
+
+.imagePrestataire{
+  width : 60%;
+  margin : 3rem auto;
+
+  .required{
+    font-size: 1.2rem;
+
+  }
+  .btnItem{
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
+.btnEtAjoutImage{
+  text-align: center;
+  button{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+
+}
+
+@media screen and (min-width: (321px)){
+
+}
+
+@media screen and (min-width: 720px) {
+  #image_submit{
+    font-size: 1.4rem  ;
+    padding: 12px 2rem;
+  }
+  .imagePrestataire{
+
+    .divBlock{
+      margin-top: 2rem;
+    }
+  }
+
+}
+@media screen and (min-width: 960px) {
+
+}

@@ -1,0 +1,90 @@
+
+.prestataireDatas{
+   box-sizing: border-box;
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+
+  .mobileScreen{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    .menuLanguage{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      grid-gap: 5px;
+    }
+    .language{
+     margin-left: 7rem;
+    }
+
+    .menuProfil{
+      display: grid;
+      grid-template-columns: 1fr 1fr  1fr 1fr;
+      grid-gap: 5px;
+      margin-top: 1rem;
+
+      .iconItem{
+        color :$vert;
+        font-size : 150%;
+        .iconMsg{
+          font-size: 9px;
+          color: $vert;
+          a{
+            @include link;
+            color: $vert;
+          }
+
+        }
+      }
+
+    }
+  }
+
+  .btnDeconnexion{
+    align-self: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+}
+
+.searchLocalisation{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+  .formItem{
+    margin: 0;
+  }
+
+  .localisation{
+    background-color: red;
+  }
+  .formulaire{
+    display: flex;
+    flex-wrap: wrap;
+
+   input,select{
+
+   }
+    .required{
+      display :block;
+    }
+    .formItem{
+      width: 40%;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+
+}
+@media screen and (min-width: 720px) {
+
+}
+@media screen and (min-width: 960px){
+
+}

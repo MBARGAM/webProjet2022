@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Inscription complete{% endblock %}
+   {% block body%}
+       <h4 class="loginTitle">Voulez vous publier une promotion ?</h4>
+
+
+       <div class="d-flex justify-content-center">
+           <a href="http://127.0.0.1:8000/stage" class="btn btn-primary ">NON</a>
+           <a href="#" class="btn btn-primary promotionLoadAccepted">OUI</a>
+       </div>
+
+       <div class="promoForm">
+           {{ form_start(form)}}
+
+           <div class="lesPromos">
+               <div class=" divBlock  nomPromo userItem">
+                   {{ form_row(form.nom) }}
+               </div>
+
+               <div class=" divBlock  description userItem">
+                   {{ form_row(form.description ) }}
+               </div>
+               <div class=" divBlock  dateDebut userItem">
+                   {{ form_row(form.categorie) }}
+               </div>
+               <div class="btnItem">
+                   {{ form_row(form.submit) }}
+               </div>
+           </div>
+
+           {{ form_end(form) }}
+
+
+       </div>
+
+   {% endblock %}
+
+
+
+

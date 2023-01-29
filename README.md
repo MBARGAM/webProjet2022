@@ -71,3 +71,6 @@ recuperation des fichier format json
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+> -configurer les imageS dans le fichier config/routes/services.yaml
+creer le dossier ou stocker les images
+> make le chemin de l image dans le fichier config/routes/services.yaml

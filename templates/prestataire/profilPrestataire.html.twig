@@ -12,44 +12,104 @@
     </div>
     <div class="profilDiapo">
         <div class="photoAdresse">
-            <div class="photoProfil">
+            <div>
+                <div class="photoProfil">
+                    <img class="logo" src="{{ asset('images/leonl.jpeg')  }}" title="photoprofil" alt="photopprofil">
+                </div>
+                <div class="adresse">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever s
+                    </p>
+                </div>
             </div>
-            <div class="adresse">
+            <div class="profilData">
+
+                <div class="nom"><span class="enteteNom d-inline-block">Nom : </span><span class ="valeurNom d-inline-block"></span></div>
+                <div class="site"><span class="enteteSite d-inline-block">Site :</span><span class ="valeurSite d-inline-block"></span></div>
+                <div class="email"><span class="enteteEmail d-inline-block">Email :</span><span class ="valeurEmail d-inline-block"></span></div>
+                <div class="tel"><span class="enteteTel d-inline-block">Tel :</span><span class ="valeurTel d-inline-block"></span></div>
+                <div class="tva"><span class="enteteTva d-inline-block">Tva</span><span class ="valeurTva d-inline-block"></span></div>
+
             </div>
+
         </div>
         <div class="reseauDiapo">
             <div class="reseau">
+                <span class="d-block fa-brands fa-facebook"></span>
+                <span class="d-block fa-brands fa-square-instagram"></span>
+                <span class="d-block fa-brands fa-tiktok"></span>
+                <span class="d-block fa-brands fa-twitter"></span>
             </div>
             <div class="diapo">
+                {{ block("diaporama", "home/index.html.twig") }}
             </div>
         </div>
     </div>
     <div class="prestataireAction">
-        <div class="prestataireItem">
-            <div class="item">
+        <div class="prestataireItem ">
+            <div class=" nav-item dropdown item">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Voir les categories de service
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
             </div>
             <div class="btn">
+                <a href="#" class="d-block fa-solid fa-square-plus"></a>
+                <span class="d-block"><a href="#">Categorie</a></span>
             </div>
         </div>
         <div class="prestataireItem">
-            <div class="item">
+            <div class=" nav-item dropdown item">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Voir les stages
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
             </div>
             <div class="btn">
+                <a href="#" class="d-block fa-solid fa-square-plus"></a>
+                <span class="d-block"><a href="#">Stage</a></span>
             </div>
         </div>
         <div class="prestataireItem">
-            <div class="item">
+            <div class=" nav-item dropdown item">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Voir les promotions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
+
             </div>
             <div class="btn">
+                <a href="#" class="d-block fa-solid fa-square-plus"></a>
+                <span class="d-block"><a href="#">Promotion</a></span>
+            </div>
             </div>
         </div>
         <div class="prestataireItem">
-            <div class="item">
+            <div class=" nav-item dropdown item">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Commentraires
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
+
             </div>
         </div>
-        <div class="prestataireItem">
-            <div class="item">
+        <div class=" nav-item dropdown item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
             </div>
+
+        </div>
         </div>
     </div>
 

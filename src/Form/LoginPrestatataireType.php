@@ -112,39 +112,10 @@ class LoginPrestatataireType extends AbstractType
                     'placeholder' => 'www.monsite.be'
                 ]
             ])
-            ->add('stage',EntityType::class,[
-                'label' => 'Stages',
-                'class' => Stage::class,
-                'choice_label' => function($stage){
-                    return $stage->getStage();
-                }
-            ])
-            ->add('promotion',EntityType::class,[
-                'label' => 'Promotions',
-                'class' =>Promotion::class,
-                'choice_label' => function($promotion){
-                    return $promotion->getPromotion();
-                }
-            ])
-            ->add('photo',FileType::class,[
-                'label' => 'Telecharger une photo',
-               'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                            'image/jpg',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez uploader une image valide',
-                    ])
-                ],
-            ])
+
 
             ->add('submit',SubmitType::class,[
-                'label' => 'S\'inscrire',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ]
