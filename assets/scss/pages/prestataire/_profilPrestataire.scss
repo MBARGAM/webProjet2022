@@ -85,7 +85,6 @@
     margin-top:15px;
     margin-bottom: 15px;
   }
-
   .formulaire{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -113,6 +112,117 @@
 }
 
 @media screen and (min-width: 500px) {
+  .logoutBigScreen{
+    display:block;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $vert;
+
+    .headerLogo {
+
+      .logo {
+        margin-left: 12px;
+        width: 75%;
+        margin-top: 10px;
+        padding-right:10px ;
+      }
+    }
+    .menuLanguage{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      grid-gap: 5px;
+
+      .menuProfil{
+        display: grid;
+        grid-template-columns: 1fr 1fr  1fr 1fr;
+        grid-gap: 5px;
+        margin-top: 1.5rem;
+
+        .iconItem{
+          color :$vert;
+          font-size : 150%;
+          .iconMsg{
+            font-size: 9px;
+            color: $vert;
+            text-align: -webkit-center;
+            a{
+              @include link;
+              color: $vert;
+            }
+          }
+        }
+      }
+      .language{
+        text-align: -webkit-center;
+        .langFr, .langEng {
+          @include link;
+        }
+        .langEng:hover {
+          color: darkgreen;
+        }
+        .langFr:hover {
+          color: darkgreen;
+        }
+      }
+      .francais::after {
+        content: " ";
+        border-right: 2px solid #0D2816;
+        margin-left: 5px;
+        margin-right: 7px;
+      }
+
+      .btnDeconnexion{
+        margin-top: 10px;
+        margin-left: 1rem;
+        margin-right: 10px;
+        width: 30%;
+      }
+    }
+  }
+
+  .searchLocalisation{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .formItem{
+      margin: 0;
+    }
+
+    .localisation{
+      background-color: red;
+      margin-top:15px;
+      margin-bottom: 15px;
+    }
+    .formulaire{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 8px;
+
+      input,select{
+        width: 230%;
+      }
+      option{
+        font-size: 10px;
+      }
+      button{
+        background-color: $vert;
+        margin-left: 2rem;
+        color: white;
+        button:hover{
+          background-color: darkgreen;
+        }
+      }
+      .required{
+        display :block;
+      }
+
+    }
+  }
 
 }
 @media screen and (min-width: 720px) {
