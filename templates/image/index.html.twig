@@ -5,10 +5,8 @@
    {% block body%}
        <h4 class="loginTitle">Voulez vous inserer un logo et des images ?</h4>
 
-       <div class="d-flex justify-content-center">
-           <a href="http://127.0.0.1:8000/promotion" class="btn btn-primary ">NON</a>
-           <a href="#" class="btn btn-primary imageLoadAccepted">OUI</a>
-       </div>
+       <h6 class="promoNon">* Si oui , remplir le formulaire </h6>
+       <h6 class="promoOui">* Si non , cliquer sur suivant </h6>
 
         <div class="imagesForm">
             {{ form_start(form)}}
