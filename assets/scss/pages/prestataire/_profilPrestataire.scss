@@ -110,7 +110,79 @@
 
   }
 }
+.profilDiapo{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-left: 10px;
+    color:$vert;
+  margin-top: 2rem;
 
+  .photoAdresse{
+      border: 1px solid $vert;
+      img{
+        width: 120%;
+        height:auto ;
+        border: 1px solid $vert;
+        border-radius: 10px;
+       margin-left: 5px;
+        margin-top: 5px;
+      }
+      .photoMsg{
+        display:grid;
+        grid-template-columns: 1fr 2.5fr;
+        grid-gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .infoItem{
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+  }
+  .reseauDiapo{
+    .reseau{
+      text-align: center;
+      .fa-brands{
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+      }
+    }
+    .diaporama{
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+}
+.prestataireAction{
+  margin-top: 2rem;
+}
+.prestataireItem{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 10px;
+
+   .item{
+      text-align: -webkit-center;
+      background-color: $vert;
+      margin: 5px 3rem ;
+     border-radius: 10px;
+
+     a{
+       color:white;
+     }
+   }
+  .btn{
+     a{
+       color: $vert;
+       font-size: 1rem;
+     }
+    span{
+      color: $vert;
+    }
+  }
+
+
+}
 @media screen and (min-width: 500px) {
   .logoutBigScreen{
     display:block;
