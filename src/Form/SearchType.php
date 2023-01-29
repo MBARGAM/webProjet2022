@@ -52,7 +52,7 @@ class SearchType extends AbstractType
                 }
             ])
             ->add('cp',EntityType::class,[
-                'label'=> 'Code postal',
+                'label'=> 'C.P.',
                 'class'=> CodePostal::class,
                 'choice_label'=> function($codepostal){
                     return $codepostal->getCp();
