@@ -23,11 +23,6 @@ class Image
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $extension;
-
-    /**
      * @ORM\OneToOne(targetEntity=Categorie::class, inversedBy="image", cascade={"persist", "remove"})
      */
     private $categorie;
@@ -59,17 +54,7 @@ class Image
         return $this;
     }
 
-    public function getExtension(): ?string
-    {
-        return $this->extension;
-    }
 
-    public function setExtension(string $extension): self
-    {
-        $this->extension = $extension;
-
-        return $this;
-    }
 
     public function getCategorie(): ?Categorie
     {
