@@ -146,6 +146,9 @@
         font-size: 1.5rem;
         margin-right: 1.5rem;
       }
+        .fa-brands:hover{
+            color: darkgreen;
+        }
     }
     .diaporama{
       margin-left: 0;
@@ -161,32 +164,37 @@
   grid-template-columns: 4fr 1fr;
   grid-gap: 10px;
 
-   .item{
-      text-align: -webkit-center;
-      background-color: $vert;
-      margin: 5px 3rem ;
-     border-radius: 10px;
+       .item{
+          text-align: -webkit-center;
+          background-color: $vert;
+          margin: 5px 3rem ;
+         border-radius: 10px;
 
-     a{
-       color:white;
-     }
-   }
-  .btn{
-     a{
-       color: $vert;
-       font-size: 1rem;
-     }
-    span{
-      color: $vert;
+         a{
+           color:white;
+         }
+
+       }
+      .btn{
+         a{
+           color: $vert;
+           font-size: 1rem;
+         }
+        span{
+          color: $vert;
+        }
+      }
+    .item:hover{
+        background-color: darkgreen;
     }
-  }
-
 
 }
-@media screen and (min-width: 500px) {
-  .logoutBigScreen{
-    display:block;
 
+@media screen and (min-width: 500px) {
+  .logoutMenuMobile{
+    display:none;
+  }
+  .logoutBigScreen{
     display: grid;
     grid-template-columns: 1fr 4fr;
     box-sizing: border-box;
@@ -200,24 +208,25 @@
         width: 75%;
         margin-top: 10px;
         padding-right:10px ;
+        padding-bottom: 1rem;
       }
     }
     .menuLanguage{
       display: grid;
-      grid-template-columns: 5fr 1fr;
+      grid-template-columns: 3fr 1fr;
       grid-gap: 5px;
 
       .menuProfil{
         display: grid;
         grid-template-columns: 1fr 1fr  1fr 1fr;
         grid-gap: 5px;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
 
         .iconItem{
           color :$vert;
-          font-size : 150%;
+          font-size : 200%;
           .iconMsg{
-            font-size: 9px;
+            font-size: 12px;
             color: $vert;
             text-align: -webkit-center;
             a{
@@ -226,11 +235,16 @@
             }
           }
         }
+        .iconItem:hover{
+          color: darkgreen;
+        }
       }
       .language{
         text-align: -webkit-center;
+        margin-top: 10px;
         .langFr, .langEng {
           @include link;
+          font-size: 1rem;
         }
         .langEng:hover {
           color: darkgreen;
@@ -247,10 +261,18 @@
       }
 
       .btnDeconnexion{
-        margin-top: 10px;
-        margin-left: 1rem;
+      margin-top: 3.7rem;
+        margin-left: 1.5rem;
         margin-right: 10px;
         width: 30%;
+         .deconnexion{
+           @include link;
+           color: white;
+           background-color: $vert;
+         }
+         .deconnexion:hover{
+           background-color: darkgreen;
+         }
       }
     }
   }
@@ -285,7 +307,188 @@
         background-color: $vert;
         margin-left: 2rem;
         color: white;
-        button:hover{
+
+      }
+      .required{
+        display :block;
+      }
+
+    }
+  }
+
+  .profilDiapo{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    margin-left: 10px;
+    color:$vert;
+    margin-top: 2rem;
+
+    .photoAdresse{
+      border: 1px solid $vert;
+      img{
+        width: 120%;
+        height:auto ;
+        border: 1px solid $vert;
+        border-radius: 10px;
+        margin-left: 5px;
+        margin-top: 5px;
+      }
+      .photoMsg{
+        display:grid;
+        grid-template-columns: 1fr 2.5fr;
+        grid-gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .infoItem{
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+    }
+
+    .reseauDiapo{
+
+      .reseau{
+        text-align: center;
+        .fa-brands{
+          font-size:2rem;
+          margin-right: 2rem;
+        }
+        .fa-brands:hover{
+          color: darkgreen;
+        }
+      }
+      .diaporama{
+        margin-left: 0;
+        margin-right: 10px;
+
+      }
+    }
+  }
+  .prestataireAction{
+    margin-top: 2rem;
+
+    .prestataireItem {
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      grid-gap: 10px;
+
+
+      .item {
+        text-align: -webkit-center;
+        background-color: $vert;
+        margin: 5px 3rem;
+        border-radius: 10px;
+        width: 25rem  ;
+
+        a {
+          color: white;
+          font-size: 1.2rem;
+        }
+
+      }
+
+      .btn {
+        margin-right: 4rem;
+        width: 5rem;
+          text-align: center;
+        a {
+          color: $vert;
+          font-size: 1.2rem;
+        }
+
+        span {
+          color: $vert;
+        }
+      }
+      .item:hover{
+        background-color: darkgreen;
+      }
+      .btn-primary:hover{
+        background-color: darkgreen;
+      }
+    }
+
+
+  }
+}
+@media screen and (min-width: 720px) {
+
+  .logoutBigScreen{
+    .headerLogo {
+      .logo {
+        width: 70%;
+      }
+    }
+    .menuLanguage{
+      .menuProfil{
+        .iconItem{
+          font-size : 220%;
+          .iconMsg{
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .language{
+        .langFr, .langEng {
+          font-size: 1.2rem;
+        }
+      }
+
+      .btnDeconnexion{
+        margin-top: 4rem;
+        margin-left: 3rem;
+        width: 40%;
+        .deconnexion{
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .searchLocalisation{
+
+    .formItem{
+      margin: 0;
+      .required{
+       font-size: 1rem;
+      }
+      .form-control{
+        font-size: 1rem;
+      }
+    }
+    .submit{
+      margin-left: 3rem;
+      margin-right: 10px;
+      margin-bottom: 1rem;
+      width: 30%;
+      .btn{
+        font-size: 1.2rem;
+      }
+    }
+
+
+    .localisation{
+      background-color: red;
+      margin-top:15px;
+      margin-bottom: 15px;
+    }
+    .formulaire{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 8px;
+
+      input,select{
+        width: 230%;
+      }
+      option{
+        font-size: 10px;
+      }
+      button{
+        background-color: $vert;
+        margin-left: 2rem;
+        color: white;
+        .btn-primary:hover{
           background-color: darkgreen;
         }
       }
@@ -296,10 +499,169 @@
     }
   }
 
-}
-@media screen and (min-width: 720px) {
+  .profilDiapo{
 
+    .photoAdresse{
+
+      .infoItem{
+        margin-bottom: 7px;
+        margin-left: 7px;
+        font-size: 12px;
+      }
+    }
+
+    .reseauDiapo{
+
+      .reseau{
+        text-align: center;
+        .fa-brands{
+          font-size:2rem;
+          margin-right: 2rem;
+        }
+
+      }
+      .diaporama{
+        margin-left: 0;
+        margin-right: 10px;
+
+      }
+    }
+  }
+  .prestataireAction{
+    margin:2rem 5rem;
+    .prestataireItem {
+
+      .item {
+        a {
+          color: white;
+          font-size: 1.4rem;
+        }
+      }
+      .btn {
+        a {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
 }
 @media screen and (min-width: 960px){
+  .logoutBigScreen{
+    .headerLogo {
+      .logo {
+        width: 50%;
+      }
+    }
+    .menuLanguage{
+
+      .btnDeconnexion{
+
+        margin-left: 4rem;
+        width: 40%;
+        padding: 1rem;
+
+      }
+    }
+  }
+
+  .searchLocalisation{
+
+    .formItem{
+      margin: 0;
+      .required{
+        font-size: 1.2rem;
+      }
+      .form-control{
+        font-size: 1.2rem;
+      }
+    }
+    .submit{
+      margin-left: 6rem;
+      width: 30%;
+      padding: 1.2rem;
+      .btn{
+        font-size: 1.2rem;
+      }
+     .btn-primary:hover{
+        background-color: darkgreen;
+      }
+    }
+
+
+    .localisation{
+      background-color: red;
+      margin-top:15px;
+      margin-bottom: 15px;
+    }
+    .formulaire{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 8px;
+
+      input,select{
+        width: 230%;
+      }
+      option{
+        font-size: 10px;
+      }
+      button{
+        background-color: $vert;
+        margin-left: 2rem;
+        color: white;
+      }
+      .required{
+        display :block;
+      }
+
+    }
+  }
+
+  .profilDiapo{
+
+    .photoAdresse{
+
+      .infoItem{
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+    }
+
+    .reseauDiapo{
+
+      .reseau{
+        text-align: center;
+        .fa-brands{
+          font-size:2rem;
+          margin-right: 2rem;
+        }
+
+      }
+      .diaporama{
+        margin-left: 0;
+        margin-right: 10px;
+        height : 15rem;
+        background-color: red;
+      }
+    }
+  }
+  .prestataireAction{
+    margin:2rem 7rem;
+    .prestataireItem {
+      margin-left :5rem;
+      margin-right :5rem;
+
+      .item {
+        a {
+          color: white;
+          font-size: 1.4rem;
+        }
+      }
+      .btn {
+        a {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
 
 }
