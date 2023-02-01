@@ -70,7 +70,7 @@
                     </div>
                     <div>
                         <div class="btnConnexion">
-                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
+                            <a href="{{ path('app_login') }}" class="btn btn-sm dropdown-item btnItem text-center">Connexion</a>
                         </div>
                         <div class="btnInscription">
                             <a href="{{ path('mobileSignup') }}" class="btn  btn-sm dropdown-item btnItem text-center">Inscription</a>
@@ -103,7 +103,7 @@
 
                     <div class="btnElt">
                         <div class="btnConnexion">
-                            <a href="#" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
+                            <a href="{{ path('app_login') }}" class="btn btn-sm dropdown-item btnItem text-center" >Connexion</a>
                         </div>
                         <div class="btnInscription">
                             <a href="#" class="btn  btn-sm dropdown-item btnItem text-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Inscription</a>
@@ -169,7 +169,7 @@
                     </div>
                 </div>
                 <div class="btnDeconnexion">
-                    <a href="#"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
+                    <a href="{{ path('app_logout') }}"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
                 </div>
             </div>
         </div>
@@ -203,7 +203,7 @@
                     </div>
                 </div>
                 <div class="btnDeconnexion ">
-                    <a href="#" class="deconnexion btn btn primary">Deconnexion</a>
+                    <a href="{{ path('app_logout') }}" class="deconnexion btn btn primary">Deconnexion</a>
                 </div>
             </div>
         </div>
