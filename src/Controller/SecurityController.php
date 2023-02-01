@@ -27,13 +27,13 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/deconnexion", name="app_logout")
+     * @Route("/deconnexion", name="app_logout" , methods={"GET"})
      */
     public function logout(): Response
     {
-        dd(["oui"]);
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        //dd(["oui"]);
+      //  throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
 
-     $this->redirectToRoute('pageAccueil');
+     return $this->redirectToRoute('pageAccueil');
     }
 }
