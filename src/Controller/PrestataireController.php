@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -67,7 +68,7 @@ class PrestataireController extends AbstractController
      * @Route("/inscriptionPrestataire", name="formulairePrestataire" , methods={"GET","POST"})
      */
 
-    public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager): Response
+    public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
     {
 
         $form=$this->createForm(LoginPrestatataireType::class);
@@ -99,11 +100,16 @@ class PrestataireController extends AbstractController
             //recuperation de l'id du prestataire pour les images les stages et les promotions
             $lastId = $prestataire->getId();
 
-            //insertion dans la table utilisateur
+
+            //mise a jour de la  table utilisateur
             $utilisateur = new Utilisateur();
+
+            //hashage du mot de passe
+            $utilisateur->setPassword($data['mdp']);
+            $password = $passwordHasher->hashPassword($utilisateur,$data['mdp']);
+            $utilisateur->setPassword($password);
             $utilisateur->setEmail(strtolower($data['email']));
             $utilisateur->setPrestataire($prestataire);
-            $utilisateur->setPassword($data['mdp']);
             $utilisateur->setRoles(['PRESTATAIRE']);
             $utilisateur->setAdresseRue(strtolower($adresse));
             $utilisateur->setAdresseNo(strtolower($numero));

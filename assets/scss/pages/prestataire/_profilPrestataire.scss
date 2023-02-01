@@ -156,39 +156,45 @@
     }
   }
 }
-.prestataireAction{
-  margin-top: 2rem;
-}
-.prestataireItem{
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-gap: 10px;
 
-       .item{
-          text-align: -webkit-center;
-          background-color: $vert;
-          margin: 5px 3rem ;
-         border-radius: 10px;
+.allBlock{
+  .prestataireAction{
+    margin-top: 2rem;
+  }
+  .prestataireItem{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 10px;
 
-         a{
-           color:white;
-         }
-
-       }
-      .btn{
-         a{
-           color: $vert;
-           font-size: 1rem;
-         }
-        span{
-          color: $vert;
-        }
+    .item{
+      text-align: -webkit-center;
+      background-color: $vert;
+      margin: 5px 3rem ;
+      border-radius: 10px;
+      width:17rem ;
+      a{
+        color:white;
       }
+
+    }
+    .btn{
+
+      a{
+        color: $vert;
+        font-size: 1rem;
+      }
+      span{
+        color: $vert;
+      }
+    }
     .item:hover{
-        background-color: darkgreen;
+      background-color: darkgreen;
     }
 
+  }
+
 }
+
 
 @media screen and (min-width: 500px) {
   .logoutMenuMobile{
@@ -365,52 +371,63 @@
       }
     }
   }
-  .prestataireAction{
-    margin-top: 2rem;
 
-    .prestataireItem {
-      display: grid;
-      grid-template-columns: 4fr 1fr;
-      grid-gap: 10px;
+  .allBlock{
+    padding-left: 3rem;
+    padding-right: 3rem;
 
+    .prestataireAction{
+      margin-top: 2rem;
 
-      .item {
-        text-align: -webkit-center;
-        background-color: $vert;
-        margin: 5px 3rem;
-        border-radius: 10px;
-        width: 25rem  ;
+      .prestataireItem {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        grid-gap: 10px;
 
-        a {
-          color: white;
-          font-size: 1.2rem;
+        .item {
+          text-align: -webkit-center;
+          background-color: $vert;
+          margin: 5px 3rem;
+          border-radius: 10px;
+          width: 17rem  ;
+
+          a {
+            color: white;
+            font-size: 1.2rem;
+          }
+
         }
 
-      }
-
-      .btn {
-        margin-right: 4rem;
-        width: 5rem;
+        .btn {
+          margin-right: 4rem;
+          width: 5rem;
           text-align: center;
-        a {
-          color: $vert;
-          font-size: 1.2rem;
-        }
+          a {
+            color: $vert;
+            font-size: 1.2rem;
+          }
 
-        span {
-          color: $vert;
+          span {
+            color: $vert;
+          }
+        }
+        .item:hover{
+          background-color: darkgreen;
+        }
+        .btn-primary:hover{
+          background-color: darkgreen;
         }
       }
-      .item:hover{
-        background-color: darkgreen;
-      }
-      .btn-primary:hover{
-        background-color: darkgreen;
+
+    }
+    .commentCate{
+      a{
+        font-size: 1.2rem;
+        padding: 10px;
       }
     }
-
-
   }
+
 }
 @media screen and (min-width: 720px) {
 
