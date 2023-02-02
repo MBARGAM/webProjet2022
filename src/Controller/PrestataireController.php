@@ -132,11 +132,11 @@ class PrestataireController extends AbstractController
 
     // profil du prestataire connecté
     /**
-     * @Route("/profilPrestataire", name="profilPrestataire")
+     * @Route("/profilPrestataire/{id}", name="profilPrestataire")
      */
-    public function profilPrestataire(Request $request,EntityManagerInterface $entityManager): Response
+    public function profilPrestataire($id,Request $request,EntityManagerInterface $entityManager): Response
     {
-
+       // donnees pour le formulaire de recherche
         $commune = $entityManager->getRepository(Commune::class);
         $listeCommune = $commune-> findAllCommune();
         $categorie = $entityManager->getRepository(Categorie::class);
@@ -149,6 +149,13 @@ class PrestataireController extends AbstractController
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 
+         //recuperation des donnees du prestataire connecte
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $prestataire = $prestataire->findPrestataire($id);
+         // dd($prestataire);
+         if($prestataire[0]['bloque']==1 || $prestataire[0]['visible']==0 || $prestataire[0]['confirme']==0){
+            return $this->redirectToRoute('app_logout');
+        }
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
@@ -156,6 +163,7 @@ class PrestataireController extends AbstractController
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
             'infoBlock' => 'menuDeconnexion',
+            'prestataire'=>$prestataire[0],
 
         ]);
     }

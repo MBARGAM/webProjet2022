@@ -19,17 +19,26 @@
                 </div>
                 <div class="adresse">
                     <span class="d-block text-center"><strong><u>Adresse :</u></strong></span>
+
                     <p class="text-center">
-                        Quai du condroz 1
+                       <span class="d-block text-center">{{ prestataire["localite"]|capitalize }} </span>
+                        <span class="d-block text-center">
+                            {{ prestataire["No"] }}
+                           {{ prestataire["rue"]|capitalize }} ,
+                        </span>
+                        <span class="d-block text-center">
+                         {{ prestataire["cp"]}}
+                        {{ prestataire["commune"]|capitalize}}
+                       </span>
                     </p>
                 </div>
             </div>
             <div class="profilData">
-                <span class="d-block infoItem"><strong>Nom :</strong></span>
-                <span class="d-block infoItem"><strong>Site :</strong></span>
-                <span class="d-block infoItem"><strong>Email :</strong></span>
-                <span class="d-block infoItem"><strong>Tel :</strong></span>
-                <span class="d-block infoItem"><strong>TVA :</strong></span>
+                <span class="d-block infoItem"><strong>Nom :   </strong> {{ prestataire["nom"]|capitalize }}</span>
+                <span class="d-block infoItem"><strong>Site :  </strong>{{ prestataire["site"] }}</span>
+                <span class="d-block infoItem"><strong>Email : </strong> {{ prestataire["email"] }}</span>
+                <span class="d-block infoItem"><strong>Tel :   </strong>{{ prestataire["tel"] }}</span>
+                <span class="d-block infoItem"><strong>TVA :   </strong>{{ prestataire["NoTVA"] }}</span>
 
             </div>
 

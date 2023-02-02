@@ -14,9 +14,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+         if ($this->getUser()) {
+            return $this->redirectToRoute('dispatcher');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -35,5 +35,25 @@ class SecurityController extends AbstractController
       //  throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
 
      return $this->redirectToRoute('pageAccueil');
+    }
+
+    /**
+     * @Route("/userType", name="dispatcher" )
+     */
+    public function dispatcher(): Response
+    {
+        $user = $this->getUser();// recupere l'utilisateur connecté envoye par le security.yaml
+        $roles = $user->getRoles();// recupere le tableau role de l'utilisateur
+        $role = $roles[0]; // recupere le role de l'utilisateur
+
+        if($role == "ADMIN"){
+            return $this->redirectToRoute('profilAdmin', ['id' => $user->getId()]);
+        }elseif($role == "PRESTATAIRE"){
+            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId()]);
+        }elseif($role == "INTERNAUTE"){
+            return $this->redirectToRoute('profilInternaute', ['id' => $user->getId()]);
+        }else{
+            return $this->redirectToRoute('pageAccueil');
+        }
     }
 }
