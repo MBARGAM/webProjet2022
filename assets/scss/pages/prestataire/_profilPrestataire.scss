@@ -11,10 +11,9 @@
   .headerLogo {
 
     .logo {
-      margin-left: 12px;
-      width: 75%;
+      margin-left: 10px;
+      width: 45%;
       margin-top: 10px;
-      padding-right:10px ;
     }
   }
   .menuLanguage{
@@ -211,10 +210,8 @@
 
       .logo {
         margin-left: 12px;
-        width: 75%;
+        width: 52%;
         margin-top: 10px;
-        padding-right:10px ;
-        padding-bottom: 1rem;
       }
     }
     .menuLanguage{
@@ -226,7 +223,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr  1fr 1fr;
         grid-gap: 5px;
-        margin-top: 2rem;
+        margin-top: 1rem;
 
         .iconItem{
           color :$vert;
@@ -267,7 +264,7 @@
       }
 
       .btnDeconnexion{
-      margin-top: 3.7rem;
+      margin-top: .7rem;
         margin-left: 1.5rem;
         margin-right: 10px;
         width: 30%;
@@ -434,7 +431,10 @@
   .logoutBigScreen{
     .headerLogo {
       .logo {
-        width: 70%;
+        width: 40%;
+        margin-left: 6px;
+        align-self: center;
+        margin-top: 10px;
       }
     }
     .menuLanguage{
@@ -453,7 +453,7 @@
       }
 
       .btnDeconnexion{
-        margin-top: 4rem;
+        margin-top: 2.5rem;
         margin-left: 3rem;
         width: 40%;
         .deconnexion{
@@ -519,11 +519,15 @@
   .profilDiapo{
 
     .photoAdresse{
-
+       .adresse{
+         span{
+           font-size: 18px;
+         }
+       }
       .infoItem{
-        margin-bottom: 7px;
+        margin-bottom: 8px;
         margin-left: 7px;
-        font-size: 12px;
+        font-size: 18px;
       }
     }
 
@@ -544,31 +548,70 @@
       }
     }
   }
-  .prestataireAction{
-    margin:2rem 5rem;
-    .prestataireItem {
-
-      .item {
+  .allBlock{
+    margin-right: 5rem;
+    margin-left: 5rem;
+    .commentCate{
+      .item{
+        width: 20rem;
         a {
           color: white;
-          font-size: 1.4rem;
+          font-size: 1.3rem;
         }
       }
-      .btn {
-        a {
-          font-size: 1.4rem;
+
+    }
+    .prestataireAction{
+      margin-top: 2rem;
+
+      .prestataireItem {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 1rem;
+
+        .item {
+          width: 20rem  ;
+
+          a {
+            color: white;
+            font-size: 1.3rem;
+          }
+
         }
+
+        .btn {
+          margin-right: 7rem;
+          width: 5rem;
+          text-align: center;
+          a {
+            color: $vert;
+            font-size: 1.3rem;
+          }
+
+          span {
+            color: $vert;
+          }
+        }
+        .item:hover{
+          background-color: darkgreen;
+        }
+        .btn-primary:hover{
+          background-color: darkgreen;
+        }
+      }
+
+    }
+    .commentCate{
+      a{
+        font-size: 1.2rem;
+        padding: 10px;
       }
     }
   }
 }
 @media screen and (min-width: 960px){
   .logoutBigScreen{
-    .headerLogo {
-      .logo {
-        width: 50%;
-      }
-    }
+
     .menuLanguage{
 
       .btnDeconnexion{
@@ -635,14 +678,6 @@
 
   .profilDiapo{
 
-    .photoAdresse{
-
-      .infoItem{
-        margin-bottom: 5px;
-        font-size: 1rem;
-      }
-    }
-
     .reseauDiapo{
 
       .reseau{
@@ -661,24 +696,71 @@
       }
     }
   }
-  .prestataireAction{
-    margin:2rem 7rem;
-    .prestataireItem {
-      margin-left :5rem;
-      margin-right :5rem;
-
-      .item {
+  .allBlock{
+    display: grid;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    grid-template-columns: 2fr 1fr;
+    .commentCate{
+        margin-top: 2rem;
+      .item{
+        width: 20rem;
         a {
           color: white;
-          font-size: 1.4rem;
+          font-size: 1.3rem;
         }
       }
-      .btn {
-        a {
-          font-size: 1.4rem;
+
+    }
+    .prestataireAction{
+      margin-top: 2rem;
+
+      .prestataireItem {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 1rem;
+
+        .item {
+          width: 20rem  ;
+
+          a {
+            color: white;
+            font-size: 1.3rem;
+          }
+
         }
+
+        .btn {
+          margin-right: 7rem;
+          width: 5rem;
+          text-align: center;
+          a {
+            color: $vert;
+            font-size: 1.3rem;
+          }
+
+          span {
+            color: $vert;
+          }
+        }
+        .item:hover{
+          background-color: darkgreen;
+        }
+        .btn-primary:hover{
+          background-color: darkgreen;
+        }
+      }
+
+    }
+    .commentCate{
+      a{
+        font-size: 1.2rem;
+        padding: 10px;
       }
     }
   }
+
 
 }

@@ -49,6 +49,27 @@ class PrestataireRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findPrestataire($value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT p.id,p.nom, p.tel,p.numero_Tva as NoTVA ,p.bloque ,p.description,p.siteweb AS site,
+                       utilisateur.email,utilisateur.adresse_no as No , utilisateur.adresse_rue AS rue , utilisateur.visible,utilisateur.inscript_conf as confirme,
+                       commune.commune ,localite.localite , code_postal.cp FROM prestataire p
+                INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
+                INNER JOIN commune on utilisateur.commune_id = commune.id
+                INNER JOIN localite on utilisateur.localite_id = localite.id
+                INNER JOIN code_postal on utilisateur.cp_id = code_postal.id                                                         
+                WHERE p.id = '.$value.'
+                ORDER BY nom ASC ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
 //    /**
 //     * @return Prestataire[] Returns an array of Prestataire objects
 //     */
