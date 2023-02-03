@@ -8,14 +8,43 @@
 
         </div>
         <div class="search">
-            {{ block("search", "home/index.html.twig") }}
+            {{ form_start(form)}}
+
+            <div class="formulaire">
+
+                <div class="categorie formItem">
+                    {{ form_row(form.categorie) }}
+                </div>
+                <div class="prestataire formItem">
+                    {{ form_row(form.nomPrestataire) }}
+                </div>
+                <div class="commune formItem">
+                    {{ form_row(form.nomCommune) }}
+                </div>
+
+                <div class="localite formItem">
+                    {{ form_row(form.nomLocalite) }}
+                </div>
+                <div class="cp formItem">
+                    {{ form_row(form.cp) }}
+                </div>
+
+                <div class="form-row  submit formItem " >
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
     <div class="profilDiapo">
         <div class="photoAdresse">
             <div class="photoMsg">
                 <div class="photoProfil">
-                    <img class="logo" src="{{ asset('images_directory/logoleonl-63d66cde1d0d8.jpg')  }}" title="photoprofil" alt="photopprofil">
+                   {% if photo is defined %}
+                      <img class="logo" src="{{ asset('images_directory/'~photo)  }}" title="photoprofil" alt="photopprofil">
+                    {% else %}
+                        <img class="logo" src="{{ asset('images_directory/profil.png')  }}" title="photoprofil" alt="photopprofil">
+                    {% endif %}
                 </div>
                 <div class="adresse">
                     <span class="d-block text-center"><strong><u>Adresse :</u></strong></span>

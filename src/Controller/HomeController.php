@@ -69,4 +69,26 @@ class HomeController extends AbstractController
           return new JsonResponse($result);
     }
 
+    /**
+     * @Route("/profilPrestataire/accueil/{id}", name="autocomplete" , methods="POST")
+     */
+
+    public function autofillsearch($id,Request $request,EntityManagerInterface $entityManager,SerializerInterface $serializer):JsonResponse
+    {
+        $commune = $entityManager->getRepository(Commune::class);
+        $listeCommune = $commune-> findCommune($id);
+        $listeCommune = $serializer->serialize($listeCommune, 'json', [AbstractNormalizer::ATTRIBUTES => ['commune','id']]);
+        $localite = $entityManager->getRepository(Localite::class);
+        $listeLocalite = $localite->findLocalite($id);
+
+        $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite','id']]);
+
+        $result=['commune'=>$listeCommune,'localite'=>$listeLocalite];
+
+
+        return new JsonResponse($result);
+    }
+
+
+
 }
