@@ -6,10 +6,15 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('build/all.min.css') }}" type="text/css" media="screen">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">{% block stylesheets %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-     <link href="{{ asset('build/app.css')  }}" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{{ asset('build/app.css')  }}" rel="stylesheet" >
     {% endblock %}
 
     {% block javascripts %}
@@ -34,9 +39,7 @@
         <script src="{{ asset('js/jquery.js')  }}"></script>
         <script src="{{ asset('js/ajoutImage.js')  }}"></script>
         {#  <script src="{{ asset('js/passwordCheck.js')  }}"></script> a activer pour les mdp#}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    {% endblock %}
+        {% endblock %}
 </head>
 <body>
 
@@ -60,13 +63,16 @@
                         <a class="dropdown-item menuItem listItem" href="{{ path('pageAccueil') }}">Accueil</a>
                         <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
                         <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
-                        <button type="button" class="dropdown-item dropdown-toggle listItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catégories
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right categorie">
-                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                            <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                        </div>
+
+                        <li class="nav-item dropdo">
+                            <a class="nav-link dropdown-toggle wn menuItem listItem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Catégories
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                            </div>
+                        </li>
                     </div>
                     <div>
                         <div class="btnConnexion">
@@ -89,16 +95,20 @@
                     <span class="anglais"><a class="langEng" href="#">En</a></span>
                 </div>
                 <div class="menuEtBtn">
-                    <nav class="navbar-nav navElt" >
-                        <ul class="navbar">
-                            <li class="nav-item"> <a class="nav-link " href="{{ path('pageAccueil') }}">Accueil<span class="sr-only">(current)</span></a></li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Contactez-nous</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Catégories
-                                </a>
-                            </li>
-                        </ul>
+                    <nav class="navbar-nav navbar-expand-lg navElt " >
+                            <ul class="navbar-nav" >
+                                <li class="nav-item"> <a class="nav-link " href="{{ path('pageAccueil') }}">Accueil<span class="sr-only">(current)</span></a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Contactez-nous</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Catégories
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                    </div>
+                                </li>
+                            </ul>
                     </nav>
 
                     <div class="btnElt">
@@ -258,6 +268,9 @@
             <span class="about spanFooter" ><a href="#" class="footerItem">A propos</a></span>
         </div>
     </div>
+
+
+
 {% endblock %}
 </body>
 </html>
