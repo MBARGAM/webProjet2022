@@ -9,7 +9,8 @@ $(function(){
   //console.log(selectElt);
    cp.on('change',function (e) {
        e.preventDefault();
-    console.log(cp.val());
+   // console.log(cp.val());
+       console.log('accueil/'+cp.val());
        $.ajax({
            method: 'POST',
            dataType: 'json',

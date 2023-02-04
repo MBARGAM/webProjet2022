@@ -6,11 +6,13 @@ use App\Classes\EmailSender;
 use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
+use App\Entity\Image;
 use App\Entity\Localite;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
+use App\Form\PrestataireSearchType;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -146,16 +148,20 @@ class PrestataireController extends AbstractController
         $cp = $entityManager->getRepository(CodePostal::class);
         $listeCp= $cp->findAllCp();
 
-        $form = $this->createForm(SearchType::class);
+        $form = $this->createForm(PrestataireSearchType::class);
         $form->handleRequest($request);
 
          //recuperation des donnees du prestataire connecte
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $prestataire = $prestataire->findPrestataire($id);
-         // dd($prestataire);
+        $logoName = $entityManager->getRepository(Image::class);
+        $logoName = $logoName->findPicName($id);
+        $logoName = $logoName[0]['nom'];
+
          if($prestataire[0]['bloque']==1 || $prestataire[0]['visible']==0 || $prestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
         }
+
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
@@ -164,9 +170,11 @@ class PrestataireController extends AbstractController
             'categorie'=> $listeCategorie,
             'infoBlock' => 'menuDeconnexion',
             'prestataire'=>$prestataire[0],
+            'photo'=>$logoName,
 
         ]);
     }
+
 
 
 }
