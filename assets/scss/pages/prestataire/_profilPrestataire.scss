@@ -167,31 +167,31 @@
   }
 
   .prestataireItem{
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-gap: 10px;
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      grid-gap: 10px;
 
-    .item{
-      text-align: -webkit-center;
-      background-color: $vert;
-      margin: 5px 3rem ;
-      border-radius: 10px;
-      width:17rem ;
-      a{
-        color:white;
-      }
+      .item{
+          text-align: -webkit-center;
+          background-color: $vert;
+          margin: 5px 3rem ;
+          border-radius: 10px;
+          width:17rem ;
+          a{
+            color:white;
+          }
 
-      .categorieBlock{
-       border: 1px solid vert;
-        .link{
-          color: $vert;
-        }
-        .link:hover{
-          background: $vert;
-          color: white;
-        }
+          .block{
+           border: 1px solid $vert;
+            .link{
+              color: $vert;
+            }
+            .link:hover{
+              background: $vert;
+              color: white;
+            }
+          }
       }
-    }
     .btn{
 
       a{

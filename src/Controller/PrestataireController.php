@@ -9,6 +9,7 @@ use App\Entity\Commune;
 use App\Entity\Image;
 use App\Entity\Localite;
 use App\Entity\Prestataire;
+use App\Entity\Stage;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
@@ -162,6 +163,11 @@ class PrestataireController extends AbstractController
         $requete = $entityManager->getRepository(Categorie::class);
         $userCategories = $requete->findCategoriePrestataire($id);
 
+        //recuperation des donnees des stages du prestataire connecte
+        $requete = $entityManager->getRepository(Stage::class);
+        $userStages = $requete->findStagePrestataire($id);
+        //dd($userStages);
+
          if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
         }
@@ -174,6 +180,7 @@ class PrestataireController extends AbstractController
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
             'userCategories'=>$userCategories,
+            'userStages'=>$userStages,
             'prestataire'=>$lePrestataire[0],
             'photo'=>$logoName,
             'infoBlock' => 'menuDeconnexion',

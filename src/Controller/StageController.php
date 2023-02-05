@@ -54,4 +54,17 @@ class StageController extends AbstractController
             'infoBlock' => 'menuConnexion',
         ]);
     }
+
+    /**
+     * @Route("user/stage/{id}", name="stageCourant")
+     */
+    public function stage($id,EntityManagerInterface $entityManager,Request $request): Response
+    {
+
+        return $this->renderForm('stage/index.html.twig', [
+
+            'infoBlock' => 'menuConnexion',
+        ]);
+    }
+
 }
