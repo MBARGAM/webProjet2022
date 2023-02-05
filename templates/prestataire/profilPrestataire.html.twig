@@ -90,11 +90,10 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          Categories de : {{ prestataire["nom"]|capitalize }}
                     </a>
-                    <div class="dropdown-menu categorieBlock" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu block" aria-labelledby="navbarDropdown">
                         {% for categorie in userCategories %}
                             <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
                         {% endfor %}
-
                     </div>
                 </div>
                 <div class="btn">
@@ -107,8 +106,10 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Voir les stages
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                    <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
+                        {% for stage in userStages %}
+                            <a class="dropdown-item link" href="{{ path('stageCourant' , { id:stage["id"]}) }}">{{ stage["nom"]|capitalize }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="btn">
@@ -121,8 +122,10 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Voir les promotions
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                    <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
+                        {% for categorie in userCategories %}
+                            <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
+                        {% endfor %}
                     </div>
 
                 </div>
@@ -141,22 +144,15 @@
                     </div>
 
                 </div>
-                <div class="btn">
-                    <a href="#" class="d-block fa-solid fa-square-plus"></a>
-                    <span class="d-block"><a href="#">photo</a></span>
-                </div>
             </div>
         </div>
         <div class="commentCate">
 
             <div class="prestataireItem">
                 <div class=" nav-item dropdown item">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Commentaires
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                    </div>
                 </div>
             </div>
             <div class="prestataireItem">
@@ -164,8 +160,10 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                    <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                        {% for categorie in userCategories %}
+                            <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
+                        {% endfor %}
                     </div>
 
                 </div>

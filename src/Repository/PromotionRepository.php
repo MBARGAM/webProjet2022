@@ -48,6 +48,21 @@ class PromotionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    public function findPromotionPrestataire($value)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT * FROM promotion p                                                  
+                WHERE s.prestataire_id = '.$value.' AND TIMESTAMPDIFF(SECOND, s.fin_affichage , DATE(NOW()))  < 0 
+                ORDER BY s.date_creation DESC ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Promotion[] Returns an array of Promotion objects
 //     */
