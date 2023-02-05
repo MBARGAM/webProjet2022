@@ -6,7 +6,7 @@
    grid-template-columns: 1fr 4fr;
    box-sizing: border-box;
    margin-bottom: 1rem;
-  border-bottom: 1px solid $vert;
+   border-bottom: 1px solid $vert;
 
   .headerLogo {
 
@@ -39,6 +39,9 @@
             color: $vert;
           }
         }
+      }
+      .fa-solid:hover {
+        color: darkgreen;
       }
     }
     .language{
@@ -106,7 +109,9 @@
     .required{
       display :block;
     }
-
+    button:hover{
+      background-color: darkgreen;
+    }
   }
 }
 .profilDiapo{
@@ -160,6 +165,7 @@
   .prestataireAction{
     margin-top: 2rem;
   }
+
   .prestataireItem{
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -175,6 +181,16 @@
         color:white;
       }
 
+      .categorieBlock{
+       border: 1px solid vert;
+        .link{
+          color: $vert;
+        }
+        .link:hover{
+          background: $vert;
+          color: white;
+        }
+      }
     }
     .btn{
 

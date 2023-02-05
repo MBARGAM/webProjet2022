@@ -47,6 +47,24 @@ class CategorieRepository extends ServiceEntityRepository
             ;
     }
 
+    // requete pour trouver les categories d'un prestataire relation ManyToMany
+    public function findCategoriePrestataire($value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT c.id, c.nom ,c.description,c.validation,c.mis_en_avant  FROM categorie c
+                INNER JOIN categorie_prestataire   on c.id = categorie_prestataire.categorie_id
+                INNER JOIN prestataire  on categorie_prestataire.prestataire_id =  prestataire.id                                                    
+                WHERE prestataire.id = '.$value.' AND c.validation = 1
+                ORDER BY c.nom DESC ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects
 //     */

@@ -42,7 +42,7 @@
       .burger {
         margin-top:40%;
         margin-left:30%;
-       width:55%;
+        width:55%;
         height: auto;
       }
 
@@ -76,7 +76,7 @@
 
   .headerLogo:hover {
     li{
-      list-style: none;
+       list-style: none;
       a{
         color: $vert;
       }
@@ -135,6 +135,7 @@
         color: white;
 
       }
+
     }
   }
 
@@ -298,12 +299,8 @@
              color: white;
            }
        }
-
       }
-
     }
-
-
   }
 }
 @media screen and (min-width: 560px){
