@@ -123,8 +123,8 @@
                         Voir les promotions
                     </a>
                     <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
-                        {% for categorie in userCategories %}
-                            <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
+                        {% for promotion in userPromotions %}
+                            <a class="dropdown-item link" href="{{ path('promotionCourante' , { id:promotion["id"]}) }}">{{ promotion["nom"]|capitalize }}</a>
                         {% endfor %}
                     </div>
 
@@ -161,11 +161,12 @@
                         Categories
                     </a>
                     <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
-                        {% for categorie in userCategories %}
-                            <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
-                        {% endfor %}
+                        {% if categorie is defined %}
+                            {% for data in categorie  %}
+                                <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id}) }}">{{ data.__toString|capitalize }}</a>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-
                 </div>
             </div>
 

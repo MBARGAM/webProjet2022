@@ -54,8 +54,8 @@ class PromotionRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
                 SELECT * FROM promotion p                                                  
-                WHERE s.prestataire_id = '.$value.' AND TIMESTAMPDIFF(SECOND, s.fin_affichage , DATE(NOW()))  < 0 
-                ORDER BY s.date_creation DESC ';
+                WHERE p.prestataire_id = '.$value.' AND TIMESTAMPDIFF(SECOND, p.fin_affichage , DATE(NOW()))  < 0 
+                ORDER BY p.id DESC ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
 

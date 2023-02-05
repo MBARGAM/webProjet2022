@@ -39,6 +39,17 @@ class Promotion
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $debutAffichage;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $finAffichage;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,4 +102,30 @@ class Promotion
 
         return $this;
     }
+
+    public function getDebutAffichage(): ?\DateTimeInterface
+    {
+        return $this->debutAffichage;
+    }
+
+    public function setDebutAffichage(?\DateTimeInterface $debutAffichage): self
+    {
+        $this->debutAffichage = $debutAffichage;
+
+        return $this;
+    }
+
+    public function getFinAffichage(): ?\DateTimeInterface
+    {
+        return $this->finAffichage;
+    }
+
+    public function setFinAffichage(?\DateTimeInterface $finAffichage): self
+    {
+        $this->finAffichage = $finAffichage;
+
+        return $this;
+    }
+
+
 }
