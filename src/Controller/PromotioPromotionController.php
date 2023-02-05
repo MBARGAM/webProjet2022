@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Classes\FileLoader;
 use App\Entity\Categorie;
+use App\Entity\Image;
 use App\Entity\Prestataire;
 use App\Entity\Promotion;
 use App\Form\PromotionType;
@@ -11,13 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PromotioPromotionController extends AbstractController
 {
     /**
      * @Route("/promotion/{id}", name="lesPromotions")
      */
-    public function index($id,EntityManagerInterface $entityManager,Request $request): Response
+    public function index($id,EntityManagerInterface $entityManager,Request $request,SluggerInterface $slugger): Response
     {
         $categories = $entityManager->getRepository(Categorie::class);
         $categories = $categories->findAllCategorie();
@@ -31,7 +34,8 @@ class PromotioPromotionController extends AbstractController
              $prestataire = $entityManager->getRepository(Prestataire::class);
              $prestataire = $prestataire->find($id);
              $data = $form->getData();
-             //dd($data);
+             $pdfFile = $form->get('document')->getData();
+
             //verification des champs
             if($data->getNom() != null && $data->getDescription() != null  ){
                 $promotion->setPrestataire($prestataire);
@@ -39,8 +43,16 @@ class PromotioPromotionController extends AbstractController
                 $promotion->setDescription($data->getDescription());
                 $promotion->setDebutAffichage($data->getDebutAffichage());
                 $promotion->setFinAffichage($data->getFinAffichage());
-                //dd($promotion);
                 $entityManager->persist($promotion);
+                $entityManager->flush();
+
+                //traitement du fichier pdf
+                $fileLoader = new FileLoader($slugger);
+                $pdf = $fileLoader->uploadPdf($pdfFile);
+                $image = new Image();
+                $image->setNom($pdf);
+                $image->setPrestataire($prestataire);
+                $entityManager->persist($image);
                 $entityManager->flush();
             }
 
