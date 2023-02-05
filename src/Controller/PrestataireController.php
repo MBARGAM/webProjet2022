@@ -153,24 +153,30 @@ class PrestataireController extends AbstractController
 
          //recuperation des donnees du prestataire connecte
         $prestataire = $entityManager->getRepository(Prestataire::class);
-        $prestataire = $prestataire->findPrestataire($id);
+        $lePrestataire = $prestataire->findPrestataire($id);
         $logoName = $entityManager->getRepository(Image::class);
         $logoName = $logoName->findPicName($id);
         $logoName = $logoName[0]['nom'];
 
-         if($prestataire[0]['bloque']==1 || $prestataire[0]['visible']==0 || $prestataire[0]['confirme']==0){
+        //recuperation des donnees des catégories du prestataire connecte
+        $requete = $entityManager->getRepository(Categorie::class);
+        $userCategories = $requete->findCategoriePrestataire($id);
+
+         if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
         }
 
+        // dd($prestataire);
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
-            'infoBlock' => 'menuDeconnexion',
-            'prestataire'=>$prestataire[0],
+            'userCategories'=>$userCategories,
+            'prestataire'=>$lePrestataire[0],
             'photo'=>$logoName,
+            'infoBlock' => 'menuDeconnexion',
 
         ]);
     }
