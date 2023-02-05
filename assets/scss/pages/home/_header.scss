@@ -39,16 +39,16 @@
   }
 
   .headerLogo {
-    .burger {
-      margin-top:40%;
-      margin-left:30%;
-     width:55%;
-      height: auto;
-    }
+      .burger {
+        margin-top:40%;
+        margin-left:30%;
+       width:55%;
+        height: auto;
+      }
 
-    .menuMobile {
-      display: none;
-    }
+      .menuMobile {
+        display: none;
+      }
 
   }
 
@@ -75,6 +75,13 @@
   }
 
   .headerLogo:hover {
+    li{
+      list-style: none;
+      a{
+        color: $vert;
+      }
+
+    }
     .menuMobile {
       display: block;
       position: fixed;
@@ -239,6 +246,10 @@
         }
 
       }
+      .navbar-nav{
+         flex-direction: row;
+            justify-content:center;
+      }
       .menuEtBtn{
         display: flex;
         justify-content: space-between;
@@ -248,8 +259,8 @@
           @include link;
         }
         li {
-          display: inline-block;
-          margin-right: 1rem;
+          display:inline-block;
+          margin-right: 1.3rem;
           font-size: 13px;
           a:hover{
             color: darkgreen;
@@ -302,8 +313,7 @@
           width: 100%;
 
             li {
-
-              font-size: 1.1rem;
+              font-size: 1.2rem;
             }
         }
     }
@@ -316,8 +326,7 @@
       .menuEtBtn {
         .navElt{
           li {
-
-            font-size: 1.2rem;
+            font-size: 1.3rem;
           }
         }
       }
