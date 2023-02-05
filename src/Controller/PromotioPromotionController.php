@@ -31,12 +31,14 @@ class PromotioPromotionController extends AbstractController
              $prestataire = $entityManager->getRepository(Prestataire::class);
              $prestataire = $prestataire->find($id);
              $data = $form->getData();
-
+             //dd($data);
             //verification des champs
             if($data->getNom() != null && $data->getDescription() != null  ){
                 $promotion->setPrestataire($prestataire);
                 $promotion->setNom($data->getNom());
                 $promotion->setDescription($data->getDescription());
+                $promotion->setDebutAffichage($data->getDebutAffichage());
+                $promotion->setFinAffichage($data->getFinAffichage());
                 //dd($promotion);
                 $entityManager->persist($promotion);
                 $entityManager->flush();
@@ -48,6 +50,18 @@ class PromotioPromotionController extends AbstractController
             'form' => $form,
             'infoBlock' => 'menuConnexion',
             'categories' => $categories
+        ]);
+    }
+
+    /**
+     * @Route("user/promotion/{id}", name="promotionCourante")
+     */
+    public function stage($id,EntityManagerInterface $entityManager,Request $request): Response
+    {
+
+        return $this->renderForm('stage/index.html.twig', [
+
+            'infoBlock' => 'menuConnexion',
         ]);
     }
 }

@@ -9,6 +9,7 @@ use App\Entity\Commune;
 use App\Entity\Image;
 use App\Entity\Localite;
 use App\Entity\Prestataire;
+use App\Entity\Promotion;
 use App\Entity\Stage;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
@@ -166,7 +167,11 @@ class PrestataireController extends AbstractController
         //recuperation des donnees des stages du prestataire connecte
         $requete = $entityManager->getRepository(Stage::class);
         $userStages = $requete->findStagePrestataire($id);
-        //dd($userStages);
+
+        //recuperation des donnees des promotions du prestataire connecte
+        $requete = $entityManager->getRepository(Promotion::class);
+        $userPromotions = $requete->findPromotionPrestataire($id);
+        //dd($userPromotions);
 
          if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
@@ -181,6 +186,7 @@ class PrestataireController extends AbstractController
             'categorie'=> $listeCategorie,
             'userCategories'=>$userCategories,
             'userStages'=>$userStages,
+            'userPromotions'=>$userPromotions,
             'prestataire'=>$lePrestataire[0],
             'photo'=>$logoName,
             'infoBlock' => 'menuDeconnexion',
