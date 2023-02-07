@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Inscription complete{% endblock %}
+   {% block body%}
+       <h4 class="loginTitle">Ajouter un promotion</h4>
+
+
+       <div class="promoForm">
+           {{ form_start(form)}}
+
+           <div class="lesPromos">
+               <div class=" divBlock  nomPromo userItem">
+                   {{ form_row(form.nom) }}
+               </div>
+
+               <div class=" divBlock  description userItem">
+                   {{ form_row(form.description ) }}
+               </div>
+               <div class=" divBlock  dateDebut userItem">
+                   {{ form_row(form.categorie) }}
+               </div>
+               <div class=" divBlock affichageDebut userItem">
+                   {{ form_row(form.debutAffichage) }}
+               </div>
+               <div class=" divBlock  affichageFin userItem">
+                   {{ form_row(form.finAffichage) }}
+               </div>
+               <div class=" divBlock  photo userItem">
+                   {{ form_row(form.document) }}
+               </div>
+               <div class="btnItem">
+                   {{ form_row(form.submit) }}
+               </div>
+           </div>
+
+           {{ form_end(form) }}
+
+
+       </div>
+
+   {% endblock %}
+
+
+
+
