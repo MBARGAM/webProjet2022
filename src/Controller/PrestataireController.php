@@ -158,7 +158,13 @@ class PrestataireController extends AbstractController
         $lePrestataire = $prestataire->findPrestataire($id);
         $logoName = $entityManager->getRepository(Image::class);
         $logoName = $logoName->findPicName($id);
-        $logoName = $logoName[0]['nom'];
+
+        if(!empty($logoName)){
+            $logoName = $logoName[0]['nom'];
+        }else{
+            $logoName = [];
+        }
+
 
         //recuperation des donnees des catégories du prestataire connecte
         $requete = $entityManager->getRepository(Categorie::class);
@@ -171,7 +177,6 @@ class PrestataireController extends AbstractController
         //recuperation des donnees des promotions du prestataire connecte
         $requete = $entityManager->getRepository(Promotion::class);
         $userPromotions = $requete->findPromotionPrestataire($id);
-        //dd($userPromotions);
 
          if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
