@@ -53,7 +53,7 @@ class SecurityController extends AbstractController
         if($role == "ADMIN"){
             return $this->redirectToRoute('profilAdmin', ['id' => $user->getId()]);
         }elseif($role == "PRESTATAIRE"){
-            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId()]);
+            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId(), 'role' => $user->getRoles()[0]]);
         }elseif($role == "INTERNAUTE"){
             return $this->redirectToRoute('profilInternaute', ['id' => $user->getId()]);
         }else{

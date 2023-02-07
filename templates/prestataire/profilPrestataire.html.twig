@@ -96,10 +96,13 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="btn">
-                    <a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                    <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}">Categorie</a></span>
-                </div>
+                {% if typeUser == "prestataire"%}
+                    <div class="btn">
+                        <a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}">Categorie</a></span>
+                    </div>
+                {% endif %}
+
             </div>
             <div class="prestataireItem">
                 <div class=" nav-item dropdown item">
@@ -112,10 +115,12 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="btn">
-                    <a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                    <span class="d-block"><a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}">Stage</a></span>
-                </div>
+                {% if typeUser == "prestataire"%}
+                    <div class="btn">
+                        <a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}">Stage</a></span>
+                    </div>
+                {% endif %}
             </div>
             <div class="prestataireItem">
                 <div class=" nav-item dropdown item">
@@ -128,10 +133,12 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="btn">
-                    <a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                    <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}">Promotion</a></span>
-                </div>
+                {% if typeUser == "prestataire"%}
+                    <div class="btn">
+                        <a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}">Promotion</a></span>
+                    </div>
+                {% endif %}
             </div>
             <div class="prestataireItem">
                 <div class=" nav-item  item">
@@ -139,21 +146,25 @@
                         Galerie photos
                     </a>
                 </div>
-                <div class="btn">
-                    <a href="#" class="d-block fa-solid fa-square-plus"></a>
-                    <span class="d-block"><a href="#">Photo</a></span>
-                </div>
+                {% if typeUser == "prestataire"%}
+                    <div class="btn">
+                        <a href="#" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="#">Photo</a></span>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="commentCate">
-
-            <div class="prestataireItem">
-                <div class=" nav-item dropdown item">
-                    <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Commentaires
-                    </a>
+            {% if typeUser == "prestataire"%}
+                <div class="prestataireItem">
+                    <div class=" nav-item dropdown item">
+                        <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Commentaires
+                        </a>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
+
             <div class="prestataireItem">
                 <div class=" nav-item dropdown item">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -168,22 +179,22 @@
                     </div>
                 </div>
             </div>
-            <div class="prestataireItem">
-                <div class=" nav-item dropdown item">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Gestions des menus
-                    </a>
-                    <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item link" href="#">Gérer les catégories</a>
-                        <a class="dropdown-item link" href="#">Gérer les stages</a>
-                        <a class="dropdown-item link" href="#">Gérer les promotions</a>
-                        <a class="dropdown-item link" href="#">Gérer les photos</a>
-
+            {% if typeUser == "prestataire"%}
+                <div class="prestataireItem">
+                    <div class=" nav-item dropdown item">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestions des menus
+                        </a>
+                        <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item link" href="#">Gérer les catégories</a>
+                            <a class="dropdown-item link" href="#">Gérer les stages</a>
+                            <a class="dropdown-item link" href="#">Gérer les promotions</a>
+                            <a class="dropdown-item link" href="#">Gérer les photos</a>
+                            <a class="dropdown-item link" href="#">Modifier le profil</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
+            {% endif %}
         </div>
     </div>
 
