@@ -3,18 +3,20 @@
  , une requete sql est effectuée en BD afin de recuperer la province et les communes correspondantes */
 
 $(function(){
+
     var cp = $('#prestataire_search_cp');
     var selectElt = $('#prestataire_search_nomCommune');
     var localiteElt = $('#prestataire_search_nomLocalite');
     //console.log(selectElt);
     cp.on('change',function (e) {
         e.preventDefault();
+        console.log(document.cookie['user']);
         // console.log(cp.val());
         console.log('presta/'+cp.val());
         $.ajax({
             method: 'POST',
             dataType: 'json',
-            url:  'accueil/'+cp.val(),
+            url:  '/accueil/'+cp.val(),
             success: function(response) {
                 //console.log(response);
                 var  commune = JSON.parse(response['commune']);
@@ -40,7 +42,7 @@ $(function(){
     $.ajax({
         method: 'POST',
         dataType: 'json',
-        url:  'accueil/'+cp.val(),
+        url:  '/accueil/'+cp.val(),
         success: function(response) {
             var  commune = JSON.parse(response['commune']);
             var  localite = JSON.parse(response['localite']);

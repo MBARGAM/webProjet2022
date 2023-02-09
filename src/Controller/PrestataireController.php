@@ -80,7 +80,7 @@ class PrestataireController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            //dd($data);
+
          // dd($form->get('photo')->getData());
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
@@ -103,7 +103,7 @@ class PrestataireController extends AbstractController
             $entityManager->flush();
             //recuperation de l'id du prestataire pour les images les stages et les promotions
             $lastId = $prestataire->getId();
-
+            //dd($data);
             //mise a jour de la  table utilisateur
             $utilisateur = new Utilisateur();
 
@@ -184,6 +184,16 @@ class PrestataireController extends AbstractController
         }else{
             $typeUser= 'remained';
          }
+
+
+        $cookie_name = "user";
+
+        $cookie_value = $lePrestataire[0]['id'];
+
+        setcookie($cookie_name, $cookie_value);
+
+
+
 
         // dd($prestataire);
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
