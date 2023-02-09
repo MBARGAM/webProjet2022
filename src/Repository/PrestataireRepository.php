@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Prestataire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Array_;
 
 /**
  * @extends ServiceEntityRepository<Prestataire>
@@ -69,6 +70,29 @@ class PrestataireRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public  function lastPrestataireInsert(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()  ;
+    }
+    public  function lastPrestataire(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT  p.id,p.nom as prestataire, p.tel,p.numero_Tva as NoTVA ,p.bloque ,p.description,p.siteweb AS site,image.nom as image
+                FROM prestataire p
+                INNER JOIN image on image.prestataire_id = p.id                                                         
+                ORDER BY p.id DESC LIMIT 4';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 
 
 //    /**

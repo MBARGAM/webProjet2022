@@ -50,6 +50,8 @@ class PrestataireController extends AbstractController
      */
     public function preinscriptionPrestataire($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
     {
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
         $form = $this->createForm(PrestatairePreinnscriptionType::class);
         $form->handleRequest($request);
 
@@ -64,6 +66,8 @@ class PrestataireController extends AbstractController
             'form' => $form,
             'typeInscription'=>$typeInscription,
             'infoBlock' => 'menuConnexion',
+            'categorie'=> $listeCategorie,
+
         ]);
     }
 
@@ -74,7 +78,8 @@ class PrestataireController extends AbstractController
 
     public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
     {
-
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
         $form=$this->createForm(LoginPrestatataireType::class);
         $form->handleRequest($request);
 
@@ -130,6 +135,7 @@ class PrestataireController extends AbstractController
         return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,
             'infoBlock' => 'menuConnexion',
+            'categorie'=> $listeCategorie,
         ]);
     }
 
@@ -171,29 +177,25 @@ class PrestataireController extends AbstractController
         //recuperation des donnees des stages du prestataire connecte
         $requete = $entityManager->getRepository(Stage::class);
         $userStages = $requete->findStagePrestataire($id);
-
+       // dd($userStages);
         //recuperation des donnees des promotions du prestataire connecte
         $requete = $entityManager->getRepository(Promotion::class);
         $userPromotions = $requete->findPromotionPrestataire($id);
 
          if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
             return $this->redirectToRoute('app_logout');
-        }
+         }
          if($role=='PRESTATAIRE'){
             $typeUser= 'prestataire';
         }else{
             $typeUser= 'remained';
          }
 
-
         $cookie_name = "user";
 
         $cookie_value = $lePrestataire[0]['id'];
 
         setcookie($cookie_name, $cookie_value);
-
-
-
 
         // dd($prestataire);
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
@@ -212,7 +214,4 @@ class PrestataireController extends AbstractController
 
         ]);
     }
-
-
-
 }

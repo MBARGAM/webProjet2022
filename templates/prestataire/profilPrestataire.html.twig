@@ -67,7 +67,7 @@
                 <span class="d-block infoItem"><strong>Site :  </strong>{{ prestataire["site"] }}</span>
                 <span class="d-block infoItem"><strong>Email : </strong> {{ prestataire["email"] }}</span>
                 <span class="d-block infoItem"><strong>Tel :   </strong>{{ prestataire["tel"] }}</span>
-                <span class="d-block infoItem"><strong>TVA :   </strong>{{ prestataire["NoTVA"] }}</span>
+                <span class="d-block infoItem"><strong>TVA :   </strong>{{ prestataire["NoTVA"]|upper }}</span>
 
             </div>
 
@@ -88,7 +88,7 @@
             <div class="prestataireItem ">
                 <div class=" nav-item dropdown item">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Categories de : {{ prestataire["nom"]|capitalize }}
+                         Categories du prestataire
                     </a>
                     <div class="dropdown-menu block" aria-labelledby="navbarDropdown">
                         {% for categorie in userCategories %}

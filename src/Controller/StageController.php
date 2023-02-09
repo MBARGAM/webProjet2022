@@ -28,10 +28,10 @@ class StageController extends AbstractController
             $prestataire = $prestataire->find($id);
 
             $data= $form->getData();
-;
+;         // dd($stage);
             //verification des champs
 
-            if($data->getNom() != null && $data->getDescription() != null  && $data->getTarif() != null && $data->getInfosComplementaires() != null){
+            if($data->getNom() != null && $data->getDescription() != null  && $data->getTarif() != null ){
                 $stage->setPrestataire($prestataire);
                 $stage->setNom($data->getNom());
                 $stage->setDescription($data->getDescription());
@@ -42,7 +42,7 @@ class StageController extends AbstractController
                 $stage->setDateDebut($data->getDateDebut());
                 $stage->setDateFin($data->getDateFin());
                 $stage->setDateCreation(new \DateTime());
-                //dd($stage);
+
                 $entityManager->persist($stage);
                 $entityManager->flush();
             }
@@ -54,6 +54,8 @@ class StageController extends AbstractController
             'infoBlock' => 'menuConnexion',
         ]);
     }
+
+
     /**
      * @Route("/user/ajout/stage/{id}", name="ajoutStage")
      */

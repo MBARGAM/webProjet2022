@@ -68,9 +68,12 @@
                             <a class="nav-link dropdown-toggle wn menuItem listItem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Catégories
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                            <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                                {% if categorie is defined %}
+                                    {% for data in categorie  %}
+                                        <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id}) }}">{{ data.__toString|capitalize }}</a>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         </li>
                     </div>
@@ -103,9 +106,12 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Catégories
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                    <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                                        {% if categorie is defined %}
+                                            {% for data in categorie  %}
+                                                <a class="dropdown-item link" href="{{ path('categorieCourante' , { id: data.id}) }}">{{ data.__toString|capitalize }}</a>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div>
                                 </li>
                             </ul>
@@ -268,37 +274,35 @@
 {% block body %}
 
 
+      {% block listePrestataire %}
+        <div class="blockBody">
+            <div class="blockPrestataire">
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
+                </div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
+                </div>
 
-
-  {% block listePrestataire %}
-    <div class="blockBody">
-        <div class="blockPrestataire">
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
+                </div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
+                </div >
             </div>
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
+            <div class="categorieItem">
+                <div class="imagePrestataire">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                </div>
+                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
             </div>
-
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
-            </div >
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
-            </div >
         </div>
-        <div class="categorieItem">
-            <div class="imagePrestataire">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-            </div>
-            <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
-        </div>
-    </div>
-{% endblock %}
+    {% endblock %}
 {% endblock %}
 {% block footer %}
     <div class="footer">

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
+use App\Entity\Categorie;
 use App\Entity\Internaute;
 use App\Entity\Utilisateur;
 use App\Form\LoginInternauteType;
@@ -36,6 +37,7 @@ class InscriptionController extends AbstractController
         $newEmail = new EmailSender($mailer, $environment);
         $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
     }
+
     //validation de la pre inscription et envoi d'un email de confirmation
     /**
      * @Route("/internaute/{typeInscription}", name="presignupInternaute")
@@ -43,6 +45,8 @@ class InscriptionController extends AbstractController
 
     public function preinscription($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
     {
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
         $form = $this->createForm(PreinscriptionType::class);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -56,6 +60,7 @@ class InscriptionController extends AbstractController
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
+            'categorie'=> $listeCategorie,
             'infoBlock' => 'menuConnexion',
         ]);
     }
@@ -67,9 +72,10 @@ class InscriptionController extends AbstractController
      * @Route("/inscriptionInternaute", name="formulaireInternaute" , methods={"GET","POST"})
      */
 
-
     public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
     {
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
         $form=$this->createForm(LoginInternauteType::class);
         $form->handleRequest($request);
 
@@ -114,7 +120,8 @@ class InscriptionController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuConnexion'
+            'infoBlock' => 'menuConnexion',
+              'categorie'=> $listeCategorie,
 
         ]);
     }
