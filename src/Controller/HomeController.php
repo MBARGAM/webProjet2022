@@ -6,7 +6,9 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
+use App\Entity\Image;
 use App\Entity\Localite;
+use App\Entity\Prestataire;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,12 +29,28 @@ class HomeController extends AbstractController
     {
         $commune = $entityManager->getRepository(Commune::class);
         $listeCommune = $commune-> findAllCommune();
+
         $categorie = $entityManager->getRepository(Categorie::class);
         $listeCategorie = $categorie-> findAllCategorie();
+
         $localite = $entityManager->getRepository(Localite::class);
         $listeLocalite = $localite->findAllLocalite();
+
         $cp = $entityManager->getRepository(CodePostal::class);
         $listeCp= $cp->findAllCp();
+
+        // Obtention des 4 de
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $listePrestataire = $prestataire->lastPrestataireInsert();
+        //dd($listePrestataire);
+       /* foreach ($listePrestataire as $data){
+            $req = $entityManager->getRepository(Image::class);
+            $listeImage = $req->findPicName($data->getId());
+            $data->"logo"=$listeImage[0]["nom"];
+        }*/
+
+
+       dd($listePrestataire);
 
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
@@ -43,6 +61,7 @@ class HomeController extends AbstractController
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
+            'prestataire'=>$listePrestataire,
             'infoBlock' => 'menuConnexion',
 
 

@@ -1,5 +1,5 @@
 
-$(function () {
+/*$(function () {
     var formElement = $('.imagePrestataire');
     var btnAjout    = $('#ajoutImage');
 
@@ -24,4 +24,4 @@ $(function () {
     }
     );
 
-})
+})*/

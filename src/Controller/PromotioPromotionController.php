@@ -47,13 +47,18 @@ class PromotioPromotionController extends AbstractController
                 $entityManager->flush();
 
                 //traitement du fichier pdf
-                $fileLoader = new FileLoader($slugger);
-                $pdf = $fileLoader->uploadPdf($pdfFile);
-                $image = new Image();
-                $image->setNom($pdf);
-                $image->setPrestataire($prestataire);
-                $entityManager->persist($image);
-                $entityManager->flush();
+                // if $pdf is not null, it means that the file was uploaded
+                if($pdfFile != null){
+                    $fileLoader = new FileLoader($slugger);
+                    $pdf = $fileLoader->uploadPdf($pdfFile);
+                    $image = new Image();
+                    $image->setNom($pdf);
+                    $image->setPrestataire($prestataire);
+                    $entityManager->persist($image);
+                    $entityManager->flush();
+                }
+
+
             }
 
             return $this->redirectToRoute('lesStages', ['id' => $id]);

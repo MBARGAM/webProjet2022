@@ -68,9 +68,12 @@
                             <a class="nav-link dropdown-toggle wn menuItem listItem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Catégories
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                                <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                            <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                                {% if categorie is defined %}
+                                    {% for data in categorie  %}
+                                        <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id}) }}">{{ data.__toString|capitalize }}</a>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         </li>
                     </div>
@@ -103,9 +106,12 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Catégories
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
-                                        <a class="dropdown-item menuItem listItem" href="#">lorem</a>
+                                    <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
+                                        {% if categorie is defined %}
+                                            {% for data in categorie  %}
+                                                <a class="dropdown-item link" href="{{ path('categorieCourante' , { id: data.id}) }}">{{ data.__toString|capitalize }}</a>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div>
                                 </li>
                             </ul>
@@ -159,24 +165,45 @@
                         <span class="francais"><a class="langFr" href="#">Fr</a></span>
                         <span class="anglais"><a class="langEng" href="#">En</a></span>
                     </div>
-                    <div class="menuProfil ">
-                        <div class="envoyer iconItem ">
-                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                        </div>
-                        <div class="contacter iconItem">
-                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                        </div>
-                    </div>
+                   {% if typeUser == "prestataire"%}
+                       <div class="menuProfil" hidden>
+                           <div class="envoyer iconItem ">
+                               <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                           </div>
+                           <div class="contacter iconItem">
+                               <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                           </div>
+                           <div class="favoris iconItem">
+                               <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                           </div>
+                           <div class="favoris iconItem">
+                               <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                           </div>
+                       </div>
+                   {% else %}
+                       <div class="menuProfil ">
+                           <div class="envoyer iconItem ">
+                               <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                           </div>
+                           <div class="contacter iconItem">
+                               <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                           </div>
+                           <div class="favoris iconItem">
+                               <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                           </div>
+                           <div class="favoris iconItem">
+                               <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                               <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                           </div>
+                       </div>
+                   {% endif %}
                 </div>
                 <div class="btnDeconnexion">
                     <a href="{{ path('app_logout') }}"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
@@ -193,24 +220,46 @@
                         <span class="francais"><a class="langFr" href="#">Fr</a></span>
                         <span class="anglais"><a class="langEng" href="#">En</a></span>
                     </div>
-                    <div class="menuProfil ">
-                        <div class="envoyer iconItem ">
-                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                    {% if typeUser == "prestataire"%}
+                        <div class="menuProfil" hidden>
+                            <div class="envoyer iconItem ">
+                                <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                            </div>
+                            <div class="contacter iconItem">
+                                <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                            </div>
+                            <div class="favoris iconItem">
+                                <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                            </div>
+                            <div class="favoris iconItem">
+                                <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                            </div>
                         </div>
-                        <div class="contacter iconItem">
-                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                        </div>
-                        <div class="favoris iconItem">
-                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                        </div>
-                    </div>
+                    {% else %}
+                            <div class="menuProfil" >
+                                <div class="envoyer iconItem ">
+                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                </div>
+                                <div class="contacter iconItem">
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                </div>
+                            </div>
+                  {% endif %}
+
                 </div>
                 <div class="btnDeconnexion ">
                     <a href="{{ path('app_logout') }}" class="deconnexion btn btn primary">Deconnexion</a>
@@ -225,37 +274,35 @@
 {% block body %}
 
 
+      {% block listePrestataire %}
+        <div class="blockBody">
+            <div class="blockPrestataire">
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
+                </div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
+                </div>
 
-
-  {% block listePrestataire %}
-    <div class="blockBody">
-        <div class="blockPrestataire">
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 1</a></div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
+                </div>
+                <div class="prestataireItem">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
+                </div >
             </div>
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 2</a></div>
+            <div class="categorieItem">
+                <div class="imagePrestataire">
+                    <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                </div>
+                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
             </div>
-
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 3</a></div>
-            </div >
-            <div class="prestataireItem">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="#" class="nomPrestataire">Prestataire 4</a></div>
-            </div >
         </div>
-        <div class="categorieItem">
-            <div class="imagePrestataire">
-                <a href="#"><img class="logoPrestataire" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-            </div>
-            <div class="nomPrestataire"><a href="#" class="nomPrestataire">Categorie du mois</a></div>
-        </div>
-    </div>
-{% endblock %}
+    {% endblock %}
 {% endblock %}
 {% block footer %}
     <div class="footer">

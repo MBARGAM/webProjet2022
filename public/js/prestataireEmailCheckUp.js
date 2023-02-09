@@ -1,3 +1,8 @@
+
+
+
+
+
 $(function(){
     //script permettant de verifier la  nommenclature correcte d un email du prestataire
 

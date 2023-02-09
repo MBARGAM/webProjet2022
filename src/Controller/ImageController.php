@@ -23,7 +23,6 @@ class ImageController extends AbstractController
     public function index($id,EntityManagerInterface $entityManager,Request $request,SluggerInterface $slugger): Response
     {
 
-
         $form = $this->createForm(ImageType::class);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

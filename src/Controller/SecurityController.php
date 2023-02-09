@@ -23,7 +23,11 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig',
+            ['last_username' => $lastUsername,
+                'error' => $error,
+                'infoBlock' => 'menuConnexion'
+            ]);
     }
 
     /**
@@ -49,7 +53,7 @@ class SecurityController extends AbstractController
         if($role == "ADMIN"){
             return $this->redirectToRoute('profilAdmin', ['id' => $user->getId()]);
         }elseif($role == "PRESTATAIRE"){
-            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId()]);
+            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId(), 'role' => $user->getRoles()[0]]);
         }elseif($role == "INTERNAUTE"){
             return $this->redirectToRoute('profilInternaute', ['id' => $user->getId()]);
         }else{

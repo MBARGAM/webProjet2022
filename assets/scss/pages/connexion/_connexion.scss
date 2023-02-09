@@ -1,8 +1,20 @@
-form{
-  .font-weight-normal{
-    color:$vert;
+.blockLogin{
     margin: 5rem auto;
-  }
+    width: 50%;
+    h1{
+        text-align: center;
+        color:$vert;
+    }
+    label{
+        color: $vert;
+        font-size: 120%;
+    }
+    .form-group{
+        margin-bottom: 3rem;
+    }
+    .email{
+        margin-top: 3rem;
+    }
 
 }
 @media screen and (min-width: 321px) {
