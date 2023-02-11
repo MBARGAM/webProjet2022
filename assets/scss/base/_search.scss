@@ -1,8 +1,14 @@
 
 .search{
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  box-shadow:  1px 2px 5px 3px $vert;
+  border-radius: 5px;
+  border: 2px solid $vert;
 }
  .formulaire {
+
     display: flex;
     flex-wrap: wrap;
     align-items: center;

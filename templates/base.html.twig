@@ -336,7 +336,7 @@
                     <div class="nomPrestataire"><a href="{{ url }}" class="nomPrestataire">{{ titleUser }}</a></div>
                 </div >
             </div>
-            categorieChoisie
+
             {% if categorieChoisie[0] is not defined %}
                 {% set  titleUser = "loading...." %}
                 {% set url = "#" %}
@@ -345,9 +345,7 @@
                 {% set url =  path('descriptionPrestataire', { id :categorieChoisie[0].id})  %}
             {% endif %}
             <div class="categorieItem">
-                <div class="imagePrestataire">
-                    <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~categorieChoisie[1])  }}" title="accueil" alt="accueil"></a>
-                </div>
+                <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~categorieChoisie[1])  }}" title="accueil" alt="accueil"></a>
                 <div class="nomPrestataire"><a href="{{ url }}" class="nomPrestataire">Categorie du mois : {{ titleUser }}</a></div>
             </div>
         </div>

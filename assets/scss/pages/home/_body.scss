@@ -25,21 +25,19 @@
    }
 }
 .categorieItem{
-  border: 1px solid green;
-  height: 6rem;
-  margin-right: 8px;
-  margin-left: 8px;
-  margin-top: 4px;
-
+  margin: 1rem 2rem;
   .logoPrestataire{
-    width: 1.5rem;
-    height: 3rem;
+    height: auto;
+    width: 100%;
+    box-shadow:  1px 2px 5px 3px $vert;
     text-align: center;
   }
   .nomPrestataire{
     @include link;
-    font-size: 8px;
+    font-size: 1rem;
     text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
   }
 
 }
@@ -80,33 +78,26 @@
       .prestataireItem{
         .logoPrestataire{
           height: 13rem;
-
+        }
+        .nomPrestataire{
+          font-size: 1.7rem;
         }
 
       }
     }
-    .categorieItem{
-      margin-top: 14px;
-      margin-left: 4px;
-      margin-right: 12.5px;
-      width: 40%;
-      height: 14.5rem;
+    .categorieItem {
+      margin: 2rem 3rem;
+
+      .nomPrestataire {
+        @include link;
+        font-size: 2rem;
+        margin-top: 1.5rem;
+      }
     }
 }
 
 }
-@media screen and (min-width: 700px) {
 
-    .blockBody {
-
-        .prestataireItem {
-
-          .nomPrestataire {
-            font-size: 1.3rem;
-          }
-        }
-    }
-  }
 @media screen and (min-width: 940px) {
   .blockBody {
     display: grid;
@@ -123,6 +114,18 @@
         font-size: 1.4rem;
 
       }
+    }
+    .categorieItem {
+      margin: 0;
+      margin-top: 1rem;
+
+
+      .logoPrestataire {
+        height: 60%;
+
+      }
+
+
     }
    }
 }
