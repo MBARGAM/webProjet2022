@@ -39,21 +39,25 @@ class HomeController extends AbstractController
         $cp = $entityManager->getRepository(CodePostal::class);
         $listeCp= $cp->findAllCp();
 
-        // Obtention des 4 de
+        // Obtention des 4 prestattaires les plus récents
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $listePrestataire = $prestataire->lastPrestataireInsert();
-        //dd($listePrestataire);
-       /* foreach ($listePrestataire as $data){
+
+        $prestataireDatas = [];
+        foreach ($listePrestataire as $data){
+          $userImgData = [];
             $req = $entityManager->getRepository(Image::class);
             $listeImage = $req->findPicName($data->getId());
-            $data->"logo"=$listeImage[0]["nom"];
-        }*/
+            $userImgData[] = $data;
+            $userImgData[] = $listeImage[0]['nom'];
+            $prestataireDatas[] = $userImgData;
+        }
+        //dd($prestataireDatas[0][1]);
 
-
-       dd($listePrestataire);
 
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
+
 
         return $this->renderForm('home/index.html.twig', [
             'form' => $form,
@@ -61,7 +65,7 @@ class HomeController extends AbstractController
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
-            'prestataire'=>$listePrestataire,
+            'prestataires'=>$prestataireDatas,
             'infoBlock' => 'menuConnexion',
 
 
