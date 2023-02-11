@@ -209,6 +209,20 @@ class PrestataireController extends AbstractController
             $userImgData[] = $listeImage[0]['nom'];
             $prestataireDatas[] = $userImgData;
         }
+        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
+        //choix aléatoire d'une categorie
+        $tailleCatehgories = count($listeCategorie);
+        $random = rand(0,$tailleCatehgories-1);
+        $categorieAleatoire = $listeCategorie[$random];
+        // recuperation de l'image de la categorie
+        $image = $entityManager->getRepository(Image::class);
+        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
+
+        // ternaire pour verifier si la categorie a une image
+        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $categorieChoisie  = [$categorieAleatoire,$monImage];
+
+
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
@@ -216,6 +230,7 @@ class PrestataireController extends AbstractController
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
             'userCategories'=>$userCategories,
+            'categorieChoisie'=>$categorieChoisie,
             'userStages'=>$userStages,
             'userPromotions'=>$userPromotions,
             'prestataire'=>$lePrestataire[0],

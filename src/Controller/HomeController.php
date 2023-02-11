@@ -63,7 +63,7 @@ class HomeController extends AbstractController
         $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
 
         // ternaire pour verifier si la categorie a une image
-        $monImage = $categoryImage == null ? 'categorie.png' : $categoryImage[0]['nom'];
+        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
         $categorieChoisie  = [$categorieAleatoire,$monImage];
        // dd($categorieChoisie);
 
