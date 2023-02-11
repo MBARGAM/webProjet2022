@@ -191,13 +191,24 @@ class PrestataireController extends AbstractController
             $typeUser= 'remained';
          }
 
+         // creation du cookie de connexion
         $cookie_name = "user";
-
         $cookie_value = $lePrestataire[0]['id'];
-
         setcookie($cookie_name, $cookie_value);
 
-        // dd($prestataire);
+
+        // Obtention des 4 prestataires les plus récents
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $listePrestataire = $prestataire->lastPrestataireInsert();
+        $prestataireDatas = [];
+        foreach ($listePrestataire as $data){
+            $userImgData = [];
+            $req = $entityManager->getRepository(Image::class);
+            $listeImage = $req->findPicName($data->getId());
+            $userImgData[] = $data;
+            $userImgData[] = $listeImage[0]['nom'];
+            $prestataireDatas[] = $userImgData;
+        }
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
@@ -208,10 +219,26 @@ class PrestataireController extends AbstractController
             'userStages'=>$userStages,
             'userPromotions'=>$userPromotions,
             'prestataire'=>$lePrestataire[0],
+            'prestataires'=>$prestataireDatas,
             'photo'=>$logoName,
             'typeUser'=>$typeUser,
             'infoBlock' => 'menuDeconnexion',
 
         ]);
     }
+    /**
+     * @Route("/user/description/prestataire/{id}", name="descriptionPrestataire")
+     */
+    public function descriptionPrestataire($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
+    {
+
+        return $this->renderForm('inscription/index.html.twig', [
+
+            'infoBlock' => 'menuConnexion',
+
+
+        ]);
+    }
+
+
 }
