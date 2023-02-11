@@ -52,6 +52,18 @@ class ImageRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function findCategoryPicName($idPrestataire): array
+    {
+        return $this->createQueryBuilder('i')
+            ->select('i.nom')
+            ->Where('i.prestataire = :val')
+            ->andWhere('i.nom LIKE :val2')
+            ->setParameter('val', $idPrestataire)
+            ->setParameter('val2', 'categorie%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
 //    /**
 //     * @return Image[] Returns an array of Image objects
