@@ -1,27 +1,73 @@
-.diaporama{
-  height:8rem;
-  background-color: red;
-  margin-left: 10% ;
-  margin-right: 10%;
-  border-radius: 5px;
+.carousel{
   box-shadow:  1px 2px 5px 3px $vert;
+  .carousel-inner{
+    height : 17rem;
+
+  }
+ .carousel-control-prev{
+    span{
+       color :black;
+       font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+ }
+  .carousel-control-next{
+    span{
+      color : black;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  }
 
 }
-@media screen and (min-width: (321px)){
-  .diaporama{
-    height:14rem;
 
+@media screen and (min-width: (600px)){
+  .carousel{
+
+    .carousel-inner{
+      height : 21rem;
+    }
+    .carousel-control-prev{
+      span{
+        font-size: 1.5rem;
+      }
+
+    }
+    .carousel-control-next{
+      span{
+        font-size: 1.5rem;
+      }
+    }
   }
 }
 
 @media screen and (min-width: 720px) {
-  .diaporama{
-    height:auto;
-    margin-bottom: 3%;
-    margin-top: 3%;
-    border-radius: 5px;
-    margin-left: 0 ;
-    margin-right: 0;
+  .carousel{
+    height : 19.3rem;
+    margin-top: 1rem;
+    .carousel-inner{
+      height : 19.3rem;
+      img{
+        width: 19.3rem;
+        height: 19.3rem;
+      }
+
+    }
+    .carousel-control-prev{
+      height : 19.3rem;
+      span{
+        font-size: 1.3rem;
+      }
+
+    }
+    .carousel-control-next{
+      height : 19.3rem;
+      span{
+        font-size: 1.3rem;
+      }
+    }
+
   }
 
 }
