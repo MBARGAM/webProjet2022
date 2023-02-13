@@ -108,7 +108,7 @@ class PrestataireController extends AbstractController
             $entityManager->flush();
             //recuperation de l'id du prestataire pour les images les stages et les promotions
             $lastId = $prestataire->getId();
-            //dd($data);
+
             //mise a jour de la  table utilisateur
             $utilisateur = new Utilisateur();
 
@@ -177,7 +177,7 @@ class PrestataireController extends AbstractController
         //recuperation des donnees des stages du prestataire connecte
         $requete = $entityManager->getRepository(Stage::class);
         $userStages = $requete->findStagePrestataire($id);
-       // dd($userStages);
+
         //recuperation des donnees des promotions du prestataire connecte
         $requete = $entityManager->getRepository(Promotion::class);
         $userPromotions = $requete->findPromotionPrestataire($id);
@@ -186,9 +186,9 @@ class PrestataireController extends AbstractController
             return $this->redirectToRoute('app_logout');
          }
          if($role=='PRESTATAIRE'){
-            $typeUser= 'prestataire';
+            $typeUser= 'PRESTATAIRE';
         }else{
-            $typeUser= 'remained';
+            $typeUser= 'INTERNAUTE';
          }
 
          // creation du cookie de connexion
@@ -244,15 +244,90 @@ class PrestataireController extends AbstractController
     /**
      * @Route("/user/description/prestataire/{id}", name="descriptionPrestataire")
      */
-    public function descriptionPrestataire($typeInscription,Request $request,EntityManagerInterface $entityManager,MailerInterface $mailer,Environment $environment): Response
+    public function descriptionPrestataire($id,Request $request,EntityManagerInterface $entityManager): Response
     {
+        // donnees pour le formulaire de recherche
+        $commune = $entityManager->getRepository(Commune::class);
+        $listeCommune = $commune-> findAllCommune();
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
+        $localite = $entityManager->getRepository(Localite::class);
+        $listeLocalite = $localite->findAllLocalite();
+        $cp = $entityManager->getRepository(CodePostal::class);
+        $listeCp= $cp->findAllCp();
 
-        return $this->renderForm('inscription/index.html.twig', [
+        $form = $this->createForm(PrestataireSearchType::class);
+        $form->handleRequest($request);
 
+        //recuperation des donnees du prestataire connecte
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $lePrestataire = $prestataire->findPrestataire($id);
+        $logoName = $entityManager->getRepository(Image::class);
+        $logoName = $logoName->findPicName($id);
+
+        if(!empty($logoName)){
+            $logoName = $logoName[0]['nom'];
+        }else{
+            $logoName = [];
+        }
+
+        //recuperation des donnees des catégories du prestataire connecte
+        $requete = $entityManager->getRepository(Categorie::class);
+        $userCategories = $requete->findCategoriePrestataire($id);
+
+        //recuperation des donnees des stages du prestataire connecte
+        $requete = $entityManager->getRepository(Stage::class);
+        $userStages = $requete->findStagePrestataire($id);
+
+        //recuperation des donnees des promotions du prestataire connecte
+        $requete = $entityManager->getRepository(Promotion::class);
+        $userPromotions = $requete->findPromotionPrestataire($id);
+
+
+        // Obtention des 4 prestataires les plus récents
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $listePrestataire = $prestataire->lastPrestataireInsert();
+        $prestataireDatas = [];
+        foreach ($listePrestataire as $data){
+            $userImgData = [];
+            $req = $entityManager->getRepository(Image::class);
+            $listeImage = $req->findPicName($data->getId());
+            $userImgData[] = $data;
+            $userImgData[] = $listeImage[0]['nom'];
+            $prestataireDatas[] = $userImgData;
+        }
+        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
+        //choix aléatoire d'une categorie
+        $tailleCatehgories = count($listeCategorie);
+        $random = rand(0,$tailleCatehgories-1);
+        $categorieAleatoire = $listeCategorie[$random];
+        // recuperation de l'image de la categorie
+        $image = $entityManager->getRepository(Image::class);
+        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
+
+        // ternaire pour verifier si la categorie a une image
+        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $categorieChoisie  = [$categorieAleatoire,$monImage];
+
+
+        return $this->renderForm('prestataire/prestataireCourant.html.twig', [
+            'form' => $form,
+            'commune'=>$listeCommune,
+            'localite'=>$listeLocalite,
+            'cp'=>$listeCp,
+            'categorie'=> $listeCategorie,
+            'userCategories'=>$userCategories,
+            'categorieChoisie'=>$categorieChoisie,
+            'userStages'=>$userStages,
+            'userPromotions'=>$userPromotions,
+            'prestataire'=>$lePrestataire[0],
+            'prestataires'=>$prestataireDatas,
+            'photo'=>$logoName,
             'infoBlock' => 'menuConnexion',
 
-
         ]);
+
+
     }
 
 

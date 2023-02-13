@@ -65,6 +65,7 @@ recuperation des fichier format json
 > #verification  de la nomenclature des mots de passe 
 > > #verification  de la nomenclature des emails et verification de l'unicité de l'email
 > procedure d envoi de l email
+> - aller dans le fichier messenger.yaml
 > #font awesome
 > npm install @fortawesome/fontawesome-free @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons -D
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
