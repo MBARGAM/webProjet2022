@@ -165,7 +165,7 @@
                         <span class="francais"><a class="langFr" href="#">Fr</a></span>
                         <span class="anglais"><a class="langEng" href="#">En</a></span>
                     </div>
-                   {% if typeUser == "prestataire"%}
+                   {% if typeUser == "PRESTATAIRE"%}
                        <div class="menuProfil" hidden>
                            <div class="envoyer iconItem ">
                                <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
@@ -220,7 +220,7 @@
                         <span class="francais"><a class="langFr" href="#">Fr</a></span>
                         <span class="anglais"><a class="langEng" href="#">En</a></span>
                     </div>
-                    {% if typeUser == "prestataire"%}
+                    {% if typeUser == "PRESTATAIRE"%}
                         <div class="menuProfil" hidden>
                             <div class="envoyer iconItem ">
                                 <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
@@ -272,11 +272,12 @@
 {% endblock %}
 
 {% block body %}
-
+    {# condition permettant d'allouer une route au lien clickable  #}
 
       {% block listePrestataire %}
         <div class="blockBody">
             <div class="blockPrestataire">
+
 
                {# condition permettant de verifier si le donnees existent #}
                 {% if prestataires[0][1] is not defined %}
@@ -286,8 +287,15 @@
                 {% else %}
                     {% set  pictureUser = prestataires[0][1]  %}
                     {% set titleUser = prestataires[0][0].__toString|capitalize %}
-                    {% set url =  path('descriptionPrestataire', { id :prestataires[0][0].id})  %}
+
+                    {% if typeUser is defined %}
+                        {% set url =  path('profilPrestataire', { id :prestataires[0][0].id,role:typeUser})  %}
+                    {% else %}
+                        {% set url =  path('descriptionPrestataire', { id :prestataires[0][0].id})  %}
+                    {% endif %}
+
                 {% endif %}
+
                 <div class="prestataireItem">
                     <a  href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~pictureUser)  }}" title="accueil" alt="accueil"></a>
                     <div class="nomPrestataire"><a href="{{ url }}" class="nomPrestataire">{{ titleUser}}</a></div>
@@ -300,7 +308,11 @@
                 {% else %}
                     {% set  pictureUser = prestataires[1][1]  %}
                     {% set titleUser = prestataires[1][0].__toString|capitalize %}
-                    {% set url =  path('descriptionPrestataire', { id :prestataires[1][0].id})  %}
+                    {% if typeUser is defined %}
+                        {% set url =  path('profilPrestataire', { id :prestataires[1][0].id,role:typeUser})  %}
+                    {% else %}
+                        {% set url =  path('descriptionPrestataire', { id :prestataires[1][0].id})  %}
+                    {% endif %}
                 {% endif %}
                 <div class="prestataireItem">
                     <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~pictureUser)  }}" title="accueil" alt="accueil"></a>
@@ -314,7 +326,11 @@
                 {% else %}
                     {% set  pictureUser = prestataires[2][1]  %}
                     {% set titleUser = prestataires[2][0].__toString|capitalize %}
-                    {% set url =  path('descriptionPrestataire', { id :prestataires[2][0].id})  %}
+                    {% if typeUser is defined %}
+                        {% set url =  path('profilPrestataire', { id :prestataires[2][0].id,role:typeUser})  %}
+                    {% else %}
+                        {% set url =  path('descriptionPrestataire', { id :prestataires[2][0].id})  %}
+                    {% endif %}
                 {% endif %}
                 <div class="prestataireItem">
                     <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~pictureUser)  }}" title="accueil" alt="accueil"></a>
@@ -329,7 +345,11 @@
                 {% else %}
                     {% set  pictureUser = prestataires[3][1]  %}
                     {% set titleUser = prestataires[3][0].__toString|capitalize %}
-                    {% set url =  path('descriptionPrestataire', { id :prestataires[3][0].id})  %}
+                    {% if typeUser is defined %}
+                        {% set url =  path('profilPrestataire', { id :prestataires[3][0].id,role:typeUser})  %}
+                    {% else %}
+                        {% set url =  path('descriptionPrestataire', { id :prestataires[3][0].id})  %}
+                    {% endif %}
                 {% endif %}
                 <div class="prestataireItem">
                     <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~pictureUser)  }}" title="accueil" alt="accueil"></a>

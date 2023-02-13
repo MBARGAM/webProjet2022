@@ -5,7 +5,7 @@
 {% block body %}
     <div class="searchLocalisation">
         <div class="localisation">
-            
+
 
         </div>
         <div class="search">
@@ -41,8 +41,8 @@
         <div class="photoAdresse">
             <div class="photoMsg">
                 <div class="photoProfil">
-                   {% if photo is defined %}
-                      <img class="logo" src="{{ asset('images_directory/'~photo)  }}" title="photoprofil" alt="photopprofil">
+                    {% if photo is defined %}
+                        <img class="logo" src="{{ asset('images_directory/'~photo)  }}" title="photoprofil" alt="photopprofil">
                     {% else %}
                         <img class="logo" src="{{ asset('images_directory/profil.png')  }}" title="photoprofil" alt="photopprofil">
                     {% endif %}
@@ -51,14 +51,14 @@
                     <span class="d-block text-center"><strong><u>Adresse :</u></strong></span>
 
                     <p class="text-center">
-                       <span class="d-block text-center">{{ prestataire["localite"]|capitalize }} </span>
+                        <span class="d-block text-center">{{ prestataire["localite"]|capitalize }} </span>
                         <span class="d-block text-center">
                             {{ prestataire["No"] }}
-                           {{ prestataire["rue"]|capitalize }} ,
+                            {{ prestataire["rue"]|capitalize }} ,
                         </span>
                         <span class="d-block text-center">
                          {{ prestataire["cp"]}}
-                        {{ prestataire["commune"]|capitalize}}
+                            {{ prestataire["commune"]|capitalize}}
                        </span>
                     </p>
                 </div>
@@ -89,7 +89,7 @@
             <div class="prestataireItem ">
                 <div class=" nav-item dropdown item">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Categories du prestataire
+                        Categories du prestataire
                     </a>
                     <div class="dropdown-menu block" aria-labelledby="navbarDropdown">
                         {% for categorie in userCategories %}
@@ -97,13 +97,13 @@
                         {% endfor %}
                     </div>
                 </div>
-
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+                {% if typeUser is defined %}
                     <div class="btn">
                         <a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}">Categorie</a></span>
                     </div>
                 {% endif %}
+
             </div>
             <div class="prestataireItem">
                 <div class=" nav-item dropdown item">
@@ -116,28 +116,10 @@
                         {% endfor %}
                     </div>
                 </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+                {% if typeUser is defined %}
                     <div class="btn">
                         <a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}">Stage</a></span>
-                    </div>
-                {% endif %}
-            </div>
-            <div class="prestataireItem">
-                <div class=" nav-item dropdown item">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Voir les promotions
-                    </a>
-                    <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
-                        {% for promotion in userPromotions %}
-                            <a class="dropdown-item link" href="{{ path('promotionCourante' , { id:promotion["id"]}) }}">{{ promotion["nom"]|capitalize }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"]%}
-                    <div class="btn">
-                        <a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                        <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}">Promotion</a></span>
                     </div>
                 {% endif %}
             </div>
@@ -147,7 +129,7 @@
                         Galerie photos
                     </a>
                 </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"]%}
+                {% if typeUser is defined %}
                     <div class="btn">
                         <a href="#" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="#">Photo</a></span>
@@ -156,7 +138,7 @@
             </div>
         </div>
         <div class="commentCate">
-            {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+            {% if typeUser is defined %}
                 <div class="prestataireItem">
                     <div class=" nav-item dropdown item">
                         <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -174,13 +156,13 @@
                     <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
                         {% if categorie is defined %}
                             {% for data in categorie  %}
-                                <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id }) }}">{{ data.__toString|capitalize }}</a>
+                                <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id}) }}">{{ data.__toString|capitalize }}</a>
                             {% endfor %}
                         {% endif %}
                     </div>
                 </div>
             </div>
-            {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+            {% if typeUser is defined %}
                 <div class="prestataireItem">
                     <div class=" nav-item dropdown item">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
