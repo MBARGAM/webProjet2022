@@ -13,15 +13,18 @@ class SearchController extends AbstractController
 {
     // route de redirection de la composante recher
     /**
-     * @Route("/rechercher", name="search")
+     * @Route("/rechercher/{idCategorie}/{idLocalite}/{idCommune}/{idCp}/{nomPrestataire}", name="search")
      */
-    public function index(Request $request,EntityManagerInterface $entityManager): Response
+    public function index($idCategorie,$idLocalite,$idCommune,$idCp,$nomPrestataire,Request $request,EntityManagerInterface $entityManager): Response
     {
+          $data = [
+            'idCategorie' => $idCategorie,
+            'idLocalite' => $idLocalite,
+            'idCommune' => $idCommune,
+            'idCp' => $idCp,
+            'nomPrestataire' => $nomPrestataire];
 
-// to do : recuperer le mot saisi dans le formulaire
-        // traiter la rechercher et afficher les resultats vers une route a creer
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+          dd($data);
 
         return $this->redirectToRoute('pageAccueil', [
             'form' => $form

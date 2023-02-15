@@ -70,6 +70,24 @@ class HomeController extends AbstractController
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 
+         // recuperaion des données du formulaire et envoi de la data vers la controlleur de recherche pour afficher les resultats
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            $idCategorie = $data["categorie"]->getId();
+            $idLocalite = $data["nomLocalite"]->getId();
+            $idCommune = $data["nomCommune"]->getId();
+            $idCp = $data["cp"]->getId();
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+
+           return $this->redirectToRoute('search', [
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'nomPrestataire' => $nomPrestataire
+            ]);
+        }
+
 
         return $this->renderForm('home/index.html.twig', [
             'form' => $form,
