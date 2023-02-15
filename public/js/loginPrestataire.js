@@ -6,6 +6,7 @@ $(function(){
     var cp = $('#login_prestatataire_codepostal');
     var selectElt = $('#login_prestatataire_commune');
     var localiteElt = $('#login_prestatataire_province');
+
     console.log(cp);
     console.log(cp.val());
     cp.on('change',function (e) {
@@ -14,7 +15,7 @@ $(function(){
         $.ajax({
             method: 'POST',
             dataType: 'json',
-            url:  'accueil/'+cp.val(),
+            url:   '/user/'+cp.val(),
             success: function(response) {
                 console.log(response);
                 var  commune = JSON.parse(response['commune']);
@@ -42,7 +43,7 @@ $(function(){
     $.ajax({
         method: 'POST',
         dataType: 'json',
-        url:  'accueil/'+cp.val(),
+        url:    '/user/'+cp.val(),
         success: function(response) {
 
             var  commune = JSON.parse(response['commune']);

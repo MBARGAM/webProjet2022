@@ -106,7 +106,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/profilPrestataire/accueil/{id}", name="autocomplete" , methods="POST")
+     * @Route("/user/{id}", name="autocomplete1" , methods="POST")
      */
 
     public function autofillsearch($id,Request $request,EntityManagerInterface $entityManager,SerializerInterface $serializer):JsonResponse

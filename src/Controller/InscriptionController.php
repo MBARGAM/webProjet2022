@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -83,7 +84,7 @@ class InscriptionController extends AbstractController
      * @Route("/inscriptionInternaute/{nom}/{prenom}/{typeInscription}/{email}", name="formulaireInternaute" , methods={"GET","POST"})
      */
 
-    public function inscriptionInternaute($nom,$prenom,$typeInscription,$email,Request $request,EntityManagerInterface $entityManager): Response
+    public function inscriptionInternaute($nom,$prenom,$typeInscription,$email,Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
     {
         $categorie = $entityManager->getRepository(Categorie::class);
         $listeCategorie = $categorie-> findAllCategorie();
@@ -112,9 +113,13 @@ class InscriptionController extends AbstractController
 
             //insertion dans la table utilisateur
             $utilisateur = new Utilisateur();
+
+            $utilisateur->setPassword($data['mdp']);
+            $password = $passwordHasher->hashPassword($utilisateur, $data['mdp']);
+            $utilisateur->setPassword($password);
             $utilisateur->setEmail(strtolower($data['email']));
             $utilisateur->setInternaute($internaute);
-            $utilisateur->setPassword($data['mdp']);
+            $utilisateur->setPassword($password);
             $utilisateur->setRoles(['INTERNAUTE']);
             $utilisateur->setAdresseRue(strtolower($adresse));
             $utilisateur->setAdresseNo(strtolower($numero));

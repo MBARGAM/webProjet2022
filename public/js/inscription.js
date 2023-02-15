@@ -14,7 +14,7 @@ $(function(){
         $.ajax({
             method: 'POST',
             dataType: 'json',
-            url:  'accueil/'+cp.val(),
+            url:  '/user/'+cp.val(),
             success: function(response) {
                 console.log(response);
                 var  commune = JSON.parse(response['commune']);
@@ -42,7 +42,7 @@ $(function(){
     $.ajax({
         method: 'POST',
         dataType: 'json',
-        url:  'accueil/'+cp.val(),
+        url:   '/user/'+cp.val(),
         success: function(response) {
 
             var  commune = JSON.parse(response['commune']);
