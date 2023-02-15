@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
+use App\Classes\TokenCreation;
 use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
@@ -11,6 +12,8 @@ use App\Entity\Localite;
 use App\Entity\Prestataire;
 use App\Entity\Promotion;
 use App\Entity\Stage;
+use App\Entity\Token;
+use App\Classes\TokenClass;
 use App\Entity\Utilisateur;
 use App\Form\LoginPrestatataireType;
 use App\Form\PrestatairePreinnscriptionType;
@@ -28,7 +31,7 @@ use Twig\Environment;
 class PrestataireController extends AbstractController
 {
 
-    public function sendEmail($email,$nom,$typeInscription ,$mailer, $environment):void
+    public function sendEmail($email,$nom,$typeInscription ,$mailer, $environment,$token):void
     {
         $from = 'justyn7891@yahoo.fr';
         $to = $email;
@@ -36,9 +39,11 @@ class PrestataireController extends AbstractController
         $message = 'Bonjour '. $nom . ' vous vous êtes pre-inscrit sur notre site';
         $template = 'envoi_email/prestataire.html.twig';
 
+        //parametres allant dans le template
         $parametres = [
             'nom' => $nom,
             'email' => $email,
+            'token' => $token,
             'typeInscription' => $typeInscription,
         ];
         $newEmail = new EmailSender($mailer, $environment);
@@ -56,9 +61,17 @@ class PrestataireController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
             $data = $form->getData();
+
+            //creation d'un utilisateur d un token et insertion dans la base de données
+            $newToken = new TokenCreation();
+            $token = new Token();
+            $token->setNom($newToken->generateToken());
+            $entityManager->persist($token);
+            $entityManager->flush();
             //envoi d'un email de confirmation
-            $this->sendEmail($data['email'],$data['nom'],$typeInscription,$mailer,$environment);
+            $this->sendEmail($data['email'],$data['nom'],$typeInscription,$mailer,$environment,$token->getNom());
             return $this->redirectToRoute('pageAccueil');
         }
 
@@ -73,11 +86,12 @@ class PrestataireController extends AbstractController
 
     // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
     /**
-     * @Route("/inscriptionPrestataire", name="formulairePrestataire" , methods={"GET","POST"})
+     * @Route("/inscriptionPrestataire/{nom}/{typeInscription}/{email}/", name="formulairePrestataire" , methods={"GET","POST"})
      */
 
-    public function inscriptionPrestataire(Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
+    public function inscriptionPrestataire($nom,$typeInscription,$email,Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
     {
+
         $categorie = $entityManager->getRepository(Categorie::class);
         $listeCategorie = $categorie-> findAllCategorie();
         $form=$this->createForm(LoginPrestatataireType::class);
@@ -136,6 +150,9 @@ class PrestataireController extends AbstractController
             'form' => $form,
             'infoBlock' => 'menuConnexion',
             'categorie'=> $listeCategorie,
+            'typeInscription'=>$typeInscription,
+            'nom'=>$nom,
+            'email'=>$email,
         ]);
     }
 

@@ -24,11 +24,16 @@
         Veuillez confirmer votre inscription sur la plateforme  <strong>doTonNyanga</strong>  .
         Cliquez sur le bouton ci-aprèsafin de poursuivre votre inscription.
     </p>
+
     <div class="text-center">
-       <button class="btn btn-primary"> <a href="http://127.0.0.1:8000/inscriptionPrestataire" class="btn btnConfirmation">
+       <a href="{{ url('checkToken' , { token: token ,nom:nom, email: email, typeInscription:typeInscription }) }}" class="btn btnConfirmation">
             Confirmer mon inscription
         </a>
-       </button>
+
+        {#  <button class="btn btn-primary"> <a href="http://127.0.0.1:8000/token?token=token}/{email}/{token}/" class="btn btnConfirmation">
+            Confirmer mon inscription
+        </a>
+       </button> #}
     </div>
 
 </div>

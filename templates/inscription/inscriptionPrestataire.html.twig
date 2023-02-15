@@ -11,7 +11,7 @@
            <div class="formulairePrestataire">
                <div class=" divBlock blockInfoPrivee">
                    <div class="nom userItem">
-                       {{ form_row(form.nom) }}
+                       {{ form_row(form.nom,{'value': nom|capitalize }) }}
                    </div>
                    <div class="description userItem">
                        {{ form_row(form.description) }}
@@ -20,7 +20,7 @@
                <div class=" divBlock  blockEmailMdp">
                    <div class="email userItem">
                        <span class="d-block msgEmailCheck"></span>
-                       {{ form_row(form.email) }}
+                       {{ form_row(form.email ,{'value': email}) }}
                    </div>
                    <div class="mdp userItem">
                        <span class="d-block msgEmailCheck" hidden></span>
