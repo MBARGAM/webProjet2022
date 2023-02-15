@@ -125,6 +125,67 @@ class HomeController extends AbstractController
         return new JsonResponse($result);
     }
 
+    /**
+     * @Route("/accueil/{msg}", name="pageAccueilInformative")
+     */
+    public function lapage ($msg,Request $request,EntityManagerInterface $entityManager): Response
+    {
+        $commune = $entityManager->getRepository(Commune::class);
 
+        $listeCommune = $commune-> findAllCommune();
+
+        $categorie = $entityManager->getRepository(Categorie::class);
+        $listeCategorie = $categorie-> findAllCategorie();
+
+        $localite = $entityManager->getRepository(Localite::class);
+        $listeLocalite = $localite->findAllLocalite();
+
+        $cp = $entityManager->getRepository(CodePostal::class);
+        $listeCp= $cp->findAllCp();
+
+        // Obtention des 4 prestaaires les plus récents
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+        $listePrestataire = $prestataire->lastPrestataireInsert();
+        $prestataireDatas = [];
+        foreach ($listePrestataire as $data){
+            $userImgData = [];
+            $req = $entityManager->getRepository(Image::class);
+            $listeImage = $req->findPicName($data->getId());
+            $userImgData[] = $data;
+            $userImgData[] = $listeImage[0]['nom'];
+            $prestataireDatas[] = $userImgData;
+        }
+
+        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
+        //choix aléatoire d'une categorie
+        $tailleCatehgories = count($listeCategorie);
+        $random = rand(0,$tailleCatehgories-1);
+        $categorieAleatoire = $listeCategorie[$random];
+        // recuperation de l'image de la categorie
+        $image = $entityManager->getRepository(Image::class);
+        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
+
+        // ternaire pour verifier si la categorie a une image
+        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $categorieChoisie  = [$categorieAleatoire,$monImage];
+        // dd($categorieChoisie);
+
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+
+
+        return $this->renderForm('home/index.html.twig', [
+            'form' => $form,
+            'commune'=>$listeCommune,
+            'localite'=>$listeLocalite,
+            'cp'=>$listeCp,
+            'categorie'=> $listeCategorie,
+            'categorieChoisie'=>$categorieChoisie,
+            'prestataires'=>$prestataireDatas,
+            'infoBlock' => 'menuConnexion',
+            'msg' => $msg
+
+        ]);
+    }
 
 }
