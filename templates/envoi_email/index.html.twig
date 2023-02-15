@@ -21,12 +21,14 @@
 
     <p class="text-center">
         Veuillez  confirmer votre inscription sur la plate <strong>doTonNyanga</strong> .
-        Cliquez sur le bouton ci-après afin de poursuivre votre inscription.
+        Cliquez sur le lien ci-après afin de poursuivre votre inscription.
     </p>
+
     <div class="text-center">
-        <button class="btn btn-primary"><a href="http://127.0.0.1:8000/inscriptionInternaute" class="btn btnConfirmation">
+        <a href="{{ url('checkTokenInternaute' , { token: token ,nom:nom,prenom:prenom, email: email, typeInscription:typeInscription }) }}" class="btn btnConfirmation large-2">
             Confirmer mon inscription
-        </a> </button>
+        </a>
+
     </div>
 
 </div>

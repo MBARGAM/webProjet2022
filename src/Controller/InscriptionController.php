@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Classes\EmailSender;
+use App\Classes\TokenCreation;
 use App\Entity\Categorie;
 use App\Entity\Internaute;
+use App\Entity\Token;
 use App\Entity\Utilisateur;
 use App\Form\LoginInternauteType;
 use App\Form\PreinscriptionType;
@@ -20,7 +22,7 @@ class InscriptionController extends AbstractController
 {
 //fonction qui permet de D'envoyer un mail de confirmation d'inscription
 
-    public function sendEmail($email,$nom,$prenom,$typeInscription ,$mailer, $environment):void
+    public function sendEmail($email,$nom,$prenom,$typeInscription ,$mailer, $environment,$token):void
     {
         $from = 'justyn7891@yahoo.fr';
         $to = $email;
@@ -32,6 +34,7 @@ class InscriptionController extends AbstractController
             'nom' => $nom,
             'prenom' => $prenom,
             'email' => $email,
+            'token' => $token,
             'typeInscription' => $typeInscription,
         ];
         $newEmail = new EmailSender($mailer, $environment);
@@ -52,8 +55,16 @@ class InscriptionController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
+
+            //creation d'un  d un token et insertion dans la base de données
+            $newToken = new TokenCreation();
+            $token = new Token();
+            $token->setNom($newToken->generateToken());
+            $entityManager->persist($token);
+            $entityManager->flush();
+
             //envoi d'un email de confirmation
-            $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment);
+            $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment,$token->getNom());
             return $this->redirectToRoute('pageAccueil');
         }
 
@@ -69,10 +80,10 @@ class InscriptionController extends AbstractController
     // confirmation de l'inscription et insertion dans la base de données dans les tables internaute et utilisateur
 
     /**
-     * @Route("/inscriptionInternaute", name="formulaireInternaute" , methods={"GET","POST"})
+     * @Route("/inscriptionInternaute/{nom}/{prenom}/{typeInscription}/{email}", name="formulaireInternaute" , methods={"GET","POST"})
      */
 
-    public function inscriptionInternaute(Request $request,EntityManagerInterface $entityManager): Response
+    public function inscriptionInternaute($nom,$prenom,$typeInscription,$email,Request $request,EntityManagerInterface $entityManager): Response
     {
         $categorie = $entityManager->getRepository(Categorie::class);
         $listeCategorie = $categorie-> findAllCategorie();
@@ -122,6 +133,9 @@ class InscriptionController extends AbstractController
             'form' => $form,
             'infoBlock' => 'menuConnexion',
               'categorie'=> $listeCategorie,
+            'nom'=>$nom,
+            'email'=>$email,
+            'prenom'=>$prenom,
 
         ]);
     }

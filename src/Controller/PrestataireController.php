@@ -64,12 +64,13 @@ class PrestataireController extends AbstractController
 
             $data = $form->getData();
 
-            //creation d'un utilisateur d un token et insertion dans la base de données
+            //creation d'un  d un token et insertion dans la base de données
             $newToken = new TokenCreation();
             $token = new Token();
             $token->setNom($newToken->generateToken());
             $entityManager->persist($token);
             $entityManager->flush();
+
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$typeInscription,$mailer,$environment,$token->getNom());
             return $this->redirectToRoute('pageAccueil');
@@ -86,7 +87,7 @@ class PrestataireController extends AbstractController
 
     // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
     /**
-     * @Route("/inscriptionPrestataire/{nom}/{typeInscription}/{email}/", name="formulairePrestataire" , methods={"GET","POST"})
+     * @Route("/inscriptionPrestataire/{nom}/{typeInscription}/{email}", name="formulairePrestataire" , methods={"GET","POST"})
      */
 
     public function inscriptionPrestataire($nom,$typeInscription,$email,Request $request,EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response

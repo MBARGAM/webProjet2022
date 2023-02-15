@@ -21,10 +21,10 @@ class TokenController extends AbstractController
     }
 
     /**
-     * @Route("/token/{nom}/{typeInscription}/{email}/{token}/", name="checkToken")
+     * @Route("/token/{nom}/{typeInscription}/{email}/{token}/", name="checkTokenPrestataire")
      */
 
-    public function index($nom,$token,$typeInscription,$email,EntityManagerInterface $entityManager): Response
+    public function prestataireToken($nom,$token,$typeInscription,$email,EntityManagerInterface $entityManager): Response
     {
         //verification du token
        $tokenVerification = $entityManager->getRepository(Token::class);
@@ -45,6 +45,35 @@ class TokenController extends AbstractController
                  'nom' => $nom,
              ]);
          }
+
+    }
+
+    /**
+     * @Route("/token/{nom}/{prenom}/{typeInscription}/{email}/{token}/", name="checkTokenInternaute")
+     */
+
+    public function internauteToken($nom,$prenom,$token,$typeInscription,$email,EntityManagerInterface $entityManager): Response
+    {
+        //verification du token
+        $tokenVerification = $entityManager->getRepository(Token::class);
+        $tokenVerification = $tokenVerification->findOneBy(['nom'=>$token]);
+        $temps =  self::diffenceDate($tokenVerification->getDateCreation());//verifier la duree de validite du token
+
+        //verification de l'existence du token et de sa validite
+        if ($temps > 86400){
+            //suppression du token
+            $entityManager->remove($tokenVerification);
+            return  $this->redirectToRoute( 'pageAccueilInformative', [
+                'msg' => 'Votre lien a expiré' ]);
+        }else{
+
+            return $this->redirectToRoute('formulaireInternaute', [
+                'typeInscription' => $typeInscription,
+                'email' => $email,
+                'nom' => $nom,
+                'prenom' => $prenom,
+            ]);
+        }
 
     }
 }

@@ -26,14 +26,10 @@
     </p>
 
     <div class="text-center">
-       <a href="{{ url('checkToken' , { token: token ,nom:nom, email: email, typeInscription:typeInscription }) }}" class="btn btnConfirmation">
+       <a href="{{ url('checkTokenPrestataire' , { token: token ,nom:nom, email: email, typeInscription:typeInscription }) }}" class="btn btnConfirmation large-2">
             Confirmer mon inscription
         </a>
 
-        {#  <button class="btn btn-primary"> <a href="http://127.0.0.1:8000/token?token=token}/{email}/{token}/" class="btn btnConfirmation">
-            Confirmer mon inscription
-        </a>
-       </button> #}
     </div>
 
 </div>
