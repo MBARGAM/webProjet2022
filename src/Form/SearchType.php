@@ -21,7 +21,7 @@ class SearchType extends AbstractType
         $builder
             ->add('nomPrestataire',TextType::class,[
                 'label'=> 'Prestataire',
-                'required' => true,
+                'required' => false,
                 // changer error message par défaut
                 'invalid_message' => 'Veuillez saisir un nom',
                 'attr' => [
