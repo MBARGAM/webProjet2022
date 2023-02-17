@@ -40,15 +40,19 @@ class HomeController extends AbstractController
         $cp = $entityManager->getRepository(CodePostal::class);
         $listeCp= $cp->findAllCp();
 
-        // Obtention des 4 prestaaires les plus récents
+        // Obtention des 4 prestataires les plus récents
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $listePrestataire = $prestataire->lastPrestataireInsert();
+
         $prestataireDatas = [];
+
         foreach ($listePrestataire as $data){
           $userImgData = [];
+
             $req = $entityManager->getRepository(Image::class);
             $listeImage = $req->findPicName($data->getId());
             $userImgData[] = $data;
+
             $userImgData[] = $listeImage[0]['nom'];
             $prestataireDatas[] = $userImgData;
         }

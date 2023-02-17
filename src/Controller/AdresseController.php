@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Classes\Adresses;
+use App\Entity\Categorie;
+use App\Entity\Prestataire;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,4 +59,7 @@ class AdresseController extends AbstractController
       fin de l insertion des localite */
         return $this->redirectToRoute('pageAccueil');
     }
+
+
+
 }

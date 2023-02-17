@@ -219,6 +219,7 @@ class PrestataireController extends AbstractController
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $listePrestataire = $prestataire->lastPrestataireInsert();
         $prestataireDatas = [];
+
         foreach ($listePrestataire as $data){
             $userImgData = [];
             $req = $entityManager->getRepository(Image::class);
