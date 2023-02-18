@@ -100,9 +100,9 @@ class PrestataireRepository extends ServiceEntityRepository
         $sql = '
                 SELECT p.id,p.nom  FROM prestataire p
                 INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
-                INNER JOIN categorie_prestataire   on p.id = categorie_prestataire.prestataire_id
-                INNER JOIN categorie  on categorie.id = categorie_prestataire.categorie_id
-                WHERE categorie.id = '.$value["idCategorie"].' and utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' and p.nom LIKE "%'.$value["nomPrestataire"].'%"
+                INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
+                INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
+                WHERE categorie.id = '.$value["idCategorie"].' and  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' and  p.nom LIKE "%'.$value["nomPrestataire"].'%"
                 ORDER BY nom ASC ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -110,7 +110,6 @@ class PrestataireRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
-
 
 //    /**
 //     * @return Prestataire[] Returns an array of Prestataire objects

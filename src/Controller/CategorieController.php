@@ -41,7 +41,7 @@ class CategorieController extends AbstractController
            // $categorie->addPrestataire($prestataire);
             $categorie->setNom($datas->getNom());
             $categorie->setDescription($datas->getDescription());
-           $categorie->addPrestataire($prestataire);
+            $categorie->addPrestataire($prestataire);
             $categorie->setMisEnAvant(false);
             $categorie->setValidation(true);
 //

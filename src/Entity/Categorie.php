@@ -40,7 +40,7 @@ class Categorie
     private $misEnAvant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Prestataire::class, inversedBy="categorie" ,cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Prestataire::class, inversedBy="categorie" )
      */
     private $prestataire;
 
