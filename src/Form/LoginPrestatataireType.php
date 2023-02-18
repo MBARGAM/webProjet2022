@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
 use App\Entity\Localite;
@@ -74,6 +75,14 @@ class LoginPrestatataireType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Ex: Rue de la joie'
                 ]
+            ])
+            ->add('categorie',EntityType::class,[
+                'label' => 'Categorie du service',
+                'required' => true,
+                'class' => Categorie::class,
+                'choice_label' =>  function($categorie){
+                    return $categorie->getNom();
+                }
             ])
             ->add('codepostal',EntityType::class,[
                 'label' => 'Code postal',

@@ -79,3 +79,59 @@ creer le dossier ou stocker les images
 > configurer le fichier security.yaml
 > activate the  logout config parameter under your firewall:
 > 
+> 
+> 
+> css
+>  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+
+leaflet <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+ <div id="map"></div>
+#map { height: 180px; }
+
+
+var map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([51.5, -0.09]).addTo(map);
+
+js 
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+
+var address = '1600 Amphitheatre Parkway, Mountain View, CA';
+var url = 'https://nominatim.openstreetmap.org/search?q=' + address + '&format=json';
+
+fetch(url)
+.then(response => response.json())
+.then(data => {
+var latitude = data[0].lat;
+var longitude = data[0].lon;
+console.log("Latitude: " + latitude);
+console.log("Longitude: " + longitude);
+})
+.catch(error => console.error(error));
+
+js
+$address = '1600 Amphitheatre Parkway, Mountain View, CA';
+$url = 'https://nominatim.openstreetmap.org/search?q=' . urlencode($address) . '&format=json';
+
+$response = json_decode(file_get_contents($url), true);
+
+
+php
+if (!empty($response)) {
+$latitude = $response[0]['lat'];
+$longitude = $response[0]['lon'];
+echo "Latitude: " . $latitude . "<br>";
+echo "Longitude: " . $longitude . "<br>";
+} else {
+echo "Geocode was not successful.";
+}

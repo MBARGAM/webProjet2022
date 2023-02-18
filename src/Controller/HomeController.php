@@ -32,51 +32,87 @@ class HomeController extends AbstractController
         $listeCommune = $commune-> findAllCommune();
 
         $categorie = $entityManager->getRepository(Categorie::class);
+
         $listeCategorie = $categorie-> findAllCategorie();
 
         $localite = $entityManager->getRepository(Localite::class);
+
         $listeLocalite = $localite->findAllLocalite();
 
         $cp = $entityManager->getRepository(CodePostal::class);
+
         $listeCp= $cp->findAllCp();
 
-        // Obtention des 4 prestaaires les plus récents
+        // Obtention des 4 prestataires les plus récents
         $prestataire = $entityManager->getRepository(Prestataire::class);
+
         $listePrestataire = $prestataire->lastPrestataireInsert();
-        $prestataireDatas = [];
-        foreach ($listePrestataire as $data){
-          $userImgData = [];
-            $req = $entityManager->getRepository(Image::class);
-            $listeImage = $req->findPicName($data->getId());
-            $userImgData[] = $data;
-            $userImgData[] = $listeImage[0]['nom'];
-            $prestataireDatas[] = $userImgData;
+
+        if ($listePrestataire != null){
+
+            $prestataireDatas = [];
+
+            foreach ($listePrestataire as $data){
+
+                $userImgData = [];
+
+                $req = $entityManager->getRepository(Image::class);
+
+                $listeImage = $req->findPicName($data->getId());
+
+                if($listeImage != null){
+
+                    $userImgData[] = $data;
+
+                    $userImgData[] = $listeImage[0]['nom'];
+
+                    $prestataireDatas[] = $userImgData;
+
+                }else{
+
+                    $prestataireDatas[] = $userImgData;
+
+                }
+
+            }
         }
+
 
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCatehgories = count($listeCategorie);
+
         $random = rand(0,$tailleCatehgories-1);
+
         $categorieAleatoire = $listeCategorie[$random];
+
         // recuperation de l'image de la categorie
         $image = $entityManager->getRepository(Image::class);
+
         $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
 
         // ternaire pour verifier si la categorie a une image
         $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+
         $categorieChoisie  = [$categorieAleatoire,$monImage];
-       // dd($categorieChoisie);
 
         $form = $this->createForm(SearchType::class);
+
         $form->handleRequest($request);
 
          // recuperaion des données du formulaire et envoi de la data vers la controlleur de recherche pour afficher les resultats
         if($form->isSubmitted() && $form->isValid()){
+
             $data = $form->getData();
+
             $idCategorie = $data["categorie"]->getId();
+
             $idLocalite = $data["nomLocalite"]->getId();
+
             $idCommune = $data["nomCommune"]->getId();
+
             $idCp = $data["cp"]->getId();
+
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
            return $this->redirectToRoute('search', [

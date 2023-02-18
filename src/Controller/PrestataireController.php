@@ -116,9 +116,12 @@ class PrestataireController extends AbstractController
             $prestataire->setNom(strtolower($data['nom']));
             $prestataire->setDescription(strtolower($data['description']));
             $prestataire->setSiteweb(strtolower($data['siteweb']));
+            $prestataire->addCategorie($data['categorie']);
             $prestataire->setNumeroTva(strtolower($data['tva']));
             $prestataire->setTel(strtolower($data['tel']));
             $prestataire->setBloque(0);
+
+         //  dd($prestataire);
             $entityManager->persist($prestataire);
             $entityManager->flush();
             //recuperation de l'id du prestataire pour les images les stages et les promotions
@@ -219,6 +222,7 @@ class PrestataireController extends AbstractController
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $listePrestataire = $prestataire->lastPrestataireInsert();
         $prestataireDatas = [];
+
         foreach ($listePrestataire as $data){
             $userImgData = [];
             $req = $entityManager->getRepository(Image::class);

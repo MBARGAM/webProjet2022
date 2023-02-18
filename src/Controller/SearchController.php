@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Prestataire;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,14 +19,16 @@ class SearchController extends AbstractController
     public function index($idCategorie,$idLocalite,$idCommune,$idCp,$nomPrestataire,Request $request,EntityManagerInterface $entityManager): Response
     {
           $data = [
-            'idCategorie' => $idCategorie,
-            'idLocalite' => $idLocalite,
-            'idCommune' => $idCommune,
-            'idCp' => $idCp,
-            'nomPrestataire' => $nomPrestataire];
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'nomPrestataire' => $nomPrestataire
+          ];
 
-          dd($data);
-
+          $requete = $entityManager->getRepository(Prestataire::class);
+          $listePrestataire = $requete->findAllPrestataire($data,$page=0);
+         dd($listePrestataire);
         return $this->redirectToRoute('pageAccueil', [
             'form' => $form
         ]);

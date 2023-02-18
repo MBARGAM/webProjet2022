@@ -34,7 +34,7 @@ class CategorieType extends AbstractType
             ->add('photo',FileType::class,[
                 'label' => 'Telecharger une photo',
                 'required' => false,
-                'mapped' => true,
+                'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
