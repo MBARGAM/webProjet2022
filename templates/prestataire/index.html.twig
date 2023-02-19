@@ -106,21 +106,22 @@
                   </div>
               {% endfor %}
           </div>
-
+            {# #{ dump(donneesPrestataire) } #}
         <div class="paginationBlock text-center ">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#"><<</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">>></a>
-                    </li>
+                    {% set data = donneesPrestataire %}
+                    {% set debut = data["debutIteration"] %}
+                    {% set fin = data["finIteration"] %}
+                    {% set  debutPrecedent = debut - 4 > 0 ? debut - 4 : 1 %}
+
+                    <li class="page-item "><a class="page-link" id="precedent" href="{{ path('search',{idCategorie:data["idCategorie"],idLocalite:data["idLocalite"],idCommune:data["idCommune"],idCp:data["idCp"],nomPrestataire:data["nomPrestataire"],NoPage: debutPrecedent }) }}"><<</a></li>
+
+                    {% for i in debut..fin %}
+                        <li class="page-item "><a class="page-link" id="NoPage" href="{{ path('search',{idCategorie:data["idCategorie"],idLocalite:data["idLocalite"],idCommune:data["idCommune"],idCp:data["idCp"],nomPrestataire:data["nomPrestataire"],NoPage:i }) }}">{{ i }}</a></li>
+                    {% endfor %}
+
+                    <li class="page-item "><a class="page-link" id="suivant" href="{{ path('search',{idCategorie:data["idCategorie"],idLocalite:data["idLocalite"],idCommune:data["idCommune"],idCp:data["idCp"],nomPrestataire:data["nomPrestataire"],NoPage: fin+1 }) }}">>></a></li>
                 </ul>
             </nav>
         </div>
