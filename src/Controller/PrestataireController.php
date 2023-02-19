@@ -79,7 +79,6 @@ class PrestataireController extends AbstractController
         return $this->renderForm('inscription/index.html.twig', [
             'form' => $form,
             'typeInscription'=>$typeInscription,
-            'infoBlock' => 'menuConnexion',
             'categorie'=> $listeCategorie,
 
         ]);
@@ -101,7 +100,6 @@ class PrestataireController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
-         // dd($form->get('photo')->getData());
             //recuperation des données du formulaire sur la localisation de l internaute
             $numero= $data['numero'];
             $adresse= $data['adresse'];
@@ -152,7 +150,6 @@ class PrestataireController extends AbstractController
         }
         return $this->renderForm('inscription/inscriptionPrestataire.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuConnexion',
             'categorie'=> $listeCategorie,
             'typeInscription'=>$typeInscription,
             'nom'=>$nom,
@@ -259,7 +256,6 @@ class PrestataireController extends AbstractController
             'prestataires'=>$prestataireDatas,
             'photo'=>$logoName,
             'typeUser'=>$typeUser,
-            'infoBlock' => 'menuDeconnexion',
 
         ]);
     }
@@ -345,7 +341,6 @@ class PrestataireController extends AbstractController
             'prestataire'=>$lePrestataire[0],
             'prestataires'=>$prestataireDatas,
             'photo'=>$logoName,
-            'infoBlock' => 'menuConnexion',
 
         ]);
 

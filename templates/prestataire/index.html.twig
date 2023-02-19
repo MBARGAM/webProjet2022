@@ -1,20 +1,128 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Hello PrestataireController!{% endblock %}
+{% block title %}Liste des prestataires {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="affichageRecherche">
+        <div class="searchEtDiapo">
+            <div>
+                <h6 class="text-center search">Recherche</h6>
+                {% block search %}
+                    {{ form_start(form)}}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                    <div class="formulaire">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/justynmbarga/symfony/webProjet/src/Controller/PrestataireController.php'|file_link(0) }}">src/Controller/PrestataireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/justynmbarga/symfony/webProjet/templates/prestataire/index.html.twig'|file_link(0) }}">templates/prestataire/index.html.twig</a></code></li>
-    </ul>
-</div>
+                        <div class="categorie formItem">
+                            {{ form_row(form.categorie) }}
+                        </div>
+                        <div class="prestataire formItem">
+                            {{ form_row(form.nomPrestataire) }}
+                        </div>
+                        <div class="commune formItem">
+                            {{ form_row(form.nomCommune) }}
+                        </div>
+
+                        <div class="localite formItem">
+                            {{ form_row(form.nomLocalite) }}
+                        </div>
+                        <div class="cp formItem">
+                            {{ form_row(form.cp) }}
+                        </div>
+
+                        <div class="form-row  submit formItem " >
+                            {{ form_row(form.submit) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+
+                {% endblock %}
+
+            </div>
+            {% block diaporama %}
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="{{ asset('images_directory/diaporama/1.jpg') }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="{{ asset('images_directory/diaporama/2.jpg') }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('images_directory/diaporama/3.jpg') }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('images_directory/diaporama/4.jpg') }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('images_directory/diaporama/5.jpg') }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden text-black">Prec.</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden text-black">Suiv.</span>
+                    </button>
+                </div>
+            {% endblock %}
+
+        </div>
+
+          <div class="lesPrestataires">
+               {# verifcations necessaire pour l affichage des 12 prestataires #}
+
+              {% for i in 0..11 %}
+
+                  {% set data = prestataireDatas[i] is defined ?  prestataireDatas[i] : [] %}
+
+                  {% if data["image"] is defined %}
+                      {% set pictureUser= 'images_directory/'~data["image"] %}
+                  {% else %}
+                        {% set pictureUser = 'images_directory/pic.jpg' %}
+                  {% endif %}
+
+                  {% if data["nom"] is defined %}
+                      {% set  titleUser = data["nom"] %}
+                  {% else %}
+                      {% set  titleUser = 'Loading.....' %}
+                  {% endif %}
+
+                  {% if data["id"] is defined %}
+                      {% set  url =  path('descriptionPrestataire', { id : data["id"]}) %}
+                  {% else %}
+                      {% set  url = '#' %}
+                  {% endif %}
+
+                  <div class="prestataireItem">
+                      <div class="image">
+                          <a href="{{ url }}"><img src="{{ asset(pictureUser) }}" title="{{ titleUser }}" ></a>
+                      </div>
+                      <div class="nomPrestataire">
+                          <a href="{{ url }}">{{ titleUser|capitalize }}</a>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+
+        <div class="paginationBlock text-center ">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#"><<</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">>></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 {% endblock %}
