@@ -94,9 +94,11 @@ class PrestataireRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
-    public function findAllPrestataire($value,$page): array
+    public function findAllPrestataire($value,$laPage): array
     {
         //dd($value);
+        $start = $laPage * 12 - 12;
+
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
                 SELECT p.id,p.nom  FROM prestataire p
@@ -104,14 +106,27 @@ class PrestataireRepository extends ServiceEntityRepository
                 INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
                 INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
                 WHERE categorie.id = '.$value["idCategorie"].' and  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' and  p.nom LIKE "%'.$value["nomPrestataire"].'%"
-                ORDER BY nom ASC ';
+                ORDER BY nom ASC LIMIT '.$start.',12';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
 
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+    //count all prestataire
+    public function countPrestataire(): array
+    {
+        //dd($value);
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT count(*) as taille FROM prestataire p
+                ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
 
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 //    /**
 //     * @return Prestataire[] Returns an array of Prestataire objects
 //     */

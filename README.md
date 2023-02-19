@@ -80,6 +80,14 @@ creer le dossier ou stocker les images
 > activate the  logout config parameter under your firewall:
 > 
 > 
+> PAGINATION
+> copier le pagination boostrap 
+> creer un fichier js dans le dossier public et faire des evenements sur les li
+> event surle bouton suivant et precedent qui permet de changer de page ajouter le disable sur le bouton suivant ou precedent
+> et de supprimer les li qui ne sont pas dans la page actuelle
+> event sur le numero de la page donc on veut afficherles resultats
+> 
+> 
 > 
 > css
 >  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"

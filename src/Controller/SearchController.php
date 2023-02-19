@@ -13,8 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
+
   /* cette fonction recupere le tableau des prestataires recherchés , cree un tableau vide
   et boucle sur chaque entree tout en recherchant le logo de celui ci et reforme un tableau de resultats */
+
     static function resultats($tableau,EntityManagerInterface $entityManager)
     {
         $tabPrestataire=[];
@@ -57,23 +59,6 @@ class SearchController extends AbstractController
     public function index($idCategorie,$idLocalite,$idCommune,$idCp,$nomPrestataire,$NoPage,Request $request,EntityManagerInterface $entityManager): Response
     {
 
-       //donnees recues du formulaire de recherche soumis en dehor de la page de recherche
-        $data = [
-            'idCategorie' => $idCategorie,
-
-            'idLocalite' => $idLocalite,
-
-            'idCommune' => $idCommune,
-
-            'idCp' => $idCp,
-
-            'nomPrestataire' => $nomPrestataire
-        ];
-
-        $requete = $entityManager->getRepository(Prestataire::class);
-
-        $listePrestataire = $requete->findAllPrestataire($data,$page=$NoPage);
-
         //formulaire de recherche qui sera affiché en permanence
         $form = $this->createForm(SearchType::class);
 
@@ -94,25 +79,94 @@ class SearchController extends AbstractController
 
                 'idCp' => $data["cp"]->getId(),
 
-                'nomPrestataire' => $datas["nomPrestataire"] == null ? 'null' : $datas["nomPrestataire"]
+                'nomPrestataire' => $data["nomPrestataire"],
+
+                'NoPage'=>1
             ];
 
-            $requete = $entityManager->getRepository(Prestataire::class);
-
-            $listePrestataire = $requete->findAllPrestataire($data,$page=$NoPage);
+            return $this->redirectToRoute('search', $data);
 
         }
-         $tableauPrestataires = self::resultats($listePrestataire,$entityManager);//appel de la fonction resultats
 
-//dd($tableauPrestataires[0]);
-        return $this->renderForm('prestataire/index.html.twig',
-            [
-              'prestataireDatas' => $tableauPrestataires,
+        //donnees recues du formulaire de recherche soumis en dehor de la page de recherche
+        $data = [
+            'idCategorie' => $idCategorie,
 
-              'form' => $form,
-                'donneesPrestataire' => $data
-            ]
-        );
+            'idLocalite' => $idLocalite,
+
+            'idCommune' => $idCommune,
+
+            'idCp' => $idCp,
+
+            'nomPrestataire' => $nomPrestataire,
+
+            'NoPage'=>$NoPage
+        ];
+
+       // premier appel de la fonction resultats pour recuperer le tableau des prestataires recherchés
+        // afin de verifier si le tableau est vide ou non et de definir une limite sur la page a
+        $requete = $entityManager->getRepository(Prestataire::class);
+
+        $listePrestataire = $requete->findAllPrestataire($data,$laPage=$NoPage);
+
+        $tabPrestataire = self::resultats($listePrestataire,$entityManager);
+
+
+       /*cette operation permet de gerer la pagination du resultat de la recherche et de la page de recherche
+         ici l affichage est fait sur 12 prestataires page et ensuite on calcule le nbre de page que le resultat et on affiche
+       les 2 nbre multiple de 5 les plus proche*/
+
+        if(  intdiv(count($tabPrestataire),12) < $data["NoPage"] ){
+
+            if( intdiv(count($tabPrestataire),12) == 0){
+
+                    $debutIteration = 1;
+
+                    $finIteration = 5;
+
+                    $page = 1;
+            }else{
+
+                $debutIteration = ((count($tabPrestataire)/12 / 5) * 5 )  + 1 ; // debut de l iteration de la pagination
+
+                $finIteration =  ((count($tabPrestataire)/12 + 4) / 5) * 5; // fin de l iteration de la pagination
+
+                $page = $debutIteration;
+            }
+
+        }else{
+
+
+            $debutIteration = (intdiv($data["NoPage"],5)) * 5  + 1; // debut de l iteration de la pagination
+
+            $finIteration = (($data["NoPage"]  + 4) / 5) * 5;  // fin de l iteration de la pagination
+
+            $page = $data["NoPage"];
+        }
+
+        /*2eme appel de la fonction resultats pour recuperer le tableau des prestataires recherchés reelement a afficher
+        selon les conditions de pagination
+        LE RESULTAT DE LA RECHERCHED- DEPEND DU NOMBRE DE PRESTATAIRES TROUVES SI MOIN DE 12 PRESTATAIRES
+        ALORS ON AURA UNE MEME PAGE QUELQUE SOIT LE PAGE CLIQUé*/
+        $listePrestataire = $requete->findAllPrestataire($data,$laPage=$page);
+
+        $tabPrestataire = self::resultats($listePrestataire,$entityManager);
+
+
+        $data["debutIteration"] = $debutIteration;
+
+        $data["finIteration"] = $finIteration;
+
+
+        return $this->render('prestataire/index.html.twig', [
+
+            'form' => $form->createView(),
+
+            'prestataireDatas' => $tabPrestataire,
+
+            'donneesPrestataire' => $data
+
+        ]);
     }
 
 }
