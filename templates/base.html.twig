@@ -44,7 +44,121 @@
 <body>
 
 {% block header %}
-    {% if infoBlock == 'menuConnexion' %}
+    {% if app.user  %}
+        <header>
+            <div class="logoutMenuMobile">
+                <div class="headerLogo">
+                    <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                </div>
+                <div class="menuLanguage  ">
+                    <div class="langProfil ">
+                        <div class="language langBlock">
+                            <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                            <span class="anglais"><a class="langEng" href="#">En</a></span>
+                        </div>
+                        {% if typeUser == "PRESTATAIRE"%}
+                            <div class="menuProfil" hidden>
+                                <div class="envoyer iconItem ">
+                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                </div>
+                                <div class="contacter iconItem">
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="menuProfil ">
+                                <div class="envoyer iconItem ">
+                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                </div>
+                                <div class="contacter iconItem">
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="btnDeconnexion">
+                        <a href="{{ path('app_logout') }}"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="logoutBigScreen">
+                <div class="headerLogo">
+                    <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                </div>
+                <div class="menuLanguage  ">
+                    <div class="langProfil ">
+                        <div class="language langBlock">
+                            <span class="francais"><a class="langFr" href="#">Fr</a></span>
+                            <span class="anglais"><a class="langEng" href="#">En</a></span>
+                        </div>
+                        {% if typeUser == "PRESTATAIRE"%}
+                            <div class="menuProfil" hidden>
+                                <div class="envoyer iconItem ">
+                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                </div>
+                                <div class="contacter iconItem">
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="menuProfil" >
+                                <div class="envoyer iconItem ">
+                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                </div>
+                                <div class="contacter iconItem">
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                </div>
+                                <div class="favoris iconItem">
+                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="btnDeconnexion ">
+                        <a href="{{ path('app_logout') }}" class="deconnexion btn btn primary">Deconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% else %}
 
     <header>
         <div class="mobileScreen">
@@ -152,121 +266,6 @@
         </div>
     </header>
 
-    {% endif %}
-    {% if infoBlock  == 'menuDeconnexion'%}
-    <header>
-        <div class="logoutMenuMobile">
-            <div class="headerLogo">
-                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-            </div>
-            <div class="menuLanguage  ">
-                <div class="langProfil ">
-                    <div class="language langBlock">
-                        <span class="francais"><a class="langFr" href="#">Fr</a></span>
-                        <span class="anglais"><a class="langEng" href="#">En</a></span>
-                    </div>
-                   {% if typeUser == "PRESTATAIRE"%}
-                       <div class="menuProfil" hidden>
-                           <div class="envoyer iconItem ">
-                               <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                           </div>
-                           <div class="contacter iconItem">
-                               <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                           </div>
-                           <div class="favoris iconItem">
-                               <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                           </div>
-                           <div class="favoris iconItem">
-                               <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                           </div>
-                       </div>
-                   {% else %}
-                       <div class="menuProfil ">
-                           <div class="envoyer iconItem ">
-                               <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                           </div>
-                           <div class="contacter iconItem">
-                               <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                           </div>
-                           <div class="favoris iconItem">
-                               <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                           </div>
-                           <div class="favoris iconItem">
-                               <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                               <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                           </div>
-                       </div>
-                   {% endif %}
-                </div>
-                <div class="btnDeconnexion">
-                    <a href="{{ path('app_logout') }}"><img class="deconnexion" src="{{ asset('images/deconnexion.png')  }}" title="deconnexion" alt="log out"></a>
-                </div>
-            </div>
-        </div>
-        <div class="logoutBigScreen">
-            <div class="headerLogo">
-                <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-            </div>
-            <div class="menuLanguage  ">
-                <div class="langProfil ">
-                    <div class="language langBlock">
-                        <span class="francais"><a class="langFr" href="#">Fr</a></span>
-                        <span class="anglais"><a class="langEng" href="#">En</a></span>
-                    </div>
-                    {% if typeUser == "PRESTATAIRE"%}
-                        <div class="menuProfil" hidden>
-                            <div class="envoyer iconItem ">
-                                <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                                <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                            </div>
-                            <div class="contacter iconItem">
-                                <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                            </div>
-                            <div class="favoris iconItem">
-                                <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                                <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                            </div>
-                            <div class="favoris iconItem">
-                                <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                                <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                            </div>
-                        </div>
-                    {% else %}
-                            <div class="menuProfil" >
-                                <div class="envoyer iconItem ">
-                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                                </div>
-                                <div class="contacter iconItem">
-                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                                </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                                </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                                </div>
-                            </div>
-                  {% endif %}
-
-                </div>
-                <div class="btnDeconnexion ">
-                    <a href="{{ path('app_logout') }}" class="deconnexion btn btn primary">Deconnexion</a>
-                </div>
-            </div>
-        </div>
-    </header>
     {% endif %}
 
 {% endblock %}

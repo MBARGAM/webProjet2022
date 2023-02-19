@@ -77,7 +77,6 @@ class HomeController extends AbstractController
             }
         }
 
-
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCatehgories = count($listeCategorie);
@@ -120,6 +119,7 @@ class HomeController extends AbstractController
                 'idLocalite' => $idLocalite,
                 'idCommune' => $idCommune,
                 'idCp' => $idCp,
+                'NoPage'=> 1,
                 'nomPrestataire' => $nomPrestataire
             ]);
         }
@@ -133,8 +133,6 @@ class HomeController extends AbstractController
             'categorie'=> $listeCategorie,
             'categorieChoisie'=>$categorieChoisie,
             'prestataires'=>$prestataireDatas,
-            'infoBlock' => 'menuConnexion',
-
 
         ]);
     }
@@ -154,7 +152,6 @@ class HomeController extends AbstractController
         $listeLocalite= $serializer->serialize($listeLocalite,'json',[AbstractNormalizer:: ATTRIBUTES =>['localite','id']]);
 
         $result=['commune'=>$listeCommune,'localite'=>$listeLocalite];
-
 
           return new JsonResponse($result);
     }
@@ -182,7 +179,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/accueil/{msg}", name="pageAccueilInformative")
      */
-    public function lapage ($msg,Request $request,EntityManagerInterface $entityManager): Response
+    public function lapPageAccueil ($msg,Request $request,EntityManagerInterface $entityManager): Response
     {
         $commune = $entityManager->getRepository(Commune::class);
 
@@ -236,7 +233,6 @@ class HomeController extends AbstractController
             'categorie'=> $listeCategorie,
             'categorieChoisie'=>$categorieChoisie,
             'prestataires'=>$prestataireDatas,
-            'infoBlock' => 'menuConnexion',
             'msg' => $msg
 
         ]);

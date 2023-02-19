@@ -96,6 +96,7 @@ class PrestataireRepository extends ServiceEntityRepository
 
     public function findAllPrestataire($value,$page): array
     {
+        //dd($value);
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
                 SELECT p.id,p.nom  FROM prestataire p
