@@ -79,7 +79,7 @@ class SearchController extends AbstractController
 
                 'idCp' => $data["cp"]->getId(),
 
-                'nomPrestataire' => $data["nomPrestataire"],
+                'nomPrestataire' => $data["nomPrestataire"]== null ? 'null' : $data["nomPrestataire"],
 
                 'NoPage'=>1
             ];

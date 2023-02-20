@@ -176,7 +176,31 @@ class PrestataireController extends AbstractController
         $form = $this->createForm(PrestataireSearchType::class);
         $form->handleRequest($request);
 
-         //recuperation des donnees du prestataire connecte
+        if($form->isSubmitted() && $form->isValid()){
+
+            $data = $form->getData();
+
+            $idCategorie = $data["categorie"]->getId();
+
+            $idLocalite = $data["nomLocalite"]->getId();
+
+            $idCommune = $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]->getId();
+
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+
+            return $this->redirectToRoute('search', [
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'NoPage'=> 1,
+                'nomPrestataire' => $nomPrestataire
+            ]);
+        }
+
+        //recuperation des donnees du prestataire connecte
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $lePrestataire = $prestataire->findPrestataire($id);
         $logoName = $entityManager->getRepository(Image::class);
@@ -277,6 +301,29 @@ class PrestataireController extends AbstractController
         $form = $this->createForm(PrestataireSearchType::class);
         $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()){
+
+            $data = $form->getData();
+
+            $idCategorie = $data["categorie"]->getId();
+
+            $idLocalite = $data["nomLocalite"]->getId();
+
+            $idCommune = $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]->getId();
+
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+
+            return $this->redirectToRoute('search', [
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'NoPage'=> 1,
+                'nomPrestataire' => $nomPrestataire
+            ]);
+        }
         //recuperation des donnees du prestataire connecte
         $prestataire = $entityManager->getRepository(Prestataire::class);
         $lePrestataire = $prestataire->findPrestataire($id);

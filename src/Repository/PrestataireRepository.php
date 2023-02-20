@@ -98,6 +98,9 @@ class PrestataireRepository extends ServiceEntityRepository
     {
         //dd($value);
         $start = $laPage * 12 - 12;
+        $last =  $value["nomPrestataire"] == "null" ? "":' and  p.nom LIKE "%'.$value["nomPrestataire"].'%"';
+        $value["idCategorie"] = $value["idCategorie"] == 1 ? "":'categorie.id ='.$value["idCategorie"].' and ';
+
 
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
@@ -105,7 +108,7 @@ class PrestataireRepository extends ServiceEntityRepository
                 INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
                 INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
                 INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
-                WHERE categorie.id = '.$value["idCategorie"].' and  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' and  p.nom LIKE "%'.$value["nomPrestataire"].'%"
+                WHERE   '.$value["idCategorie"].'  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' '.$last.' 
                 ORDER BY nom ASC LIMIT '.$start.',12';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
