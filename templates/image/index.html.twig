@@ -13,17 +13,13 @@
 
             <div class="imagePrestataire">
                 <div class=" divBlock  photo userItem">
-                    {{ form_row(form.logo) }}
+                    {{ form_row(form.logo, {'attr': {'placeholder': 'Charger le logo de votre entreprise'} }) }}
                 </div>
-                <div class=" divBlock  photo userItem">
-                    {{ form_row(form.photo) }}
+                <div class=" divBlock  photo userItem mt-5 pt5">
+                    {{ form_row(form.photo, {'attr': {'placeholder': 'Charger une photo de vos activités'} }) }}
                 </div>
             </div>
             <div class="btnEtAjoutImage">
-                <div>
-
-                </div>
-
                 <div class="btnItem">
                     {{ form_row(form.submit) }}
                 </div>

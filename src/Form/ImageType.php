@@ -16,7 +16,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('logo',FileType::class,[
-                'label' => 'Logo de votre entreprise',
+                'label' => 'Télécharger le logo ',
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
@@ -33,7 +33,7 @@ class ImageType extends AbstractType
                 ],
             ])
             ->add('photo',FileType::class,[
-                'label' => 'Telecharger une photo',
+                'label' => 'Télécharger une photo ',
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [

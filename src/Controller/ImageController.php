@@ -33,6 +33,7 @@ class ImageController extends AbstractController
             $logoFile = $form->get('logo')->getData();
             $photoFile = $form->get('photo')->getData();
 
+            dd($logoFile,$photoFile);
             //traitement du logo
             if($logoFile){
                $fileLoader = new FileLoader($slugger);
