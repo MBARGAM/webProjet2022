@@ -1,6 +1,6 @@
 # webProjet2022
 <<<<<<< HEAD
-<<<<<<< Updated upstream
+<<<<<<< Updated 
 =======
 =======
 >>>>>>> 2a7b4b2e545143fdd1c4a2b8efdc52f74fe9ff60
@@ -14,7 +14,7 @@ pour la langue , une classe langue a été crée afin de pouvoir traduire des mo
 - une autre de l anglais au francais
 - un derniere concernant le choix effectué l'utilisateur
 # 31-12_2022
-indsertion des villes communes et codes postaux
+insertion des villes communes et codes postaux
 recuperation des fichier format json
 - traitement via la creation de la classe Adresse dans symfony
 - creation de 3 methodes statique et insertion dans la bd via le controlleur Adresse

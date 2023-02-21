@@ -60,7 +60,7 @@ class ImageController extends AbstractController
         }
         return $this->renderForm('image/index.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuConnexion',
+            'infoBlock' => 'menuConnexion'
         ]);
     }
 }
