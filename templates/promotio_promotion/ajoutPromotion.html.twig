@@ -27,7 +27,8 @@
                    {{ form_row(form.finAffichage) }}
                </div>
                <div class=" divBlock  photo userItem">
-                   {{ form_row(form.document) }}
+                   {{ form_row(form.document, {'attr': {'placeholder': 'Ajouter le document en format pdf'} }) }}
+
                </div>
                <div class="btnItem">
                    {{ form_row(form.submit) }}

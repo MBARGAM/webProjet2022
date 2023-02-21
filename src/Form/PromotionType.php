@@ -60,6 +60,9 @@ class PromotionType extends AbstractType
                 'label' => 'Document de promotion',
                 'required' => false,
                 'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Choose a file pdf',
+                ],
                 'constraints' => [
                     new File([
                         'mimeTypes' => [
