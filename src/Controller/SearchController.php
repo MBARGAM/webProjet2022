@@ -88,7 +88,7 @@ class SearchController extends AbstractController
 
         }
 
-        //donnees recues du formulaire de recherche soumis en dehor de la page de recherche
+        //donnees recues du formulaire de recherche soumis en dehors de la page de recherche
         $data = [
             'idCategorie' => $idCategorie,
 
@@ -102,6 +102,7 @@ class SearchController extends AbstractController
 
             'NoPage'=>$NoPage
         ];
+
 
        // premier appel de la fonction resultats pour recuperer le tableau des prestataires recherchés
         // afin de verifier si le tableau est vide ou non et de definir une limite sur la page a

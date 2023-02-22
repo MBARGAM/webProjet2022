@@ -4,7 +4,7 @@
 {% block title %}Profil prestataire{% endblock %}
 {% block body %}
     <div class="searchLocalisation">
-        <div id="map" class="localisation">
+        <div id="mapid" class="localisation">
         </div>
         <div class="search">
             {{ form_start(form)}}
@@ -53,8 +53,8 @@
                         <span class="d-block text-center" id ="rueUser">
                             {{ prestataire["No"] }} {{ prestataire["rue"]|capitalize }} ,
                         </span>
-                        <span class="d-block text-center  " id ="cpCommuneUser">
-                         {{ prestataire["cp"]}} {{ prestataire["commune"]|capitalize}}
+                        <span class="d-block text-center " >
+                            <span id ="cpUser"> {{ prestataire["cp"]}}</span> {{ prestataire["commune"]|capitalize}}
                        </span>
                     </p>
                 </div>
