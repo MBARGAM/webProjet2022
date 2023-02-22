@@ -54,27 +54,47 @@
                             <span class="francais"><a class="langFr" href="#">Fr</a></span>
                             <span class="anglais"><a class="langEng" href="#">En</a></span>
                         </div>
-
-                        {% if typeUser == "PRESTATAIRE"%}
-                            <div class="menuProfil" hidden>
-                                <div class="envoyer iconItem ">
-                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
-                                </div>
-                                <div class="contacter iconItem">
-                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
-                                </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                                </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                                </div>
-                            </div>
-                        {% else %}
+                          {% if typeUser is defined %}
+                                {% if typeUser == "PRESTATAIRE"%}
+                                    <div class="menuProfil" hidden>
+                                        <div class="envoyer iconItem ">
+                                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                        </div>
+                                        <div class="contacter iconItem">
+                                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                        </div>
+                                        <div class="favoris iconItem">
+                                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                        </div>
+                                        <div class="favoris iconItem">
+                                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="menuProfil ">
+                                        <div class="envoyer iconItem ">
+                                            <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                        </div>
+                                        <div class="contacter iconItem">
+                                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                        </div>
+                                        <div class="favoris iconItem">
+                                            <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                        </div>
+                                        <div class="favoris iconItem">
+                                            <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                            <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                          {% else %}
                             <div class="menuProfil ">
                                 <div class="envoyer iconItem ">
                                     <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
@@ -110,25 +130,46 @@
                             <span class="francais"><a class="langFr" href="#">Fr</a></span>
                             <span class="anglais"><a class="langEng" href="#">En</a></span>
                         </div>
-                        {% if typeUser == "PRESTATAIRE"%}
-                            <div class="menuProfil" hidden>
-                                <div class="envoyer iconItem ">
-                                    <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                        {% if typeUser is defined %}
+                            {% if typeUser == "PRESTATAIRE"%}
+                                <div class="menuProfil" hidden>
+                                    <div class="envoyer iconItem ">
+                                        <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                    </div>
+                                    <div class="contacter iconItem">
+                                        <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                    </div>
+                                    <div class="favoris iconItem">
+                                        <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                    </div>
+                                    <div class="favoris iconItem">
+                                        <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                    </div>
                                 </div>
-                                <div class="contacter iconItem">
-                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                            {% else %}
+                                <div class="menuProfil" >
+                                    <div class="envoyer iconItem ">
+                                        <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
+                                    </div>
+                                    <div class="contacter iconItem">
+                                        <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                    </div>
+                                    <div class="favoris iconItem">
+                                        <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Favoris</a></span>
+                                    </div>
+                                    <div class="favoris iconItem">
+                                        <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
+                                        <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
+                                    </div>
                                 </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Favoris</a></span>
-                                </div>
-                                <div class="favoris iconItem">
-                                    <span class="d-block fa-solid fa-comment text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Commentaire</a></span>
-                                </div>
-                            </div>
+                            {% endif %}
                         {% else %}
                             <div class="menuProfil" >
                                 <div class="envoyer iconItem ">
