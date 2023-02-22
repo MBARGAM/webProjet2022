@@ -4,7 +4,7 @@
 {% block title %}Profil prestataire{% endblock %}
 {% block body %}
     <div class="searchLocalisation">
-        <div class="localisation">
+        <div class="localisation" id="mapid" >
 
 
         </div>
@@ -50,15 +50,13 @@
                 <div class="adresse">
                     <span class="d-block text-center"><strong><u>Adresse :</u></strong></span>
 
-                    <p class="text-center">
-                        <span class="d-block text-center">{{ prestataire["localite"]|capitalize }} </span>
-                        <span class="d-block text-center">
-                            {{ prestataire["No"] }}
-                            {{ prestataire["rue"]|capitalize }} ,
+                    <p class="text-center" >
+                        <span class="d-block text-center" id ="localiteUser">{{ prestataire["localite"]|capitalize }} </span>
+                        <span class="d-block text-center" id ="rueUser">
+                            {{ prestataire["No"] }} {{ prestataire["rue"]|capitalize }} ,
                         </span>
-                        <span class="d-block text-center">
-                         {{ prestataire["cp"]}}
-                            {{ prestataire["commune"]|capitalize}}
+                        <span class="d-block text-center" >
+                            <span id ="cpUser">{{ prestataire["cp"]}}</span>  {{ prestataire["commune"]|capitalize}}
                        </span>
                     </p>
                 </div>
