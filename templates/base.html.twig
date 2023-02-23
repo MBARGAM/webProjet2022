@@ -419,15 +419,15 @@
             </div>
 
             {% if categorieChoisie[0] is not defined %}
-                {% set  titleUser = "loading...." %}
+                {% set  category = "loading...." %}
                 {% set url = "#" %}
             {% else %}
-                {% set titleUser = categorieChoisie[0].__toString|capitalize %}
-                {% set url =  path('descriptionPrestataire', { id :categorieChoisie[0].id})  %}
+                {% set category = categorieChoisie[0].__toString|capitalize %}
+                {% set url =  path('categorieCourante', { id :categorieChoisie[0].id})  %}
             {% endif %}
             <div class="categorieItem">
                 <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~categorieChoisie[1])  }}" title="accueil" alt="accueil"></a>
-                <div class="nomPrestataire"><a href="{{ url }}" class="nomPrestataire">Categorie du mois : {{ titleUser }}</a></div>
+                <div class="nomPrestataire"><a href="{{ url }}" class="nomPrestataire">Categorie du mois : {{ category }}</a></div>
             </div>
         </div>
     {% endblock %}

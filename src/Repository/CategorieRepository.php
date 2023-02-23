@@ -47,6 +47,18 @@ class CategorieRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findCategorie($id){
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->distinct(True)
+            ->where('a.id = :val')
+            ->AndWhere('a.validation = 1')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // requete pour trouver les categories d'un prestataire relation ManyToMany
     public function findCategoriePrestataire($value): array
     {

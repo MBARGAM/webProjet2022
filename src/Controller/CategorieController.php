@@ -2,9 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\CodePostal;
+use App\Entity\Commune;
+use App\Entity\Image;
+use App\Entity\Localite;
 use App\Entity\Prestataire;
 use App\Entity\Categorie;
+use App\Entity\Promotion;
+use App\Entity\Stage;
 use App\Form\CategorieType;
+use App\Form\PrestataireSearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,24 +64,71 @@ class CategorieController extends AbstractController
             'infoBlock' => 'menuDeconnexion',
         ]);
     }
+
+
     /**
      * @Route("/user/categorie/{id}", name="categorieCourante")
      */
     public function index($id,EntityManagerInterface $entityManager,Request $request): Response
     {
-        $form = $this->createForm(CategorieType::class);
+
+        // donnees pour le formulaire de recherche
+        $commune = $entityManager->getRepository(Commune::class);
+
+        $listeCommune = $commune-> findAllCommune();
+
+        $categorie = $entityManager->getRepository(Categorie::class);
+
+        $listeCategorie = $categorie-> findAllCategorie();
+
+        $categorieCourante = $categorie->findCategorie($id);
+
+        $localite = $entityManager->getRepository(Localite::class);
+
+        $listeLocalite = $localite->findAllLocalite();
+
+        $cp = $entityManager->getRepository(CodePostal::class);
+
+        $listeCp= $cp->findAllCp();
+
+        $form = $this->createForm(PrestataireSearchType::class);
+
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
+
             $data = $form->getData();
 
-            dd($data);
-            $entityManager->persist($data);
-            $entityManager->flush();
-            return $this->redirectToRoute('profilPrestataire', ['id' => $id]);
+            $idCategorie = $data["categorie"]->getId();
+
+            $idLocalite = $data["nomLocalite"]->getId();
+
+            $idCommune = $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]->getId();
+
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+
+            return $this->redirectToRoute('search', [
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'NoPage'=> 1,
+                'nomPrestataire' => $nomPrestataire
+            ]);
         }
-        return $this->renderForm('categorie/index.html.twig', [
+
+        return $this->renderForm('categorie/categorieCourante.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuDeconnexion',
+            'commune'=>$listeCommune,
+            'localite'=>$listeLocalite,
+            'cp'=>$listeCp,
+            'categorie'=> $listeCategorie,
+            'categorieCourante' => $categorieCourante,
+
         ]);
+
+
     }
 }
