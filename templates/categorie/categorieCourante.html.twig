@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Catégorie courante{% endblock %}
+
+{% block body %}
+
+    <div class="searchEtDiapo">
+        <div>
+            <h6 class="text-center search">Recherche</h6>
+            {% block search %}
+                {{ form_start(form)}}
+
+                <div class="formulaire">
+
+                    <div class="categorie formItem">
+                        {{ form_row(form.categorie) }}
+                    </div>
+                    <div class="prestataire formItem">
+                        {{ form_row(form.nomPrestataire) }}
+                    </div>
+                    <div class="commune formItem">
+                        {{ form_row(form.nomCommune) }}
+                    </div>
+
+                    <div class="localite formItem">
+                        {{ form_row(form.nomLocalite) }}
+                    </div>
+                    <div class="cp formItem">
+                        {{ form_row(form.cp) }}
+                    </div>
+
+                    <div class="form-row  submit formItem " >
+                        {{ form_row(form.submit) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            {% endblock %}
+
+        </div>
+        {% block diaporama %}
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="{{ asset('images_directory/diaporama/1.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{ asset('images_directory/diaporama/2.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images_directory/diaporama/3.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images_directory/diaporama/4.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images_directory/diaporama/5.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden text-black">Prec.</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden text-black">Suiv.</span>
+                </button>
+            </div>
+        {% endblock %}
+    </div>
+    <div class="descriptionCategorie">
+        <div class="photo">
+            <div></div>
+        </div>
+        <div class="titreDescription">
+
+        </div>
+        <div class=" nav-item dropdown item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Prestataires de la catégorie
+            </a>
+            <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
+               {# {% for stage in userStages %}
+                    <a class="dropdown-item link" href="{{ path('stageCourant' , { id:stage["id"]}) }}">{{ stage["nom"]|capitalize }}</a>
+                {% endfor %}#}
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
