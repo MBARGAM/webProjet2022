@@ -85,13 +85,9 @@ class HomeController extends AbstractController
 
         $categorieAleatoire = $listeCategorie[$random];
 
-        // recuperation de l'image de la categorie
-        $image = $entityManager->getRepository(Image::class);
+        $img =$categorieAleatoire->getImage()->getNom();
 
-        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
-
-        // ternaire pour verifier si la categorie a une image
-        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $monImage = $img == null ? 'categorie.jpg' : $img;
 
         $categorieChoisie  = [$categorieAleatoire,$monImage];
 

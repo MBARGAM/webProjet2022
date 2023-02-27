@@ -130,6 +130,25 @@ class PrestataireRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
+    //find name by id prestataire
+    public function findCategoriePrestataire($idCategorie): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                SELECT p.id,p.nom  FROM prestataire p
+                INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
+                INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
+                INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
+                WHERE  categorie.id = '.$idCategorie.'
+                ORDER BY nom ASC ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Prestataire[] Returns an array of Prestataire objects
 //     */
