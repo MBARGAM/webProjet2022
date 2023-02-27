@@ -75,21 +75,30 @@ class CategorieController extends AbstractController
         // donnees pour le formulaire de recherche
         $commune = $entityManager->getRepository(Commune::class);
 
-        $listeCommune = $commune-> findAllCommune();
+        $listeCommune = $commune-> findAllCommune();//liste des communes
 
         $categorie = $entityManager->getRepository(Categorie::class);
 
-        $listeCategorie = $categorie-> findAllCategorie();
+        $listeCategorie = $categorie-> findAllCategorie();//liste des categories
 
         $categorieCourante = $categorie->findCategorie($id);
 
+        $image = $entityManager->getRepository(Image::class);
+
+        $imageCourante = $image->findCategoriePicName($categorieCourante[0]->getId());//nom de l'image de la categorie courante
+
         $localite = $entityManager->getRepository(Localite::class);
 
-        $listeLocalite = $localite->findAllLocalite();
+        $listeLocalite = $localite->findAllLocalite();//
 
         $cp = $entityManager->getRepository(CodePostal::class);
 
-        $listeCp= $cp->findAllCp();
+        $listeCp= $cp->findAllCp();//liste des codes postaux
+
+        $prestatairesDeLaCategorie = $entityManager->getRepository(Prestataire::class);
+
+        $listePrestataire = $prestatairesDeLaCategorie ->findCategoriePrestataire($categorieCourante[0]->getId());
+
 
         $form = $this->createForm(PrestataireSearchType::class);
 
@@ -119,13 +128,18 @@ class CategorieController extends AbstractController
             ]);
         }
 
+        $limage = $imageCourante[0]['nom'] == null ? 'categorie.jpg' : $imageCourante[0]['nom'];
+
         return $this->renderForm('categorie/categorieCourante.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
             'localite'=>$listeLocalite,
             'cp'=>$listeCp,
             'categorie'=> $listeCategorie,
-            'categorieCourante' => $categorieCourante,
+            'categorieCourante' => $categorieCourante[0],
+            'nomImage'=> $limage,
+            'prestataires' => $listePrestataire,
+
 
         ]);
 

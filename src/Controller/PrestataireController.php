@@ -254,17 +254,12 @@ class PrestataireController extends AbstractController
         }
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
-        $tailleCatehgories = count($listeCategorie);
-        $random = rand(0,$tailleCatehgories-1);
+        $tailleCategories = count($listeCategorie);
+        $random = rand(0,$tailleCategories-1);
         $categorieAleatoire = $listeCategorie[$random];
-        // recuperation de l'image de la categorie
-        $image = $entityManager->getRepository(Image::class);
-        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
-
-        // ternaire pour verifier si la categorie a une image
-        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $img =$categorieAleatoire->getImage()->getNom();
+        $monImage = $img == null ? 'categorie.jpg' : $img;
         $categorieChoisie  = [$categorieAleatoire,$monImage];
-
 
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
@@ -367,11 +362,11 @@ class PrestataireController extends AbstractController
         $random = rand(0,$tailleCatehgories-1);
         $categorieAleatoire = $listeCategorie[$random];
         // recuperation de l'image de la categorie
-        $image = $entityManager->getRepository(Image::class);
-        $categoryImage = $image->findCategoryPicName($categorieAleatoire->getId());
-
         // ternaire pour verifier si la categorie a une image
-        $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
+        $img =$categorieAleatoire->getImage()->getNom();
+
+        $monImage = $img == null ? 'categorie.jpg' : $img;
+
         $categorieChoisie  = [$categorieAleatoire,$monImage];
 
 

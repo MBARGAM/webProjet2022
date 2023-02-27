@@ -69,26 +69,69 @@
             </div>
         {% endblock %}
     </div>
+
+    {# bloc permettant d afficher les informations d'une categorie  #}
     <div class="descriptionCategorie">
         <div class="photo">
-            <div></div>
+            <div id="carouselExampleInterval" class="carousel slide imageCourante" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="{{ asset('images_directory/'~nomImage) }}" alt="photo de la categorie">
+                   </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{ asset('images_directory/'~nomImage) }}" alt="photo de la categorie">
+                    </div>
+                    <div class="carousel-item" >
+                        <img src="{{ asset('images_directory/'~nomImage) }}" alt="photo de la categorie">
+                    </div>
+                </div>
+            </div>
+            <div class="titreCategorie">
+                <h3 class="text-center">{{ categorieCourante.nom|capitalize }}</h3>
+            </div>
         </div>
         <div class="titreDescription">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col text-center ">Titre : {{ categorieCourante.nom|capitalize }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr class="table-active text-center description ">
+                        <td>{{ categorieCourante.description }}</td>
+                   </tr>
+                </tbody>
+            </table>
+            <div class=" nav-item dropdown item">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Prestataires de la catégorie
+                </a>
+                {# ici , tout les tests sur l existence des prestataires ainsi que la verification si un user est connecté ou pas et si la
+                le tableau des prestataires est vide ou pas #}
+                <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
+                    {% if prestataires is defined %}
+                        {% if prestataires|length > 0 %}
+                            {% if app.user %}
+                                {% for prestataire in prestataires %}
+                                    {% set url =  path('profilPrestataire', { id:prestataire["id"],role:app.user.roles[0]})  %}
+                                    <a class="dropdown-item link" href="{{ url }}">{{ prestataire["nom"]|capitalize }}</a>
+                                {% endfor %}
+                            {% else %}
+                                {% for prestataire in prestataires %}
+                                    {% set url =  path('descriptionPrestataire', { id : prestataire["id"]})  %}
+                                    <a class="dropdown-item link" href="{{ url }}">{{ prestataire["nom"]|capitalize }}</a>
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            <a class="dropdown-item link" href="#">Aucun prestataire</a>
+                        {% endif %}
+                    {% endif %}
 
-        </div>
-        <div class=" nav-item dropdown item">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Prestataires de la catégorie
-            </a>
-            <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
-               {# {% for stage in userStages %}
-                    <a class="dropdown-item link" href="{{ path('stageCourant' , { id:stage["id"]}) }}">{{ stage["nom"]|capitalize }}</a>
-                {% endfor %}#}
+                </div>
             </div>
         </div>
 
     </div>
-
-
 
 {% endblock %}
