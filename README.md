@@ -11,7 +11,8 @@ ETAPES D'INSTALLATION DU PROJET WEB 2022
 - Git installé sur votre ordinateur
 - PHP et Composer installés sur votre ordinateur
 
-3- Clonage du projet
+3- Clonage du projet : 
+
  pour cloner le projet proceder comme suit :
 
 Ouvrez une ligne de commande sur votre ordinateur et accédez au répertoire où vous souhaitez cloner le projet.
