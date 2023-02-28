@@ -278,6 +278,18 @@
             color: white;
           }
         }
+        .block{
+          border: 1px solid $vert;
+          .link{
+            color: $vert;
+          }
+          .link:hover{
+            background: $vert;
+            color: white;
+          }
+        }
+
+
 
        .btnElt{
            align-items:center ;

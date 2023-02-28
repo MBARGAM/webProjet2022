@@ -8,11 +8,10 @@
    .prestataireItem{
 
      .logoPrestataire{
-       height: 8rem;
+       height: 10rem;
        width: 100%;
        text-align: center;
       box-shadow:  1px 2px 5px 3px $vert;
-
 
      }
      .nomPrestataire{
@@ -26,12 +25,12 @@
 }
 .categorieItem{
   margin: 1rem 2rem;
-  .logoPrestataire{
-    height: auto;
-    width: 100%;
-    box-shadow:  1px 2px 5px 3px $vert;
-    text-align: center;
-  }
+    .logoPrestataire{
+      height: auto;
+      width: 100%;
+      box-shadow:  1px 2px 5px 3px $vert;
+      text-align: center;
+    }
   .nomPrestataire{
     @include link;
     font-size: 1rem;
@@ -43,11 +42,6 @@
 }
 @media screen and (min-width: 400px) {
   .prestataireItem{
-
-    .logoPrestataire{
-      height: 10rem;
-
-    }
     .nomPrestataire{
       @include link;
       font-size: 1rem;
@@ -60,7 +54,7 @@
   .prestataireItem{
 
     .logoPrestataire{
-      height: 12rem;
+      height: 13rem;
     }
     .nomPrestataire{
       @include link;
@@ -72,29 +66,32 @@
 @media screen and (min-width: 700px) {
 
   .blockBody{
-   margin: 1.5rem ;
-    .blockPrestataire{
-      grid-gap: 1.5rem;
-      .prestataireItem{
-        .logoPrestataire{
-          height: 13rem;
-        }
-        .nomPrestataire{
-          font-size: 1.7rem;
-        }
+       margin: 1.5rem ;
 
-      }
-    }
-    .categorieItem {
-      margin: 2rem 3rem;
+      .blockPrestataire{
+          grid-gap: 1.5rem;
 
-      .nomPrestataire {
-        @include link;
-        font-size: 2rem;
-        margin-top: 1.5rem;
+          .prestataireItem{
+
+              .logoPrestataire{
+                height: 17rem;
+              }
+              .nomPrestataire{
+                font-size: 1.7rem;
+              }
+
+          }
       }
-    }
-}
+      .categorieItem {
+          margin: 2rem 3rem;
+
+          .nomPrestataire {
+            @include link;
+            font-size: 2rem;
+            margin-top: 1.5rem;
+          }
+      }
+  }
 
 }
 
@@ -103,29 +100,43 @@
     display: grid;
     grid-template-columns:2fr 1fr;
     grid-gap: 1.5rem;
-    .prestataireItem {
+    .blockPrestataire{
+      .prestataireItem {
 
-      .logoPrestataire{
-        height: 15rem;
+        .logoPrestataire{
+          height: 20rem;
 
+        }
+        .nomPrestataire {
+          @include link;
+          font-size: 1.4rem;
+
+        }
       }
-      .nomPrestataire {
-        @include link;
-        font-size: 1.4rem;
 
-      }
     }
+
     .categorieItem {
       margin: 0;
       margin-top: 1rem;
 
-
       .logoPrestataire {
-        height: 60%;
+        height: auto;
 
       }
-
-
     }
    }
+}
+@media screen and (min-width: 1250px) {
+  .blockBody {
+
+    .prestataireItem {
+
+      .logoPrestataire{
+        height: 20rem;
+
+      }
+    }
+
+  }
 }

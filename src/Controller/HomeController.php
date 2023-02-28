@@ -81,11 +81,12 @@ class HomeController extends AbstractController
         //choix aléatoire d'une categorie
         $tailleCatehgories = count($listeCategorie);
 
+
         $random = rand(0,$tailleCatehgories-1);
 
         $categorieAleatoire = $listeCategorie[$random];
 
-        $img =$categorieAleatoire->getImage()->getNom();
+        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
 
         $monImage = $img == null ? 'categorie.jpg' : $img;
 

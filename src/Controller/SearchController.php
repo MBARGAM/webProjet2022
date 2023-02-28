@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Image;
 use App\Entity\Prestataire;
 use App\Form\SearchType;
@@ -159,13 +160,21 @@ class SearchController extends AbstractController
         $data["finIteration"] = $finIteration;
 
 
+        $categorie = $entityManager->getRepository(Categorie::class);
+
+        $listeCategorie = $categorie-> findAllCategorie();
+
+
+
         return $this->render('prestataire/index.html.twig', [
 
             'form' => $form->createView(),
 
             'prestataireDatas' => $tabPrestataire,
 
-            'donneesPrestataire' => $data
+            'donneesPrestataire' => $data,
+
+            'categorie' => $listeCategorie,
 
         ]);
     }
