@@ -354,6 +354,7 @@ class PrestataireController extends AbstractController
 
         $categorieChoisie  = [$categorieAleatoire,$monImage];
 
+
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
             'form' => $form,
             'commune'=>$listeCommune,
