@@ -9,6 +9,8 @@ $(function(){
     var email = $('#prestataire_preinnscription_email');
     var submit = $('#prestataire_preinnscription_submit');
     var msg =$('.msgEmailCheck');
+
+
     email.on('keyup', function (e) {
         e.preventDefault();
 
@@ -24,13 +26,15 @@ $(function(){
                     if(data == 'true'){
                         email.css('border',  '2px solid green');
                         submit.prop('disabled', false);
-                        msg.html('valide');
-                        msg.css('color', 'green');
+                        msg.html('Email valide');
+                        msg.css('color', 'green', 'background-color', 'light-green');
+                        msg.show();
                     }else{
                         email.css('border',  '2px solid red');
                         submit.prop('disabled', true);
-                        msg.html('Invalide');
-                        msg.css('color', 'red');
+                        msg.html('Email Invalide');
+                        msg.css('color', 'red', 'background-color', 'light-red');
+                        msg.show();
                     }
                 }
             });

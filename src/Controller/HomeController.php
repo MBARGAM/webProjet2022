@@ -134,6 +134,120 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/accueil/preinscription/{prenom}", name="monAccueil")
+     */
+    public function pageAcceilAprèspresinscription($prenom,Request $request,EntityManagerInterface $entityManager): Response
+    {
+        $commune = $entityManager->getRepository(Commune::class);
+
+        $listeCommune = $commune-> findAllCommune();
+
+        $categorie = $entityManager->getRepository(Categorie::class);
+
+        $listeCategorie = $categorie-> findAllCategorie();
+
+        $localite = $entityManager->getRepository(Localite::class);
+
+        $listeLocalite = $localite->findAllLocalite();
+
+        $cp = $entityManager->getRepository(CodePostal::class);
+
+        $listeCp= $cp->findAllCp();
+
+        // Obtention des 4 prestataires les plus récents
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+
+        $listePrestataire = $prestataire->lastPrestataireInsert();
+
+        if ($listePrestataire != null){
+
+            $prestataireDatas = [];
+
+            foreach ($listePrestataire as $data){
+
+                $userImgData = [];
+
+                $req = $entityManager->getRepository(Image::class);
+
+                $listeImage = $req->findPicName($data->getId());
+
+                if($listeImage != null){
+
+                    $userImgData[] = $data;
+
+                    $userImgData[] = $listeImage[0]['nom'];
+
+                    $prestataireDatas[] = $userImgData;
+
+                }else{
+
+                    $prestataireDatas[] = $userImgData;
+
+                }
+
+            }
+        }
+
+        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
+        //choix aléatoire d'une categorie
+        $tailleCatehgories = count($listeCategorie);
+
+
+        $random = rand(0,$tailleCatehgories-1);
+
+        $categorieAleatoire = $listeCategorie[$random];
+
+        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
+
+        $monImage = $img == null ? 'categorie.jpg' : $img;
+
+        $categorieChoisie  = [$categorieAleatoire,$monImage];
+
+        $form = $this->createForm(SearchType::class);
+
+        $form->handleRequest($request);
+
+        // recuperaion des données du formulaire et envoi de la data vers la controlleur de recherche pour afficher les resultats
+        if($form->isSubmitted() && $form->isValid()){
+
+            $data = $form->getData();
+
+            $idCategorie = $data["categorie"]->getId();
+
+            $idLocalite = $data["nomLocalite"]->getId();
+
+            $idCommune = $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]->getId();
+
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+
+            return $this->redirectToRoute('search', [
+                'idCategorie' => $idCategorie,
+                'idLocalite' => $idLocalite,
+                'idCommune' => $idCommune,
+                'idCp' => $idCp,
+                'NoPage'=> 1,
+                'nomPrestataire' => $nomPrestataire
+            ]);
+        }
+
+        $message =  ucfirst($prenom ).  " , Un email de confirmation vous a été envoyé, veuillez le consulter svp!!";
+
+        return $this->renderForm('home/index.html.twig', [
+            'form' => $form,
+            'commune'=>$listeCommune,
+            'localite'=>$listeLocalite,
+            'cp'=>$listeCp,
+            'categorie'=> $listeCategorie,
+            'categorieChoisie'=>$categorieChoisie,
+            'prestataires'=>$prestataireDatas,
+            "message"=>$message
+
+        ]);
+    }
+
      /**
       * @Route("accueil/{id}", name="autocompletion" , methods="POST")
       */

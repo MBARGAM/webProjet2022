@@ -4,6 +4,7 @@ $(function(){
       var email = $('#preinscription_email');
       var submit = $('#preinscription_submit');
       var msg =$('.msgEmailCheck');
+
       email.on('keyup', function (e) {
       e.preventDefault();
 
@@ -19,13 +20,15 @@ $(function(){
                   if(data == 'true'){
                       email.css('border',  '2px solid green');
                       submit.prop('disabled', false);
-                      msg.html('valide');
-                      msg.css('color', 'green');
+                      msg.html('Email Valide');
+                      msg.css('color', 'green', 'background-color', 'light-green');
+
                   }else{
                       email.css('border',  '2px solid red');
                       submit.prop('disabled', true);
-                      msg.html('Invalide');
-                        msg.css('color', 'red');
+                      msg.html('Email Invalide');
+                        msg.css('color', 'red', 'background-color', 'light-red');
+                        msg.show();
                   }
               }
           });
