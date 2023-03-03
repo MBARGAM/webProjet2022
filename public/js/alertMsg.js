@@ -6,7 +6,7 @@ $(function(){
 
     setTimeout(function() {
         msg.hide();
-    }, 15000);
+    }, 10000);
 
 });
 

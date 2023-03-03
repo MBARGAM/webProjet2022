@@ -12,7 +12,7 @@
 
     .logo {
       margin-left: 10px;
-      width: 45%;
+      width: 65%;
       margin-top: 10px;
     }
   }
@@ -73,8 +73,6 @@
 }
 
 .searchLocalisation{
-  display: grid;
-  grid-template-columns: 1fr 2fr;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -83,9 +81,9 @@
   }
 
   .localisation{
-
-    margin-top:15px;
-    margin-bottom: 15px;
+    height: 15rem;
+    border-radius: 4px;
+    margin : 1rem 1.2rem;
     box-shadow:  1px 2px 5px 3px $vert;
   }
   .formulaire{
@@ -116,12 +114,10 @@
   }
 }
 .profilDiapo{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    margin-left: 10px;
+    margin : 1rem 1.2rem;
+  border-radius: 5px  ;
     color:$vert;
-  margin-top: 2rem;
+
 
   .photoAdresse{
       border: 1px solid $vert;
@@ -146,8 +142,12 @@
       }
   }
   .reseauDiapo{
+    margin: 1rem 2rem 1rem 1.2rem;
+    border-radius: 5px  ;
+
     .reseau{
       text-align: center;
+      margin:1rem;
       .fa-brands{
         font-size: 1.5rem;
         margin-right: 1.5rem;
@@ -157,33 +157,32 @@
         }
     }
     .diaporama{
-      margin-left: 0;
-      margin-right: 10px;
+
     }
   }
 }
 
 .allBlock{
+  witdh: 100%;
   .prestataireAction{
     margin-top: 2rem;
   }
 
   .prestataireItem{
+     witdh: 100%;
       display: grid;
-      grid-template-columns: 4fr 1fr;
+      grid-template-columns: 3fr 1fr;
       grid-gap: 10px;
-
-
       .item{
             text-align: -webkit-center;
             background-color: $vert;
-            margin: 5px 3rem ;
+            margin: 5px 1rem ;
             border-radius: 10px;
-            width:17rem ;
-          a{
-            color:white;
-          }
 
+          a{
+             color:white;
+
+          }
           .block{
             border: 1px solid $vert;
             .link{
@@ -196,7 +195,7 @@
           }
       }
     .btn{
-
+       margin-right:10%;
       a{
         color: $vert;
         font-size: 1rem;
@@ -224,7 +223,7 @@
 }
 
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
   .logoutMenuMobile{
     display:none;
   }
@@ -311,7 +310,7 @@
 
   .searchLocalisation{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1.3fr 2fr;
     margin-left: 10px;
     margin-right: 10px;
 
@@ -320,9 +319,13 @@
     }
 
     .localisation{
-
-      margin-top:15px;
-      margin-bottom: 15px;
+      margin:0;
+      height: 100%;
+    }
+    .search{
+      margin:0;
+      margin-left: 1.5rem;
+      height: 100%;
     }
     .formulaire{
       display: grid;
@@ -350,14 +353,17 @@
 
   .profilDiapo{
     display:grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1.3fr 2fr;
     grid-gap: 10px;
     margin-left: 10px;
     color:$vert;
     margin-top: 2rem;
+    height: auto;
+    box-sizing: border-box;
 
     .photoAdresse{
       border: 1px solid $vert;
+    height: auto;
       img{
         width: 120%;
         height:auto ;
@@ -379,12 +385,18 @@
     }
 
     .reseauDiapo{
-
+      margin: 0;
+      margin-left: 1.2rem;
+   .carousel{
+    height: auto;
+   }
       .reseau{
         text-align: center;
+        margin-top: 0;
         .fa-brands{
           font-size:2rem;
           margin-right: 2rem;
+
         }
         .fa-brands:hover{
           color: darkgreen;
@@ -493,7 +505,7 @@
   }
 
   .searchLocalisation{
-
+ margin: 1rem 2rem;
     .formItem{
       margin: 0;
       .required{
@@ -513,11 +525,6 @@
       }
     }
 
-
-    .localisation{
-      margin-top:15px;
-      margin-bottom: 15px;
-    }
     .formulaire{
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -545,6 +552,7 @@
   }
 
   .profilDiapo{
+    margin: 1rem 2rem;
 
     .photoAdresse{
        .adresse{
@@ -653,6 +661,7 @@
   }
 
   .searchLocalisation{
+    margin: 1rem 2rem;
 
     .formItem{
       margin: 0;
@@ -678,8 +687,6 @@
 
     .localisation{
 
-      margin-top:15px;
-      margin-bottom: 15px;
     }
     .formulaire{
       display: grid;
@@ -705,6 +712,7 @@
   }
 
   .profilDiapo{
+    margin: 1rem 2rem;
 
     .reseauDiapo{
 

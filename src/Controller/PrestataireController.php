@@ -344,12 +344,11 @@ class PrestataireController extends AbstractController
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCategories = count($listeCategorie);
-
         $random = rand(0,$tailleCategories-1);
 
         $categorieAleatoire = $listeCategorie[$random];
 
-        $img =$categorieAleatoire->getImage()->getNom();
+        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
 
         $monImage = $img == null ? 'categorie.jpg' : $img;
 
@@ -474,9 +473,9 @@ class PrestataireController extends AbstractController
         }
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
-        $tailleCatehgories = count($listeCategorie);
+        $tailleCategories = count($listeCategorie);
 
-        $random = rand(0,$tailleCatehgories-1);
+        $random = rand(0,$tailleCategories-1);
 
         $categorieAleatoire = $listeCategorie[$random];
 
