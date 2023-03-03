@@ -1,18 +1,20 @@
 
 .presinscriptionTitle{
-  margin-top : 3rem;
+    margin-top : 7rem;
   font-size: 1.2rem;
   color: $vert;
 }
 form{
+
   .required{
     color:$vert;
+
   }
   .preinscription{
     width: 60%;
     margin: 0 auto;
-    margin-top : 10%;
-    margin-bottom : 40%;
+    margin-top : 5rem;
+    margin-bottom : 15rem;
 
     .submit{
       display: flex;
@@ -38,7 +40,7 @@ form{
 @media screen and (min-width: 500px) {
 
   .presinscriptionTitle{
-       margin-top : 3rem;
+       margin-top : 5rem;
        font-size: 1.5rem;
     margin-bottom: 2rem;
 
@@ -47,8 +49,8 @@ form{
 
     .preinscription{
       height:25rem;
-      margin-top : 0;
-      margin-bottom : 0;
+
+      margin-bottom : 12rem;
       .required{
         font-size: 1rem;
       }
