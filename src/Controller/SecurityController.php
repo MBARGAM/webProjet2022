@@ -23,6 +23,7 @@ class SecurityController extends AbstractController
         $listeCategorie = $categorie-> findAllCategorie();//liste des categories
 
          if ($this->getUser()) {
+
             return $this->redirectToRoute('dispatcher');
         }
 
@@ -31,10 +32,10 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+
         return $this->render('security/login.html.twig',
             ['last_username' => $lastUsername,
                 'error' => $error,
-                'infoBlock' => 'menuConnexion',
                 'categorie' => $listeCategorie,
             ]);
     }
@@ -58,13 +59,14 @@ class SecurityController extends AbstractController
         $user = $this->getUser();// recupere l'utilisateur connecté envoye par le security.yaml
         $roles = $user->getRoles();// recupere le tableau role de l'utilisateur
         $role = $roles[0]; // recupere le role de l'utilisateur
+         $id = $user->getPrestataire()->getId();
 
         if($role == "ADMIN"){
-            return $this->redirectToRoute('profilAdmin', ['id' => $user->getId()]);
+            return $this->redirectToRoute('profilAdmin', ['id' => $id]);
         }elseif($role == "PRESTATAIRE"){
-            return $this->redirectToRoute('profilPrestataire', ['id' => $user->getId(), 'role' => $user->getRoles()[0]]);
+            return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => $user->getRoles()[0]]);
         }elseif($role == "INTERNAUTE"){
-            return $this->redirectToRoute('profilInternaute', ['id' => $user->getId()]);
+            return $this->redirectToRoute('profilInternaute', ['id' => $id]);
         }else{
             return $this->redirectToRoute('pageAccueil');
         }

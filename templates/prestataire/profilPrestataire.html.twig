@@ -95,7 +95,9 @@
                     </div>
                 </div>
 
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+
+
+                {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id == prestataire["id"] %}
                     <div class="btn">
                         <a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}">Categorie</a></span>
@@ -113,7 +115,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+                {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"] %}
                     <div class="btn">
                         <a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}">Stage</a></span>
@@ -131,7 +133,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"]%}
+                {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"]%}
                     <div class="btn">
                         <a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}">Promotion</a></span>
@@ -144,7 +146,7 @@
                         Galerie photos
                     </a>
                 </div>
-                {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"]%}
+                {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"]%}
                     <div class="btn">
                         <a href="#" class="d-block fa-solid fa-square-plus"></a>
                         <span class="d-block"><a href="#">Photo</a></span>
@@ -153,7 +155,7 @@
             </div>
         </div>
         <div class="commentCate">
-            {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+            {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"] %}
                 <div class="prestataireItem">
                     <div class=" nav-item dropdown item">
                         <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -177,7 +179,7 @@
                     </div>
                 </div>
             </div>
-            {% if typeUser == "PRESTATAIRE" and app.user.id == prestataire["id"] %}
+            {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"] %}
                 <div class="prestataireItem">
                     <div class=" nav-item dropdown item">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
