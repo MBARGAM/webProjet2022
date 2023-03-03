@@ -66,7 +66,7 @@ class InscriptionController extends AbstractController
 
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment,$token->getNom());
-            return $this->redirectToRoute('pageAccueil');
+            return $this->redirectToRoute('monAccueil',["prenom"=>$data['prenom']]);
         }
 
         return $this->renderForm('inscription/index.html.twig', [

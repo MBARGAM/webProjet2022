@@ -4,7 +4,12 @@
 {% block title %}Bienvenue dans l'annuaire doTonNyanga{% endblock %}
 
 {% block body %}
+     {%  if message is defined %}
+          <div class="alert alert-success bg-white" role="alert" id="btnConfirm">
+               {{ message }}
+          </div>
 
+     {% endif %}
      <div class="searchEtDiapo">
           <div>
                <h6 class="text-center search">Recherche</h6>
