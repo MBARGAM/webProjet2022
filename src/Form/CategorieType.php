@@ -49,7 +49,7 @@ class CategorieType extends AbstractType
                 ],
             ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Soummettre',
+                'label' => 'Soumettre',
                 'attr' => [
                     'class' => 'btn btn-primary '
                 ]

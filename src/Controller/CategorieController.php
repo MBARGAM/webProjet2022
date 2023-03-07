@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\FileLoader;
 use App\Entity\CodePostal;
 use App\Entity\Commune;
 use App\Entity\Image;
@@ -17,18 +18,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategorieController extends AbstractController
 {
     /**
-     * @Route("/user/ajout/categorie/{id}", name="ajouterCategorie")
+     * @Route("/user/ajout/categorie/{role}/{id}", name="ajouterCategorie")
      */
-    public function ajouterCategorie($id,EntityManagerInterface $entityManager,Request $request): Response
+    public function ajouterCategorie($id,$role,EntityManagerInterface $entityManager,Request $request,SluggerInterface $slugger): Response
     {
         $form = $this->createForm(CategorieType::class);
         $form->handleRequest($request);
 
-        $data = $entityManager->getRepository(Prestataire::class)->findPrestataire($id);
+
+
+       $data = $entityManager->getRepository(Prestataire::class)->findPrestataire($id);
 
         $prestataire = new Prestataire();
         $prestataire->setId($id);
@@ -44,24 +48,85 @@ class CategorieController extends AbstractController
 
             $datas = $form->getData();
 
+            // traitement de l'image de la categorie
+
+
+
             $categorie = new Categorie();
-           // $categorie->addPrestataire($prestataire);
+
             $categorie->setNom($datas->getNom());
+
             $categorie->setDescription($datas->getDescription());
-            $categorie->addPrestataire($prestataire);
+
             $categorie->setMisEnAvant(false);
-            $categorie->setValidation(true);
-//
-            $entityManager->persist($categorie);
 
-            $entityManager->flush();
+            // verification du createur de la categorie
+            if($role == 'PRESTATAIRE'){
 
-            return $this->redirectToRoute('descriptionPrestataire', ['id' => $id ]);
+                $categorie->setValidation(false);
+
+                $entityManager->persist($categorie);
+
+                $entityManager->flush();
+
+                $categorieFile = $form->get('photo')->getData();
+
+                if($categorieFile != null){
+
+                    $fileLoader = new FileLoader($slugger);
+
+                    $logo = $fileLoader->uploadCategorie($categorieFile);
+
+                    $image = new Image();
+
+                    $image->setNom($logo);
+
+                    $image->setCategorie($categorie);
+
+                    $entityManager->persist($image);
+
+                    $entityManager->flush();
+                }
+
+                return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => $role ]);
+
+            }else if ($role == 'ADMIN'){
+
+                $categorie->setValidation(true);
+
+                $entityManager->persist($categorie);
+
+                $entityManager->flush();
+
+                $categorieFile = $form->get('photo')->getData();
+
+                if($categorieFile != null){
+
+                    $fileLoader = new FileLoader($slugger);
+
+                    $logo = $fileLoader->uploadCategorie($categorieFile);
+
+                    $image = new Image();
+
+                    $image->setNom($logo);
+
+                    $image->setCategorie($categorie);
+
+                    $entityManager->persist($image);
+
+                    $entityManager->flush();
+                }
+
+                return $this->redirectToRoute('descriptionPrestataire', ['id' => $id ]);
+            }
+
         }
         return $this->renderForm('categorie/index.html.twig', [
+
             'form' => $form,
+
             'typeUser'=>'PRESTATAIRE',
-            'infoBlock' => 'menuDeconnexion',
+
         ]);
     }
 

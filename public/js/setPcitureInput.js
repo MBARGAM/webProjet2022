@@ -2,6 +2,7 @@ $(function(){
     var inputLogo = $('#image_logo');
     var inputPhoto = $('#image_photo');
     var inputDocument= $('#promotion_document');
+    var inputCategorie= $('#categorie_photo');
 
     inputLogo.on("change", function () {
         var filename = inputLogo.val().replace('C:\\fakepath\\', '').trim();
@@ -15,5 +16,9 @@ $(function(){
     inputDocument.on("change", function () {
         var filename = inputDocument.val().replace('C:\\fakepath\\', '').trim();
         inputDocument.parent().find('.custom-file-label').html(filename);
+    });
+    inputCategorie.on("change", function () {
+        var filename = inputCategorie.val().replace('C:\\fakepath\\', '').trim();
+        inputCategorie.parent().find('.custom-file-label').html(filename);
     });
 });

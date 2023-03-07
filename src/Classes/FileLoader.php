@@ -54,6 +54,25 @@ class FileLoader
         return $fileName;
     }
 
+    public function uploadCategorie(UploadedFile $file)
+    {
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = 'categorie'.$safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+
+        try {
+            // dd($this->getTargetDirectory());
+            $file->move($this->getTargetDirectory(), $fileName);
+
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+            echo "souci d importation";
+        }
+
+        return $fileName;
+    }
+
     public function uploadPdf(UploadedFile $file)
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
