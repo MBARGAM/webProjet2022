@@ -19,31 +19,44 @@ class StageController extends AbstractController
     public function index($id,EntityManagerInterface $entityManager,Request $request): Response
     {
         $stage = new Stage();
+
         $form = $this->createForm(StageType::class,$stage);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
             //recuperation de l'objet Prestataire ayant rempli le formulaire
             $prestataire = $entityManager->getRepository(Prestataire::class);
+
             $prestataire = $prestataire->find($id);
 
             $data= $form->getData();
-;         // dd($stage);
-            //verification des champs
 
             if($data->getNom() != null && $data->getDescription() != null  && $data->getTarif() != null ){
+
                 $stage->setPrestataire($prestataire);
+
                 $stage->setNom($data->getNom());
+
                 $stage->setDescription($data->getDescription());
+
                 $stage->setTarif($data->getTarif());
+
                 $stage->setInfosComplementaires($data->getInfosComplementaires());
+
                 $stage->setDateDebut($data->getDateDebut());
+
                 $stage->setDateFin($data->getDateFin());
+
                 $stage->setDateDebut($data->getDateDebut());
+
                 $stage->setDateFin($data->getDateFin());
+
                 $stage->setDateCreation(new \DateTime());
 
                 $entityManager->persist($stage);
+
                 $entityManager->flush();
             }
             return $this->redirectToRoute('pageAccueil');
@@ -51,7 +64,7 @@ class StageController extends AbstractController
 
         return $this->renderForm('stage/index.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuConnexion',
+
         ]);
     }
 
@@ -62,39 +75,56 @@ class StageController extends AbstractController
     public function ajoutStage($id,EntityManagerInterface $entityManager,Request $request): Response
     {
         $stage = new Stage();
+
         $form = $this->createForm(StageType::class,$stage);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
             //recuperation de l'objet Prestataire ayant rempli le formulaire
             $prestataire = $entityManager->getRepository(Prestataire::class);
+
             $prestataire = $prestataire->find($id);
 
             $data= $form->getData();
-            ;
-            //verification des champs
 
-            if($data->getNom() != null && $data->getDescription() != null  && $data->getTarif() != null && $data->getInfosComplementaires() != null){
+            //verification des champs
+            if($data->getNom() != null && $data->getDescription() != null  && $data->getTarif() != null ){
+
                 $stage->setPrestataire($prestataire);
+
                 $stage->setNom($data->getNom());
+
                 $stage->setDescription($data->getDescription());
+
                 $stage->setTarif($data->getTarif());
+
                 $stage->setInfosComplementaires($data->getInfosComplementaires());
+
                 $stage->setDateDebut($data->getDateDebut());
+
                 $stage->setDateFin($data->getDateFin());
+
                 $stage->setDateDebut($data->getDateDebut());
+
                 $stage->setDateFin($data->getDateFin());
+
                 $stage->setDateCreation(new \DateTime());
+
                 //dd($stage);
                 $entityManager->persist($stage);
+
                 $entityManager->flush();
             }
-            return $this->redirectToRoute('profilPrestataire', ['id' => $id]);
+            return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => "PRESTATAIRE"]);
         }
 
         return $this->renderForm('stage/ajoutStage.html.twig', [
+
             'form' => $form,
-            'infoBlock' => 'menuDeconnexion',
+
+            'typeUser' => 'PRESTATAIRE',
         ]);
     }
 

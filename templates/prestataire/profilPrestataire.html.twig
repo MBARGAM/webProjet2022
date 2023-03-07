@@ -99,8 +99,8 @@
 
                 {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id == prestataire["id"] %}
                     <div class="btn">
-                        <a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                        <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"]}) }}">Categorie</a></span>
+                        <a href="{{ path('ajouterCategorie' , { id:prestataire["id"] ,role:"PRESTATAIRE"}) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"],role:"PRESTATAIRE"}) }}">Categorie</a></span>
                     </div>
                 {% endif %}
             </div>

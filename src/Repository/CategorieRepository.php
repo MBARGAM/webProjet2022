@@ -41,7 +41,9 @@ class CategorieRepository extends ServiceEntityRepository
     public function findAllCategorie(){
         return $this->createQueryBuilder('a')
             ->orderBy('a.nom', 'ASC')
+            ->Where('a.validation = 1')
             ->distinct(True)
+            ->orderBy('a.nom', 'ASC')
             ->getQuery()
             ->getResult()
             ;

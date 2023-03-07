@@ -96,25 +96,30 @@ class PromotioPromotionController extends AbstractController
                 $promotion->setDescription($data->getDescription());
                 $promotion->setDebutAffichage($data->getDebutAffichage());
                 $promotion->setFinAffichage($data->getFinAffichage());
+                
                 $entityManager->persist($promotion);
                 $entityManager->flush();
 
-                //traitement du fichier pdf
-                $fileLoader = new FileLoader($slugger);
-                $pdf = $fileLoader->uploadPdf($pdfFile);
-                $image = new Image();
-                $image->setNom($pdf);
-                $image->setPrestataire($prestataire);
-                $entityManager->persist($image);
-                $entityManager->flush();
+                if($pdfFile != null){
+                    //traitement du fichier pdf
+                    $fileLoader = new FileLoader($slugger);
+                    $pdf = $fileLoader->uploadPdf($pdfFile);
+                    $image = new Image();
+                    $image->setNom($pdf);
+                    $image->setPrestataire($prestataire);
+                    $entityManager->persist($image);
+                    $entityManager->flush();
+                }
+
             }
 
-            return $this->redirectToRoute('profilPrestataire', ['id' => $id]);
+            return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => 'PRESTATAIRE' ]);
         }
         return $this->renderForm('promotio_promotion/ajoutPromotion.html.twig', [
             'form' => $form,
-            'infoBlock' => 'menuDeconnexion',
+            'typeUser' => 'PRESTATAIRE',
             'categories' => $categories
+
         ]);
     }
 
