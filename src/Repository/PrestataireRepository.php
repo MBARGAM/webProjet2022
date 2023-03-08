@@ -98,8 +98,14 @@ class PrestataireRepository extends ServiceEntityRepository
     {
         //dd($value);
         $start = $laPage * 12 - 12;
-        $last =  $value["nomPrestataire"] == "null" ? "":' and  p.nom LIKE "%'.$value["nomPrestataire"].'%"';
-        $value["idCategorie"] = $value["idCategorie"] == 1 ? "":'categorie.id ='.$value["idCategorie"].' and ';
+        $last =  $value["nomPrestataire"] == "null" ? " p.nom LIKE '%' ":' and p.nom LIKE "%'.$value["nomPrestataire"].'%"';
+        $categorie = $value["idCategorie"] == 1 ? "":'categorie.id = '.$value["idCategorie"].' and ';
+        $localite = $value["idLocalite"] == "null" ? "":'utilisateur.localite_id = '.$value["idLocalite"].' and ';
+        $commune = $value["idCommune"] == "null" ? "":'utilisateur.commune_id = '.$value["idCommune"].' and ';
+        $cp= $value["idCp"] == "null" ? "":'utilisateur.cp_id = '.$value["idCp"].' and ';
+
+        $condition = $categorie.'  '.$localite.'  '.$commune.'  '.$cp.'  '.$last;
+
 
 
         $conn = $this->getEntityManager()->getConnection();
@@ -108,7 +114,7 @@ class PrestataireRepository extends ServiceEntityRepository
                 INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
                 INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
                 INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
-                WHERE   '.$value["idCategorie"].'  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' '.$last.' 
+                WHERE   '.$condition.' 
                 ORDER BY nom ASC LIMIT '.$start.',12';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -116,6 +122,17 @@ class PrestataireRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
+    /*
+         $conn = $this->getEntityManager()->getConnection();
+      $sql = '
+              SELECT p.id,p.nom  FROM prestataire p
+              INNER JOIN utilisateur  on p.id = utilisateur.prestataire_id
+              INNER JOIN categorie_prestataire  on categorie_prestataire.prestataire_id = p.id
+              INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
+              WHERE   '.$value["idCategorie"].'  utilisateur.localite_id = '.$value["idLocalite"].' and utilisateur.commune_id  = '.$value["idCommune"].' and utilisateur.cp_id = '.$value["idCp"].' '.$last.'
+              ORDER BY nom ASC LIMIT '.$start.',12';
+       */
     //count all prestataire
     public function countPrestataire(): array
     {
