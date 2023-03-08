@@ -1,0 +1,280 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}interface d'administration {% endblock %}
+
+{% block body %}
+
+    <h1 class="titleAdmin  ">INTERFACE D'ADMINISTRATION</h1>
+    <div class="blockGestion">
+
+        <div class="gestionItem">
+        {% set categorie = allDatas["categorie"]|slice(1) %}
+            {% set i = 1 %}
+
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalCatégorie">GESTION DES CATEGORIES</button>
+
+            <div class="modal fade" id="modalCatégorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gestion des catégories</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-striped table-hover"><thead>
+                                <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Validation</th>
+                                    <th scope="col">Actions </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for cat in categorie %}
+                                    <tr>
+                                        <th scope="row">{{ i }}</th>
+                                        <td>{{ cat.nom|capitalize }}</td>
+                                        <td>{{ cat.description }}</td>
+                                        <td>
+                                            {% if cat.validation == 1 %}
+                                                <button class="btn btn-success">Validé</button>
+                                            {% else %}
+                                                <button class="btn btn-warning">En attente de validation </button>
+                                            {% endif %}
+
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('categorieCourante', { id :cat.id})  }}" class="btn btn-info">Voir</a>
+                                            <button class="btn btn-primary">Modifier</button>
+                                            <button class="btn btn-danger">Supprimer</button>
+
+                                        </td>
+                                    </tr>
+                                    {% set i = i + 1 %}
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gestionItem">
+            {% set commentaires = allDatas["commentaires"] %}
+            {% set i = 1 %}
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalCommentaires">GESTION DES COMMENTAIRES</button>
+
+            <div class="modal fade" id="modalCommentaires" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gestion des catégories</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-striped table-hover"><thead>
+                                <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Titre</th>
+                                    <th scope="col">Contenu</th>
+                                    <th scope="col">internaute</th>
+                                    <th scope="col">Prestataire</th>
+                                    <th scope="col">Actions </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for com in commentaires %}
+                                    <tr>
+                                        <th scope="row">{{ i }}</th>
+                                        <td>{{ com.titre }}</td>
+                                        <td>{{ com.contenu }}</td>
+                                        <td>{{ com.internaute.id }}</td>
+                                        <td>{{ com.prestataire.id }}</td>
+                                        <td>
+                                            <button class="btn btn-danger">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    {% set i = i + 1 %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gestionItem">
+            {% set internautes = allDatas["internautes"] %}
+            {% set i = 1 %}
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalInternautes">GESTION DES INTERNAUTES</button>
+
+            <div class="modal fade" id="modalInternautes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gerer les internautes</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-striped table-hover"><thead>
+                                <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prénom</th>
+                                    <th scope="col">Newsletter</th>
+                                    <th scope="col">Statut</th>
+                                    <th scope="col">Actions </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for int in internautes %}
+                                    <tr>
+                                        <th scope="row">{{ i }}</th>
+                                        <td>{{ int.nom|capitalize }}</td>
+                                        <td>{{ int.prenom|capitalize  }}</td>
+                                        <td>
+                                            {% if int.newsletter == 1 %}
+                                                <button class="btn btn-success">accès</button>
+                                            {% else %}
+                                                <button class="btn btn-warning">pas accès </button>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if int.bloque == 1 %}
+                                                <button class="btn btn-warning">Supprimer</button>
+                                            {% else %}
+                                                <button class="btn btn-success">actif </button>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info">voir</button>
+                                            <button class="btn btn-primary">Modifier</button>
+                                            <button class="btn btn-danger">Supprimer</button>
+
+                                        </td>
+                                    </tr>
+                                    {% set i = i + 1 %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gestionItem">
+            {% set prestataires = allDatas["prestataires"] %}
+            {% set i = 1 %}
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalPrestataires">GESTION DES PRESTATAIRES</button>
+
+            <div class="modal fade" id="modalPrestataires" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gerer les prestataires</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-striped table-hover"><thead>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">N°</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Téléphone</th>
+                                        <th scope="col">Statut</th>
+                                        <th scope="col">Actions </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for presta in prestataires %}
+                                        <tr>
+                                            <th scope="row">{{ i }}</th>
+                                            <td>{{ presta.nom|capitalize }}</td>
+                                            <td>{{ presta.tel }}</td>
+                                            <td>
+                                                {% if presta.bloque == 1 %}
+                                                    <button class="btn btn-warning">Supprimé</button>
+                                                {% else %}
+                                                    <button class="btn btn-success">actif </button>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('profilPrestataire', { id :presta.id, role:'ADMIN'}) }}" class="btn btn-info">Voir</a>
+                                                <button class="btn btn-primary">Modifier</button>
+                                                <button class="btn btn-danger">Supprimer</button>
+
+                                            </td>
+                                        </tr>
+                                        {% set i = i + 1 %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gestionItem">
+            {% set internautes = allDatas["internautes"] %}
+            {% set i = 1 %}
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalImages">GESTION DES IMAGES</button>
+
+            <div class="modal fade" id="modalImages" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gerer les images</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gestionItem">
+            <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalNewsletter">GESTION DES NEWSLETTERS</button>
+
+            <div class="modal fade" id="modalNewsletter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  blockGestionModal" >
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title p-3 " id="exampleModalCenterTitle">Gerer des newsletters</h3>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

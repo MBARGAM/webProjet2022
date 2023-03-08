@@ -49,6 +49,18 @@ class InternauteRepository extends ServiceEntityRepository
       ;
   }
 
+
+    public function findAllInternaute(): array
+    {
+        return $this->createQueryBuilder('i')
+            ->orderBy('i.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
 //    /**
 //     * @return Internaute[] Returns an array of Internaute objects
 //     */

@@ -48,9 +48,17 @@
 
         <header>
             <div class="logoutMenuMobile">
-                <div class="headerLogo">
-                    <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
-                </div>
+
+                 {% if app.user.roles[0] == "PRESTATAIRE" %}
+                    <div class="headerLogo">
+                        <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    </div>
+                 {% else %}
+                     <div class="headerLogo">
+                         <a href="{{ path('administrateurPage',{ id:app.user.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                     </div>
+
+                 {% endif %}
                 <div class="menuLanguage  ">
                     <div class="langProfil ">
                         <div class="language langBlock">
@@ -124,9 +132,15 @@
                 </div>
             </div>
             <div class="logoutBigScreen">
+            {% if app.user.roles[0] == "PRESTATAIRE" %}
                 <div class="headerLogo">
                     <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" title="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
                 </div>
+            {% else %}
+                <div class="headerLogo">
+                    <a href="{{ path('administrateurPage',{ id:app.user.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                </div>
+            {% endif %}
                 <div class="menuLanguage  ">
                     <div class="langProfil ">
                         <div class="language langBlock">
@@ -174,7 +188,7 @@
                                 </div>
                             {% endif %}
                         {% else %}
-                            <div class="menuProfil" >
+                            <div class="menuProfil" hidden >
                                 <div class="envoyer iconItem ">
                                     <span class="d-block fa-solid fa-share text-center"><a href=""></a></span>
                                     <span class="d-block  iconMsg"><a href="">Envoyer</a></span>

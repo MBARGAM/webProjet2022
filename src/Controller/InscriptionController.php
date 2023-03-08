@@ -116,6 +116,7 @@ class InscriptionController extends AbstractController
 
             $utilisateur->setPassword($data['mdp']);
             $password = $passwordHasher->hashPassword($utilisateur, $data['mdp']);
+
             $utilisateur->setPassword($password);
             $utilisateur->setEmail(strtolower($data['email']));
             $utilisateur->setInternaute($internaute);
