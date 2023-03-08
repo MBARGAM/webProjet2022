@@ -123,6 +123,16 @@ class PrestataireRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public function allPrestataires(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     /*
          $conn = $this->getEntityManager()->getConnection();
       $sql = '

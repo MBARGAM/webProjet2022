@@ -1,0 +1,67 @@
+
+.titleAdmin{
+    font-size: 2rem;
+    font-weight: bold;
+    color: $vert;
+    margin: 4rem auto;
+  text-align: center;
+}
+.blockGestion {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:7rem;
+  margin : 6rem 20rem 10rem 20rem;
+
+   .gestionItem{
+
+     .search{
+       color : white;
+       font-size: 1.5rem;
+       font-weight: bold;
+       background-image: url('/public/images/wallpaper.jpg');
+       background-size: cover;
+       background-repeat: no-repeat;
+       height: 15rem;
+
+     }
+   }
+}
+
+.blockGestionModal{
+    .modal-content{
+            width: 170%;
+            max-width: 170%;
+             height: 600px;
+            margin-left:0;
+            border-radius: 0;
+            border: 0;
+            box-shadow: none;
+            background-color: rgba(235,250,242,255);
+
+        }
+        .modal-header{
+            border-bottom: 0;
+            padding: 0;
+             color :$vert;
+            margin: 0 auto;
+        }
+        .modal-body{
+            padding: 0;
+        }
+        .modal-footer{
+            border-top: 0;
+            padding: 0;
+        }
+
+}
+
+@media screen and (min-width: 500px) {
+
+}
+@media screen and (min-width: 720px) {
+
+}
+@media screen and (min-width: 960px) {
+
+}

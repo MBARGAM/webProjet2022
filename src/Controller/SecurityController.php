@@ -59,10 +59,11 @@ class SecurityController extends AbstractController
         $user = $this->getUser();// recupere l'utilisateur connecté envoye par le security.yaml
         $roles = $user->getRoles();// recupere le tableau role de l'utilisateur
         $role = $roles[0]; // recupere le role de l'utilisateur
-         $id = $user->getPrestataire()->getId();
+         $id = $user->getId();
+
 
         if($role == "ADMIN"){
-            return $this->redirectToRoute('profilAdmin', ['id' => $id]);
+            return $this->redirectToRoute('administrateurPage', ['id' => $id]);
         }elseif($role == "PRESTATAIRE"){
             return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => $user->getRoles()[0]]);
         }elseif($role == "INTERNAUTE"){

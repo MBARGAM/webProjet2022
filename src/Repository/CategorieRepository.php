@@ -49,6 +49,16 @@ class CategorieRepository extends ServiceEntityRepository
             ;
     }
 
+    public function AllCategorie(){
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.nom', 'ASC')
+            ->distinct(True)
+            ->orderBy('a.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findCategorie($id){
         return $this->createQueryBuilder('a')
             ->select('a')
