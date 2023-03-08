@@ -96,7 +96,7 @@ class PromotioPromotionController extends AbstractController
                 $promotion->setDescription($data->getDescription());
                 $promotion->setDebutAffichage($data->getDebutAffichage());
                 $promotion->setFinAffichage($data->getFinAffichage());
-                
+
                 $entityManager->persist($promotion);
                 $entityManager->flush();
 

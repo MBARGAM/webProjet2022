@@ -12,7 +12,52 @@
      {% endif %}
      <div class="searchEtDiapo">
           <div>
-               <h6 class="text-center search">Recherche</h6>
+               <div class=" text-center mx-auto">
+                    <button class="text-center search p-1 w-75 btn dropdown-toggle" id="rechercheRapide" data-bs-toggle="modal" data-bs-target="#modalSearch">Recherche rapide  </button>
+
+               </div>
+               {# Block de recherche rapide : ici on cree une modale permettant de faire une rechercher #}
+               <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                         <div class="modal-content">
+                              <div class="modal-header text-center">
+
+                                   <h5 class="modal-title " id="exampleModalCenterTitle">Recherche rapide</h5>
+                                   <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                   </button>
+                              </div>
+                              <div class="modal-body">
+
+                                   <form action="{{ path('fastSearch') }}" method="post">
+                                        <div class="form-group">
+                                             <label for="prestataire">Prestataire</label>
+                                             <input type="text" class="form-control" id="prestataire" name="prestataire" placeholder="tout les prestataires">
+                                        </div>
+                                        <div class="form-group">
+                                             <label for="localite">Localité</label>
+                                             <select class="form-control" id="localite" name="localite">
+                                                  <option value="">Toutes les Provinces</option>
+                                                  {% for data in localite %}
+                                                       <option value="{{ data.id }}">{{ data.localite|capitalize }}</option>
+                                                  {% endfor %}
+                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                             <label for="categorie">Catégorie</label>
+                                             <select class="form-control" id="categorie" name="categorie">
+                                                  {% for data in categorie %}
+                                                       <option value="{{ data.id }}">{{ data.nom|capitalize }}</option>
+                                                  {% endfor %}
+                                             </select>
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary btnItem">Go</button>
+                                   </form>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
                {% block search %}
                     {{ form_start(form)}}
 
@@ -39,6 +84,7 @@
                               {{ form_row(form.submit) }}
                          </div>
                     </div>
+
                     {{ form_end(form) }}
 
                {% endblock %}

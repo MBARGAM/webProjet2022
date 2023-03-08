@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Image;
+use App\Entity\Localite;
 use App\Entity\Prestataire;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -52,7 +53,7 @@ class SearchController extends AbstractController
         return $tabPrestataire;
     }
 
-    // route de redirection de la composante recher
+    // route de redirection de la composante rechercher
     /**
      * @Route("/rechercher/{idCategorie}/{idLocalite}/{idCommune}/{idCp}/{nomPrestataire}/{NoPage}", name="search")
      */
@@ -85,7 +86,20 @@ class SearchController extends AbstractController
                 'NoPage'=>1
             ];
 
-            return $this->redirectToRoute('search', $data);
+            return $this->redirectToRoute('search', [
+
+                'idCategorie' => $data["idCategorie"],
+
+                'idLocalite' => $data["idLocalite"],
+
+                'idCommune' => $data["idCommune"],
+
+                'idCp' => $data["idCp"],
+
+                'NoPage'=> 1,
+
+                'nomPrestataire' => $data["nomPrestataire"]
+            ]);
 
         }
 
@@ -114,9 +128,9 @@ class SearchController extends AbstractController
         $tabPrestataire = self::resultats($listePrestataire,$entityManager);
 
 
-       /*cette operation permet de gerer la pagination du resultat de la recherche et de la page de recherche
-         ici l affichage est fait sur 12 prestataires page et ensuite on calcule le nbre de page que le resultat et on affiche
-       les 2 nbre multiple de 5 les plus proche*/
+       /* cette operation permet de gerer la pagination du resultat de la recherche et de la page de recherche
+         ici l affichage est fait avec 12 prestataires par page et ensuite on calcule le nbre de page que le resultat et on affiche
+       les 2 nbres multiple de 5 les plus proche*/
 
         if(  intdiv(count($tabPrestataire),12) < $data["NoPage"] ){
 
@@ -146,10 +160,11 @@ class SearchController extends AbstractController
             $page = $data["NoPage"];
         }
 
-        /*2eme appel de la fonction resultats pour recuperer le tableau des prestataires recherchés reelement a afficher
+        /* 2eme appel de la fonction resultats : elle est appelee pour recuperer le tableau des prestataires recherchés reelement et a afficher
         selon les conditions de pagination
-        LE RESULTAT DE LA RECHERCHED- DEPEND DU NOMBRE DE PRESTATAIRES TROUVES SI MOIN DE 12 PRESTATAIRES
-        ALORS ON AURA UNE MEME PAGE QUELQUE SOIT LE PAGE CLIQUé*/
+        LE RESULTAT DE LA RECHERCHE - DEPEND DU NOMBRE DE PRESTATAIRES TROUVES SI MOIN DE 12 PRESTATAIRES
+        ALORS ON AURA UNE MEME PAGE QUELQUE SOIT LE PAGE CLIQUé
+        */
         $listePrestataire = $requete->findAllPrestataire($data,$laPage=$page);
 
         $tabPrestataire = self::resultats($listePrestataire,$entityManager);
@@ -164,6 +179,10 @@ class SearchController extends AbstractController
 
         $listeCategorie = $categorie-> findAllCategorie();
 
+        $localite = $entityManager->getRepository(Localite::class);
+
+        $listeLocalite = $localite->findAllLocalite();
+
 
 
         return $this->render('prestataire/index.html.twig', [
@@ -176,7 +195,50 @@ class SearchController extends AbstractController
 
             'categorie' => $listeCategorie,
 
+            'localite' => $listeLocalite
+
         ]);
     }
+
+    /**
+     * @Route("/recherche/rapide", name="fastSearch")
+     */
+
+    public function rechercheRapide(EntityManagerInterface $entityManager,Request $request): Response
+    {
+        $action = $request->request->all();
+
+        $data = [
+            'idCategorie' => $action["categorie"]== null ? 'null' : $action["categorie"],
+
+            'idLocalite' => $action["localite"]== null ? 'null' : $action["localite"],
+
+            'idCommune' => 'null',
+
+            'idCp' => 'null',
+
+            'nomPrestataire' => $action["prestataire"]== null ? 'null' : $action["nomPrestataire"],
+
+            'NoPage'=>1
+        ];
+
+
+           return $this->redirectToRoute('search', [
+
+            'idCategorie' => $data["idCategorie"],
+
+            'idLocalite' => $data["idLocalite"],
+
+            'idCommune' => $data["idCommune"],
+
+            'idCp' => $data["idCp"],
+
+            'nomPrestataire' => $data["nomPrestataire"],
+
+            'NoPage'=> $data["NoPage"],
+
+      ]);
+    }
+
 
 }

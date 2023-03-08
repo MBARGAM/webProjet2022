@@ -35,6 +35,7 @@
         <script src="{{ asset('js/setPcitureInput.js')  }}"></script>
        <script src="{{ asset('js/localisation.js')  }}"></script>
          <script src="{{ asset('js/alertMsg.js')  }}"></script>
+        <script src="{{ asset('js/blockSearch.js')  }}"></script>
 
         {#  <script src="{{ asset('js/passwordCheck.js')  }}"></script> a activer pour les mdp#}
         {% endblock %}
@@ -44,10 +45,11 @@
 {% block header %}
 
     {% if app.user  %}
+
         <header>
             <div class="logoutMenuMobile">
                 <div class="headerLogo">
-                    <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
                 </div>
                 <div class="menuLanguage  ">
                     <div class="langProfil ">
@@ -123,7 +125,7 @@
             </div>
             <div class="logoutBigScreen">
                 <div class="headerLogo">
-                    <a href="#"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" title="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
                 </div>
                 <div class="menuLanguage  ">
                     <div class="langProfil ">
