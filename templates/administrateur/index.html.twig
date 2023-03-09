@@ -3,16 +3,12 @@
 {% block title %}interface d'administration {% endblock %}
 
 {% block body %}
-
     <h1 class="titleAdmin  ">INTERFACE D'ADMINISTRATION</h1>
     <div class="blockGestion">
-
         <div class="gestionItem">
         {% set categorie = allDatas["categorie"]|slice(1) %}
             {% set i = 1 %}
-
             <button class="text-center search p-1 w-100 btn dropdown-toggle" data-bs-toggle="modal" data-bs-target="#modalCatégorie">GESTION DES CATEGORIES</button>
-
             <div class="modal fade" id="modalCatégorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog  blockGestionModal" >
                     <div class="modal-content">
