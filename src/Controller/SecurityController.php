@@ -17,7 +17,6 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils,EntityManagerInterface $entityManager): Response
     {
 
-
         $categorie = $entityManager->getRepository(Categorie::class);
 
         $listeCategorie = $categorie-> findAllCategorie();//liste des categories
@@ -29,13 +28,16 @@ class SecurityController extends AbstractController
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-
         return $this->render('security/login.html.twig',
+
             ['last_username' => $lastUsername,
+
                 'error' => $error,
+
                 'categorie' => $listeCategorie,
             ]);
     }
@@ -45,7 +47,6 @@ class SecurityController extends AbstractController
      */
     public function logout(): Response
     {
-        //dd(["oui"]);
       //  throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
 
      return $this->redirectToRoute('pageAccueil');
@@ -57,19 +58,29 @@ class SecurityController extends AbstractController
     public function dispatcher(): Response
     {
         $user = $this->getUser();// recupere l'utilisateur connecté envoye par le security.yaml
+
         $roles = $user->getRoles();// recupere le tableau role de l'utilisateur
+
         $role = $roles[0]; // recupere le role de l'utilisateur
+
          $id = $user->getId();
 
-
         if($role == "ADMIN"){
+
             return $this->redirectToRoute('administrateurPage', ['id' => $id]);
+
         }elseif($role == "PRESTATAIRE"){
+
             return $this->redirectToRoute('profilPrestataire', ['id' => $id, 'role' => $user->getRoles()[0]]);
+
         }elseif($role == "INTERNAUTE"){
+
             return $this->redirectToRoute('profilInternaute', ['id' => $id]);
+
         }else{
+
             return $this->redirectToRoute('pageAccueil');
+
         }
     }
 }

@@ -23,7 +23,7 @@ class InscriptionController extends AbstractController
 {
     /*
           block permettant l'envoi d'un email de confirmation
-            -recuperation des données qui seront envoyées dans le mail obtneues par le formulaire de preinscription
+            -recuperation des données qui seront envoyées dans le mail obtenues par le formulaire de preinscription
             - mise en  place de la classe EmailSender qui est dans le dossier Classes
             -recuperation du token qui sera envoyé dans le mail
        */
