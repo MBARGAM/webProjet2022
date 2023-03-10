@@ -22,6 +22,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class HomeController extends AbstractController
 {
+    /*
+      page d'accueil
+       - recupere les donnees de la base de donnees pour les afficher sur la page d'accueil
+   */
     /**
      * @Route("/accueil", name="pageAccueil")
      */
@@ -77,10 +81,9 @@ class HomeController extends AbstractController
             }
         }
 
-        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
+        //choix  d'une categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCatehgories = count($listeCategorie);
-
 
         $random = rand(0,$tailleCatehgories-1);
 
@@ -96,38 +99,36 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-         // recuperaion des données du formulaire et envoi de la data vers la controlleur de recherche pour afficher les resultats
         if($form->isSubmitted() && $form->isValid()){
 
-            $data = $form->getData();
+        $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
+        $idCategorie = $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+        $idLocalite = $data["nomLocalite"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+        $idCommune = $data["nomCommune"]->getId();
 
-            $idCp = $data["cp"]->getId();
+        $idCp = $data["cp"]->getId();
 
-            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+        $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
-           return $this->redirectToRoute('search', [
+       return $this->redirectToRoute('search', [
 
-                'idCategorie' => $idCategorie,
+        'idCategorie' => $idCategorie,
 
-                'idLocalite' => $idLocalite,
+        'idLocalite' => $idLocalite,
 
-                'idCommune' => $idCommune,
+        'idCommune' => $idCommune,
 
-                'idCp' => $idCp,
+        'idCp' => $idCp,
 
-                'NoPage'=> 1,
+        'NoPage'=> 1,
 
-                'nomPrestataire' => $nomPrestataire
+        'nomPrestataire' => $nomPrestataire
 
             ]);
         }
-
 
         return $this->renderForm('home/index.html.twig', [
 
@@ -147,6 +148,12 @@ class HomeController extends AbstractController
 
         ]);
     }
+
+    /*
+         page d'accueil apres la presinscription
+        - recuperer les donnees de la base de donnees pour les afficher sur la page d'accueil
+        - affiche le prenom de l'utilisateur qui vient de se presinscrire avec un message de bienvenue
+   */
 
     /**
      * @Route("/accueil/preinscription/{prenom}", name="monAccueil")
@@ -203,10 +210,9 @@ class HomeController extends AbstractController
             }
         }
 
-        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
-        //choix aléatoire d'une categorie
-        $tailleCatehgories = count($listeCategorie);
+        //choix  d'une categorie aleatoire a afficher sur la page d'accueil
 
+        $tailleCatehgories = count($listeCategorie);
 
         $random = rand(0,$tailleCatehgories-1);
 
@@ -276,6 +282,14 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /*
+      block traitant l autocompletion des champs de recherche
+         - recuperation des donnees envoyees par la requete ajax
+         - envoi des donnees vers la base de donnees
+         - recuperation des donnees de la base de donnees
+         - envoi des donnees vers ajax
+   */
+
      /**
       * @Route("accueil/{id}", name="autocompletion" , methods="POST")
       */
@@ -298,6 +312,14 @@ class HomeController extends AbstractController
 
           return new JsonResponse($result);
     }
+
+    /*
+      block traitant l autocompletion des champs de recherche
+         - recuperation des donnees envoyees par la requete ajax
+         - envoi des donnees vers la base de donnees
+         - recuperation des donnees de la base de donnees
+         - envoi des donnees vers ajax
+   */
 
     /**
      * @Route("/user/{id}", name="autocomplete1" , methods="POST")
@@ -322,6 +344,14 @@ class HomeController extends AbstractController
 
         return new JsonResponse($result);
     }
+
+    /*
+      block traitant l autocompletion des champs de recherche
+         - recuperation des donnees envoyees par la requete ajax
+         - envoi des donnees vers la base de donnees
+         - recuperation des donnees de la base de donnees
+         - envoi des donnees vers ajax
+   */
 
     /**
      * @Route("/accueil/{msg}", name="pageAccueilInformative")
@@ -383,7 +413,6 @@ class HomeController extends AbstractController
         $monImage = $categoryImage == null ? 'categorie.jpg' : $categoryImage[0]['nom'];
 
         $categorieChoisie  = [$categorieAleatoire,$monImage];
-        // dd($categorieChoisie);
 
         $form = $this->createForm(SearchType::class);
 

@@ -16,10 +16,17 @@ use Twig\Environment;
 class EnvoiEmailController extends AbstractController
 {
 
-  public function is_mail($s){
-        return filter_var($s, FILTER_VALIDATE_EMAIL);
-    }
+     /*  fonction permettant de verifier si un email est valide ou non */
+      public function is_mail($s){
+            return filter_var($s, FILTER_VALIDATE_EMAIL);
+      }
 
+    /*
+      block permettant de verifier l existence ou non de l email de l internaute dans la base de donnees
+        - le code ajax envoie l email a verifier
+        - le code php verifie si l email existe ou non dans la base de donnees
+        - le code php renvoie une reponse au code ajax
+    */
     /**
      * @Route("/internaute/email/{email}", name="internaiteCheckEmail" )
      */
@@ -31,7 +38,9 @@ class EnvoiEmailController extends AbstractController
             $searchEmail = $entityManager->getRepository(Utilisateur::class)->findOneBy(['email' => $email]);
 
             if(!empty($searchEmail)){
+
                return new Response('false');
+
             }else{
                return new Response('true');
             }
@@ -43,6 +52,12 @@ class EnvoiEmailController extends AbstractController
     }
 
 
+    /*
+     block permettant de verifier l existence ou non de l email du prestataire dans la base de donnees
+       - le code ajax envoie l email a verifier
+       - le code php verifie si l email existe ou non dans la base de donnees
+       - le code php renvoie une reponse au code ajax
+   */
     /**
      * @Route("/prestataire/email/{email}", name="prestataireCheckEmail" )
      */
@@ -54,8 +69,11 @@ class EnvoiEmailController extends AbstractController
             $searchEmail = $entityManager->getRepository(Utilisateur::class)->findOneBy(['email' => $email]);
 
             if(!empty($searchEmail)){
+
                 return new Response('false');
+
             }else{
+
                 return new Response('true');
             }
 
@@ -64,7 +82,6 @@ class EnvoiEmailController extends AbstractController
             return new Response('false');
         }
     }
-
 
 }
 ?>

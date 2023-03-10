@@ -19,14 +19,17 @@ class AdresseController extends AbstractController
     {
         $data = new Adresses();
 
+        /* cette fontion est laissé en commentaire car elle a été utilisé pour l'insertion des
+        codes postaux  , commune et localite dans la base de données
+
         /*debut insertion des codes postaux
-                  $codePostaux = $data::cp();
-                  foreach ($codePostaux as $key=>$value){
-                    $newCp = new CodePostal();
-                    $newCp->setCp($value);
-                    $entityManager->persist($newCp);
-                    $entityManager->flush();
-                }
+          $codePostaux = $data::cp();
+          foreach ($codePostaux as $key=>$value){
+            $newCp = new CodePostal();
+            $newCp->setCp($value);
+            $entityManager->persist($newCp);
+            $entityManager->flush();
+             }
         fin insertion des  code postaux */
         /* debut insertion des commune
                 $cpRepository = $entityManager->getRepository(CodePostal::class);
