@@ -16,6 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdministrateurController extends AbstractController
 {
+    /*
+         block de code qui permet de faire la gestion du site
+        -recherche des infos en base de donneeq
+        - affichages des infos dans la vue
+   */
+
     /**
      * @Route("/administrateur/{id}", name="administrateurPage")
      */
@@ -49,18 +55,25 @@ class AdministrateurController extends AbstractController
 
         $images = $image->findAll();
 
-
         $data = [
+
             'categorie' => $listeCategorie,
+
             'internautes' => $internautes,
+
             'prestataires' => $prestataires,
+
             'newsletters' => $newsletters,
+
             'commentaires' => $commentaires,
+
             'images' => $images,
+
             'admin' => $admin,
         ];
 
         return $this->render('administrateur/index.html.twig', [
+
             'allDatas' => $data,
         ]);
     }

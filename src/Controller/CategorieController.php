@@ -22,36 +22,45 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategorieController extends AbstractController
 {
+    /*
+      block de traitement d un nouvel ajout d une categorie
+      -recuperation des donnees du formulaire
+      - traitement de l image de la categorie
+      - insertion de la categorie dans la base de donnees
+   */
     /**
      * @Route("/user/ajout/categorie/{role}/{id}", name="ajouterCategorie")
      */
     public function ajouterCategorie($id,$role,EntityManagerInterface $entityManager,Request $request,SluggerInterface $slugger): Response
     {
+        // cette fontion gere l insertion d un categorie par soit admin ou prestataire
         $form = $this->createForm(CategorieType::class);
+
         $form->handleRequest($request);
-
-
 
        $data = $entityManager->getRepository(Prestataire::class)->findPrestataire($id);
 
         $prestataire = new Prestataire();
-        $prestataire->setId($id);
-        $prestataire->setNom(strtolower($data[0]['nom']));
-        $prestataire->setSiteweb(strtolower($data[0]['site']));
-        $prestataire->setDescription(strtolower($data[0]['description']));
-        $prestataire->setNumeroTva(strtolower($data[0]['NoTVA']));
-        $prestataire->setTel(strtolower($data[0]['tel']));
-        $prestataire->setBloque($data[0]['bloque']);
 
+        $prestataire->setId($id);
+
+        $prestataire->setNom(strtolower($data[0]['nom']));
+
+        $prestataire->setSiteweb(strtolower($data[0]['site']));
+
+        $prestataire->setDescription(strtolower($data[0]['description']));
+
+        $prestataire->setNumeroTva(strtolower($data[0]['NoTVA']));
+
+        $prestataire->setTel(strtolower($data[0]['tel']));
+
+        $prestataire->setBloque($data[0]['bloque']);
 
         if($form->isSubmitted() && $form->isValid()){
 
             $datas = $form->getData();
 
-            // traitement de l'image de la categorie
-
-
-
+            // traitement de l'image de la categorie et insertion dans la base de données
             $categorie = new Categorie();
 
             $categorie->setNom($datas->getNom());
@@ -60,7 +69,7 @@ class CategorieController extends AbstractController
 
             $categorie->setMisEnAvant(false);
 
-            // verification du createur de la categorie
+            // verification du role de celui qui ajoute  la categorie
             if($role == 'PRESTATAIRE'){
 
                 $categorie->setValidation(false);
@@ -130,14 +139,18 @@ class CategorieController extends AbstractController
         ]);
     }
 
-
+    /*
+     block de traitement d une categorie
+     -recherche des infos en base de donnee
+     - affichage
+    */
     /**
      * @Route("/user/categorie/{id}", name="categorieCourante")
      */
     public function index($id,EntityManagerInterface $entityManager,Request $request): Response
     {
 
-        // donnees pour le formulaire de recherche
+        // gestion de la page categorie courante
         $commune = $entityManager->getRepository(Commune::class);
 
         $listeCommune = $commune-> findAllCommune();//liste des communes
@@ -184,30 +197,42 @@ class CategorieController extends AbstractController
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
             return $this->redirectToRoute('search', [
+
                 'idCategorie' => $idCategorie,
+
                 'idLocalite' => $idLocalite,
+
                 'idCommune' => $idCommune,
+
                 'idCp' => $idCp,
+
                 'NoPage'=> 1,
+
                 'nomPrestataire' => $nomPrestataire
             ]);
         }
-
+       /* verification de l existence de l image de la categorie courante si elle a ete telechargee
+       et si l image n est pas charge au prealable on alloue une image par defaut */
         $limage = $imageCourante[0]['nom'] == null ? 'categorie.jpg' : $imageCourante[0]['nom'];
 
         return $this->renderForm('categorie/categorieCourante.html.twig', [
+
             'form' => $form,
+
             'commune'=>$listeCommune,
+
             'localite'=>$listeLocalite,
+
             'cp'=>$listeCp,
+
             'categorie'=> $listeCategorie,
+
             'categorieCourante' => $categorieCourante[0],
+
             'nomImage'=> $limage,
+
             'prestataires' => $listePrestataire,
-
-
         ]);
-
 
     }
 }
