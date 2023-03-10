@@ -30,7 +30,12 @@ use Twig\Environment;
 
 class PrestataireController extends AbstractController
 {
-
+    /*
+          block permettant l'envoi d'un email de confirmation
+            -recuperation des données qui seront envoyées dans le mail obtenues par le formulaire de preinscription
+            - mise en  place de la classe EmailSender qui est dans le dossier Classes
+            -recuperation du token qui sera envoyé dans le mail
+       */
     public function sendEmail($email,$nom,$typeInscription ,$mailer, $environment,$token):void
     {
         $from = 'justyn7891@yahoo.fr';
@@ -59,6 +64,15 @@ class PrestataireController extends AbstractController
 
         $newEmail->sendInscriptionEmail($to, $from, $subject, $message, $template, $parametres);
     }
+
+    /*
+     block traitant la preinscription du prestataire
+        - récuperation des données du formulaire de preinscription
+       - creation d'un token et insertion dans la base de données
+       - envoi d'un email de confirmation
+       - redirection vers la page d'accueil
+       - affchahe du formulaire de preinscription si pas complété
+   */
 
     /**
      * @Route("/prestataire/{typeInscription}", name="presignupPrestataire")
@@ -105,7 +119,13 @@ class PrestataireController extends AbstractController
         ]);
     }
 
-    // confirmation de l'inscription et insertion dans la base de données internaute et utilisateur
+
+    /*
+     block traitant le traitement de l'inscription du prestataire
+        - recuperation des données du formulaire d' inscription
+        - insertion dans la base de données
+        - redirection vers la page d'accueil
+   */
     /**
      * @Route("/inscriptionPrestataire/{nom}/{typeInscription}/{email}", name="formulairePrestataire" , methods={"GET","POST"})
      */

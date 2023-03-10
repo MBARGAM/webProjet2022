@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StageController extends AbstractController
 {
+    /*
+        - gestion des stages
+        - recuperation des donnees du stage lors de l inscription
+        - traitement et mise en base de donnees
+    */
     /**
      * @Route("/stage/{id}", name="lesStages")
      */
@@ -68,6 +73,11 @@ class StageController extends AbstractController
         ]);
     }
 
+    /*
+       - ajout d un stage
+       - recuperation des donnees du stage aupres du formulaire d ajout
+       - traitement et mise en base de donnees
+   */
 
     /**
      * @Route("/user/ajout/stage/{id}", name="ajoutStage")

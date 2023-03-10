@@ -16,8 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
 
-  /* cette fonction recupere le tableau des prestataires recherchés , cree un tableau vide
-  et boucle sur chaque entree tout en recherchant le logo de celui ci et reforme un tableau de resultats */
+  /*
+    cette fonction statique recupere le tableau des prestataires recherchés , cree un tableau vide
+    et boucle sur chaque entree tout en recherchant le logo de celui ci et reconstitue  un tableau de resultats
+  */
 
     static function resultats($tableau,EntityManagerInterface $entityManager)
     {
@@ -53,7 +55,12 @@ class SearchController extends AbstractController
         return $tabPrestataire;
     }
 
-    // route de redirection de la composante rechercher
+    /*
+      traitement des donnees de recherche :
+        - recuperation des donnees envoyees par tout les  formulaires
+        -recherche des donnees dans la bd en fonction des criteres de recherche
+        - envoi des resultats de recherche
+  */
     /**
      * @Route("/rechercher/{idCategorie}/{idLocalite}/{idCommune}/{idCp}/{nomPrestataire}/{NoPage}", name="search")
      */
@@ -103,7 +110,7 @@ class SearchController extends AbstractController
 
         }
 
-        //donnees recues du formulaire de recherche soumis en dehors de la page de recherche
+        //tableau recapitulant les s donnes a rechercher
         $data = [
             'idCategorie' => $idCategorie,
 
@@ -130,7 +137,8 @@ class SearchController extends AbstractController
 
        /* cette operation permet de gerer la pagination du resultat de la recherche et de la page de recherche
          ici l affichage est fait avec 12 prestataires par page et ensuite on calcule le nbre de page que le resultat et on affiche
-       les 2 nbres multiple de 5 les plus proche*/
+       les 2 nbres multiple de 5 les plus proche
+       */
 
         if(  intdiv(count($tabPrestataire),12) < $data["NoPage"] ){
 
@@ -160,10 +168,11 @@ class SearchController extends AbstractController
             $page = $data["NoPage"];
         }
 
-        /* 2eme appel de la fonction resultats : elle est appelee pour recuperer le tableau des prestataires recherchés reelement et a afficher
-        selon les conditions de pagination
-        LE RESULTAT DE LA RECHERCHE - DEPEND DU NOMBRE DE PRESTATAIRES TROUVES SI MOIN DE 12 PRESTATAIRES
-        ALORS ON AURA UNE MEME PAGE QUELQUE SOIT LE PAGE CLIQUé
+        /*
+            2eme appel de la fonction resultats : elle est appelee pour recuperer le tableau des prestataires recherchés reelement et a afficher
+            selon les conditions de pagination
+            LE RESULTAT DE LA RECHERCHE - DEPEND DU NOMBRE DE PRESTATAIRES TROUVES SI MOIN DE 12 PRESTATAIRES
+            ALORS ON AURA UNE MEME PAGE QUELQUE SOIT LE PAGE CLIQUé
         */
         $listePrestataire = $requete->findAllPrestataire($data,$laPage=$page);
 
