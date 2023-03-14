@@ -144,7 +144,7 @@ class StageController extends AbstractController
     public function stage($id,EntityManagerInterface $entityManager,Request $request): Response
     {
 
-        return $this->renderForm('stage/index.html.twig', [
+        return $this->renderForm('stage/stageCourant.html.twig', [
 
             'infoBlock' => 'menuConnexion',
         ]);
