@@ -73,8 +73,8 @@
                                             <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
                                         </div>
                                         <div class="contacter iconItem">
-                                            <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                            <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                            <span class="d-block fa-solid fa-envelope text-center"><a href="{{ path('stageCourant' , { id:1}) }}"></a></span>
+                                            <span class="d-block  iconMsg"><a href="{{ path('stageCourant' , { id:1}) }}">Contacter</a></span>
                                         </div>
                                         <div class="favoris iconItem">
                                             <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
@@ -112,8 +112,8 @@
                                     <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
                                 </div>
                                 <div class="contacter iconItem">
-                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href="{{ path('stageCourant' , { id:1}) }}"></a></span>
+                                    <span class="d-block  iconMsg"><a href="{{ path('stageCourant' , { id:1}) }}">Contacter</a></span>
                                 </div>
                                 <div class="favoris iconItem">
                                     <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
@@ -194,8 +194,8 @@
                                     <span class="d-block  iconMsg"><a href="">Envoyer</a></span>
                                 </div>
                                 <div class="contacter iconItem">
-                                    <span class="d-block fa-solid fa-envelope text-center"><a href=""></a></span>
-                                    <span class="d-block  iconMsg"><a href="">Contacter</a></span>
+                                    <span class="d-block fa-solid fa-envelope text-center"><a href="{{ path('stageCourant' , { id:1}) }}"></a></span>
+                                    <span class="d-block  iconMsg"><a href="{{ path('stageCourant' , { id:1}) }}">Contacter</a></span>
                                 </div>
                                 <div class="favoris iconItem">
                                     <span class="d-block fa-solid fa-star text-center"><a href=""></a></span>
@@ -232,8 +232,8 @@
                 <div class="menuMobile">
                     <div class="menuBurger">
                         <a class="dropdown-item menuItem listItem" href="{{ path('pageAccueil') }}">Accueil</a>
-                        <a class="dropdown-item menuItem listItem" href="#">A Propos</a>
-                        <a class="dropdown-item menuItem listItem" href="#">Contactez-nous</a>
+                        <a class="dropdown-item menuItem listItem" href="{{ path('stageCourant' , { id:1}) }}">A Propos</a>
+                        <a class="dropdown-item menuItem listItem" href="{{ path('stageCourant' , { id:1}) }}">Contactez-nous</a>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle wn menuItem listItem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -272,7 +272,7 @@
                     <nav class="navbar-nav navbar-expand-lg navElt " >
                             <ul class="navbar-nav" >
                                 <li class="nav-item"> <a class="nav-link " href="{{ path('pageAccueil') }}">Accueil<span class="sr-only">(current)</span></a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Contactez-nous</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ path('stageCourant' , { id:1}) }}">Contactez-nous</a></li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Catégories
@@ -455,9 +455,9 @@
             <a href="#" class="siteName">doTonNyanga</a>
         </div>
         <div class="footerMenu">
-            <span class="newsletter spanFooter"><a href="#"  class="footerItem">Newsletters</a></span>
-            <span class="contact spanFooter"><a href="#" class="footerItem" >Contactez-nous</a></span>
-            <span class="about spanFooter" ><a href="#" class="footerItem">A propos</a></span>
+            <span class="newsletter spanFooter"><a href="{{ path('stageCourant' , { id:1}) }}"  class="footerItem">Newsletters</a></span>
+            <span class="contact spanFooter"><a href="{{ path('stageCourant' , { id:1}) }}" class="footerItem" >Contactez-nous</a></span>
+            <span class="about spanFooter" ><a href="{{ path('stageCourant' , { id:1}) }}" class="footerItem">A propos</a></span>
         </div>
     </div>
 {% endblock %}
