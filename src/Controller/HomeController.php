@@ -22,6 +22,15 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @Route("/", name="accueil")
+     */
+    public function home(): response
+    {
+      return  $this->redirectToRoute("pageAccueil");
+    }
+
+
     /*
       page d'accueil
        - recupere les donnees de la base de donnees pour les afficher sur la page d'accueil
