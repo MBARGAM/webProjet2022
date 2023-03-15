@@ -361,6 +361,7 @@ class PrestataireController extends AbstractController
 
             $prestataireDatas[] = $userImgData;
         }
+
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCategories = count($listeCategorie);
@@ -492,11 +493,6 @@ class PrestataireController extends AbstractController
 
             $prestataireDatas[] = $userImgData;
         }
-
-        // retrait de la premiere occurrence de categorie
-         array_shift($listeCategorie);
-
-         $listeCategorie = $listeCategorie ;
 
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie

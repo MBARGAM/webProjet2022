@@ -86,7 +86,6 @@ class HomeController extends AbstractController
                     $prestataireDatas[] = $userImgData;
 
                 }
-
             }
         }
 

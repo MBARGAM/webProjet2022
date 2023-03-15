@@ -202,7 +202,8 @@
                     </a>
                     <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
                         {% if categorie is defined %}
-                            {% for data in categorie  %}
+                            {% set categories = categorie|slice(1) %}
+                            {% for data in categories  %}
                                 <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id}) }}">{{ data.__toString|capitalize }}</a>
                             {% endfor %}
                         {% endif %}
