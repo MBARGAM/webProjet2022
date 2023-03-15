@@ -49,6 +49,15 @@ class CategorieRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findCategorieChoisie(){
+        return $this->createQueryBuilder('a')
+            ->Where('a.misEnAvant = 1')
+            ->AndWhere('a.validation = 1')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function AllCategorie(){
         return $this->createQueryBuilder('a')
             ->orderBy('a.nom', 'ASC')
@@ -87,6 +96,7 @@ class CategorieRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
 
 
 //    /**

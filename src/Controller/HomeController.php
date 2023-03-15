@@ -89,19 +89,20 @@ class HomeController extends AbstractController
             }
         }
 
-        //choix  d'une categorie aleatoire a afficher sur la page d'accueil
-        //choix aléatoire d'une categorie
-        $tailleCatehgories = count($listeCategorie);
+      // recuperation de la categorie choisie par la prestataire
 
-        $random = rand(0,$tailleCatehgories-1);
+        $req = $entityManager->getRepository(Categorie::class);
 
-        $categorieAleatoire = $listeCategorie[$random];
+        $categorieChoisie= $req->findCategorieChoisie();
 
-        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
+        $categorieChoisie = $categorieChoisie[0];
+
+        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
 
         $monImage = $img == null ? 'categorie.jpg' : $img;
 
-        $categorieChoisie  = [$categorieAleatoire,$monImage];
+        $categorieChoisie  = [$categorieChoisie,$monImage];
 
         $form = $this->createForm(SearchType::class);
 
