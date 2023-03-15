@@ -41,6 +41,7 @@
                                 <div class="form-group">
                                     <label for="categorie">Catégorie</label>
                                     <select class="form-control" id="categorie" name="categorie">
+
                                         {% for data in categorie %}
                                             <option value="{{ data.id }}">{{ data.nom|capitalize }}</option>
                                         {% endfor %}
@@ -134,6 +135,7 @@
                          Categories du prestataire
                     </a>
                     <div class="dropdown-menu block" aria-labelledby="navbarDropdown">
+
                         {% for categorie in userCategories %}
                             <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:categorie["id"]}) }}">{{ categorie["nom"]|capitalize }}</a>
                         {% endfor %}
@@ -174,7 +176,7 @@
                     </a>
                     <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
                         {% for promotion in userPromotions %}
-                            <a class="dropdown-item link" href="{{ path('promotionCourante' , { id:promotion["id"]}) }}">{{ promotion["nom"]|capitalize }}</a>
+                            <a class="dropdown-item link"  href="{{ path('stageCourant' , { id:1}) }}">{{ promotion["nom"]|capitalize }}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -217,7 +219,8 @@
                     </a>
                     <div class="dropdown-menu   block"  aria-labelledby="navbarDropdown">
                         {% if categorie is defined %}
-                            {% for data in categorie  %}
+                            {% set categories = categorie|slice(1) %}
+                            {% for data in categories  %}
                                 <a class="dropdown-item link" href="{{ path('categorieCourante' , { id:data.id }) }}">{{ data.__toString|capitalize }}</a>
                             {% endfor %}
                         {% endif %}
