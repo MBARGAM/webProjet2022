@@ -226,7 +226,7 @@ class SearchController extends AbstractController
 
             'idCp' => 'null',
 
-            'nomPrestataire' => $action["prestataire"]== null ? 'null' : $action["nomPrestataire"],
+            'nomPrestataire' => $action["prestataire"]== null ? 'null' : $action["prestataire"],
 
             'NoPage'=>1
         ];

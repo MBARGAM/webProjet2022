@@ -96,18 +96,18 @@ class PrestataireRepository extends ServiceEntityRepository
 
     public function findAllPrestataire($value,$laPage): array
     {
-        //dd($value);
         $start = $laPage * 12 - 12;
-        $last =  $value["nomPrestataire"] == "null" ? " p.nom LIKE '%' ":' and p.nom LIKE "%'.$value["nomPrestataire"].'%"';
         $categorie = $value["idCategorie"] == 1 ? "":'categorie.id = '.$value["idCategorie"].' and ';
         $localite = $value["idLocalite"] == "null" ? "":'utilisateur.localite_id = '.$value["idLocalite"].' and ';
         $commune = $value["idCommune"] == "null" ? "":'utilisateur.commune_id = '.$value["idCommune"].' and ';
         $cp= $value["idCp"] == "null" ? "":'utilisateur.cp_id = '.$value["idCp"].' and ';
-
-        $condition = $categorie.'  '.$localite.'  '.$commune.'  '.$cp.'  '.$last;
-
-
-
+        $condition = $categorie.'  '.$localite.'  '.$commune.'  '.$cp;
+        $texteSansEspaces = str_replace(' ', '', $condition);
+        if(strlen($texteSansEspaces) == 0){
+            $condition = $value["nomPrestataire"] == "null" ? " p.nom LIKE '%' ":"  p.nom LIKE '%".$value["nomPrestataire"]."%'";
+        }else{
+            $condition = $value["nomPrestataire"] == "null" ? $condition."  p.nom LIKE '%' ": $condition."  p.nom LIKE '%".$value["nomPrestataire"]."%'";
+        }
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
                 SELECT p.id,p.nom  FROM prestataire p
@@ -116,6 +116,7 @@ class PrestataireRepository extends ServiceEntityRepository
                 INNER JOIN categorie  on categorie_prestataire.categorie_id = categorie.id
                 WHERE   '.$condition.' 
                 ORDER BY nom ASC LIMIT '.$start.',12';
+
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
 

@@ -492,6 +492,12 @@ class PrestataireController extends AbstractController
 
             $prestataireDatas[] = $userImgData;
         }
+
+        // retrait de la premiere occurrence de categorie
+         array_shift($listeCategorie);
+
+         $listeCategorie = $listeCategorie ;
+
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
         //choix aléatoire d'une categorie
         $tailleCategories = count($listeCategorie);
@@ -506,19 +512,30 @@ class PrestataireController extends AbstractController
 
         $categorieChoisie  = [$categorieAleatoire,$monImage];
 
-
         return $this->renderForm('prestataire/prestataireCourant.html.twig', [
+
             'form' => $form,
+
             'commune'=>$listeCommune,
+
             'localite'=>$listeLocalite,
+
             'cp'=>$listeCp,
+
             'categorie'=> $listeCategorie,
+
             'userCategories'=>$userCategories,
+
             'categorieChoisie'=>$categorieChoisie,
+
             'userStages'=>$userStages,
+
             'userPromotions'=>$userPromotions,
+
             'prestataire'=>$lePrestataire[0],
+
             'prestataires'=>$prestataireDatas,
+
             'photo'=>$logoName,
 
         ]);
