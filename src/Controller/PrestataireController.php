@@ -362,18 +362,20 @@ class PrestataireController extends AbstractController
             $prestataireDatas[] = $userImgData;
         }
 
-        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
-        //choix aléatoire d'une categorie
-        $tailleCategories = count($listeCategorie);
-        $random = rand(0,$tailleCategories-1);
+        // recuperation de la categorie choisie par la prestataire
 
-        $categorieAleatoire = $listeCategorie[$random];
+        $req = $entityManager->getRepository(Categorie::class);
 
-        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
+        $categorieChoisie= $req->findCategorieChoisie();
+
+        $categorieChoisie = $categorieChoisie[0];
+
+        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
 
         $monImage = $img == null ? 'categorie.jpg' : $img;
 
-        $categorieChoisie  = [$categorieAleatoire,$monImage];
+        $categorieChoisie  = [$categorieChoisie,$monImage];
 
 
         return $this->renderForm('prestataire/profilPrestataire.html.twig', [
@@ -393,6 +395,8 @@ class PrestataireController extends AbstractController
 
         ]);
     }
+
+
     /**
      * @Route("/user/description/prestataire/{id}", name="descriptionPrestataire")
      */
@@ -494,19 +498,20 @@ class PrestataireController extends AbstractController
             $prestataireDatas[] = $userImgData;
         }
 
-        //choix  d'un categorie aleatoire a afficher sur la page d'accueil
-        //choix aléatoire d'une categorie
-        $tailleCategories = count($listeCategorie);
+        // recuperation de la categorie choisie par la prestataire
 
-        $random = rand(0,$tailleCategories-1);
+        $req = $entityManager->getRepository(Categorie::class);
 
-        $categorieAleatoire = $listeCategorie[$random];
+        $categorieChoisie= $req->findCategorieChoisie();
 
-        $img =$categorieAleatoire->getImage() == null  ? null : $categorieAleatoire->getImage()->getNom();
+        $categorieChoisie = $categorieChoisie[0];
+
+        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
 
         $monImage = $img == null ? 'categorie.jpg' : $img;
 
-        $categorieChoisie  = [$categorieAleatoire,$monImage];
+        $categorieChoisie  = [$categorieChoisie,$monImage];
 
         return $this->renderForm('prestataire/prestataireCourant.html.twig', [
 
