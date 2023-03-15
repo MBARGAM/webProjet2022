@@ -55,6 +55,26 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
 
         $this->add($user, true);
     }
+    public function findPrestataireUser($value): array
+  {
+        return $this->createQueryBuilder('u')
+            ->Where('u.id = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findUser($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->Where('u.prestataire = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
 
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects

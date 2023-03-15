@@ -51,7 +51,7 @@
 
                  {% if app.user.roles[0] == "PRESTATAIRE" %}
                     <div class="headerLogo">
-                        <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                        <a href="{{ path('profilPrestataire',{ id:app.user.id,role:app.user.roles[0] }) }}" tilte="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
                     </div>
                  {% else %}
                      <div class="headerLogo">
@@ -134,7 +134,7 @@
             <div class="logoutBigScreen">
             {% if app.user.roles[0] == "PRESTATAIRE" %}
                 <div class="headerLogo">
-                    <a href="{{ path('profilPrestataire',{ id:app.user.prestataire.id,role:app.user.roles[0] }) }}" title="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
+                    <a href="{{ path('profilPrestataire',{ id:app.user.id,role:app.user.roles[0] }) }}" title="retour vers votre profil"><img class="logo" src="{{ asset('images/logo.png')  }}" title="accueil" alt="accueil"></a>
                 </div>
             {% else %}
                 <div class="headerLogo">
@@ -354,7 +354,7 @@
                     {% set titleUser = prestataires[0][0].__toString|capitalize %}
 
                     {% if typeUser is defined %}
-                        {% set url =  path('profilPrestataire', { id :prestataires[0][0].id,role:typeUser})  %}
+                        {% set url =  path('redirectionPrestataire', { id :prestataires[0][0].id,role:typeUser})  %}
                     {% else %}
                         {% set url =  path('descriptionPrestataire', { id :prestataires[0][0].id})  %}
                     {% endif %}
@@ -379,7 +379,7 @@
 
                     {% set titleUser = prestataires[1][0].__toString|capitalize %}
                     {% if typeUser is defined %}
-                        {% set url =  path('profilPrestataire', { id :prestataires[1][0].id,role:typeUser})  %}
+                        {% set url =  path('redirectionPrestataire', { id :prestataires[1][0].id,role:typeUser})  %}
                     {% else %}
                         {% set url =  path('descriptionPrestataire', { id :prestataires[1][0].id})  %}
                     {% endif %}
@@ -403,7 +403,7 @@
                     {% set titleUser = prestataires[2][0].__toString|capitalize %}
 
                     {% if typeUser is defined %}
-                        {% set url =  path('profilPrestataire', { id :prestataires[2][0].id,role:typeUser})  %}
+                        {% set url =  path('redirectionPrestataire', { id :prestataires[2][0].id,role:typeUser})  %}
                     {% else %}
                         {% set url =  path('descriptionPrestataire', { id :prestataires[2][0].id})  %}
                     {% endif %}
@@ -428,7 +428,7 @@
                     {% set titleUser = prestataires[3][0].__toString|capitalize %}
 
                     {% if typeUser is defined %}
-                        {% set url =  path('profilPrestataire', { id :prestataires[3][0].id,role:typeUser})  %}
+                        {% set url =  path('redirectionPrestataire', { id :prestataires[3][0].id,role:typeUser})  %}
                     {% else %}
                         {% set url =  path('descriptionPrestataire', { id :prestataires[3][0].id})  %}
                     {% endif %}

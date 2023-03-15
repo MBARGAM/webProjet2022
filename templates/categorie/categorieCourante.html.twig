@@ -157,15 +157,15 @@
                 {# ici , tout les tests sur l existence des prestataires ainsi que la verification si un user est connecté ou pas et si la
                 le tableau des prestataires est vide ou pas #}
                 <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
-                    {% if prestataires is defined %}
-                        {% if prestataires|length > 0 %}
+                    {% if mesprestataires is defined %}
+                        {% if mesprestataires|length > 0 %}
                             {% if app.user %}
-                                {% for prestataire in prestataires %}
+                                {% for prestataire in mesprestataires %}
                                     {% set url =  path('profilPrestataire', { id:prestataire["id"],role:app.user.roles[0]})  %}
                                     <a class="dropdown-item link" href="{{ url }}">{{ prestataire["nom"]|capitalize }}</a>
                                 {% endfor %}
                             {% else %}
-                                {% for prestataire in prestataires %}
+                                {% for prestataire in mesprestataires %}
                                     {% set url =  path('descriptionPrestataire', { id : prestataire["id"]})  %}
                                     <a class="dropdown-item link" href="{{ url }}">{{ prestataire["nom"]|capitalize }}</a>
                                 {% endfor %}
@@ -180,5 +180,9 @@
         </div>
 
     </div>
+
+    {% block listePrestataire %}
+        {{ parent() }}
+    {% endblock %}
 
 {% endblock %}

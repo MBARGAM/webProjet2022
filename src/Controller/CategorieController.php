@@ -215,6 +215,45 @@ class CategorieController extends AbstractController
        et si l image n est pas charge au prealable on alloue une image par defaut */
         $limage = $imageCourante[0]['nom'] == null ? 'categorie.jpg' : $imageCourante[0]['nom'];
 
+
+        // Obtention des 4 prestataires les plus récents
+        $prestataire = $entityManager->getRepository(Prestataire::class);
+
+        $listePrestataires = $prestataire->lastPrestataireInsert();
+
+        $prestataireDatas = [];
+
+        foreach ($listePrestataires as $data){
+
+            $userImgData = [];
+
+            $req = $entityManager->getRepository(Image::class);
+
+            $listeImage = $req->findPicName($data->getId());
+
+            $userImgData[] = $data;
+
+            $userImgData[] = $listeImage[0]['nom'];
+
+            $prestataireDatas[] = $userImgData;
+        }
+
+        // recuperation de la categorie choisie par la prestataire
+
+        $req = $entityManager->getRepository(Categorie::class);
+
+        $categorieChoisie= $req->findCategorieChoisie();
+
+        $categorieChoisie = $categorieChoisie[0];
+
+        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
+
+        $monImage = $img == null ? 'categorie.jpg' : $img;
+
+        $categorieChoisie  = [$categorieChoisie,$monImage];
+
+
         return $this->renderForm('categorie/categorieCourante.html.twig', [
 
             'form' => $form,
@@ -231,7 +270,11 @@ class CategorieController extends AbstractController
 
             'nomImage'=> $limage,
 
-            'prestataires' => $listePrestataire,
+            'mesprestataires' => $listePrestataire,
+
+            'prestataires'=>$prestataireDatas,
+
+            'categorieChoisie'=>$categorieChoisie,
         ]);
 
     }

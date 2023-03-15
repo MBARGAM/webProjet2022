@@ -234,6 +234,27 @@ class PrestataireController extends AbstractController
         ]);
     }
 
+    /**
+     *  @Route("/redirection/{id}/{role}", name="redirectionPrestataire")
+     */
+    public function redirectionPrestataire($id,$role,Request $request,EntityManagerInterface $entityManager): Response
+    {
+        $req1 =  $entityManager->getRepository(Prestataire::class);
+
+        $prestataireActuel = $req1->find($id);
+
+
+        $req = $entityManager->getRepository(Utilisateur::class);
+
+        $userId = $req->findUser($prestataireActuel);
+
+        $id = $userId[0]->getId() ;
+
+        return $this->redirectToRoute('profilPrestataire',["id"=> $id, "role"=>$role]);
+    }
+
+
+
     // profil du prestataire
     /**
      * @Route("/profilPrestataire/{id}/{role}", name="profilPrestataire")
@@ -291,13 +312,23 @@ class PrestataireController extends AbstractController
         }
 
         //recuperation des donnees du prestataire connecte
+        // recuperation de l'id du prestataire dans la table user
+
+        $req = $entityManager->getRepository(Utilisateur::class);
+
+        $prestataireId = $req->findPrestataireUser($id);
+
+        $idPrestatataire = $prestataireId[0]->getPrestataire()->getId();
+
         $prestataire = $entityManager->getRepository(Prestataire::class);
 
-        $lePrestataire = $prestataire->findPrestataire($id);
+
+        $lePrestataire = $prestataire->findPrestataire($idPrestatataire);
+
 
         $logoName = $entityManager->getRepository(Image::class);
 
-        $logoName = $logoName->findPicName($id);
+        $logoName = $logoName->findPicName($idPrestatataire);
 
         if(!empty($logoName)){
             $logoName = $logoName[0]['nom'];
@@ -308,19 +339,20 @@ class PrestataireController extends AbstractController
         //recuperation des donnees des catégories du prestataire connecte
         $requete = $entityManager->getRepository(Categorie::class);
 
-        $userCategories = $requete->findCategoriePrestataire($id);
+        $userCategories = $requete->findCategoriePrestataire($idPrestatataire);
 
         //recuperation des donnees des stages du prestataire connecte
         $requete = $entityManager->getRepository(Stage::class);
 
-        $userStages = $requete->findStagePrestataire($id);
+        $userStages = $requete->findStagePrestataire($idPrestatataire);
 
         //recuperation des donnees des promotions du prestataire connecte
         $requete = $entityManager->getRepository(Promotion::class);
 
-        $userPromotions = $requete->findPromotionPrestataire($id);
+        $userPromotions = $requete->findPromotionPrestataire($idPrestatataire);
 
          if($lePrestataire[0]['bloque']==1 || $lePrestataire[0]['visible']==0 || $lePrestataire[0]['confirme']==0){
+
             return $this->redirectToRoute('app_logout');
          }
          if($role=='PRESTATAIRE'){
