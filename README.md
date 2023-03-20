@@ -9,7 +9,7 @@ ETAPES D'INSTALLATION DU PROJET WEB 2022
  Avant de commencer, assurez-vous que vous avez les éléments suivants:
 
 - Git installé sur votre ordinateur
-- PHP et Composer installés sur votre ordinateur
+- serveur Apache et mysql installé sur votre ordinateur
 
 3- Clonage du projet : 
 
@@ -24,21 +24,38 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
 * Accédez au répertoire du projet cloné à partir de la ligne de commande.
 * 
-Tapez la commande suivante pour installer les dépendances du projet avec Composer:
+Tapez les 4 commandes suivante pour installer les dépendances du projet avec Composer:
 
-* composer install
+1) composer install
+
+2) composer require symfony/webpack-encore-bundle
+
+3) npm install sass-loader sass webpack --save-dev
+
+4) npm run watch
+
 
 * Modifiez les paramètres de configuration dans le fichier .env en fonction de votre configuration de base de données, si nécessaire.
 
-* Lancement du serveur
-
-Tapez la commande suivante pour démarrer le serveur de développement de Symfony:
-* symfony server:start
-
 pour les bases de données :
+
 * creer une base de donnee grace a la commande  php bin/console doctrine:database:create
 
-* Faire migrer la bd avec la commande  php bin/console doctrine:migrations:migrate
+* Faire migrer les migtrations  avec la commande  php bin/console doctrine:migrations:migrate
+
+
+* Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de donnee
+
+Tapez la commande suivante pour démarrer le serveur de développement de Symfony:
+
+* symfony server:start
+
+
+
+
+
+
+
 
 * Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.
 Conclusion
