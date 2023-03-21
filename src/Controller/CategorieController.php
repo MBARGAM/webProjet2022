@@ -186,13 +186,13 @@ class CategorieController extends AbstractController
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 

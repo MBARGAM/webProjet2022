@@ -286,13 +286,14 @@ class PrestataireController extends AbstractController
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
@@ -322,18 +323,20 @@ class PrestataireController extends AbstractController
 
         $prestataire = $entityManager->getRepository(Prestataire::class);
 
-
         $lePrestataire = $prestataire->findPrestataire($idPrestatataire);
-
 
         $logoName = $entityManager->getRepository(Image::class);
 
         $logoName = $logoName->findPicName($idPrestatataire);
 
         if(!empty($logoName)){
+
             $logoName = $logoName[0]['nom'];
+
         }else{
+
             $logoName = [];
+
         }
 
         //recuperation des donnees des catégories du prestataire connecte
@@ -473,19 +476,21 @@ class PrestataireController extends AbstractController
         $listeCp= $cp->findAllCp();
 
         $form = $this->createForm(PrestataireSearchType::class);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 

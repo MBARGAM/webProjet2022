@@ -97,6 +97,7 @@ class HomeController extends AbstractController
         $req = $entityManager->getRepository(Categorie::class);
 
         $categorieChoisie= $req->findCategorieChoisie();
+
         if($categorieChoisie == null){
 
             $monImage =  'categorie.jpg';
@@ -124,15 +125,15 @@ class HomeController extends AbstractController
 
         $data = $form->getData();
 
-        $idCategorie = $data["categorie"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-        $idLocalite = $data["nomLocalite"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-        $idCommune = $data["nomCommune"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
 
-        $idCp = $data["cp"]->getId();
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
-        $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
+            $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
        return $this->redirectToRoute('search', [
 
@@ -227,8 +228,10 @@ class HomeController extends AbstractController
                     $prestataireDatas[] = $userImgData;
 
                 }
-
             }
+        }else{
+
+            $prestataireDatas = null;
         }
 
         //choix  d'une categorie aleatoire a afficher sur la page d'accueil
@@ -254,13 +257,13 @@ class HomeController extends AbstractController
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
@@ -400,21 +403,35 @@ class HomeController extends AbstractController
 
         $listePrestataire = $prestataire->lastPrestataireInsert();
 
-        $prestataireDatas = [];
+        if ($listePrestataire != null){
 
-        foreach ($listePrestataire as $data){
+            $prestataireDatas = [];
 
-            $userImgData = [];
+            foreach ($listePrestataire as $data){
 
-            $req = $entityManager->getRepository(Image::class);
+                $userImgData = [];
 
-            $listeImage = $req->findPicName($data->getId());
+                $req = $entityManager->getRepository(Image::class);
 
-            $userImgData[] = $data;
+                $listeImage = $req->findPicName($data->getId());
 
-            $userImgData[] = $listeImage[0]['nom'];
+                if($listeImage != null){
 
-            $prestataireDatas[] = $userImgData;
+                    $userImgData[] = $data;
+
+                    $userImgData[] = $listeImage[0]['nom'];
+
+                    $prestataireDatas[] = $userImgData;
+
+                }else{
+
+                    $prestataireDatas[] = $userImgData;
+
+                }
+            }
+        }else{
+
+            $prestataireDatas = null;
         }
 
         //choix  d'un categorie aleatoire a afficher sur la page d'accueil
