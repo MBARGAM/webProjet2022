@@ -87,6 +87,9 @@ class HomeController extends AbstractController
 
                 }
             }
+        }else{
+
+            $prestataireDatas = null;
         }
 
       // recuperation de la categorie choisie par la prestataire
@@ -94,15 +97,24 @@ class HomeController extends AbstractController
         $req = $entityManager->getRepository(Categorie::class);
 
         $categorieChoisie= $req->findCategorieChoisie();
+        if($categorieChoisie == null){
 
-        $categorieChoisie = $categorieChoisie[0];
+            $monImage =  'categorie.jpg';
 
-        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+            $categorieChoisie  = ["null",$monImage];
+        }
+        else
+        {
 
+            $categorieChoisie = $categorieChoisie[0];
 
-        $monImage = $img == null ? 'categorie.jpg' : $img;
+            $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
 
-        $categorieChoisie  = [$categorieChoisie,$monImage];
+            $monImage = $img == null ? 'categorie.jpg' : $img;
+
+            $categorieChoisie  = [$categorieChoisie,$monImage];
+        }
+
 
         $form = $this->createForm(SearchType::class);
 
