@@ -443,8 +443,13 @@
                 {% set  category = "loading...." %}
                 {% set url = "#" %}
             {% else %}
-                {% set category = categorieChoisie[0].__toString|capitalize %}
-                {% set url =  path('categorieCourante', { id :categorieChoisie[0].id})  %}
+                {% if categorieChoisie[0] == "null" %}
+                    {% set  category = "loading...." %}
+                    {% set url = "#" %}
+                {% else %}
+                    {% set category = categorieChoisie[0].__toString|capitalize %}
+                    {% set url =  path('categorieCourante', { id :categorieChoisie[0].id})  %}
+                {% endif%}
             {% endif %}
             <div class="categorieItem">
                 <a href="{{ url }}"><img class="logoPrestataire" src="{{ asset('images_directory/'~categorieChoisie[1])  }}" title="accueil" alt="accueil"></a>
