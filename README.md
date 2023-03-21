@@ -61,14 +61,9 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
 8) Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de données que vous avez créée afin de remplir la base de données avec des
    
-   correspondant aux communes , provinces et codes postaux belges.
-
-
-
-
-
-
-
+   - correspondant aux communes , provinces et codes postaux belges.
+   - une catégorie de produits par défaut.
+   - un administrateur par défaut avec les identifiants suivants: identifiant: admin  mot de passe: admin
 
 
 * Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.

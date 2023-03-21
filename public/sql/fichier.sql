@@ -3850,6 +3850,9 @@ INSERT INTO `commune` (`id`, `cp_id`, `commune`, `localite_id`) VALUES
 (2702, 1128, 'Sint-Jan-In-Eremo', NULL);
 
 
+INSERT INTO `categorie` (`id`, `nom`, `description`, `validation`, `mis_en_avant`) VALUES
+    (1, '  Toutes les catégories', 'toutes les catégories', 1, 0);
 
 
-
+INSERT INTO `utilisateur` (`id`, `prestataire_id`, `internaute_id`, `commune_id`, `localite_id`, `cp_id`, `email`, `roles`, `password`, `adresse_no`, `adresse_rue`, `date_inscription`, `visible`, `inscript_conf`, `nbre_essai`) VALUES
+    (1, NULL, NULL, NULL, NULL, NULL, 'admin@admin.be', '[\"ADMIN\"]', '$2y$13$3AZW9o7dtwqnqNU7VyPbTunGuizgfYSWslX9j9R.FCOwgILP5SAse', NULL, NULL, '2023-03-08', 1, 1, NULL);
