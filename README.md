@@ -1,4 +1,4 @@
-ETAPES D'INSTALLATION DU PROJET WEB 2022 
+ETAPES D'INSTALLATION DU PROJET WEB 2022 - 2023
 
 * Introduction
 
@@ -57,7 +57,7 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
 7) Faire migrer les migtrations  avec la commande :
 
-- 
+-    php bin/console doctrine:migrations:migrate
 
 8) Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de données que vous avez créée afin de remplir la base de données avec des
    
