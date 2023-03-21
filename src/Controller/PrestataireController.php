@@ -286,13 +286,14 @@ class PrestataireController extends AbstractController
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
@@ -322,18 +323,20 @@ class PrestataireController extends AbstractController
 
         $prestataire = $entityManager->getRepository(Prestataire::class);
 
-
         $lePrestataire = $prestataire->findPrestataire($idPrestatataire);
-
 
         $logoName = $entityManager->getRepository(Image::class);
 
         $logoName = $logoName->findPicName($idPrestatataire);
 
         if(!empty($logoName)){
+
             $logoName = $logoName[0]['nom'];
+
         }else{
+
             $logoName = [];
+
         }
 
         //recuperation des donnees des catégories du prestataire connecte
@@ -473,19 +476,21 @@ class PrestataireController extends AbstractController
         $listeCp= $cp->findAllCp();
 
         $form = $this->createForm(PrestataireSearchType::class);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
 
             $data = $form->getData();
 
-            $idCategorie = $data["categorie"]->getId();
 
-            $idLocalite = $data["nomLocalite"]->getId();
+            $idCategorie =  $data["categorie"] == null ? 'null' : $data["categorie"]->getId();
 
-            $idCommune = $data["nomCommune"]->getId();
+            $idLocalite = $data["nomLocalite"]== null ? 'null' : $data["nomLocalite"]->getId();
 
-            $idCp = $data["cp"]->getId();
+            $idCommune = $data["nomCommune"]== null ? 'null' : $data["nomCommune"]->getId();
+
+            $idCp = $data["cp"]== null ? 'null' : $data["cp"]->getId();
 
             $nomPrestataire  =  $data["nomPrestataire"] == null ? 'null' : $data["nomPrestataire"];
 
@@ -534,21 +539,35 @@ class PrestataireController extends AbstractController
 
         $listePrestataire = $prestataire->lastPrestataireInsert();
 
-        $prestataireDatas = [];
+        if ($listePrestataire != null){
 
-        foreach ($listePrestataire as $data){
+            $prestataireDatas = [];
 
-            $userImgData = [];
+            foreach ($listePrestataire as $data){
 
-            $req = $entityManager->getRepository(Image::class);
+                $userImgData = [];
 
-            $listeImage = $req->findPicName($data->getId());
+                $req = $entityManager->getRepository(Image::class);
 
-            $userImgData[] = $data;
+                $listeImage = $req->findPicName($data->getId());
 
-            $userImgData[] = $listeImage[0]['nom'];
+                if($listeImage != null){
 
-            $prestataireDatas[] = $userImgData;
+                    $userImgData[] = $data;
+
+                    $userImgData[] = $listeImage[0]['nom'];
+
+                    $prestataireDatas[] = $userImgData;
+
+                }else{
+
+                    $prestataireDatas[] = $userImgData;
+
+                }
+            }
+        }else{
+
+            $prestataireDatas = null;
         }
 
         // recuperation de la categorie choisie par la prestataire
@@ -557,14 +576,23 @@ class PrestataireController extends AbstractController
 
         $categorieChoisie= $req->findCategorieChoisie();
 
-        $categorieChoisie = $categorieChoisie[0];
+        if($categorieChoisie == null){
 
-        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+            $monImage =  'categorie.jpg';
 
+            $categorieChoisie  = ["null",$monImage];
+        }
+        else
+        {
 
-        $monImage = $img == null ? 'categorie.jpg' : $img;
+            $categorieChoisie = $categorieChoisie[0];
 
-        $categorieChoisie  = [$categorieChoisie,$monImage];
+            $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
+            $monImage = $img == null ? 'categorie.jpg' : $img;
+
+            $categorieChoisie  = [$categorieChoisie,$monImage];
+        }
 
         return $this->renderForm('prestataire/prestataireCourant.html.twig', [
 

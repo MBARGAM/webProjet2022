@@ -80,13 +80,13 @@ class SearchController extends AbstractController
             $datas = $form->getData();
 
             $data = [
-                'idCategorie' => $datas["categorie"]->getId(),
+                'idCategorie' => $datas["categorie"] == null ? 'null' : $datas["categorie"]->getId(),
 
-                'idLocalite' =>  $datas["nomLocalite"]->getId(),
+                'idLocalite' =>  $datas["nomLocalite"]== null ? 'null' : $datas["nomLocalite"]->getId(),
 
-                'idCommune' => $datas["nomCommune"]->getId(),
+                'idCommune' => $datas["nomCommune"]== null ? 'null' : $datas["nomCommune"]->getId(),
 
-                'idCp' => $data["cp"]->getId(),
+                'idCp' => $data["cp"]== null ? 'null' : $data["cp"]->getId(),
 
                 'nomPrestataire' => $data["nomPrestataire"]== null ? 'null' : $data["nomPrestataire"],
 
@@ -217,22 +217,42 @@ class SearchController extends AbstractController
     {
         $action = $request->request->all();
 
-        $data = [
-            'idCategorie' => $action["categorie"]== null ? 'null' : $action["categorie"],
+        if (array_key_exists("categorie", $action)){
 
-            'idLocalite' => $action["localite"]== null ? 'null' : $action["localite"],
+            $idCategorie = $action["categorie"]== null ? 'null' : $action["categorie"];
 
-            'idCommune' => 'null',
+        }else{
 
-            'idCp' => 'null',
+            $idCategorie = 'null';
 
-            'nomPrestataire' => $action["prestataire"]== null ? 'null' : $action["prestataire"],
+        }
 
-            'NoPage'=>1
+        $idLocalite = $action["localite"]== null ? 'null' : $action["localite"];
+
+        $idCommune = 'null';
+
+        $idCp = 'null';
+
+        $nomPrestataire = $action["prestataire"]== null ? 'null' : $action["prestataire"];
+
+        $NoPage = 1;
+
+      $data = [
+            'idCategorie' => $idCategorie,
+
+            'idLocalite' => $idLocalite,
+
+            'idCommune' => $idCommune,
+
+            'idCp' => $idCp,
+
+            'nomPrestataire' => $nomPrestataire,
+
+            'NoPage'=>$NoPage
         ];
 
 
-           return $this->redirectToRoute('search', [
+        return $this->redirectToRoute('search', [
 
             'idCategorie' => $data["idCategorie"],
 
