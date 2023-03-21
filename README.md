@@ -9,13 +9,14 @@ ETAPES D'INSTALLATION DU PROJET WEB 2022
  Avant de commencer, assurez-vous que vous avez les éléments suivants:
 
   - Git installé sur votre ordinateur
+
   - serveur Apache et mysql installé sur votre ordinateur
 
 * Clonage du projet : 
 
- pour cloner le projet proceder comme suit :
+ pour cloner le projet , procedez comme suit :
 
-1) Ouvrez une ligne de commande sur votre ordinateur et copier/coller la commande suivante afin de telecharger le projet : 
+1) Ouvrez la ligne de commande sur votre ordinateur et copier/coller la commande suivante afin de telecharger le projet : 
 
   - git clone https://github.com/MBARGAM/webProjet2022.git
 
