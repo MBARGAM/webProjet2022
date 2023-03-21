@@ -31,7 +31,7 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
             --pour installer webpack encore
       - composer require symfony/webpack-encore-bundle   
 
-           -- pour activer sass dans webpack encore
+           --pour activer sass dans webpack encore
       - npm install sass-loader sass webpack --save-dev    
 
       - npm run watch
@@ -57,7 +57,7 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
 7) Faire migrer les migtrations  avec la commande :
 
-    - php bin/console doctrine:migrations:migrate
+- 
 
 8) Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de données que vous avez créée afin de remplir la base de données avec des
    
