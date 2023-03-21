@@ -22,28 +22,30 @@ ETAPES D'INSTALLATION DU PROJET WEB 2022
 
 Une fois la commande exécutée, vous devriez voir le projet cloné dans votre répertoire.
 
-2) Ouvrir votre IDE  et charger le projet cloné ou acceder au projet cloné avec votre terminal
+2) Ouvrir votre IDE  et charger le projet cloné ou acceder au projet cloné avec votre ligne de commande
 
-3) Tapez les 4 commandes suivante pour installer les dépendances du projet avec Composer:
+   1) Tapez les 4 commandes suivantes pour installer les dépendances du projet avec Composer:
 
-   - composer install
+      - composer install
 
-   - composer require symfony/webpack-encore-bundle
-  
-   - npm install sass-loader sass webpack --save-dev
+            --pour installer webpack encore
+      - composer require symfony/webpack-encore-bundle   
 
-   - npm run watch
+           -- pour activer sass dans webpack encore
+      - npm install sass-loader sass webpack --save-dev    
+
+      - npm run watch
     
   
 4) Tapez la commande suivante pour démarrer le serveur de développement de Symfony:
 
    - symfony server:start
-   - 
+   
 5) Modifiez les paramètres de configuration dans le fichier .env en fonction de la base de données que vous souhaitez utiliser
 
    sur le ligne :  DATABASE_URL="mysql://root:root@127.0.0.1:8889/projetweb2022?serverVersion=8&charset=utf8mb4"  , modifier les parametres suivant :
 
-   - soit vous mettez la ligne en commentaire si vous utilisez une autre base de donnee que mysql 
+   - soit vous mettez la ligne en commentaire si vous utilisez une autre base de donnee autre que mysql 
 
    - soit vous modifiez les parametres suivant afin de definir le nom de votre base de données  :
 
