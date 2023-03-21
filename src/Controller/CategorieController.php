@@ -221,21 +221,35 @@ class CategorieController extends AbstractController
 
         $listePrestataires = $prestataire->lastPrestataireInsert();
 
-        $prestataireDatas = [];
+        if ($listePrestataires != null){
 
-        foreach ($listePrestataires as $data){
+            $prestataireDatas = [];
 
-            $userImgData = [];
+            foreach ($listePrestataires as $data){
 
-            $req = $entityManager->getRepository(Image::class);
+                $userImgData = [];
 
-            $listeImage = $req->findPicName($data->getId());
+                $req = $entityManager->getRepository(Image::class);
 
-            $userImgData[] = $data;
+                $listeImage = $req->findPicName($data->getId());
 
-            $userImgData[] = $listeImage[0]['nom'];
+                if($listeImage != null){
 
-            $prestataireDatas[] = $userImgData;
+                    $userImgData[] = $data;
+
+                    $userImgData[] = $listeImage[0]['nom'];
+
+                    $prestataireDatas[] = $userImgData;
+
+                }else{
+
+                    $prestataireDatas[] = $userImgData;
+
+                }
+            }
+        }else{
+
+            $prestataireDatas = null;
         }
 
         // recuperation de la categorie choisie par la prestataire
@@ -244,14 +258,22 @@ class CategorieController extends AbstractController
 
         $categorieChoisie= $req->findCategorieChoisie();
 
-        $categorieChoisie = $categorieChoisie[0];
+        if($categorieChoisie == null){
 
-        $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+            $monImage =  'categorie.jpg';
 
+            $categorieChoisie  = ["null",$monImage];
+        }
+        else{
 
-        $monImage = $img == null ? 'categorie.jpg' : $img;
+            $categorieChoisie = $categorieChoisie[0];
 
-        $categorieChoisie  = [$categorieChoisie,$monImage];
+            $img =$categorieChoisie->getImage() == null  ? null : $categorieChoisie->getImage()->getNom();
+
+            $monImage = $img == null ? 'categorie.jpg' : $img;
+
+            $categorieChoisie  = [$categorieChoisie,$monImage];
+        }
 
 
         return $this->renderForm('categorie/categorieCourante.html.twig', [
