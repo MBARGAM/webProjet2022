@@ -1,3 +1,15 @@
+INSERT INTO `localite` (`id`, `localite`) VALUES
+(1, 'Anvers'),
+(2, 'Flandre'),
+(3, 'Hainaut'),
+(4, 'Liege'),
+(5, 'Luxembourg'),
+(6, 'Namur'),
+(7, 'Brabant flamand'),
+(8, 'Brabant wallon'),
+(9, 'Limbourg'),
+(10, 'Bruxelles');
+
 
 INSERT INTO `code_postal` (`id`, `cp`, `localite_id`) VALUES
 (1, '1030', 10),
@@ -3839,15 +3851,5 @@ INSERT INTO `commune` (`id`, `cp_id`, `commune`, `localite_id`) VALUES
 
 
 
-INSERT INTO `localite` (`id`, `localite`) VALUES
-(1, 'Anvers'),
-(2, 'Flandre'),
-(3, 'Hainaut'),
-(4, 'Liege'),
-(5, 'Luxembourg'),
-(6, 'Namur'),
-(7, 'Brabant flamand'),
-(8, 'Brabant wallon'),
-(9, 'Limbourg'),
-(10, 'Bruxelles');
+
 
