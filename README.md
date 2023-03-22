@@ -65,7 +65,13 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
    - une catégorie de produits par défaut.
    - un administrateur par défaut avec les identifiants suivants: identifiant: admin  mot de passe: admin
 
+9) Configurer Mail trap pour l'envoi des mails
 
+   - Créer un compte sur le site https://mailtrap.io/ et créer un nouveau projet.
+   - Dans le fichier .env, modifier les paramètres suivants afin de configurer l'envoi des mails avec Mail trap:
+
+      - MAILER_DSN=smtp://votreIdentifiant:
+   - 
 * Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.
 Conclusion
 
