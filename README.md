@@ -10,28 +10,16 @@
 
 - la version de symfony utilisée est la 5.4  et la version de nodejs est la 14.17.6
 
-# sur Linux
-
-   symfony doit être installé (attention avec la version 12 npm plante, il faut la 16)
-
-# https://aymeric-cucherousset.fr/installer-symfony-6-sur-debian-11/
-# Installer nodejs sous linux Debian 11
-# https://www.rosehosting.com/blog/how-to-install-node-js-and-npm-on-debian-11/
-
-
 ## Prérequis pour que cela fonctionne en fonction de votre OS
 #  ----------------------------------
 # 	Soft		Version
 #	-----------------------
 # 	nodejs  	v16.19.1
-#	symfony		5.5.1 (sur LINUX)
-#	Apache		2.4.54 (Debian)
-#	PHP 		8.2.3 sur Debian 11
 
 #   Apache		2.4.48 (MAC OS X)
 #	PHP 		8.0.8 s(MAC OS X) 
 #	MariaDB		10.5.18
-#  MySQL   5.7.34
+#  MySQL        5.7.34
 
  Avant de commencer, assurez-vous que vous avez les éléments suivants:
 
@@ -47,15 +35,15 @@
 
  pour cloner le projet , procedez comme suit :
 
-1) Ouvrez la ligne de commande sur votre ordinateur et copier/coller la commande suivante afin de telecharger le projet : 
+1) # Ouvrez la ligne de commande sur votre ordinateur et copier/coller la commande suivante afin de telecharger le projet : 
 
   - git clone https://github.com/MBARGAM/webProjet2022.git
 
-Une fois la commande exécutée, vous devriez voir le projet cloné dans votre répertoire.
+    Une fois la commande exécutée, vous devriez voir le projet cloné dans votre répertoire.
 
-2) Ouvrir votre IDE  et charger le projet cloné ou acceder au projet cloné avec votre ligne de commande
+2) # Ouvrir votre IDE  et charger le projet cloné ou acceder au projet cloné avec votre ligne de commande
 
-   1) Tapez les 4 commandes suivantes pour installer les dépendances du projet avec Composer:
+3) # Tapez les 4 commandes suivantes pour installer les dépendances du projet avec Composer:
 
       - composer install
 
@@ -68,15 +56,15 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
       - npm run watch
     
   
-4) Tapez la commande suivante pour démarrer le serveur de développement de Symfony:
+4) # Tapez la commande suivante pour démarrer le serveur de développement de Symfony:
 
    - symfony server:start
    
-5) Modifiez les paramètres de configuration dans le fichier .env en fonction de la base de données que vous souhaitez utiliser
+5) # Modifiez les paramètres de configuration dans le fichier .env en fonction de la base de données que vous souhaitez utiliser
 
    sur le ligne :  DATABASE_URL="mysql://root:root@127.0.0.1:8889/projetweb2022?serverVersion=8&charset=utf8mb4"  , modifier les parametres suivant :
 
-   NB: faire attention au port de votre base de données
+   ## NB: faire attention au port de votre base de données en mettant le bon port  et au nom de votre base de données
 
    - soit vous mettez la ligne en commentaire si vous utilisez une autre base de donnee autre que mysql 
 
@@ -84,22 +72,32 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
            DATABASE_URL="mysql://votreIdentifiant:votreMotDePasse@adresseEnLocal/nomDeVotreBase?serverVersion=8&charset=utf8mb4"
 
-7) Créer une base de donnee grace a la commande : 
+6) # Créer une base de donnee grace a la commande : 
 
    - php bin/console doctrine:database:create
 
-8) Faire migrer les migtrations  avec la commande :
+7) # Faire migrer les migtrations  avec la commande :
 
--    php bin/console doctrine:migrations:migrate
+   -    php bin/console doctrine:migrations:migrate
 
-  1) Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de données que vous avez créée afin de remplir la base de données avec des
+8) # Importer le fichier fichier.sql se trouvant dans   /public/sql/  dans la base de données que vous avez créée afin de remplir la base de données avec des
    
      - correspondant aux communes , provinces et codes postaux belges.
      - une catégorie de produits par défaut.
      - un administrateur par défaut avec les identifiants suivants: 
      
-     ## identifiant: admin@admin.be  
+     ## identifiant administrateur : admin@admin.be  
      ##  mot de passe: admin
+
+9) ##  pour le mailing :
+        -  modifier le fichier .env en mettant votre adresse mail et votre mot de passe dans les variables suivantes :
+        
+        ## MAILER_DSN=smtp://votreAdresseMail:
+
+10) ## pour tester le projet en local sur votre machine :
+
+      https://127.0.0.1:port   (port par defaut 8000)
+
 
 
 
@@ -107,6 +105,18 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
 ## SUR LINUX suivre la proceduire suivante  est applicable: 
 
+# sur Linux
+
+symfony doit être installé (attention avec la version 12 npm plante, il faut la 16)
+
+# https://aymeric-cucherousset.fr/installer-symfony-6-sur-debian-11/
+# Installer nodejs sous linux Debian 11
+# https://www.rosehosting.com/blog/how-to-install-node-js-and-npm-on-debian-11/
+
+# 	nodejs  	v16.19.1
+#	symfony		5.5.1 (sur LINUX)
+#	Apache		2.4.54 (Debian)
+#	PHP 		8.2.3 sur Debian 11
 ## Connexion au serveur distant
 #  ----------------------------
 -  ssh aiko@192.168.1.37 (connexion serveur à distance pour test LAN)		
