@@ -101,14 +101,9 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
      ## identifiant: admin@admin.be  
      ##  mot de passe: admin
 
-9) Configurer Mail trap pour l'envoi des mails
 
-   - Créer un compte sur le site https://mailtrap.io/ et créer un nouveau projet.
-   - Dans le fichier .env, modifier les paramètres suivants afin de configurer l'envoi des mails avec Mail trap:
-
-      - MAILER_DSN=smtp://votreIdentifiant:
-   - 
-* Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.
+   
+9)  Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.
 
 EX:  http://127.0.0.1:8000/  ou un autre port si vous avez modifié le port par défaut
 
