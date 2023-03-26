@@ -84,7 +84,7 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
 
    - soit vous modifiez les parametres suivant afin de definir le nom de votre base de données  :
 
-           DATABASE_URL="mysql://votreIdentifiant:votreMotDePasse@adresseEnLocal/nomDeVotreBase?serverVersion=8&charset=utf8mb4"
+           DATABASE_URL="mysql://votreIdentifiant:votreMotDePasse@127.0.0.1:votrePort/nomDeVotreBase?serverVersion=8&charset=utf8mb4"
 
 7) ## Créer une base de donnee grace a la commande : 
 
