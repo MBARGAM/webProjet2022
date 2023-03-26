@@ -216,7 +216,7 @@ class CategorieController extends AbstractController
 
 
         $limage = empty($imageCourante) ? 'categorie.jpg' : $imageCourante[0]['nom'];
-        
+
         // Obtention des 4 prestataires les plus récents
         $prestataire = $entityManager->getRepository(Prestataire::class);
 
