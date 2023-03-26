@@ -102,11 +102,6 @@ Une fois la commande exécutée, vous devriez voir le projet cloné dans votre r
      ##  mot de passe: admin
 
 
-   
-9)  Accédez à l'adresse indiquée dans votre navigateur Web pour accéder à votre application Symfony.
-
-EX:  http://127.0.0.1:8000/  ou un autre port si vous avez modifié le port par défaut
-
 
 
 
