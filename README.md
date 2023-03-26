@@ -31,7 +31,7 @@
 #   Apache		2.4.48 (MAC OS X)
 #	PHP 		8.0.8 s(MAC OS X) 
 #	MariaDB		10.5.18
-#  MySQL   5.7.34
+#   MySQL       5.7.34
 
 
 
@@ -47,7 +47,7 @@
 
 * Clonage du projet : 
 
- pour cloner le projet , procedez comme suit :
+ Afin de  cloner le projet , procedez comme suit  :
 
 1) ## Ouvrez la ligne de commande sur votre ordinateur et copier/coller la commande suivante afin de telecharger le projet : 
 
