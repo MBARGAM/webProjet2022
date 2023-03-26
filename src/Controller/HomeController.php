@@ -178,9 +178,9 @@ class HomeController extends AbstractController
    */
 
     /**
-     * @Route("/accueil/preinscription/{prenom}", name="monAccueil")
+     * @Route("/accueil/{type}/{prenom}", name="monAccueil")
      */
-    public function pageAcceilAprèspresinscription($prenom,Request $request,EntityManagerInterface $entityManager): Response
+    public function pageAcceilAprèspresinscription($type,$prenom,Request $request,EntityManagerInterface $entityManager): Response
     {
         $commune = $entityManager->getRepository(Commune::class);
 
@@ -294,8 +294,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        $message =  ucfirst($prenom ).  " , Un email de confirmation vous a été envoyé, veuillez le consulter svp!!";
+        if($type == 'preinscription') {
 
+            $message = ucfirst($prenom) . " , Un email de confirmation vous a été envoyé, veuillez le consulter svp!!";
+
+        }else if($type == 'inscription'){
+
+            $message = ucfirst($prenom) . " , inscription réussie, vous pouvez maintenant vous connecter!!";
+
+        }
         return $this->renderForm('home/index.html.twig', [
 
             'form' => $form,

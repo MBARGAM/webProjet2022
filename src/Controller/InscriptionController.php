@@ -98,7 +98,7 @@ class InscriptionController extends AbstractController
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$data['prenom'],$typeInscription,$mailer,$environment,$token->getNom());
 
-            return $this->redirectToRoute('monAccueil',["prenom"=>$data['prenom']]);
+            return $this->redirectToRoute('monAccueil',["type"=>"preinscription","prenom"=>$data['prenom']]);
         }
 
         return $this->renderForm('inscription/index.html.twig', [
@@ -201,7 +201,7 @@ class InscriptionController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('pageAccueil');
+            return $this->redirectToRoute('monAccueil',["type"=>"inscription","prenom"=>$data['prenom']]);
         }
         return $this->renderForm('inscription/inscriptionInternaute.html.twig', [
 

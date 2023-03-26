@@ -64,7 +64,7 @@ class StageController extends AbstractController
 
                 $entityManager->flush();
             }
-            return $this->redirectToRoute('pageAccueil');
+            return $this->redirectToRoute('monAccueil',["type"=>"inscription","prenom"=>$prestataire->getNom()]);
         }
 
         return $this->renderForm('stage/index.html.twig', [

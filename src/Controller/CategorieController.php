@@ -213,9 +213,10 @@ class CategorieController extends AbstractController
         }
        /* verification de l existence de l image de la categorie courante si elle a ete telechargee
        et si l image n est pas charge au prealable on alloue une image par defaut */
-        $limage = $imageCourante[0]['nom'] == null ? 'categorie.jpg' : $imageCourante[0]['nom'];
 
 
+        $limage = empty($imageCourante) ? 'categorie.jpg' : $imageCourante[0]['nom'];
+        
         // Obtention des 4 prestataires les plus récents
         $prestataire = $entityManager->getRepository(Prestataire::class);
 

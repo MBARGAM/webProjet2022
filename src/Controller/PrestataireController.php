@@ -105,7 +105,7 @@ class PrestataireController extends AbstractController
             //envoi d'un email de confirmation
             $this->sendEmail($data['email'],$data['nom'],$typeInscription,$mailer,$environment,$token->getNom());
 
-            return $this->redirectToRoute('monAccueil',["prenom"=>$data['nom']]);
+            return $this->redirectToRoute('monAccueil',["type"=>"preinscription","prenom"=>$data['nom']]);
         }
 
         return $this->renderForm('inscription/index.html.twig', [
