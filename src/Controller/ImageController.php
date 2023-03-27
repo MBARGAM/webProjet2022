@@ -24,6 +24,7 @@ class ImageController extends AbstractController
         -enregistrement des images dans la base de données
 
    */
+
     /**
      * @Route("/image/{id}", name="lesImages")
      */

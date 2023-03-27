@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Prestataire;
 use App\Entity\Stage;
+use App\Entity\Utilisateur;
 use App\Form\StageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,7 @@ class StageController extends AbstractController
      */
     public function index($id,EntityManagerInterface $entityManager,Request $request): Response
     {
+
         $stage = new Stage();
 
         $form = $this->createForm(StageType::class,$stage);
@@ -92,10 +94,19 @@ class StageController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
+            //recuperation des donnees du prestataire connecte
+            // recuperation de l'id du prestataire dans la table user
+
+            $req = $entityManager->getRepository(Utilisateur::class);
+
+            $prestataireId = $req->findPrestataireUser($id);
+
+            $idPrestatataire = $prestataireId[0]->getPrestataire()->getId();
+
             //recuperation de l'objet Prestataire ayant rempli le formulaire
             $prestataire = $entityManager->getRepository(Prestataire::class);
 
-            $prestataire = $prestataire->find($id);
+            $prestataire = $prestataire->find( $idPrestatataire);
 
             $data= $form->getData();
 

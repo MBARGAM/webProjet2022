@@ -11,6 +11,7 @@ use App\Entity\Prestataire;
 use App\Entity\Categorie;
 use App\Entity\Promotion;
 use App\Entity\Stage;
+use App\Entity\Utilisateur;
 use App\Form\CategorieType;
 use App\Form\PrestataireSearchType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,16 +34,26 @@ class CategorieController extends AbstractController
      */
     public function ajouterCategorie($id,$role,EntityManagerInterface $entityManager,Request $request,SluggerInterface $slugger): Response
     {
+
+        //recuperation des donnees du prestataire connecte
+        // recuperation de l'id du prestataire dans la table user
+
+        $req = $entityManager->getRepository(Utilisateur::class);
+
+        $prestataireId = $req->findPrestataireUser($id);
+
+        $idPrestatataire = $prestataireId[0]->getPrestataire()->getId();
+
         // cette fontion gere l insertion d un categorie par soit admin ou prestataire
         $form = $this->createForm(CategorieType::class);
 
         $form->handleRequest($request);
 
-       $data = $entityManager->getRepository(Prestataire::class)->findPrestataire($id);
+       $data = $entityManager->getRepository(Prestataire::class)->findPrestataire($idPrestatataire);
 
         $prestataire = new Prestataire();
 
-        $prestataire->setId($id);
+        $prestataire->setId($idPrestatataire);
 
         $prestataire->setNom(strtolower($data[0]['nom']));
 
@@ -69,12 +80,12 @@ class CategorieController extends AbstractController
 
             $categorie->setMisEnAvant(false);
 
-            // verification du role de celui qui ajoute  la categorie
+           // verification du role de celui qui ajoute  la categorie
             if($role == 'PRESTATAIRE'){
 
                 $categorie->setValidation(false);
 
-                $entityManager->persist($categorie);
+              $entityManager->persist($categorie);
 
                 $entityManager->flush();
 
@@ -90,7 +101,7 @@ class CategorieController extends AbstractController
 
                     $image->setNom($logo);
 
-                    $image->setCategorie($categorie);
+                   $image->setCategorie($categorie);
 
                     $entityManager->persist($image);
 

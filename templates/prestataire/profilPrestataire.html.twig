@@ -144,8 +144,8 @@
 
                 {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id == prestataire["id"] %}
                     <div class="btn">
-                        <a href="{{ path('ajouterCategorie' , { id:prestataire["id"] ,role:"PRESTATAIRE"}) }}" class="d-block fa-solid fa-square-plus"></a>
-                        <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:prestataire["id"],role:"PRESTATAIRE"}) }}">Categorie</a></span>
+                        <a href="{{ path('ajouterCategorie' , {id:app.user.id ,role:"PRESTATAIRE"}) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajouterCategorie' , { id:app.user.id,role:"PRESTATAIRE"}) }}">Categorie</a></span>
                     </div>
                 {% endif %}
             </div>
@@ -156,14 +156,14 @@
                     </a>
                     <div class="dropdown-menu  block" aria-labelledby="navbarDropdown">
                         {% for stage in userStages %}
-                            <a class="dropdown-item link" href="{{ path('stageCourant' , { id:stage["id"]}) }}">{{ stage["nom"]|capitalize }}</a>
+                            <a class="dropdown-item link" href="{{ path('stageCourant' , {id:stage["id"]}) }}">{{ stage["nom"]|capitalize }}</a>
                         {% endfor %}
                     </div>
                 </div>
                 {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"] %}
                     <div class="btn">
-                        <a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                        <span class="d-block"><a href="{{ path('ajoutStage' , { id:prestataire["id"]}) }}">Stage</a></span>
+                        <a href="{{ path('ajoutStage' , { id:app.user.id }) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajoutStage' , { id:app.user.id }) }}">Stage</a></span>
                     </div>
                 {% endif %}
             </div>
@@ -180,8 +180,8 @@
                 </div>
                 {% if typeUser == "PRESTATAIRE" and app.user.prestataire.id  == prestataire["id"]%}
                     <div class="btn">
-                        <a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}" class="d-block fa-solid fa-square-plus"></a>
-                        <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:prestataire["id"]}) }}">Promotion</a></span>
+                        <a href="{{ path('ajoutPromotion' , { id:app.user.id }) }}" class="d-block fa-solid fa-square-plus"></a>
+                        <span class="d-block"><a href="{{ path('ajoutPromotion' , { id:app.user.id }) }}">Promotion</a></span>
                     </div>
                 {% endif %}
             </div>

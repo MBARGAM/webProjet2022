@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use App\Entity\Image;
 use App\Entity\Prestataire;
 use App\Entity\Promotion;
+use App\Entity\Utilisateur;
 use App\Form\PromotionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -121,10 +122,19 @@ class PromotioPromotionController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
+            //recuperation des donnees du prestataire connecte
+            // recuperation de l'id du prestataire dans la table user
+
+            $req = $entityManager->getRepository(Utilisateur::class);
+
+            $prestataireId = $req->findPrestataireUser($id);
+
+            $idPrestatataire = $prestataireId[0]->getPrestataire()->getId();
+
             //recuperation de l'objet Prestataire ayant rempli le formulaire
             $prestataire = $entityManager->getRepository(Prestataire::class);
 
-            $prestataire = $prestataire->find($id);
+            $prestataire = $prestataire->find( $idPrestatataire);
 
             $data = $form->getData();
 
