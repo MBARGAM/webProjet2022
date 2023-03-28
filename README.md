@@ -90,9 +90,11 @@
      ##  mot de passe: admin
 
 9) ##  pour le mailing :
-        -  modifier le fichier .env en mettant votre adresse mail et votre mot de passe dans les variables suivantes :
+        -  modifier le fichier .env en mettant MAILER_DSN du service que vous utilisez pour envoyer les mails
         
-        ## MAILER_DSN=smtp://votreAdresseMail:
+        ## exemple pour MAILTRAP:
+
+         MAILER_DSN=smtp://eac504557751ea:e3fedd4821b939@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login
 
 10) ## pour tester le projet en local sur votre machine :
 
