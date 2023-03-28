@@ -161,7 +161,7 @@
                         {% if mesprestataires|length > 0 %}
                             {% if app.user %}
                                 {% for prestataire in mesprestataires %}
-                                    {% set url =  path('profilPrestataire', { id:prestataire["id"],role:app.user.roles[0]})  %}
+                                    {% set url =  path('descriptionPrestataire', { id : prestataire["id"]})  %}
                                     <a class="dropdown-item link" href="{{ url }}">{{ prestataire["nom"]|capitalize }}</a>
                                 {% endfor %}
                             {% else %}
