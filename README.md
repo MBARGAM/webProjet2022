@@ -90,7 +90,7 @@
      ##  mot de passe: admin
 
 9) ##  pour le mailing :
-        -  modifier le fichier .env en mettant MAILER_DSN du service que vous utilisez pour envoyer les mails
+        -  modifier le fichier .env  (ligne 43) en mettant MAILER_DSN du service que vous utilisez pour envoyer les mails
         
         ## exemple pour MAILTRAP:
 
